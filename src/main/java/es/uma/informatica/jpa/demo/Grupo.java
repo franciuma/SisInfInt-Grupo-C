@@ -10,7 +10,7 @@ public class Grupo {
 	@Id 
 	@GeneratedValue
 	@Column(name="ID")
-	private Long id;
+	private Integer id;
 	@Column(nullable = false, unique = true, name = "Curso")
 	private Integer curso;
 	@Column(nullable = false, unique = true, name = "Letra")
@@ -25,10 +25,18 @@ public class Grupo {
 	private String asignar;
 	@Column(name = "Plazas")
 	private Integer plazas;
-	public Long getId() {
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Grupo [id=" + id + ", curso=" + curso + ", letra=" + letra + ", turnoMañanaTarde=" + turnoMañanaTarde
+				+ ", ingles=" + ingles + ", visible=" + visible + ", asignar=" + asignar + ", plazas=" + plazas + "]";
+	}
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public Integer getCurso() {
