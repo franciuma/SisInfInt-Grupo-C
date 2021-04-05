@@ -17,7 +17,7 @@ public class Centro {
 	@Column(name = "Direccion",nullable = false)
 	private String direccion;
 	@Column(name = "Telefono de Conserjeria",length = 9)
-	private String TLF_Conserjeria;
+	private String tlfConserjeria;
 	
 	public Long getId() {
 		return id;
@@ -44,17 +44,20 @@ public class Centro {
 	}
 	
 	public String getTLF_Conserjeria() {
-		return TLF_Conserjeria;
+		return tlfConserjeria;
 	}
 	
-	public void setTLF_Conserjeria(String tLF_Conserjeria) {
-		TLF_Conserjeria = tLF_Conserjeria;
+
+	public void setTlfConserjeria(String tlfConserjeria) {
+		this.tlfConserjeria = tlfConserjeria;
 	}
 
 	@Override
 	public String toString() {
-		return "Centro [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", TLF_Conserjeria="
-				+ TLF_Conserjeria + "]";
+		return "Centro [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", tlfConserjeria="
+				+ tlfConserjeria + "]";
 	}
+
+
 
 }
