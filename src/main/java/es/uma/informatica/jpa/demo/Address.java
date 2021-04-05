@@ -15,7 +15,6 @@ public class Address {
 	private String state;
 	private String zipcode;
 	private String country;
-	//Hola que tal
 	
 	public Long getId() {
 		return id;
