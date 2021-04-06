@@ -20,6 +20,7 @@ public class GruposPorAsig {
 		private String cursoAcademico;
 		private Integer asignatura;
 		private Integer grupo;
+		
 		@Override
 		public int hashCode() {
 			final int prime = 31;
@@ -29,6 +30,7 @@ public class GruposPorAsig {
 			result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
 			return result;
 		}
+		
 		@Override
 		public boolean equals(Object obj) {
 			if (this == obj)
