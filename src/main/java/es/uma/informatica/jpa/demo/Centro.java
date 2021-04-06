@@ -1,9 +1,13 @@
 package es.uma.informatica.jpa.demo;
 
+
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Centro {
@@ -18,6 +22,9 @@ public class Centro {
 	private String direccion;
 	@Column(name = "Telefono de Conserjeria", length = 9)
 	private String tlfConserjeria;
+	
+	@ManyToMany(mappedBy = "perteneceAcentros")
+	private List<Titulacion> contieneTitulaciones;
 	
 	public Long getId() {
 		return id;

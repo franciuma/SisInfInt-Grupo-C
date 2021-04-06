@@ -1,9 +1,13 @@
 package es.uma.informatica.jpa.demo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Grupo {
@@ -26,6 +30,15 @@ public class Grupo {
 	private String asignar;
 	@Column(name = "Plazas")
 	private Integer plazas;
+	
+	@ManyToOne
+	private Titulacion titulacion;
+	
+	@OneToMany(mappedBy = "grupo")
+	private List<Grupo> grupos;
+	
+	@ManyToOne
+	private Grupo grupo;
 	
 	public Integer getId() {
 		return id;
