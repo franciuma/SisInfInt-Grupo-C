@@ -40,6 +40,12 @@ public class Grupo {
 	@ManyToOne
 	private Grupo grupo;
 	
+	@OneToMany(mappedBy = "grupo")
+	private List<GruposPorAsig> gruposPorAsig;
+	
+	@OneToMany(mappedBy = "grupo")
+	private List<Clase> clases;
+	
 	public Integer getId() {
 		return id;
 	}
