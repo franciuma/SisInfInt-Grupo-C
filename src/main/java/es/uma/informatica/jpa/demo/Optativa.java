@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class Optativa extends Asignatura{
+public class Optativa extends Asignatura {
 
 	@Column(name = "Plazas", nullable = false)
 	private Integer referencia;
