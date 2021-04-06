@@ -15,17 +15,23 @@ public class Clase implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
-	public static class ClaseId implements Serializable{
+	public static class ClaseId implements Serializable {
+		
+		private static final long serialVersionUID = 1L;
 		private Date dia;
 		private Date horaInicio;
+		private Integer grupo;
+		
 		@Override
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + ((dia == null) ? 0 : dia.hashCode());
+			result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
 			result = prime * result + ((horaInicio == null) ? 0 : horaInicio.hashCode());
 			return result;
 		}
+		
 		@Override
 		public boolean equals(Object obj) {
 			if (this == obj)
@@ -39,6 +45,11 @@ public class Clase implements Serializable{
 				if (other.dia != null)
 					return false;
 			} else if (!dia.equals(other.dia))
+				return false;
+			if (grupo == null) {
+				if (other.grupo != null)
+					return false;
+			} else if (!grupo.equals(other.grupo))
 				return false;
 			if (horaInicio == null) {
 				if (other.horaInicio != null)
@@ -61,6 +72,10 @@ public class Clase implements Serializable{
 	@ManyToOne
 	private Asignatura asignatura;
 
+	@Id
+	@ManyToOne
+	private Grupo grupo;
+	
 	public Date getDia() {
 		return dia;
 	}

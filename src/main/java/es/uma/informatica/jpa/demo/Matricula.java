@@ -1,18 +1,59 @@
 package es.uma.informatica.jpa.demo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 
 @Entity
+@IdClass(Matricula.MatriculaId.class)
 public class Matricula {
 
+	public static class MatriculaId implements Serializable {
+		
+		private static final long serialVersionUID = 1L;
+		private String cursoAcademico;
+		private Long expediente;
+		
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((cursoAcademico == null) ? 0 : cursoAcademico.hashCode());
+			result = prime * result + ((expediente == null) ? 0 : expediente.hashCode());
+			return result;
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			MatriculaId other = (MatriculaId) obj;
+			if (cursoAcademico == null) {
+				if (other.cursoAcademico != null)
+					return false;
+			} else if (!cursoAcademico.equals(other.cursoAcademico))
+				return false;
+			if (expediente == null) {
+				if (other.expediente != null)
+					return false;
+			} else if (!expediente.equals(other.expediente))
+				return false;
+			return true;
+		}
+	}
+	
 	@Id
 	@Column(name = "Curso Academico")
-	private Integer cursoAcademico;
+	private String cursoAcademico;
 	@Column(name = "Estado", nullable = false)
 	private String estado;
 	@Column(name = "Numero de Archivo")
@@ -26,14 +67,15 @@ public class Matricula {
 	@Column(name = "Listado de Asignaturas")
 	private String listadoAsignaturas;
 	
+	@Id
 	@ManyToOne
 	private Expediente expediente;
 	
-	public Integer getCursoAcademico() {
+	public String getCursoAcademico() {
 		return cursoAcademico;
 	}
 	
-	public void setCursoAcademico(Integer cursoAcademico) {
+	public void setCursoAcademico(String cursoAcademico) {
 		this.cursoAcademico = cursoAcademico;
 	}
 	
