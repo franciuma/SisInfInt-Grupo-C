@@ -1,8 +1,11 @@
 package es.uma.informatica.jpa.demo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class GruposPorAsig {
@@ -12,6 +15,9 @@ public class GruposPorAsig {
 	private String cursoAcademico;
 	@Column(name = "Oferta")
 	private Boolean oferta;
+	
+	@ManyToMany(mappedBy = "perteneceAGruposPorAsig")
+	private List<Encuesta> contieneEncuestas;
 	
 	public String getCursoAcademico() {
 		return cursoAcademico;

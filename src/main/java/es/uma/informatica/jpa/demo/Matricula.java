@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Matricula {
@@ -24,45 +25,62 @@ public class Matricula {
 	private Boolean nuevoIngreso;
 	@Column(name = "Listado de Asignaturas")
 	private String listadoAsignaturas;
+	
+	@ManyToOne
+	private Expediente expediente;
+	
 	public Integer getCursoAcademico() {
 		return cursoAcademico;
 	}
+	
 	public void setCursoAcademico(Integer cursoAcademico) {
 		this.cursoAcademico = cursoAcademico;
 	}
+	
 	public String getEstado() {
 		return estado;
 	}
+	
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
 	public Integer getNumArchivo() {
 		return numArchivo;
 	}
+	
 	public void setNumArchivo(Integer numArchivo) {
 		this.numArchivo = numArchivo;
 	}
+	
 	public String getTurnoPreferente() {
 		return turnoPreferente;
 	}
+	
 	public void setTurnoPreferente(String turnoPreferente) {
 		this.turnoPreferente = turnoPreferente;
 	}
+	
 	public Date getFechaMatricula() {
 		return fechaMatricula;
 	}
+	
 	public void setFechaMatricula(Date fechaMatricula) {
 		this.fechaMatricula = fechaMatricula;
 	}
+	
 	public Boolean getNuevoIngreso() {
 		return nuevoIngreso;
 	}
+	
 	public void setNuevoIngreso(Boolean nuevoIngreso) {
 		this.nuevoIngreso = nuevoIngreso;
 	}
+	
 	public String getListadoAsignaturas() {
 		return listadoAsignaturas;
 	}
+	
 	public void setListadoAsignaturas(String listadoAsignaturas) {
 		this.listadoAsignaturas = listadoAsignaturas;
 	}

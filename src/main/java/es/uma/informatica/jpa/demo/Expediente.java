@@ -1,11 +1,15 @@
 package es.uma.informatica.jpa.demo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Expedientes {
+public class Expediente {
 
 	@Id
 	@Column(name = "Numero de Expediente")
@@ -14,6 +18,18 @@ public class Expedientes {
 	private boolean activo;
 	@Column(name = "Nota Media Provisional")
 	private Long notaMediaProvisional;
+	
+	@ManyToOne
+	private Titulacion titulacion;
+	
+	@ManyToOne
+	private Alumno alumno;
+	
+	@OneToMany(mappedBy = "expediente")
+	private List<Encuesta> encuestas;
+	
+	@OneToMany(mappedBy = "expediente")
+	private List<Matricula> matriculas;
 	
 	public Long getNumExpediente() {
 		return numExpediente;
@@ -57,7 +73,7 @@ public class Expedientes {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Expedientes other = (Expedientes) obj;
+		Expediente other = (Expediente) obj;
 		if (activo != other.activo)
 			return false;
 		if (notaMediaProvisional == null) {

@@ -1,8 +1,12 @@
 package es.uma.informatica.jpa.demo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Asignatura {
@@ -28,6 +32,12 @@ public class Asignatura {
 	private String unidadTemporal;
 	@Column(name = "Idiomas de Impartición")
 	private String idiomasImparticion;
+	
+	@ManyToOne
+	private Titulacion titulacion;
+	
+	@OneToMany(mappedBy = "asignatura")
+	private List<Clase> clases;
 	
 	public Integer getReferencia() {
 		return referencia;

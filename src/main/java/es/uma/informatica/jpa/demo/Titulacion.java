@@ -1,8 +1,14 @@
 package es.uma.informatica.jpa.demo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Titulacion {
@@ -14,6 +20,21 @@ public class Titulacion {
 	private String nombre;
 	@Column(name = "Creditos", nullable = false)
 	private Long creditos;
+	
+	@ManyToMany
+	@JoinTable(name = "JND_Centro_Titulacion",
+		joinColumns = @JoinColumn(name = "Titulacion_FK"),
+		inverseJoinColumns = @JoinColumn(name = "Centro_FK"))
+	private List<Centro> perteneceAcentros;
+	
+	@OneToMany(mappedBy = "titulacion")
+	private List<Grupo> grupos;
+	
+	@OneToMany(mappedBy = "titulacion")
+	private List<Expediente> expedientes;
+	
+	@OneToMany(mappedBy = "titulacion")
+	private List<Asignatura> asignaturas;
 	
 	public Long getCodigo() {
 		return codigo;

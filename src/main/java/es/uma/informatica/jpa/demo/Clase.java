@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
 
 @Entity
 @IdClass(ClaseId.class)
@@ -19,6 +20,9 @@ public class Clase {
 	private Date horaInicio;
 	@Column(name = "Hora de Fin")
 	private Date horaFin;
+	
+	@ManyToOne
+	private Asignatura asignatura;
 
 	public Date getDia() {
 		return dia;

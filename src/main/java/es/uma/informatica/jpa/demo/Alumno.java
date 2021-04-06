@@ -1,9 +1,12 @@
 package es.uma.informatica.jpa.demo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Alumno {
@@ -24,6 +27,9 @@ public class Alumno {
 	private String telefono;
 	@Column(name = "Telefono movil")
 	private String movil;
+	
+	@OneToMany(mappedBy = "alumno")
+	private List<Expediente> expedientes;
 	
 	public Long getId() {
 		return id;
