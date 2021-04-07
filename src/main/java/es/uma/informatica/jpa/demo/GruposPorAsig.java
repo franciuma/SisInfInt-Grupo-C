@@ -4,99 +4,78 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-@IdClass(GruposPorAsig.GruposPorAsigId.class)
-public class GruposPorAsig {
+public class GruposPorAsig implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	
-	public static class GruposPorAsigId implements Serializable {
-		
-		private static final long serialVersionUID = 1L;
-		private String cursoAcademico;
-		private Integer asignatura;
-		private Integer grupo;
-		
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + ((asignatura == null) ? 0 : asignatura.hashCode());
-			result = prime * result + ((cursoAcademico == null) ? 0 : cursoAcademico.hashCode());
-			result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
-			return result;
-		}
-		
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			GruposPorAsigId other = (GruposPorAsigId) obj;
-			if (asignatura == null) {
-				if (other.asignatura != null)
-					return false;
-			} else if (!asignatura.equals(other.asignatura))
-				return false;
-			if (cursoAcademico == null) {
-				if (other.cursoAcademico != null)
-					return false;
-			} else if (!cursoAcademico.equals(other.cursoAcademico))
-				return false;
-			if (grupo == null) {
-				if (other.grupo != null)
-					return false;
-			} else if (!grupo.equals(other.grupo))
-				return false;
-			return true;
-		}
-	}
-	
-	@Id
-	@Column(name = "Curso Academico")
-	private String cursoAcademico;
+	@EmbeddedId
+	private GruposPorAsig_ID id;
 	@Column(name = "Oferta")
 	private Boolean oferta;
 	
 	@ManyToMany(mappedBy = "perteneceAGruposPorAsig")
 	private List<Encuesta> contieneEncuestas;
-	
-	@Id
+
 	@ManyToOne
 	private Asignatura asignatura;
 	
-	@Id
 	@ManyToOne
 	private Grupo grupo;
-	
-	public String getCursoAcademico() {
-		return cursoAcademico;
+
+	public GruposPorAsig_ID getId() {
+		return id;
 	}
-	
-	public void setCursoAcademico(String cursoAcademico) {
-		this.cursoAcademico = cursoAcademico;
+
+	public void setId(GruposPorAsig_ID id) {
+		this.id = id;
 	}
-	
+
 	public Boolean getOferta() {
 		return oferta;
 	}
-	
+
 	public void setOferta(Boolean oferta) {
 		this.oferta = oferta;
+	}
+
+	public List<Encuesta> getContieneEncuestas() {
+		return contieneEncuestas;
+	}
+
+	public void setContieneEncuestas(List<Encuesta> contieneEncuestas) {
+		this.contieneEncuestas = contieneEncuestas;
+	}
+
+	public Asignatura getAsignatura() {
+		return asignatura;
+	}
+
+	public void setAsignatura(Asignatura asignatura) {
+		this.asignatura = asignatura;
+	}
+
+	public Grupo getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cursoAcademico == null) ? 0 : cursoAcademico.hashCode());
+		result = prime * result + ((asignatura == null) ? 0 : asignatura.hashCode());
+		result = prime * result + ((contieneEncuestas == null) ? 0 : contieneEncuestas.hashCode());
+		result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((oferta == null) ? 0 : oferta.hashCode());
 		return result;
 	}
@@ -110,10 +89,25 @@ public class GruposPorAsig {
 		if (getClass() != obj.getClass())
 			return false;
 		GruposPorAsig other = (GruposPorAsig) obj;
-		if (cursoAcademico == null) {
-			if (other.cursoAcademico != null)
+		if (asignatura == null) {
+			if (other.asignatura != null)
 				return false;
-		} else if (!cursoAcademico.equals(other.cursoAcademico))
+		} else if (!asignatura.equals(other.asignatura))
+			return false;
+		if (contieneEncuestas == null) {
+			if (other.contieneEncuestas != null)
+				return false;
+		} else if (!contieneEncuestas.equals(other.contieneEncuestas))
+			return false;
+		if (grupo == null) {
+			if (other.grupo != null)
+				return false;
+		} else if (!grupo.equals(other.grupo))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (oferta == null) {
 			if (other.oferta != null)
@@ -125,6 +119,7 @@ public class GruposPorAsig {
 
 	@Override
 	public String toString() {
-		return "GruposPorAsig [cursoAcademico=" + cursoAcademico + ", oferta=" + oferta + "]";
+		return "GruposPorAsig [id=" + id + ", oferta=" + oferta + ", contieneEncuestas=" + contieneEncuestas
+				+ ", asignatura=" + asignatura + ", grupo=" + grupo + "]";
 	}
 }
