@@ -34,6 +34,10 @@ public class Matricula implements Serializable{
 	@ManyToOne
 	private Expediente expediente;
 	
+	public Matricula() {
+		
+	}
+	
 	public String getCursoAcademico() {
 		return cursoAcademico;
 	}

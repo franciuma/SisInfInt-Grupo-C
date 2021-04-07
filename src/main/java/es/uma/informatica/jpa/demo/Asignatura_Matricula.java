@@ -29,4 +29,8 @@ public class Asignatura_Matricula implements Serializable {
 	@Id
 	@ManyToOne
 	private Matricula matricula;
+	
+	public Asignatura_Matricula() {
+		
+	}
 }

@@ -27,6 +27,10 @@ public class Clase implements Serializable{
 	@ManyToOne
 	private Grupo grupo;
 
+	public Clase() {
+		
+	}
+	
 	public Clase_ID getId() {
 		return id;
 	}

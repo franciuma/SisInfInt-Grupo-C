@@ -31,6 +31,10 @@ public class Expediente {
 	@OneToMany(mappedBy = "expediente")
 	private List<Matricula> matriculas;
 	
+	public Expediente() {
+		
+	}
+	
 	public Long getNumExpediente() {
 		return numExpediente;
 	}

@@ -46,6 +46,10 @@ public class Grupo {
 	@OneToMany(mappedBy = "grupo")
 	private List<Clase> clases;
 	
+	public Grupo() {
+		
+	}
+	
 	public Integer getId() {
 		return id;
 	}
