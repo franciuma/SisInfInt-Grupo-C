@@ -13,6 +13,7 @@
 		<class>es.uma.informatica.jpa.demo.Matricula</class>
 		<class>es.uma.informatica.jpa.demo.Optativa</class>
 		<class>es.uma.informatica.jpa.demo.Titulacion</class>
+		<class>es.uma.informatica.jpa.demo.Asignatura_Matricula</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sii"/>
 			<property name="javax.persistence.jdbc.user" value="siiuser"/>
