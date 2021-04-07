@@ -23,10 +23,14 @@ public class Encuesta {
 		joinColumns = @JoinColumn(name = "Encuesta_FK"),
 		inverseJoinColumns = @JoinColumn(name = "GruposPorAsig_FK"))
 	private List<GruposPorAsig> perteneceAGruposPorAsig;
-	
+
 	@ManyToOne
 	private Expediente expediente;
 
+	public Encuesta() {
+		
+	}
+	
 	public Date getFechaEnvio() {
 		return fechaEnvio;
 	}

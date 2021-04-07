@@ -1,5 +1,6 @@
 package es.uma.informatica.jpa.demo;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,8 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Alumno {
+public class Alumno implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	@Id 
 	@GeneratedValue
 	@Column(name = "ID")
@@ -30,6 +32,23 @@ public class Alumno {
 	
 	@OneToMany(mappedBy = "alumno")
 	private List<Expediente> expedientes;
+	
+	public Alumno(Long id, String dni, String nombreCompleto, String emailInstitucional, String emailPersonal, String telefono, String movil) {
+		
+		super();
+		this.id = id;
+		this.dni = dni;
+		this.nombreCompleto = nombreCompleto;
+		this.emailInstitucional = emailInstitucional;
+		this.emailPersonal = emailPersonal;
+		this.telefono = telefono;
+		this.movil = movil;
+	}
+	
+	public Alumno() {
+		
+		
+	}
 	
 	public Long getId() {
 		return id;

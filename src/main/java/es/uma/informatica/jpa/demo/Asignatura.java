@@ -42,6 +42,10 @@ public class Asignatura {
 	@OneToMany(mappedBy = "asignatura")
 	private List<GruposPorAsig> gruposPorAsig;
 	
+	public Asignatura() {
+		
+	}
+	
 	public Integer getReferencia() {
 		return referencia;
 	}

@@ -36,6 +36,10 @@ public class Titulacion {
 	@OneToMany(mappedBy = "titulacion")
 	private List<Asignatura> asignaturas;
 	
+	public Titulacion() {
+		
+	}
+	
 	public Long getCodigo() {
 		return codigo;
 	}

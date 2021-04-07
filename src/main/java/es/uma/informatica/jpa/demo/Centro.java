@@ -26,6 +26,10 @@ public class Centro {
 	@ManyToMany(mappedBy = "perteneceAcentros")
 	private List<Titulacion> contieneTitulaciones;
 	
+	public Centro() {
+		
+	}
+	
 	public Long getId() {
 		return id;
 	}
