@@ -13,11 +13,11 @@ public class Expediente {
 
 	@Id
 	@Column(name = "Numero_Expediente")
-	private Long numExpediente;
+	private Integer numExpediente;
 	@Column(name = "Activo")
-	private boolean activo;
+	private Boolean activo;
 	@Column(name = "Nota_Media_Provisional")
-	private Long notaMediaProvisional;
+	private Integer notaMediaProvisional;
 	
 	@ManyToOne
 	private Titulacion titulacion;
@@ -35,11 +35,11 @@ public class Expediente {
 		
 	}
 	
-	public Long getNumExpediente() {
+	public Integer getNumExpediente() {
 		return numExpediente;
 	}
 	
-	public void setNumExpediente(Long numExpediente) {
+	public void setNumExpediente(Integer numExpediente) {
 		this.numExpediente = numExpediente;
 	}
 	
@@ -51,11 +51,11 @@ public class Expediente {
 		this.activo = activo;
 	}
 	
-	public Long getNotaMediaProvisional() {
+	public Integer getNotaMediaProvisional() {
 		return notaMediaProvisional;
 	}
 	
-	public void setNotaMediaProvisional(Long notaMediaProvisional) {
+	public void setNotaMediaProvisional(Integer notaMediaProvisional) {
 		this.notaMediaProvisional = notaMediaProvisional;
 	}
 

@@ -14,23 +14,23 @@ public class Asignatura {
 	@Id 
 	@Column(name = "Referencia")
 	private Integer referencia;
-	@Column(name = "Codigo", nullable = false)
+	@Column(name = "Codigo_Asignatura", nullable = false)
 	private Integer codigo;
 	@Column(name = "Creditos", nullable = false)
 	private Integer creditos;
 	@Column(name = "Ofertada", nullable = false)
 	private Boolean ofertada;
-	@Column(name = "Nombre", nullable = false)
+	@Column(name = "Nombre", nullable = false, length = 20)
 	private String nombre;
-	@Column(name = "Curso")
-	private Integer curso;
-	@Column(name = "Caracter")
+	@Column(name = "Curso", length = 10)
+	private String curso;
+	@Column(name = "Caracter", length = 20)
 	private String caracter;
 	@Column(name = "Duracion")
 	private Integer Duracion;
-	@Column(name = "Unidad_Temporal_Cuatrimestre")
+	@Column(name = "Unidad_Temporal_Cuatrimestre", length = 20)
 	private String unidadTemporal;
-	@Column(name = "Idiomas_Imparticion")
+	@Column(name = "Idiomas_Imparticion", length = 100)
 	private String idiomasImparticion;
 	
 	@ManyToOne
@@ -86,11 +86,11 @@ public class Asignatura {
 		this.nombre = nombre;
 	}
 	
-	public Integer getCurso() {
+	public String getCurso() {
 		return curso;
 	}
 	
-	public void setCurso(Integer curso) {
+	public void setCurso(String curso) {
 		this.curso = curso;
 	}
 	

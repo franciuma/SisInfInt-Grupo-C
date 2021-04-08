@@ -16,6 +16,7 @@ public class GruposPorAsig implements Serializable{
 	
 	@EmbeddedId
 	private GruposPorAsig_ID id;
+	
 	@Column(name = "Oferta")
 	private Boolean oferta;
 	
