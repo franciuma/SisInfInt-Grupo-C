@@ -25,9 +25,9 @@ public class Alumno implements Serializable {
 	private String emailInstitucional;
 	@Column(name = "Email_Personal")
 	private String emailPersonal;
-	@Column(name = "Telefono_fijo")
+	@Column(name = "Telefono_Fijo")
 	private String telefono;
-	@Column(name = "Telefono_movil")
+	@Column(name = "Telefono_Movil")
 	private String movil;
 	
 	@OneToMany(mappedBy = "alumno")

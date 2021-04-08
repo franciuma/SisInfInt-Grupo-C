@@ -30,7 +30,7 @@ public class Asignatura {
 	private Integer Duracion;
 	@Column(name = "Unidad_Temporal_Cuatrimestre")
 	private String unidadTemporal;
-	@Column(name = "Idiomas_de_Impartición")
+	@Column(name = "Idiomas_Imparticion")
 	private String idiomasImparticion;
 	
 	@ManyToOne
