@@ -15,12 +15,12 @@ public class Centro {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-	private Long id;
-	@Column(name = "Nombre", nullable = false, unique = true)
+	private Integer id;
+	@Column(name = "Nombre", nullable = false, unique = true, length = 20)
 	private String nombre;
-	@Column(name = "Direccion", nullable = false)
+	@Column(name = "Direccion", nullable = false, length = 200)
 	private String direccion;
-	@Column(name = "Telefono_Conserjeria", length = 9)
+	@Column(name = "Telefono_Conserjeria", length = 20)
 	private String tlfConserjeria;
 	
 	@ManyToMany(mappedBy = "perteneceAcentros")
@@ -30,11 +30,11 @@ public class Centro {
 		
 	}
 	
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

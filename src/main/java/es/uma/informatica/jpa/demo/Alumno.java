@@ -16,24 +16,24 @@ public class Alumno implements Serializable {
 	@Id 
 	@GeneratedValue
 	@Column(name = "ID")
-	private Long id;
+	private Integer id;
 	@Column(name = "DNI", nullable = false, unique = true, length = 9)
 	private String dni;
-	@Column(name = "Nombre_Completo", nullable = false)
+	@Column(name = "Nombre_Completo", nullable = false, length = 100)
 	private String nombreCompleto;
-	@Column(name = "Email_Institucional", nullable = false)
+	@Column(name = "Email_Institucional", nullable = false, length = 100)
 	private String emailInstitucional;
-	@Column(name = "Email_Personal")
+	@Column(name = "Email_Personal", length = 100)
 	private String emailPersonal;
-	@Column(name = "Telefono_Fijo")
+	@Column(name = "Telefono_Fijo", length = 20)
 	private String telefono;
-	@Column(name = "Telefono_Movil")
+	@Column(name = "Telefono_Movil", length = 20)
 	private String movil;
 	
 	@OneToMany(mappedBy = "alumno")
 	private List<Expediente> expedientes;
 	
-	public Alumno(Long id, String dni, String nombreCompleto, String emailInstitucional, String emailPersonal, String telefono, String movil) {
+	public Alumno(Integer id, String dni, String nombreCompleto, String emailInstitucional, String emailPersonal, String telefono, String movil) {
 		
 		super();
 		this.id = id;
@@ -50,11 +50,11 @@ public class Alumno implements Serializable {
 		
 	}
 	
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

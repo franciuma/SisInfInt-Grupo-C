@@ -3,13 +3,17 @@ package es.uma.informatica.jpa.demo;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Clase_ID implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Column(name = "Dia")
 	private Date dia;
+	@Column(name = "Hora_Inicio")
 	private Date horaInicio;
 	private Integer grupo;
 	

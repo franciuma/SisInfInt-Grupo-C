@@ -2,6 +2,7 @@ package es.uma.informatica.jpa.demo;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
@@ -9,6 +10,7 @@ public class GruposPorAsig_ID implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+		@Column(name = "Curso_Academico", length = 10)
 		private String cursoAcademico;
 		private Integer asignatura;
 		private Integer grupo;

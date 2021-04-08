@@ -14,12 +14,12 @@ import javax.persistence.OneToMany;
 public class Titulacion {
 
 	@Id
-	@Column(name = "Codigo")
-	private Long codigo;
-	@Column(name = "Nombre", nullable = false)
+	@Column(name = "Codigo_Titulacion")
+	private Integer codigo;
+	@Column(name = "Nombre", nullable = false, length = 20)
 	private String nombre;
 	@Column(name = "Creditos", nullable = false)
-	private Long creditos;
+	private Integer creditos;
 	
 	@ManyToMany
 	@JoinTable(name = "JND_Centro_Titulacion",
@@ -40,11 +40,11 @@ public class Titulacion {
 		
 	}
 	
-	public Long getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 	
-	public void setCodigo(Long codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 	
@@ -56,11 +56,11 @@ public class Titulacion {
 		this.nombre = nombre;
 	}
 	
-	public Long getCreditos() {
+	public Integer getCreditos() {
 		return creditos;
 	}
 	
-	public void setCreditos(Long creditos) {
+	public void setCreditos(Integer creditos) {
 		this.creditos = creditos;
 	}
 
