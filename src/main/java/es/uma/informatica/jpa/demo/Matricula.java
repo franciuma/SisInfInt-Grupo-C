@@ -16,19 +16,19 @@ public class Matricula implements Serializable{
 	@EmbeddedId
 	private Matricula_ID id;
 	
-	@Column(name = "Curso Academico")
+	@Column(name = "Curso_Academico")
 	private String cursoAcademico;
 	@Column(name = "Estado", nullable = false)
 	private String estado;
-	@Column(name = "Numero de Archivo")
+	@Column(name = "Numero_Archivo")
 	private Integer numArchivo;
-	@Column(name = "Turno Preferente")
+	@Column(name = "Turno_Preferente")
 	private String turnoPreferente;
-	@Column(name = "Fecha de matricula", nullable = false)
+	@Column(name = "Fecha_Matricula", nullable = false)
 	private Date fechaMatricula;
-	@Column(name = "Nuevo ingreso")
+	@Column(name = "Nuevo_ingreso")
 	private Boolean nuevoIngreso;
-	@Column(name = "Listado de Asignaturas")
+	@Column(name = "Listado_Asignaturas")
 	private String listadoAsignaturas;
 	
 	@ManyToOne

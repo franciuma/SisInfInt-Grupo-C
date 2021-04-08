@@ -17,7 +17,7 @@ public class Clase implements Serializable{
 	@EmbeddedId
 	private Clase_ID id;
 	
-	@Column(name = "Hora de Fin")
+	@Column(name = "Hora_Fin")
 	private Date horaFin;
 	
 	@ManyToOne

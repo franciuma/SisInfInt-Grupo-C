@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -15,13 +15,21 @@ import javax.persistence.ManyToOne;
 public class Encuesta {
 
 	@Id
-	@Column(name = "Fecha de Envio")
+	@Column(name = "Fecha_Envio")
 	private Date fechaEnvio;
 	
-	@ManyToMany
+	/*@ManyToMany
 	@JoinTable(name = "JND_Encuesta_GruposPorAsig",
 		joinColumns = @JoinColumn(name = "Encuesta_FK"),
-		inverseJoinColumns = @JoinColumn(name = "GruposPorAsig_FK"))
+		inverseJoinColumns = @JoinColumn(name = "GruposPorAsig_FK"))*/
+	
+	@ManyToMany
+	@JoinColumns({
+		
+		@JoinColumn(name = "Encuesta_fechaEnvio", referencedColumnName = "fecha"),
+		@JoinColumn(name = "GruposPorAsig_id", referencedColumnName = "id")
+	})
+	
 	private List<GruposPorAsig> perteneceAGruposPorAsig;
 
 	@ManyToOne

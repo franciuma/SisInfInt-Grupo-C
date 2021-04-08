@@ -28,9 +28,9 @@ public class Asignatura {
 	private String caracter;
 	@Column(name = "Duracion")
 	private Integer Duracion;
-	@Column(name = "Unidad temporal (Cuatrimestre)")
+	@Column(name = "Unidad_Temporal_Cuatrimestre")
 	private String unidadTemporal;
-	@Column(name = "Idiomas de Impartición")
+	@Column(name = "Idiomas_de_Impartición")
 	private String idiomasImparticion;
 	
 	@ManyToOne

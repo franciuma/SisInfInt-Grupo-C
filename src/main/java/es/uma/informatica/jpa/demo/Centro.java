@@ -20,7 +20,7 @@ public class Centro {
 	private String nombre;
 	@Column(name = "Direccion", nullable = false)
 	private String direccion;
-	@Column(name = "Telefono de Conserjeria", length = 9)
+	@Column(name = "Telefono_Conserjeria", length = 9)
 	private String tlfConserjeria;
 	
 	@ManyToMany(mappedBy = "perteneceAcentros")

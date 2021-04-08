@@ -19,15 +19,15 @@ public class Alumno implements Serializable {
 	private Long id;
 	@Column(name = "DNI", nullable = false, unique = true, length = 9)
 	private String dni;
-	@Column(name = "Nombre Completo", nullable = false)
+	@Column(name = "Nombre_Completo", nullable = false)
 	private String nombreCompleto;
-	@Column(name = "Email Institucional", nullable = false)
+	@Column(name = "Email_Institucional", nullable = false)
 	private String emailInstitucional;
-	@Column(name = "Email Personal")
+	@Column(name = "Email_Personal")
 	private String emailPersonal;
-	@Column(name = "Telefono fijo")
+	@Column(name = "Telefono_fijo")
 	private String telefono;
-	@Column(name = "Telefono movil")
+	@Column(name = "Telefono_movil")
 	private String movil;
 	
 	@OneToMany(mappedBy = "alumno")
