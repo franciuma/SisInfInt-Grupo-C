@@ -12,11 +12,11 @@ import javax.persistence.OneToMany;
 public class Expediente {
 
 	@Id
-	@Column(name = "Numero de Expediente")
+	@Column(name = "Numero_Expediente")
 	private Long numExpediente;
 	@Column(name = "Activo")
 	private boolean activo;
-	@Column(name = "Nota Media Provisional")
+	@Column(name = "Nota_Media_Provisional")
 	private Long notaMediaProvisional;
 	
 	@ManyToOne

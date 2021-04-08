@@ -14,7 +14,7 @@ public class Grupo {
 	
 	@Id 
 	@GeneratedValue
-	@Column(name="ID")
+	@Column(name = "ID")
 	private Integer id;
 	@Column(nullable = false, unique = true, name = "Curso")
 	private Integer curso;
