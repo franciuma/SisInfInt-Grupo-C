@@ -120,7 +120,7 @@ public class SampleTest {
 		}
 	}
 
-	
+	//No se
 	@Test
 	@Ignore
 	public void testInsertarLoteProductoNoEncontrado() {
