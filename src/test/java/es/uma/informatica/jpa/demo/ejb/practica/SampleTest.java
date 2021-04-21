@@ -25,6 +25,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import es.uma.informatica.ejb.GestionAlumno;
+import es.uma.informatica.ejb.GestionClase;
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
@@ -93,15 +94,34 @@ public class SampleTest {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testInsertarClase() {
+		
+		
+			final Clase_ID id = new Clase_ID();
+			Date horaFin = new Date(2000, 12, 22);
+		try {
+			
+			Clase informatica = new Clase(id,horaFin);
+			gestionClase.insertarClase(informatica);
+			
+		}catch(ProyectoException e) {
+			throw new RuntimeException(e);
+		}
+		try {
+			Clase clase = gestionClase.obtenerClase(id);
+			assertEquals(clase.getId(),id);
+			//assertEquals(nombreCompleto,alumnos.get(0).getNombreCompleto());
+		}catch(ProyectoException e) {
+			fail("NO deberia lanzar excepcion");
+		}
+	}
 
-
-	/*
+	
 	@Test
 	@Ignore
-	public void testInsertarLoteProductoNoEncontrado() {
-=======
->>>>>>> 7be1dcfbec1629894a3f65cabc031f88b32b933c
-		
+	public void testInsertarLoteProductoNoEncontrado1() {
 	}
 	
 	
