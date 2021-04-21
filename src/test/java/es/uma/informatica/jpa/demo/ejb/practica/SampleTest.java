@@ -24,6 +24,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import es.uma.informatica.ejb.GestionAlumno;
+import es.uma.informatica.ejb.GestionClase;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
 
@@ -34,6 +35,7 @@ public class SampleTest {
 	private static final Logger LOG = Logger.getLogger(SampleTest.class.getCanonicalName());
 
 	private static final String ALUMNOS_EJB = "java:global/classes/AlumnosEJB";
+	private static final String CLASE_EJB = "java:global/classes/ClaseEJB";
 	private static final String GLASSFISH_CONFIGI_FILE_PROPERTY = "org.glassfish.ejb.embedded.glassfish.configuration.file";
 	private static final String CONFIG_FILE = "target/test-classes/META-INF/domain.xml";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest";
@@ -42,6 +44,7 @@ public class SampleTest {
 	private static Context ctx;
 	
 	private GestionAlumno gestionAlumnos;
+	private GestionClase gestionClase;
 
 	
 	@BeforeClass
@@ -55,10 +58,12 @@ public class SampleTest {
 	@Before
 	public void setup() throws NamingException  {
 		gestionAlumnos = (GestionAlumno) ctx.lookup(ALUMNOS_EJB);
+		gestionClase = (GestionClase) ctx.lookup(CLASE_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 
 	@Test
+	@Ignore
 	public void testInsertarAlumno() {
 		
 			
@@ -85,6 +90,30 @@ public class SampleTest {
 		}
 		
 		
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testInsertarClase() {
+		
+		
+			final Clase_ID id = new Clase_ID();
+			Date horaFin = new Date(2000, 12, 22);
+		try {
+			
+			Clase informatica = new Clase(id,horaFin);
+			gestionClase.insertarClase(informatica);
+			
+		}catch(ProyectoException e) {
+			throw new RuntimeException(e);
+		}
+		try {
+			Clase clase = gestionClase.obtenerClase(id);
+			assertEquals(clase.getId(),id);
+			//assertEquals(nombreCompleto,alumnos.get(0).getNombreCompleto());
+		}catch(ProyectoException e) {
+			fail("NO deberia lanzar excepcion");
+		}
 	}
 
 	/*
