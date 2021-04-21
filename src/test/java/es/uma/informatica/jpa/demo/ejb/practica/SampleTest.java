@@ -36,6 +36,7 @@ public class SampleTest {
 	private static final Logger LOG = Logger.getLogger(SampleTest.class.getCanonicalName());
 
 	private static final String ALUMNOS_EJB = "java:global/classes/AlumnosEJB";
+	private static final String CLASE_EJB = "java:global/classes/ClaseEJB";
 	private static final String GLASSFISH_CONFIGI_FILE_PROPERTY = "org.glassfish.ejb.embedded.glassfish.configuration.file";
 	private static final String CONFIG_FILE = "target/test-classes/META-INF/domain.xml";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest";
@@ -44,6 +45,7 @@ public class SampleTest {
 	private static Context ctx;
 	
 	private GestionAlumno gestionAlumnos;
+	private GestionClase gestionClase;
 
 	
 	@BeforeClass
@@ -57,10 +59,12 @@ public class SampleTest {
 	@Before
 	public void setup() throws NamingException  {
 		gestionAlumnos = (GestionAlumno) ctx.lookup(ALUMNOS_EJB);
+		gestionClase = (GestionClase) ctx.lookup(CLASE_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 
 	@Test
+	@Ignore
 	public void testInsertarAlumno() {
 		
 			final String dni = "222222D";
@@ -87,6 +91,16 @@ public class SampleTest {
 		}
 		
 		
+	}
+	
+
+
+	/*
+	@Test
+	@Ignore
+	public void testInsertarLoteProductoNoEncontrado() {
+=======
+>>>>>>> 7be1dcfbec1629894a3f65cabc031f88b32b933c
 		
 	}
 	

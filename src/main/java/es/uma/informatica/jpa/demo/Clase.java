@@ -31,6 +31,11 @@ public class Clase implements Serializable{
 		
 	}
 	
+	public Clase(Clase_ID id2, Date horaFin2) {
+		id = id2;
+		horaFin = horaFin2;
+	}
+
 	public Clase_ID getId() {
 		return id;
 	}
