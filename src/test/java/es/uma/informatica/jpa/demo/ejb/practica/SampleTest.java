@@ -1,8 +1,7 @@
 package es.uma.informatica.jpa.demo.ejb.practica;
 
 import static org.junit.Assert.assertEquals;
-
-
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -17,6 +16,8 @@ import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
 import javax.naming.NamingException;
 
+import org.eclipse.persistence.jpa.jpql.Assert.AssertException;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -24,6 +25,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import es.uma.informatica.ejb.GestionAlumno;
+import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
 
@@ -61,33 +63,57 @@ public class SampleTest {
 	@Test
 	public void testInsertarAlumno() {
 		
+			final String dni = "222222D";
+			final String nombreCompleto = "Ale";
+			final String emailInstitucional = "Ale@huevo.le";
+			final String emailPersonal = "Ale@easter-egg.si";
+			final String telefono = "87654321";
+			final String movil = "12354682";
 			
-			final String dni = "12345678D";
-			final String nombreCompleto = "Fransi";
-			final String emailInstitucional = "fransi@huevo.le";
-			final String emailPersonal = "fransi@easter-egg.si";
-			final String telefono = "12365478";
-			final String movil = "9549845656";
 		try {
 			
-			Alumno fransi = new Alumno(dni, nombreCompleto, emailInstitucional, emailPersonal, telefono, movil);
-			gestionAlumnos.insertarAlumno(fransi);
+			Alumno ale = new Alumno(dni, nombreCompleto, emailInstitucional, emailPersonal, telefono, movil);
+			gestionAlumnos.insertarAlumno(ale);
 			
+			try {
+				Alumno alumno = gestionAlumnos.obtenerAlumno(dni);
+				assertEquals(alumno.getNombreCompleto(), nombreCompleto);
+				//assertEquals(nombreCompleto,alumnos.get(0).getNombreCompleto());
+			}catch(ProyectoException e) {
+				fail("NO deberia lanzar excepcion");
+			}
 		}catch(ProyectoException e) {
 			throw new RuntimeException(e);
 		}
-		try {
-			Alumno alumno = gestionAlumnos.obtenerAlumno(dni);
-			assertEquals(alumno.getDni(), dni);
-			//assertEquals(nombreCompleto,alumnos.get(0).getNombreCompleto());
-		}catch(ProyectoException e) {
-			fail("NO deberia lanzar excepcion");
-		}
+		
 		
 		
 	}
+	
+	
+	@Test
+	public void testEliminarALumno() {
 
-	/*
+		try {
+			gestionAlumnos.eliminarAlumno("1111111D");
+		}catch (AlumnoNoEncontradoException e) {
+			// TODO: handle exception
+			throw new RuntimeException(e);
+		}
+	
+		
+	}
+	
+	@Test
+	public void testObtenerLotes() {
+		try {
+			gestionAlumnos.obtenerAlumno("1111111D");
+		}catch (AlumnoNoEncontradoException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	
 	@Test
 	@Ignore
 	public void testInsertarLoteProductoNoEncontrado() {
@@ -108,11 +134,7 @@ public class SampleTest {
 		
 	}
 	
-	@Test
-	@Ignore
-	public void testObtenerLotes() {
-		
-	}
+
 	
 	@Test
 	@Ignore
@@ -138,12 +160,7 @@ public class SampleTest {
 	public void testActualizarLoteIngredientesIncorrectos() {
 		
 	}
-	
-	@Test
-	@Ignore
-	public void testEliminarLote() {
-		
-	}
+
 	
 	@Test
 	@Ignore
@@ -169,7 +186,29 @@ public class SampleTest {
 		
 	}
 	
-	*/
+//	@After
+//	public static void comienzo() {
+//		final String dni = "12345678D";
+//		final String nombreCompleto = "Fransi";
+//		final String emailInstitucional = "fransi@uma.es";
+//		final String emailPersonal = "fransi@crack.sii";
+//		final String telefono = "123654789";
+//		final String movil = "95498456563";
+//		
+//		try {
+//			
+//			Alumno fransi = new Alumno(dni, nombreCompleto, emailInstitucional, emailPersonal, telefono, movil);
+//			gestionAlumnos.insertarAlumno(fransi);
+//			
+//		}catch(ProyectoException e) {
+//			throw new RuntimeException(e);
+//		}
+//			
+//		
+//		
+//	}
+//	
+	
 	@AfterClass
 	public static void tearDownClass() {
 		if (ejbContainer != null) {

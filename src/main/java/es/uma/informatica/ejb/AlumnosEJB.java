@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 
-import es.uma.informatica.ejb.exceptions.AlumnoNoEncontardoException;
+import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
 
@@ -31,11 +31,19 @@ public class AlumnosEJB implements GestionAlumno {
 		 
 	}
 	@Override
-	public Alumno obtenerAlumno(String dni) throws AlumnoNoEncontardoException {
+	public Alumno obtenerAlumno(String dni) throws AlumnoNoEncontradoException {
 		// TODO iAuto-generated method stub
 		Alumno alumno = em.find(Alumno.class, dni);
-		if(alumno == null) throw new AlumnoNoEncontardoException();
+		if(alumno == null) throw new AlumnoNoEncontradoException();
 		return alumno;
+	}
+	
+	@Override
+	public void eliminarAlumno(String dni) throws AlumnoNoEncontradoException {
+		// TODO Auto-generated method stub
+		Alumno alumno = obtenerAlumno(dni);
+		em.remove(alumno);
+		
 	}
 	
 	 
