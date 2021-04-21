@@ -23,7 +23,7 @@ public class AlumnosEJB implements GestionAlumno {
 	@Override
 	public void insertarAlumno(Alumno alum) throws ProyectoException {
 		// TODO Auto-generated method stub
-		Alumno alumno = em.find(Alumno.class,alum.getId());
+		Alumno alumno = em.find(Alumno.class,alum.getDni());
 		if( alumno != null)
 			throw new ProyectoException("Ya esta ese alumno");
 		else
@@ -31,12 +31,15 @@ public class AlumnosEJB implements GestionAlumno {
 		 
 	}
 	@Override
-	public Alumno obtenerAlumno(Integer id) throws AlumnoNoEncontardoException {
+	public Alumno obtenerAlumno(String dni) throws AlumnoNoEncontardoException {
 		// TODO iAuto-generated method stub
-		Alumno alumno = em.find(Alumno.class, id);
+		Alumno alumno = em.find(Alumno.class, dni);
 		if(alumno == null) throw new AlumnoNoEncontardoException();
 		return alumno;
 	}
+	
+	 
+	
 
 
 	

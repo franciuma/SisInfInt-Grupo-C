@@ -61,7 +61,7 @@ public class SampleTest {
 	@Test
 	public void testInsertarAlumno() {
 		
-			final Integer id = 1;
+			
 			final String dni = "12345678D";
 			final String nombreCompleto = "Fransi";
 			final String emailInstitucional = "fransi@huevo.le";
@@ -70,15 +70,15 @@ public class SampleTest {
 			final String movil = "9549845656";
 		try {
 			
-			Alumno fransi = new Alumno(id, dni, nombreCompleto, emailInstitucional, emailPersonal, telefono, movil);
+			Alumno fransi = new Alumno(dni, nombreCompleto, emailInstitucional, emailPersonal, telefono, movil);
 			gestionAlumnos.insertarAlumno(fransi);
 			
 		}catch(ProyectoException e) {
 			throw new RuntimeException(e);
 		}
 		try {
-			Alumno alumno = gestionAlumnos.obtenerAlumno(id);
-			assertEquals(alumno.getId(), id);
+			Alumno alumno = gestionAlumnos.obtenerAlumno(dni);
+			assertEquals(alumno.getDni(), dni);
 			//assertEquals(nombreCompleto,alumnos.get(0).getNombreCompleto());
 		}catch(ProyectoException e) {
 			fail("NO deberia lanzar excepcion");

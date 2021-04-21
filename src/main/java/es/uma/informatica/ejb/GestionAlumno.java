@@ -12,5 +12,5 @@ public interface GestionAlumno{
 	 * Introducir un alumno en la base de datos.
 	 */
 	public void insertarAlumno (Alumno alumno) throws ProyectoException;
-	public Alumno obtenerAlumno(Integer id) throws AlumnoNoEncontardoException;
+	public Alumno obtenerAlumno(String dni) throws AlumnoNoEncontardoException;
 }
