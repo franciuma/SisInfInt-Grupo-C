@@ -1,4 +1,4 @@
-package es.uma.informatica.sii.ejb.practica;
+package es.uma.informatica.jpa.demo.ejb.practica;
 
 
 import javax.persistence.EntityManager;

@@ -1,4 +1,4 @@
-package es.uma.informatica.sii.ejb.practica;
+package es.uma.informatica.jpa.demo.ejb.practica;
 
 import static org.junit.Assert.assertEquals;
 
@@ -36,7 +36,7 @@ public class SampleTest {
 	private static final String ALUMNOS_EJB = "java:global/classes/AlumnosEJB";
 	private static final String GLASSFISH_CONFIGI_FILE_PROPERTY = "org.glassfish.ejb.embedded.glassfish.configuration.file";
 	private static final String CONFIG_FILE = "target/test-classes/META-INF/domain.xml";
-	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "EJBTest";
+	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest";
 	
 	private static EJBContainer ejbContainer;
 	private static Context ctx;
@@ -60,31 +60,30 @@ public class SampleTest {
 
 	@Test
 	public void testInsertarAlumno() {
-		assertEquals(1,1);
 		
-//			final Integer id = 1;
-//			final String dni = "12345678D";
-//			final String nombreCompleto = "Fransi";
-//			final String emailInstitucional = "fransi@huevo.le";
-//			final String emailPersonal = "fransi@easter-egg.si";
-//			final String telefono = "12365478";
-//			final String movil = "9549845656";
-//		try {
-//			
-//			Alumno fransi = new Alumno(id, dni, nombreCompleto, emailInstitucional, emailPersonal, telefono, movil);
-//			gestionAlumnos.añadirAlumno(fransi);
-//			
-//		}catch(ProyectoException e) {
-//			throw new RuntimeException(e);
-//		}
-//		try {
-//			Alumno alumno = gestionAlumnos.obtenerAlumno(id);
-//			assertEquals(alumno.getId(), id);
-//			//assertEquals(nombreCompleto,alumnos.get(0).getNombreCompleto());
-//		}catch(ProyectoException e) {
-//			fail("NO deberia lanzar excepcion");
-//		}
-//		
+			final Integer id = 1;
+			final String dni = "12345678D";
+			final String nombreCompleto = "Fransi";
+			final String emailInstitucional = "fransi@huevo.le";
+			final String emailPersonal = "fransi@easter-egg.si";
+			final String telefono = "12365478";
+			final String movil = "9549845656";
+		try {
+			
+			Alumno fransi = new Alumno(id, dni, nombreCompleto, emailInstitucional, emailPersonal, telefono, movil);
+			gestionAlumnos.insertarAlumno(fransi);
+			
+		}catch(ProyectoException e) {
+			throw new RuntimeException(e);
+		}
+		try {
+			Alumno alumno = gestionAlumnos.obtenerAlumno(id);
+			assertEquals(alumno.getId(), id);
+			//assertEquals(nombreCompleto,alumnos.get(0).getNombreCompleto());
+		}catch(ProyectoException e) {
+			fail("NO deberia lanzar excepcion");
+		}
+		
 		
 	}
 
