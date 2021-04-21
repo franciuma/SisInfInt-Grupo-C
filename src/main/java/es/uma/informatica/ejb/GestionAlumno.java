@@ -15,4 +15,5 @@ public interface GestionAlumno{
 	public void insertarAlumno (Alumno alumno) throws ProyectoException;
 	public Alumno obtenerAlumno(String dni) throws AlumnoNoEncontradoException;
 	public void eliminarAlumno (String dni) throws AlumnoNoEncontradoException;
+	public void actualizarAlumno (String dni) throws AlumnoNoEncontradoException;
 }

@@ -105,12 +105,20 @@ public class SampleTest {
 	}
 	
 	@Test
-	public void testObtenerLotes() {
+	public void testObtenerAlumno() {
 		try {
 			gestionAlumnos.obtenerAlumno("1111111D");
 		}catch (AlumnoNoEncontradoException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	
+	@Test
+	@Ignore
+	public void testActualizarLote() {
+		
+		
 	}
 
 	
@@ -141,13 +149,7 @@ public class SampleTest {
 	public void testObtenerLotesProductoNoEncontrado() {
 		
 	}
-	
-	@Test
-	@Ignore
-	public void testActualizarLote() {
-		
-		
-	}
+
 	
 	@Test
 	@Ignore
