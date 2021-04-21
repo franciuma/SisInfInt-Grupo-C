@@ -14,9 +14,6 @@ public class Alumno implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id 
-	@GeneratedValue
-	@Column(name = "ID")
-	private Integer id;
 	@Column(name = "DNI", nullable = false, unique = true, length = 9)
 	private String dni;
 	@Column(name = "Nombre_Completo", nullable = false, length = 100)
@@ -33,10 +30,10 @@ public class Alumno implements Serializable {
 	@OneToMany(mappedBy = "alumno")
 	private List<Expediente> expedientes;
 	
-	public Alumno(Integer id, String dni, String nombreCompleto, String emailInstitucional, String emailPersonal, String telefono, String movil) {
+	public Alumno(String dni, String nombreCompleto, String emailInstitucional, String emailPersonal, String telefono, String movil) {
 		
 		super();
-		this.id = id;
+		
 		this.dni = dni;
 		this.nombreCompleto = nombreCompleto;
 		this.emailInstitucional = emailInstitucional;
@@ -48,14 +45,6 @@ public class Alumno implements Serializable {
 	public Alumno() {
 		
 		
-	}
-	
-	public Integer getId() {
-		return id;
-	}
-	
-	public void setId(Integer id) {
-		this.id = id;
 	}
 	
 	public String getDni() {
@@ -113,7 +102,6 @@ public class Alumno implements Serializable {
 		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
 		result = prime * result + ((emailInstitucional == null) ? 0 : emailInstitucional.hashCode());
 		result = prime * result + ((emailPersonal == null) ? 0 : emailPersonal.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((movil == null) ? 0 : movil.hashCode());
 		result = prime * result + ((nombreCompleto == null) ? 0 : nombreCompleto.hashCode());
 		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
@@ -144,11 +132,6 @@ public class Alumno implements Serializable {
 				return false;
 		} else if (!emailPersonal.equals(other.emailPersonal))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
 		if (movil == null) {
 			if (other.movil != null)
 				return false;
@@ -169,7 +152,7 @@ public class Alumno implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Alumno [id=" + id + ", dni=" + dni + ", nombreCompleto=" + nombreCompleto + ", emailInstitucional="
+		return "Alumno [ dni=" + dni + ", nombreCompleto=" + nombreCompleto + ", emailInstitucional="
 				+ emailInstitucional + ", emailPersonal=" + emailPersonal + ", telefono=" + telefono + ", movil="
 				+ movil + "]";
 	}
