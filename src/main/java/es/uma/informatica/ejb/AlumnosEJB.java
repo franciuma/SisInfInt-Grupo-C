@@ -19,7 +19,7 @@ public class AlumnosEJB implements GestionAlumno {
 	private static final Logger LOG = Logger.getLogger(AlumnosEJB.class.getCanonicalName());
 	@PersistenceContext(name= "Secretaria")
 	private EntityManager em;
-	
+	//hey
 	@Override
 	public void insertarAlumno(Alumno alum) throws ProyectoException {
 		// TODO Auto-generated method stub
