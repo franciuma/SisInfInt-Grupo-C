@@ -25,11 +25,10 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import es.uma.informatica.ejb.GestionAlumno;
-<<<<<<< HEAD
+
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
-=======
+
 import es.uma.informatica.ejb.GestionClase;
->>>>>>> 12d3723164799afb25ea0313ae1ae050db08eb8e
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
 
@@ -94,9 +93,7 @@ public class SampleTest {
 			throw new RuntimeException(e);
 		}
 		
-		
-<<<<<<< HEAD
-=======
+
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -123,11 +120,11 @@ public class SampleTest {
 		}
 	}
 
-	/*
+	
 	@Test
 	@Ignore
 	public void testInsertarLoteProductoNoEncontrado() {
->>>>>>> 12d3723164799afb25ea0313ae1ae050db08eb8e
+
 		
 	}
 	
@@ -165,7 +162,7 @@ public class SampleTest {
 	
 	@Test
 	@Ignore
-	public void testInsertarLoteProductoNoEncontrado() {
+	public void testInsertarLoteProductoNoEncontrado1() {
 		
 	}
 	
