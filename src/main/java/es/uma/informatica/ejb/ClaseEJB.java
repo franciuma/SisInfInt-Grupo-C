@@ -2,13 +2,13 @@ package es.uma.informatica.ejb;
 
 
 import javax.persistence.EntityManager;
+
 import javax.persistence.PersistenceContext;
 
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 
-import es.uma.informatica.ejb.exceptions.AlumnoNoEncontardoException;
 import es.uma.informatica.ejb.exceptions.ClaseNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;

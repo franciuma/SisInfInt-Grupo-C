@@ -27,12 +27,12 @@ import org.junit.Test;
 import es.uma.informatica.ejb.GestionAlumno;
 
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
-<<<<<<< refs/remotes/origin/dev/erick
+
 
 import es.uma.informatica.ejb.GestionClase;
-=======
+
 import es.uma.informatica.ejb.exceptions.ClaseNoEncontradaException;
->>>>>>> local
+
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
 
