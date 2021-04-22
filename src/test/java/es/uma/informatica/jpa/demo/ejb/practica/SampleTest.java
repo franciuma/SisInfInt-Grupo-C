@@ -75,7 +75,6 @@ public class SampleTest {
 	}
 
 	@Test
-	
 	public void testInsertarAlumno() {
 		
 			final String dni = "222222D";

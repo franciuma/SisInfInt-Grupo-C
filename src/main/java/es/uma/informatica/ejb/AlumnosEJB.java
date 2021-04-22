@@ -36,12 +36,15 @@ public class AlumnosEJB implements GestionAlumno {
 
 	public List<Alumno> obtenerAlumno(String dni) throws AlumnoNoEncontradoException {
 		// TODO iAuto-generated method stub
-		Query alumnos = em.createQuery("Select e from Alumno e where e.dni = :dni ");
+
+		Query  alumnos = em.createQuery("Select e from Alumno e where e.dni = :dni" );
+		alumnos.setParameter("dni", dni);
 		
 //		Alumno alumno = em.find(Alumno.class, dni);
 //		if(alumno == null) throw new AlumnoNoEncontradoException();
+		List<Alumno> alumnos_list = alumnos.getResultList();
 		
-		return alumnos;
+		return alumnos_list;
 	}
 	
 	@Override
