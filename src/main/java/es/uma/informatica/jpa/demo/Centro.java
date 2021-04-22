@@ -30,6 +30,12 @@ public class Centro {
 		
 	}
 	
+	public Centro(String nombre2, String direccion2, String tlfSecretaria) {
+		nombre = nombre2;
+		direccion = direccion2;
+		tlfConserjeria = tlfSecretaria;
+	}
+
 	public Integer getId() {
 		return id;
 	}

@@ -27,7 +27,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import es.uma.informatica.ejb.GestionAlumno;
-
+import es.uma.informatica.ejb.GestionCentro;
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 
 
@@ -58,8 +58,7 @@ public class SampleTest {
 	
 	private GestionAlumno gestionAlumnos;
 	private GestionClase gestionClase;
-//	private GestionCentro gestionCentro;
-
+	private GestionCentro gestionCentro;
 	
 	@BeforeClass
 	public static void setUpClass() {
@@ -109,7 +108,33 @@ public class SampleTest {
 
 	}
 	
-	
+	@Test
+	@Ignore
+	//no funciona bien
+	public void testInsertarCentro() {
+		
+		final String nombre = "ETSI Informatica";
+		final String tlfSecretaria = "87654321";
+		final String direccion = "Teatinos 2";
+		
+	try {
+		
+		Centro inf = new Centro(nombre,direccion, tlfSecretaria);
+		gestionCentro.insertarCentro(inf);
+		
+		try {
+
+			Centro centro = gestionCentro.obtenerCentro(nombre);
+			assertEquals("No es el mismo centro", null, centro);
+
+		}catch(ProyectoException e) {
+			fail("NO deberia lanzar excepcion");
+		}
+	}catch(ProyectoException e) {
+		throw new RuntimeException(e);
+	}
+
+}
 	
 	@Test
 	@Ignore
