@@ -2,6 +2,7 @@ package es.uma.informatica.ejb;
 
 
 import javax.persistence.EntityManager;
+
 import javax.persistence.PersistenceContext;
 
 import java.util.logging.Logger;
