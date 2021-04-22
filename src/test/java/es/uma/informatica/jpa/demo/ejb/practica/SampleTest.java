@@ -98,10 +98,6 @@ public class SampleTest {
 //				assertEquals(alumno.getNombreCompleto(), nombreCompleto);
 				assertEquals(nombreCompleto,alumno.get(0).getNombreCompleto());
 
-				Alumno alumno = gestionAlumnos.obtenerAlumno(dni);
-				assertEquals(alumno.getNombreCompleto(), nombreCompleto);
-				//assertEquals(nombreCompleto,alumnos.get(0).getNombreCompleto());
-
 			}catch(ProyectoException e) {
 				fail("NO deberia lanzar excepcion");
 			}
@@ -141,6 +137,8 @@ public class SampleTest {
 	@Test
 	@Ignore
 	public void testInsertarLoteProductoNoEncontrado() {
+		
+	}
 
 		
 
@@ -170,6 +168,7 @@ public class SampleTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testObtenerAlumno() {
 		try {
 			gestionAlumnos.obtenerAlumno("1111111D");
@@ -178,51 +177,15 @@ public class SampleTest {
 		}
 	}
 	
-	
 	@Test
 	@Ignore
-
-	public void testObtenerAlumno() {
-		try {
-			gestionAlumnos.obtenerAlumno("1111111D");
-		}catch (AlumnoNoEncontradoException e) {
-			throw new RuntimeException(e);
-		}
-
 	public void testActualizarLote() {
-		
-		
-
+			
 	}
 
-	
-	
-	@Test
-	@Ignore
-
-	public void testActualizarLote() {
-		
-
-	public void testInsertarLoteProductoNoEncontrado() {
-		
-	}
-
-	
-	@Test
-	@Ignore
-
-	public void testInsertarLoteProductoNoEncontrado1() {
 
 	public void testInsertarLoteIngredientesIncorrectos() {
 
-
-		
-	}
-	
-	@Test
-	@Ignore
-
-	public void testInsertarLoteIngredientesIncorrectos() {
 
 		
 	}

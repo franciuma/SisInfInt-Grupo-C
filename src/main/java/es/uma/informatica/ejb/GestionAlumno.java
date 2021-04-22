@@ -24,8 +24,4 @@ public interface GestionAlumno{
 	public void actualizarAlumno (String dni) throws AlumnoNoEncontradoException;
 	public List<Alumno> obtenerAlumnos ();
 
-	public Alumno obtenerAlumno(String dni) throws AlumnoNoEncontradoException;
-	public void eliminarAlumno (String dni) throws AlumnoNoEncontradoException;
-	public void actualizarAlumno (String dni) throws AlumnoNoEncontradoException;
-
 }
