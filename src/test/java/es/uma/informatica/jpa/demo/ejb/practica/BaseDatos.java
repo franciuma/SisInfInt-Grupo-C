@@ -8,8 +8,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import es.uma.informatica.jpa.demo.Alumno;
+
 import es.uma.informatica.jpa.demo.Clase;
 import es.uma.informatica.jpa.demo.Clase_ID;
+
+
 
 
 public class BaseDatos {
