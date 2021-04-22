@@ -1,6 +1,8 @@
 package es.uma.informatica.jpa.demo.ejb.practica;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -32,10 +34,8 @@ import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 import es.uma.informatica.ejb.GestionClase;
 
 
-import es.uma.informatica.ejb.exceptions.ClaseNoEncontradaException;
+import es.uma.informatica.ejb.exceptions.*;
 
-
-import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
@@ -48,6 +48,7 @@ public class SampleTest {
 
 	private static final String ALUMNOS_EJB = "java:global/classes/AlumnosEJB";
 	private static final String CLASE_EJB = "java:global/classes/ClaseEJB";
+//	private static final String CENTRO_EJB = "java:global/classes/CentroEJB";
 	private static final String GLASSFISH_CONFIGI_FILE_PROPERTY = "org.glassfish.ejb.embedded.glassfish.configuration.file";
 	private static final String CONFIG_FILE = "target/test-classes/META-INF/domain.xml";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest";
@@ -57,6 +58,7 @@ public class SampleTest {
 	
 	private GestionAlumno gestionAlumnos;
 	private GestionClase gestionClase;
+//	private GestionCentro gestionCentro;
 
 	
 	@BeforeClass
@@ -71,6 +73,7 @@ public class SampleTest {
 	public void setup() throws NamingException  {
 		gestionAlumnos = (GestionAlumno) ctx.lookup(ALUMNOS_EJB);
 		gestionClase = (GestionClase) ctx.lookup(CLASE_EJB);
+//		gestionCentro = (GestionCentro) ctx.lookup(CENTRO_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 
@@ -92,10 +95,10 @@ public class SampleTest {
 			try {
 
 	
-				List<Alumno> alumno = gestionAlumnos.obtenerAlumno(dni);
-				assertEquals(1, alumno.size());
+				Alumno alumno = gestionAlumnos.obtenerAlumno(dni);
+//				assertEquals(1, alumno.size());
 //				assertEquals(alumno.getNombreCompleto(), nombreCompleto);
-				assertEquals(nombreCompleto,alumno.get(0).getNombreCompleto());
+				assertEquals("No es el mismo alumno", nombreCompleto,alumno.getNombreCompleto());
 
 			}catch(ProyectoException e) {
 				fail("NO deberia lanzar excepcion");
@@ -150,10 +153,6 @@ public class SampleTest {
 	
 	
 	@Test
-
-	@Ignore
-
-
 	public void testEliminarALumno() {
 
 		try {
@@ -162,12 +161,10 @@ public class SampleTest {
 			// TODO: handle exception
 			throw new RuntimeException(e);
 		}
-	
 		
 	}
 	
 	@Test
-	@Ignore
 	public void testObtenerAlumno() {
 		try {
 			gestionAlumnos.obtenerAlumno("1111111D");
@@ -177,9 +174,19 @@ public class SampleTest {
 	}
 	
 	@Test
-	@Ignore
-	public void testActualizarLote() {
+	public void testActualizarAlumno() {
+		try {
+			Alumno alumno = gestionAlumnos.obtenerAlumno("1111111D");
+			assertEquals(alumno.getNombreCompleto(), "Fransi");
+			String correo = alumno.getEmailPersonal();
+			alumno.setEmailPersonal("cambio");
+			gestionAlumnos.actualizarAlumno(alumno);
+			assertNotEquals("Deberia haberse actualizado el alumno", correo , alumno.getEmailPersonal());
 			
+		}catch(AlumnoNoEncontradoException e) {
+			throw new RuntimeException(e);
+		}
+		
 	}
 
 
