@@ -34,7 +34,7 @@ public class AlumnosEJB implements GestionAlumno {
 	@Override
 
 	public List<Alumno> obtenerAlumno(String dni) throws AlumnoNoEncontradoException {
-=======
+
 	public Alumno obtenerAlumno(String dni) throws AlumnoNoEncontradoException {
 
 		// TODO iAuto-generated method stub
