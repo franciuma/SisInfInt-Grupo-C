@@ -27,23 +27,21 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import es.uma.informatica.ejb.GestionAlumno;
-
+import es.uma.informatica.ejb.GestionCentro;
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 
 
 import es.uma.informatica.ejb.GestionClase;
-<<<<<<< HEAD
+
 import es.uma.informatica.ejb.GestionEncuesta;
 import es.uma.informatica.ejb.exceptions.ClaseNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.EncuestaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.EncuestaYaExistenteException;
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
-=======
+
 
 
 import es.uma.informatica.ejb.exceptions.*;
-
->>>>>>> 105133757af8e774b2b1242dedd28c96b6d46240
 
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
