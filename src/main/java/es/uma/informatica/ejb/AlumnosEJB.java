@@ -3,6 +3,7 @@ package es.uma.informatica.ejb;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -34,11 +35,14 @@ public class AlumnosEJB implements GestionAlumno {
 	@Override
 	public List<Alumno> obtenerAlumno(String dni) throws AlumnoNoEncontradoException {
 		// TODO iAuto-generated method stub
-		List<Alumno> alumnos = em.createQuery("Select e" +" from Alumno e " + "where e.dni = '" + dni + "'" ).getResultList();
+		Query  alumnos = em.createQuery("Select e from Alumno e where e.dni = :dni" );
+		alumnos.setParameter("dni", dni);
+		
 //		Alumno alumno = em.find(Alumno.class, dni);
 //		if(alumno == null) throw new AlumnoNoEncontradoException();
+		List<Alumno> alumnos_list = alumnos.getResultList();
 		
-		return alumnos;
+		return alumnos_list;
 	}
 	
 	@Override
