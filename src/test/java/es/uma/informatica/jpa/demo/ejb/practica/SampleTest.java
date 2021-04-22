@@ -27,8 +27,12 @@ import org.junit.Test;
 import es.uma.informatica.ejb.GestionAlumno;
 
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
+<<<<<<< refs/remotes/origin/dev/erick
 
 import es.uma.informatica.ejb.GestionClase;
+=======
+import es.uma.informatica.ejb.exceptions.ClaseNoEncontradaException;
+>>>>>>> local
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
 
@@ -67,7 +71,7 @@ public class SampleTest {
 	}
 
 	@Test
-	@Ignore
+	
 	public void testInsertarAlumno() {
 		
 			final String dni = "222222D";
@@ -83,9 +87,11 @@ public class SampleTest {
 			gestionAlumnos.insertarAlumno(ale);
 			
 			try {
-				Alumno alumno = gestionAlumnos.obtenerAlumno(dni);
-				assertEquals(alumno.getNombreCompleto(), nombreCompleto);
-				//assertEquals(nombreCompleto,alumnos.get(0).getNombreCompleto());
+				
+				List<Alumno> alumno = gestionAlumnos.obtenerAlumno(dni);
+				assertEquals(1, alumno.size());
+//				assertEquals(alumno.getNombreCompleto(), nombreCompleto);
+				assertEquals(nombreCompleto,alumno.get(0).getNombreCompleto());
 			}catch(ProyectoException e) {
 				fail("NO deberia lanzar excepcion");
 			}
@@ -96,28 +102,29 @@ public class SampleTest {
 
 	}
 	
-	@SuppressWarnings("deprecation")
+	
+	
 	@Test
+	@Ignore
 	public void testInsertarClase() {
 		
-		
-			final Clase_ID id = new Clase_ID();
-			Date horaFin = new Date(2000, 12, 22);
+		final Clase_ID id = new Clase_ID();
+		final Date hora_inicio = new Date(10^6);
+		id.setHoraInicio(hora_inicio);
+		final Date hora_fin = new Date(10^9);
 		try {
-			
-			Clase informatica = new Clase(id,horaFin);
-			gestionClase.insertarClase(informatica);
-			
+			Clase clase = new Clase(id, hora_fin);
+			gestionClase.insertarClase(clase);
 		}catch(ProyectoException e) {
 			throw new RuntimeException(e);
 		}
-		try {
-			Clase clase = gestionClase.obtenerClase(id);
-			assertEquals(clase.getId(),id);
-			//assertEquals(nombreCompleto,alumnos.get(0).getNombreCompleto());
-		}catch(ProyectoException e) {
-			fail("NO deberia lanzar excepcion");
-		}
+		
+	}
+	
+	@Test
+	@Ignore
+	public void TestObtenerClase() {
+		
 	}
 
 	//No se
@@ -130,6 +137,7 @@ public class SampleTest {
 	
 	
 	@Test
+	@Ignore
 	public void testEliminarALumno() {
 
 		try {
@@ -143,6 +151,7 @@ public class SampleTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testObtenerAlumno() {
 		try {
 			gestionAlumnos.obtenerAlumno("1111111D");
