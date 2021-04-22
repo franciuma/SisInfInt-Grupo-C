@@ -16,4 +16,5 @@ public interface GestionClase{
 	 */
 	public void insertarClase(Clase clas) throws ProyectoException;
 	public Clase obtenerClase(Clase_ID id) throws ClaseNoEncontradaException;
+	void eliminarClase(Clase_ID id) throws ClaseNoEncontradaException;
 }
