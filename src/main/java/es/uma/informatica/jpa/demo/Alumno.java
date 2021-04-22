@@ -1,36 +1,52 @@
 package es.uma.informatica.jpa.demo;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Alumno {
+public class Alumno implements Serializable {
 
-	@Id 
+	private static final long serialVersionUID = 1L;
+	@Id
 	@GeneratedValue
-	@Column(name = "ID")
-	private Long id;
+	private int id;
 	@Column(name = "DNI", nullable = false, unique = true, length = 9)
 	private String dni;
-	@Column(name = "Nombre Completo", nullable = false)
+	@Column(name = "Nombre_Completo", nullable = false, length = 100)
 	private String nombreCompleto;
-	@Column(name = "Email Institucional", nullable = false)
+	@Column(name = "Email_Institucional", nullable = false, length = 100)
 	private String emailInstitucional;
-	@Column(name = "Email Personal")
+	@Column(name = "Email_Personal", length = 100)
 	private String emailPersonal;
-	@Column(name = "Telefono fijo")
+	@Column(name = "Telefono_Fijo", length = 20)
 	private String telefono;
-	@Column(name = "Telefono movil")
+	@Column(name = "Telefono_Movil", length = 20)
 	private String movil;
 	
-	public Long getId() {
-		return id;
+	@OneToMany(mappedBy = "alumno")
+	private List<Expediente> expedientes;
+	
+	public Alumno(String dni, String nombreCompleto, String emailInstitucional, String emailPersonal, String telefono, String movil) {
+		
+		super();
+		
+		this.dni = dni;
+		this.nombreCompleto = nombreCompleto;
+		this.emailInstitucional = emailInstitucional;
+		this.emailPersonal = emailPersonal;
+		this.telefono = telefono;
+		this.movil = movil;
 	}
 	
-	public void setId(Long id) {
-		this.id = id;
+	public Alumno() {
+		
+		
 	}
 	
 	public String getDni() {
@@ -79,5 +95,75 @@ public class Alumno {
 	
 	public void setMovil(String movil) {
 		this.movil = movil;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
+		result = prime * result + ((emailInstitucional == null) ? 0 : emailInstitucional.hashCode());
+		result = prime * result + ((emailPersonal == null) ? 0 : emailPersonal.hashCode());
+		result = prime * result + ((movil == null) ? 0 : movil.hashCode());
+		result = prime * result + ((nombreCompleto == null) ? 0 : nombreCompleto.hashCode());
+		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Alumno other = (Alumno) obj;
+		if (dni == null) {
+			if (other.dni != null)
+				return false;
+		} else if (!dni.equals(other.dni))
+			return false;
+		if (emailInstitucional == null) {
+			if (other.emailInstitucional != null)
+				return false;
+		} else if (!emailInstitucional.equals(other.emailInstitucional))
+			return false;
+		if (emailPersonal == null) {
+			if (other.emailPersonal != null)
+				return false;
+		} else if (!emailPersonal.equals(other.emailPersonal))
+			return false;
+		if (movil == null) {
+			if (other.movil != null)
+				return false;
+		} else if (!movil.equals(other.movil))
+			return false;
+		if (nombreCompleto == null) {
+			if (other.nombreCompleto != null)
+				return false;
+		} else if (!nombreCompleto.equals(other.nombreCompleto))
+			return false;
+		if (telefono == null) {
+			if (other.telefono != null)
+				return false;
+		} else if (!telefono.equals(other.telefono))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Alumno [ dni=" + dni + ", nombreCompleto=" + nombreCompleto + ", emailInstitucional="
+				+ emailInstitucional + ", emailPersonal=" + emailPersonal + ", telefono=" + telefono + ", movil="
+				+ movil + "]";
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
