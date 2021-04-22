@@ -19,4 +19,5 @@ public interface GestionEncuesta{
 	public void insertarEncuesta(Encuesta encuest) throws EncuestaYaExistenteException;
 	public Encuesta obtenerEncuesta(Date fechaEnvio) throws EncuestaNoEncontradaException;
 	void eliminarEncuesta(Date fechaEnvio) throws EncuestaNoEncontradaException;
+	public void actualizarEncuesta(Encuesta encuesta) throws EncuestaNoEncontradaException;
 }
