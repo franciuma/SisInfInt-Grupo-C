@@ -2,11 +2,11 @@ package es.uma.informatica.jpa.demo.ejb.practica;
 
 
 import javax.persistence.EntityManager;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import es.uma.informatica.jpa.demo.Alumno;
-
 
 
 public class BaseDatos {

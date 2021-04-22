@@ -2,7 +2,10 @@ package es.uma.informatica.ejb;
 
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 
+
 import java.util.List;
+
+
 
 import javax.ejb.Local;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
@@ -19,4 +22,5 @@ public interface GestionAlumno{
 	public void eliminarAlumno (String dni) throws AlumnoNoEncontradoException;
 	public void actualizarAlumno (String dni) throws AlumnoNoEncontradoException;
 	public List<Alumno> obtenerAlumnos ();
+
 }

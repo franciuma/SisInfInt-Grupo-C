@@ -33,8 +33,10 @@ public class AlumnosEJB implements GestionAlumno {
 		 
 	}
 	@Override
+
 	public List<Alumno> obtenerAlumno(String dni) throws AlumnoNoEncontradoException {
 		// TODO iAuto-generated method stub
+
 		Query  alumnos = em.createQuery("Select e from Alumno e where e.dni = :dni" );
 		alumnos.setParameter("dni", dni);
 		
@@ -56,6 +58,7 @@ public class AlumnosEJB implements GestionAlumno {
 	public void actualizarAlumno(String dni) throws AlumnoNoEncontradoException {
 		// TODO Auto-generated method stub
 		Alumno alumno = em.find(Alumno.class, dni);
+
 		
 		
 	}
@@ -64,11 +67,4 @@ public class AlumnosEJB implements GestionAlumno {
 		List<Alumno> alumnos = em.createQuery("Select al from Alumno").getResultList();
 		return alumnos;
 	}
-	
-	 
-	
-
-
-	
-	
 }

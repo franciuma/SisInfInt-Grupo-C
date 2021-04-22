@@ -31,7 +31,11 @@ import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 
 import es.uma.informatica.ejb.GestionClase;
 
+
 import es.uma.informatica.ejb.exceptions.ClaseNoEncontradaException;
+
+
+import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
@@ -86,18 +90,19 @@ public class SampleTest {
 			gestionAlumnos.insertarAlumno(ale);
 			
 			try {
-				
+
+	
 				List<Alumno> alumno = gestionAlumnos.obtenerAlumno(dni);
 				assertEquals(1, alumno.size());
 //				assertEquals(alumno.getNombreCompleto(), nombreCompleto);
 				assertEquals(nombreCompleto,alumno.get(0).getNombreCompleto());
+
 			}catch(ProyectoException e) {
 				fail("NO deberia lanzar excepcion");
 			}
 		}catch(ProyectoException e) {
 			throw new RuntimeException(e);
 		}
-		
 
 	}
 	
@@ -126,17 +131,29 @@ public class SampleTest {
 		
 	}
 
+
 	//No se
 	@Test
 	@Ignore
 	public void testInsertarLoteProductoNoEncontrado() {
+		
+	}
 
 		
+
+	
+	@Test
+	@Ignore
+	public void testInsertarLoteProductoNoEncontrado1() {
+
 	}
 	
 	
 	@Test
+
 	@Ignore
+
+
 	public void testEliminarALumno() {
 
 		try {
@@ -159,30 +176,22 @@ public class SampleTest {
 		}
 	}
 	
-	
 	@Test
 	@Ignore
 	public void testActualizarLote() {
-		
-		
+			
 	}
 
-	
-	@Test
-	@Ignore
-	public void testInsertarLoteProductoNoEncontrado1() {
-		
-	}
-	
-	@Test
-	@Ignore
+
 	public void testInsertarLoteIngredientesIncorrectos() {
 
+
 		
 	}
 	
 	@Test
 	@Ignore
+
 	public void testInsertarLoteExistente() {
 
 		
