@@ -6,65 +6,64 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import java.util.List;
-import java.util.logging.Logger;
+
 
 import javax.ejb.Stateless;
 
-import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
-import es.uma.informatica.ejb.exceptions.ProyectoException;
+import es.uma.informatica.ejb.exceptions.*;
+import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
 import es.uma.informatica.jpa.demo.*;
 
 
 @Stateless
 public class AlumnosEJB implements GestionAlumno {
 	
-	private static final Logger LOG = Logger.getLogger(AlumnosEJB.class.getCanonicalName());
 	@PersistenceContext(name= "Secretaria")
 	private EntityManager em;
-	
+
 	@Override
-	public void insertarAlumno(Alumno alum) throws ProyectoException {
+	public void insertarAlumno(Alumno alum) throws AlumnoYaExistenteException {
 		// TODO Auto-generated method stub
-		Alumno alumno = em.find(Alumno.class,alum.getDni());
+		Alumno alumno = em.find(Alumno.class,alum.getId());
 		if( alumno != null)
-			throw new ProyectoException("Ya esta ese alumno");
-		else
-			em.persist(alum);
+			throw new AlumnoYaExistenteException();
+		em.persist(alum);
 		 
 	}
 	@Override
-
-	public List<Alumno> obtenerAlumno(String dni) throws AlumnoNoEncontradoException {
+	public Alumno obtenerAlumno(String dni) throws AlumnoNoEncontradoException {
 		// TODO iAuto-generated method stub
 
 		Query  alumnos = em.createQuery("Select e from Alumno e where e.dni = :dni" );
 		alumnos.setParameter("dni", dni);
+		List<Alumno> alumno = alumnos.getResultList();
+		Alumno al = alumno.get(0);
+		if(alumno == null) throw new AlumnoNoEncontradoException();
 		
-//		Alumno alumno = em.find(Alumno.class, dni);
-//		if(alumno == null) throw new AlumnoNoEncontradoException();
-		List<Alumno> alumnos_list = alumnos.getResultList();
-		
-		return alumnos_list;
+		return al;
 	}
 	
 	@Override
 	public void eliminarAlumno(String dni) throws AlumnoNoEncontradoException {
-		// TODO Auto-generated method stub
-//		Alumno alumno = obtenerAlumno(dni);
-//		em.remove(alumno);
+		Alumno alumno = obtenerAlumno(dni);
+		em.remove(alumno);
 		
 	}
 	@Override
-	public void actualizarAlumno(String dni) throws AlumnoNoEncontradoException {
-		// TODO Auto-generated method stub
-		Alumno alumno = em.find(Alumno.class, dni);
-
+	public void actualizarAlumno(Alumno alumno) throws AlumnoNoEncontradoException {
+	
+		Alumno al = em.find(Alumno.class, alumno.getId());
+		al.setEmailPersonal(alumno.getEmailPersonal());
+		al.setMovil(alumno.getMovil());
+		al.setTelefono(alumno.getTelefono());
+		em.merge(alumno);
+		
 		
 		
 	}
 	@Override
 	public List<Alumno> obtenerAlumnos() {
-		List<Alumno> alumnos = em.createQuery("Select al from Alumno").getResultList();
+		List<Alumno> alumnos = em.createQuery("Select al from Alumno al").getResultList();
 		return alumnos;
 	}
 }
