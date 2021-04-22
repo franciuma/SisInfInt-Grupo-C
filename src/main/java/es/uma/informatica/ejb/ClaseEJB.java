@@ -31,8 +31,8 @@ public class ClaseEJB implements GestionClase {
 		}else {
 			em.persist(clase);
 		}
-		 
 	}
+	
 	@Override
 	public Clase obtenerClase(Clase_ID id) throws ClaseNoEncontradaException {
 		// TODO iAuto-generated method stub
@@ -41,5 +41,15 @@ public class ClaseEJB implements GestionClase {
 			throw new ClaseNoEncontradaException();
 		}
 		return clase;
+	}
+	
+	@Override
+	public void eliminarClase(Clase_ID id) throws ClaseNoEncontradaException {
+		// TODO Auto-generated method stub
+		Clase clas = em.find(Clase.class, id);
+		if(clas == null) {
+			throw new ClaseNoEncontradaException();
+		}
+		em.remove(clas);
 	}
 }

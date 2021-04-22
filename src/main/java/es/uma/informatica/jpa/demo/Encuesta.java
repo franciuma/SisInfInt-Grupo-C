@@ -39,6 +39,10 @@ public class Encuesta {
 		
 	}
 	
+	public Encuesta(Date fechaEnvio) {
+		this.fechaEnvio = fechaEnvio;
+	}
+
 	public Date getFechaEnvio() {
 		return fechaEnvio;
 	}

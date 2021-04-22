@@ -27,15 +27,21 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import es.uma.informatica.ejb.GestionAlumno;
-
+import es.uma.informatica.ejb.GestionCentro;
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 
 
 import es.uma.informatica.ejb.GestionClase;
 
+import es.uma.informatica.ejb.GestionEncuesta;
+import es.uma.informatica.ejb.exceptions.ClaseNoEncontradaException;
+import es.uma.informatica.ejb.exceptions.EncuestaNoEncontradaException;
+import es.uma.informatica.ejb.exceptions.EncuestaYaExistenteException;
+import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
+
+
 
 import es.uma.informatica.ejb.exceptions.*;
-
 
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
@@ -48,7 +54,8 @@ public class SampleTest {
 
 	private static final String ALUMNOS_EJB = "java:global/classes/AlumnosEJB";
 	private static final String CLASE_EJB = "java:global/classes/ClaseEJB";
-//	private static final String CENTRO_EJB = "java:global/classes/CentroEJB";
+	private static final String ENCUESTA_EJB = "java:global/classes/EncuestaEJB";
+	private static final String CENTRO_EJB = "java:global/classes/CentroEJB";
 	private static final String GLASSFISH_CONFIGI_FILE_PROPERTY = "org.glassfish.ejb.embedded.glassfish.configuration.file";
 	private static final String CONFIG_FILE = "target/test-classes/META-INF/domain.xml";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest";
@@ -58,8 +65,8 @@ public class SampleTest {
 	
 	private GestionAlumno gestionAlumnos;
 	private GestionClase gestionClase;
-//	private GestionCentro gestionCentro;
-
+	private GestionEncuesta gestionEncuesta;
+	private GestionCentro gestionCentro;
 	
 	@BeforeClass
 	public static void setUpClass() {
@@ -73,7 +80,8 @@ public class SampleTest {
 	public void setup() throws NamingException  {
 		gestionAlumnos = (GestionAlumno) ctx.lookup(ALUMNOS_EJB);
 		gestionClase = (GestionClase) ctx.lookup(CLASE_EJB);
-//		gestionCentro = (GestionCentro) ctx.lookup(CENTRO_EJB);
+		gestionEncuesta = (GestionEncuesta) ctx.lookup(ENCUESTA_EJB);
+		gestionCentro = (GestionCentro) ctx.lookup(CENTRO_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 
@@ -125,7 +133,6 @@ public class SampleTest {
 		}catch(ProyectoException e) {
 			throw new RuntimeException(e);
 		}
-		
 	}
 	
 	@Test
@@ -135,20 +142,33 @@ public class SampleTest {
 	}
 
 
-	//No se
+	@Test
+	public void testInsertarEncuesta() throws EncuestaNoEncontradaException{
+		
+		final Date fechaEnvio = new Date(116,10,3);
+		
+		try {
+			Encuesta encuesta = new Encuesta(fechaEnvio);
+			gestionEncuesta.insertarEncuesta(encuesta);
+			
+			try {
+				Encuesta encuest = gestionEncuesta.obtenerEncuesta(fechaEnvio);
+				assertEquals(encuesta.getFechaEnvio(),encuest.getFechaEnvio());
+			}catch(EncuestaNoEncontradaException e){
+				fail("Excepcion");
+			}
+			
+		}catch(EncuestaYaExistenteException e){
+			throw new RuntimeException(e);
+		}
+		
+		
+	}
+	
 	@Test
 	@Ignore
 	public void testInsertarLoteProductoNoEncontrado() {
 		
-	}
-
-		
-
-	
-	@Test
-	@Ignore
-	public void testInsertarLoteProductoNoEncontrado1() {
-
 	}
 	
 	
