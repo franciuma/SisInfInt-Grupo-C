@@ -28,22 +28,11 @@ import org.junit.Test;
 
 import es.uma.informatica.ejb.GestionAlumno;
 import es.uma.informatica.ejb.GestionCentro;
-import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
-
-
 import es.uma.informatica.ejb.GestionClase;
+import es.uma.informatica.ejb.GestionTitulacion;
 
 import es.uma.informatica.ejb.GestionEncuesta;
-import es.uma.informatica.ejb.exceptions.ClaseNoEncontradaException;
-import es.uma.informatica.ejb.exceptions.EncuestaNoEncontradaException;
-import es.uma.informatica.ejb.exceptions.EncuestaYaExistenteException;
-import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
-
-
-
 import es.uma.informatica.ejb.exceptions.*;
-
-import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
 
 
@@ -56,6 +45,7 @@ public class SampleTest {
 	private static final String CLASE_EJB = "java:global/classes/ClaseEJB";
 	private static final String ENCUESTA_EJB = "java:global/classes/EncuestaEJB";
 	private static final String CENTRO_EJB = "java:global/classes/CentroEJB";
+	private static final String TITULACION_EJB = "java:global/classes/TitulacionEJB";
 	private static final String GLASSFISH_CONFIGI_FILE_PROPERTY = "org.glassfish.ejb.embedded.glassfish.configuration.file";
 	private static final String CONFIG_FILE = "target/test-classes/META-INF/domain.xml";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest";
@@ -67,6 +57,7 @@ public class SampleTest {
 	private GestionClase gestionClase;
 	private GestionEncuesta gestionEncuesta;
 	private GestionCentro gestionCentro;
+	private GestionTitulacion gestionTitulacion;
 	
 	@BeforeClass
 	public static void setUpClass() {
@@ -86,6 +77,7 @@ public class SampleTest {
 	}
 
 	@Test
+	@Ignore
 	public void testInsertarAlumno() {
 		
 			final String dni = "222222D";
@@ -117,7 +109,27 @@ public class SampleTest {
 
 	}
 	
-	
+	@Test
+	public void testInsertarTitulacion() {
+		
+		final Integer codigo = 123456;
+		final String nombre = "Grado en Ingenieria Informatica";
+		final Integer creditos = 6;
+		
+		try {
+			Titulacion info = new Titulacion(codigo, nombre, creditos);
+			gestionTitulacion.insertarTitulacion(info);
+		} catch (TitulacionYaExistenteException e) {
+			
+			throw new RuntimeException(e);
+		}
+		
+		List<Titulacion> titulaciones = gestionTitulacion.obtenerTitulaciones();
+		assertEquals(1, titulaciones.size());
+		assertEquals(codigo, titulaciones.get(0).getCodigo());
+		assertEquals(nombre, titulaciones.get(0).getNombre());
+		assertEquals(creditos, titulaciones.get(0).getCreditos());
+	}
 	
 	@Test
 	@Ignore
@@ -173,6 +185,7 @@ public class SampleTest {
 	
 	
 	@Test
+	@Ignore
 	public void testEliminarALumno() {
 
 		try {
@@ -185,6 +198,7 @@ public class SampleTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testObtenerAlumno() {
 		try {
 			gestionAlumnos.obtenerAlumno("1111111D");
@@ -194,6 +208,7 @@ public class SampleTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testActualizarAlumno() {
 		try {
 			Alumno alumno = gestionAlumnos.obtenerAlumno("1111111D");
