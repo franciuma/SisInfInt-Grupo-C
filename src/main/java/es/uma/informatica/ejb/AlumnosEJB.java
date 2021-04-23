@@ -86,7 +86,7 @@ public class AlumnosEJB implements GestionAlumno {
 			for(int fila=4; fila<row.getRowNum(); fila++) {
 				String dni = (String) sheet.getRow(fila).getCell(1).getStringCellValue();
 				a.setDni(dni);
-				String nombre = (String) sheet.getRow(fila).getCell(2).getStringCellValue() + (String) sheet.getRow(fila).getCell(3).getStringCellValue() + (String) sheet.getRow(fila).getCell(4).getStringCellValue();
+				String nombre = (String) sheet.getRow(fila).getCell(2).getStringCellValue() + " " + (String) sheet.getRow(fila).getCell(3).getStringCellValue() + " " + (String) sheet.getRow(fila).getCell(4).getStringCellValue();
 				a.setNombreCompleto(nombre);
 				String emailIns = (String) sheet.getRow(fila).getCell(7).getStringCellValue();
 				a.setEmailInstitucional(emailIns);
