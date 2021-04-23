@@ -1,41 +1,19 @@
 package es.uma.informatica.jpa.demo.ejb.practica;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.math.BigDecimal;
-import java.sql.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Properties;
 import java.util.logging.Logger;
 
-import javax.ejb.embeddable.EJBContainer;
-import javax.naming.Context;
 import javax.naming.NamingException;
 
-import org.eclipse.persistence.jpa.jpql.Assert.AssertException;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import es.uma.informatica.ejb.GestionAlumno;
 
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
-
-
-import es.uma.informatica.ejb.GestionClase;
-
-
-import es.uma.informatica.ejb.exceptions.*;
-
 
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
@@ -47,20 +25,13 @@ public class Sample_Alumno {
 	private static final Logger LOG = Logger.getLogger(Sample_Alumno.class.getCanonicalName());
 
 	private static final String ALUMNOS_EJB = "java:global/classes/AlumnosEJB";
-//	private static final String CLASE_EJB = "java:global/classes/ClaseEJB";
-//	private static final String CENTRO_EJB = "java:global/classes/CentroEJB";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest";
 	
-	private GestionAlumno gestionAlumnos;
-//	private GestionClase gestionClase;
-//	private GestionCentro gestionCentro;
-
+	private GestionAlumno gestionAlumno;
 	
 	@Before
 	public void setup() throws NamingException  {
-		gestionAlumnos = (GestionAlumno) SuiteTest.ctx.lookup(ALUMNOS_EJB);
-//		gestionClase = (GestionClase) SuiteTest.ctx.lookup(CLASE_EJB);
-//		gestionCentro = (GestionCentro) ctx.lookup(CENTRO_EJB);
+		gestionAlumno = (GestionAlumno) SuiteTest.ctx.lookup(ALUMNOS_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 
@@ -77,16 +48,13 @@ public class Sample_Alumno {
 		try {
 			
 			Alumno ale = new Alumno(dni, nombreCompleto, emailInstitucional, emailPersonal, telefono, movil);
-			gestionAlumnos.insertarAlumno(ale);
+			gestionAlumno.insertarAlumno(ale);
 			
 			try {
 
 	
-				Alumno alumno = gestionAlumnos.obtenerAlumno(dni);
-//				assertEquals(1, alumno.size());
-//				assertEquals(alumno.getNombreCompleto(), nombreCompleto);
+				Alumno alumno = gestionAlumno.obtenerAlumno(dni);
 				assertEquals("No es el mismo alumno", nombreCompleto,alumno.getNombreCompleto());
-
 			}catch(ProyectoException e) {
 				fail("NO deberia lanzar excepcion");
 			}
@@ -103,9 +71,8 @@ public class Sample_Alumno {
 	public void testEliminarALumno() {
 
 		try {
-			gestionAlumnos.eliminarAlumno("1111111D");
+			gestionAlumno.eliminarAlumno("1111111D");
 		}catch (AlumnoNoEncontradoException e) {
-			// TODO: handle exception
 			throw new RuntimeException(e);
 		}
 		
@@ -114,7 +81,7 @@ public class Sample_Alumno {
 	@Test
 	public void testObtenerAlumno() {
 		try {
-			gestionAlumnos.obtenerAlumno("1111111D");
+			gestionAlumno.obtenerAlumno("1111111D");
 		}catch (AlumnoNoEncontradoException e) {
 			throw new RuntimeException(e);
 		}
@@ -123,11 +90,11 @@ public class Sample_Alumno {
 	@Test
 	public void testActualizarAlumno() {
 		try {
-			Alumno alumno = gestionAlumnos.obtenerAlumno("1111111D");
+			Alumno alumno = gestionAlumno.obtenerAlumno("1111111D");
 			assertEquals(alumno.getNombreCompleto(), "Fransi");
 			String correo = alumno.getEmailPersonal();
 			alumno.setEmailPersonal("cambio");
-			gestionAlumnos.actualizarAlumno(alumno);
+			gestionAlumno.actualizarAlumno(alumno);
 			assertNotEquals("Deberia haberse actualizado el alumno", correo , alumno.getEmailPersonal());
 			
 		}catch(AlumnoNoEncontradoException e) {
