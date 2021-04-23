@@ -85,11 +85,19 @@ public class Grupo {
 		return ingles;
 	}
 	
+	public boolean getIngles() {
+		return ingles;
+	}
+	
 	public void setIngles(boolean ingles) {
 		this.ingles = ingles;
 	}
 	
 	public boolean isVisible() {
+		return visible;
+	}
+	
+	public boolean getVisible() {
 		return visible;
 	}
 	

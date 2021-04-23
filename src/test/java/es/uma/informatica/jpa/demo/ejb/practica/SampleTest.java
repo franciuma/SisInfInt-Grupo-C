@@ -82,7 +82,6 @@ public class SampleTest {
 	}
 
 	@Test
-	@Ignore
 	public void testInsertarAlumno() {
 		
 			final String dni = "222222D";
@@ -256,6 +255,7 @@ public class SampleTest {
 
 
 	@Test
+	@Ignore
 	public void testInsertarEncuesta() throws EncuestaNoEncontradaException{
 		
 		final DateTimeFormatter fechaEnvio = DateTimeFormatter.ofPattern("12-11-2000");
