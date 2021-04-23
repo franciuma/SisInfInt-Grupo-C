@@ -161,4 +161,8 @@ public class Matricula implements Serializable{
 				+ ", turnoPreferente=" + turnoPreferente + ", fechaMatricula=" + fechaMatricula + ", nuevoIngreso="
 				+ nuevoIngreso + ", listadoAsignaturas=" + listadoAsignaturas + "]";
 	}
+
+	public Matricula_ID getId() {
+		return id;
+	}
 }
