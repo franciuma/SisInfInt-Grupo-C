@@ -42,10 +42,22 @@ public class Asignatura {
 	@OneToMany(mappedBy = "asignatura")
 	private List<GruposPorAsig> gruposPorAsig;
 	
-	public Asignatura() {
-		
+	public Asignatura(Integer referencia2, Integer codigo2, Integer creditos2, Boolean ofertada2, String nombre2, String curso2, String caracter2, Integer duracion2, String idiomasIm) {
+		referencia = referencia2;
+		codigo = codigo2;
+		creditos = creditos2;
+		ofertada = ofertada2;
+		nombre = nombre2;
+		curso = curso2;
+		caracter = caracter2;
+		Duracion = duracion2;
+		idiomasImparticion = idiomasIm;
 	}
 	
+	public Asignatura() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getReferencia() {
 		return referencia;
 	}
