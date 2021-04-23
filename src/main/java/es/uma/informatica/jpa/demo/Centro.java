@@ -27,7 +27,10 @@ public class Centro {
 	private List<Titulacion> contieneTitulaciones;
 	
 	public Centro() {
-		
+		// TODO Auto-generated constructor stub
+	}
+	public Centro(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	public Integer getId() {

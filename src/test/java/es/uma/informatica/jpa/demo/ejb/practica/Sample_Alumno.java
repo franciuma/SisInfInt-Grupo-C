@@ -42,37 +42,24 @@ import es.uma.informatica.jpa.demo.*;
 
 
 
-public class SampleTest {
+public class Sample_Alumno {
 	
-	private static final Logger LOG = Logger.getLogger(SampleTest.class.getCanonicalName());
+	private static final Logger LOG = Logger.getLogger(Sample_Alumno.class.getCanonicalName());
 
 	private static final String ALUMNOS_EJB = "java:global/classes/AlumnosEJB";
-	private static final String CLASE_EJB = "java:global/classes/ClaseEJB";
+//	private static final String CLASE_EJB = "java:global/classes/ClaseEJB";
 //	private static final String CENTRO_EJB = "java:global/classes/CentroEJB";
-	private static final String GLASSFISH_CONFIGI_FILE_PROPERTY = "org.glassfish.ejb.embedded.glassfish.configuration.file";
-	private static final String CONFIG_FILE = "target/test-classes/META-INF/domain.xml";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest";
 	
-	private static EJBContainer ejbContainer;
-	private static Context ctx;
-	
 	private GestionAlumno gestionAlumnos;
-	private GestionClase gestionClase;
+//	private GestionClase gestionClase;
 //	private GestionCentro gestionCentro;
 
 	
-	@BeforeClass
-	public static void setUpClass() {
-		Properties properties = new Properties();
-		properties.setProperty(GLASSFISH_CONFIGI_FILE_PROPERTY, CONFIG_FILE);
-		ejbContainer = EJBContainer.createEJBContainer(properties);
-		ctx = ejbContainer.getContext();
-	}
-	
 	@Before
 	public void setup() throws NamingException  {
-		gestionAlumnos = (GestionAlumno) ctx.lookup(ALUMNOS_EJB);
-		gestionClase = (GestionClase) ctx.lookup(CLASE_EJB);
+		gestionAlumnos = (GestionAlumno) SuiteTest.ctx.lookup(ALUMNOS_EJB);
+//		gestionClase = (GestionClase) SuiteTest.ctx.lookup(CLASE_EJB);
 //		gestionCentro = (GestionCentro) ctx.lookup(CENTRO_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
@@ -110,47 +97,7 @@ public class SampleTest {
 	}
 	
 	
-	
-	@Test
-	@Ignore
-	public void testInsertarClase() {
-		
-		final Clase_ID id = new Clase_ID();
-		final Date hora_inicio = new Date(10^6);
-		id.setHoraInicio(hora_inicio);
-		final Date hora_fin = new Date(10^9);
-		try {
-			Clase clase = new Clase(id, hora_fin);
-			gestionClase.insertarClase(clase);
-		}catch(ProyectoException e) {
-			throw new RuntimeException(e);
-		}
-		
-	}
-	
-	@Test
-	@Ignore
-	public void TestObtenerClase() {
-		
-	}
 
-
-	//No se
-	@Test
-	@Ignore
-	public void testInsertarLoteProductoNoEncontrado() {
-		
-	}
-
-		
-
-	
-	@Test
-	@Ignore
-	public void testInsertarLoteProductoNoEncontrado1() {
-
-	}
-	
 	
 	@Test
 	public void testEliminarALumno() {
@@ -189,95 +136,5 @@ public class SampleTest {
 		
 	}
 
-
-	public void testInsertarLoteIngredientesIncorrectos() {
-
-
-		
-	}
-	
-	@Test
-	@Ignore
-
-	public void testInsertarLoteExistente() {
-
-		
-	}
-	
-
-	
-	@Test
-	@Ignore
-	public void testObtenerLotesProductoNoEncontrado() {
-		
-	}
-
-	
-	@Test
-	@Ignore
-	public void testActualizarLoteProductoNoEncontrado() {
-		
-	}
-	
-	@Test
-	@Ignore
-	public void testActualizarLoteIngredientesIncorrectos() {
-		
-	}
-
-	
-	@Test
-	@Ignore
-	public void testEliminarLoteProductoNoEncontrado() {
-		
-	}
-	
-	@Test
-	@Ignore
-	public void testEliminarLoteNoEncontrado() {
-		
-	}
-	
-	@Test
-	@Ignore
-	public void testEliminarTodosLotes() {
-		
-	}
-	
-	@Test
-	@Ignore
-	public void testEliminarTodosLotesProductoNoEncontrado() {
-		
-	}
-	
-//	@After
-//	public static void comienzo() {
-//		final String dni = "12345678D";
-//		final String nombreCompleto = "Fransi";
-//		final String emailInstitucional = "fransi@uma.es";
-//		final String emailPersonal = "fransi@crack.sii";
-//		final String telefono = "123654789";
-//		final String movil = "95498456563";
-//		
-//		try {
-//			
-//			Alumno fransi = new Alumno(dni, nombreCompleto, emailInstitucional, emailPersonal, telefono, movil);
-//			gestionAlumnos.insertarAlumno(fransi);
-//			
-//		}catch(ProyectoException e) {
-//			throw new RuntimeException(e);
-//		}
-//			
-//		
-//		
-//	}
-//	
-	
-	@AfterClass
-	public static void tearDownClass() {
-		if (ejbContainer != null) {
-			ejbContainer.close();
-		}
-	}
-
 }
+	

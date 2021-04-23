@@ -1,6 +1,8 @@
 package es.uma.informatica.ejb;
 
 import es.uma.informatica.ejb.exceptions.*;
+
+import java.io.IOException;
 import java.util.List;
 import javax.ejb.Local;
 import es.uma.informatica.jpa.demo.Alumno;
@@ -16,5 +18,6 @@ public interface GestionAlumno{
 	public void eliminarAlumno (String dni) throws AlumnoNoEncontradoException;
 	public void actualizarAlumno (Alumno alumno) throws AlumnoNoEncontradoException;
 	public List<Alumno> obtenerAlumnos ();
+	public void importarAlumnos() throws IOException, AlumnoYaExistenteException;
 
 }
