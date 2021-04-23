@@ -1,5 +1,6 @@
 package es.uma.informatica.jpa.demo;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,12 +12,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Titulacion {
+public class Titulacion implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name = "Codigo_Titulacion")
 	private Integer codigo;
-	@Column(name = "Nombre", nullable = false, length = 20)
+	@Column(name = "Nombre", nullable = false, length = 40)
 	private String nombre;
 	@Column(name = "Creditos", nullable = false)
 	private Integer creditos;
@@ -36,10 +41,19 @@ public class Titulacion {
 	@OneToMany(mappedBy = "titulacion")
 	private List<Asignatura> asignaturas;
 	
+	public Titulacion(Integer codigo, String nombre, Integer creditos) {
+		
+		super();
+		
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.creditos = creditos;
+	}
+	
 	public Titulacion() {
 		
 	}
-	
+
 	public Integer getCodigo() {
 		return codigo;
 	}
