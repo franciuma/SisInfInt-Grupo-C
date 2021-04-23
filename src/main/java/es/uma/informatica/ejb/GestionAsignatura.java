@@ -1,8 +1,10 @@
 
 package es.uma.informatica.ejb;
 
+import java.io.IOException;
 import java.util.List;
 
+import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
 import es.uma.informatica.ejb.exceptions.AsignaturaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.AsignaturaYaExistenteException;
 import es.uma.informatica.jpa.demo.Asignatura;
@@ -19,5 +21,7 @@ public interface GestionAsignatura {
 	public void actualizarAsignatura(Asignatura asignatura) throws AsignaturaNoEncontradaException;
 
 	public List<Asignatura> obtenerAsignaturas();
+
+	void importarAsignatura() throws IOException, AsignaturaYaExistenteException;
 
 }

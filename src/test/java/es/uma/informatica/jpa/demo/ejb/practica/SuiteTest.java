@@ -12,7 +12,7 @@ import org.junit.runners.*;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({Sample_Alumno.class,Sample_Centro.class,Sample_Titulacion.class})
+@SuiteClasses({Sample_Alumno.class,Sample_Centro.class,Sample_Titulacion.class,Sample_Asignatura.class})
 public class SuiteTest {
 	private static final String GLASSFISH_CONFIGI_FILE_PROPERTY = "org.glassfish.ejb.embedded.glassfish.configuration.file";
 	private static final String CONFIG_FILE = "target/test-classes/META-INF/domain.xml";
