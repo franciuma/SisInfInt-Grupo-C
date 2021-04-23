@@ -6,10 +6,14 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import es.uma.informatica.ejb.exceptions.AsignaturaNoEncontradaException;
+import es.uma.informatica.ejb.exceptions.AsignaturaYaExistenteException;
 import es.uma.informatica.ejb.exceptions.CentroNoEncontradoExeption;
+import es.uma.informatica.ejb.exceptions.ExpedienteNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.Asignatura;
 import es.uma.informatica.jpa.demo.Centro;
+import es.uma.informatica.jpa.demo.Expediente;
 
 @Stateless
 public class AsignaturaEJB implements GestionAsignatura{
@@ -21,46 +25,53 @@ public class AsignaturaEJB implements GestionAsignatura{
 		// TODO Auto-generated method stub
 		Asignatura asignatura = em.find(Asignatura.class, asig.getReferencia());
 		if(asignatura != null) {
-			throw new ProyectoException("Ese centro ya esta insertado");
+			throw new AsignaturaYaExistenteException();
 		}
 			em.persist(asignatura);
 	}
 
 	@Override
-	public Centro obtenerCentro(String nombre) throws CentroNoEncontradoExeption {
+	public Asignatura obtenerAsignatura(Integer referencia) throws AsignaturaNoEncontradaException {
 		// TODO Auto-generated method stub
 		
-		Query centros = em.createQuery("Select c from Centro c where c.nombre = :nombre");
-		centros.setParameter("nombre", nombre);
-		
-		List<Centro> centros_list = centros.getResultList();
-		Centro centro = centros_list.get(0);
-		if(centro == null) throw new CentroNoEncontradoExeption();
-		return centro;
+		Asignatura asignatura = em.find(Asignatura.class, referencia);
+        if(asignatura == null) {
+            throw new AsignaturaNoEncontradaException();
+        }
+        return asignatura;
 	}
 
 	@Override
-	public void eliminarCentro(String nombre) throws CentroNoEncontradoExeption {
+	public void eliminarAsignatura(Integer referencia) throws AsignaturaNoEncontradaException {
 		// TODO Auto-generated method stub
-		Centro cen = obtenerCentro(nombre);
-		em.remove(cen);
+		Asignatura asignatura = em.find(Asignatura.class, referencia);
+		if(asignatura == null) {
+            throw new AsignaturaNoEncontradaException();
+        }
+		em.remove(asignatura);
 	}
 
 	@Override
-	public void actualizarCentro(Centro cen) throws CentroNoEncontradoExeption {
+	public void actualizarAsignatura(Asignatura asignatura) throws AsignaturaNoEncontradaException{
 		// TODO Auto-generated method stub
-		Centro centro = obtenerCentro(cen.getNombre());
-		centro.setNombre(cen.getNombre());
-		centro.setDireccion(cen.getDireccion());
-		centro.setTlfConserjeria(cen.getTLF_Conserjeria());
-		em.merge(centro);
+		Asignatura asi = em.find(Asignatura.class, asignatura.getReferencia());
+		asi.setCaracter(asignatura.getCaracter());
+		asi.setCodigo(asignatura.getCodigo());
+        asi.setCreditos(asignatura.getCreditos());
+        asi.setUnidadTemporal(asignatura.getUnidadTemporal());
+        asi.setCurso(asignatura.getCurso());
+        asi.setOfertada(asignatura.getOfertada());
+        asi.setIdiomasImparticion(asignatura.getIdiomasImparticion());
+        asi.setNombre(asignatura.getNombre());
+        asi.setDuracion(asignatura.getDuracion());
+        em.merge(asi);
 	}
 
 	@Override
-	public List<Centro> obtenerCentros() {
+	public List<Asignatura> obtenerAsignaturas() {
 		// TODO Auto-generated method stub
-		List<Centro> centros = em.createQuery("select * from Centro").getResultList();
-		return centros;
+		List<Asignatura> asignaturas = em.createQuery("select * from Asignatura").getResultList();
+		return asignaturas;
 	}
 
 }

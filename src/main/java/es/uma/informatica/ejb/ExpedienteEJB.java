@@ -60,13 +60,13 @@ public class ExpedienteEJB implements GestionExpediente{
         Expediente exp = em.find(Expediente.class, expediente.getNumExpediente());
         exp.setNotaMediaProvisional(expediente.getNotaMediaProvisional());
         exp.setActivo(expediente.getActivo());
-        em.merge(expediente);
+        em.merge(exp);
     }
  
     @Override
     public List<Expediente> obtenerExpedientes() {
         // TODO Auto-generated method stub
-        List<Expediente> exp = em.createQuery("Select al from Expediente al").getResultList();
+        List<Expediente> exp = em.createQuery("Select * from Expediente").getResultList();
         return exp;
     }
     
