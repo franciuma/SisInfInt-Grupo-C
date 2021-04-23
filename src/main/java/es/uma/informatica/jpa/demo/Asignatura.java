@@ -46,6 +46,20 @@ public class Asignatura {
 		
 	}
 	
+	public Asignatura(Integer referencia, Integer codigo, Integer creditos, Boolean ofertada, String nombre,
+			String curso, String caracter, Integer duracion, String unidadTemporal, String idiosmasImparticion) {
+		this.referencia =referencia;
+		this.codigo=codigo;
+		this.creditos=creditos;
+		this.ofertada=ofertada;
+		this.nombre=nombre;
+		this.curso=curso;
+		this.caracter=caracter;
+		this.Duracion=duracion;
+		this.unidadTemporal=unidadTemporal;
+		this.idiomasImparticion = idiosmasImparticion;
+	}
+
 	public Integer getReferencia() {
 		return referencia;
 	}

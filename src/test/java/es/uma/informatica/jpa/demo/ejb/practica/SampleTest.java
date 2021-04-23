@@ -29,6 +29,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import es.uma.informatica.ejb.GestionAlumno;
+import es.uma.informatica.ejb.GestionAsignatura;
 import es.uma.informatica.ejb.GestionCentro;
 import es.uma.informatica.ejb.GestionClase;
 import es.uma.informatica.ejb.GestionTitulacion;
@@ -44,6 +45,7 @@ public class SampleTest {
 	private static final Logger LOG = Logger.getLogger(SampleTest.class.getCanonicalName());
 
 	private static final String ALUMNOS_EJB = "java:global/classes/AlumnosEJB";
+	private static final String ASIGNATURA_EJB = "java:global/classes/AsignaturaEJB";
 	private static final String CLASE_EJB = "java:global/classes/ClaseEJB";
 	private static final String ENCUESTA_EJB = "java:global/classes/EncuestaEJB";
 	private static final String CENTRO_EJB = "java:global/classes/CentroEJB";
@@ -57,6 +59,7 @@ public class SampleTest {
 	
 	private GestionAlumno gestionAlumnos;
 	private GestionClase gestionClase;
+	private GestionAsignatura gestionAsignatura;
 
 	private GestionEncuesta gestionEncuesta;
 
@@ -74,6 +77,7 @@ public class SampleTest {
 	@Before
 	public void setup() throws NamingException  {
 		gestionAlumnos = (GestionAlumno) ctx.lookup(ALUMNOS_EJB);
+		gestionAsignatura = (GestionAsignatura) ctx.lookup(ASIGNATURA_EJB);
 		gestionClase = (GestionClase) ctx.lookup(CLASE_EJB);
 		gestionEncuesta = (GestionEncuesta) ctx.lookup(ENCUESTA_EJB);
 		gestionCentro = (GestionCentro) ctx.lookup(CENTRO_EJB);
@@ -116,78 +120,78 @@ public class SampleTest {
 	@Test
 	@Ignore
 	public void testInsertarTitulacion() {
-		
-		final Integer codigo = 123456;
-		final String nombre = "Grado en Ingenieria Informatica";
-		final Integer creditos = 6;
-		
-		try {
-			Titulacion info = new Titulacion(codigo, nombre, creditos);
-			gestionTitulacion.insertarTitulacion(info);
-		} catch (TitulacionYaExistenteException e) {
-			
-			fail("NO debería lanzar excepción");
-		}
-		
-		List<Titulacion> titulaciones = gestionTitulacion.obtenerTitulaciones();
-		assertEquals(1, titulaciones.size());
-		assertEquals(codigo, titulaciones.get(0).getCodigo());
-		assertEquals(nombre, titulaciones.get(0).getNombre());
-		assertEquals(creditos, titulaciones.get(0).getCreditos());
-	}
-	
-	@Test(expected = TitulacionYaExistenteException.class)
-	@Ignore
-	public void testInsertarTitulacionYaExistente() throws TitulacionYaExistenteException {
-		
-		final Integer codigo = 56789;
-		final String nombre = "Grado en Ingeniería del Software";
-		final Integer creditos = 6;
-		
-		try {
-		Titulacion soft = new Titulacion(codigo, nombre, creditos);
-		gestionTitulacion.insertarTitulacion(soft);
-		} catch (TitulacionYaExistenteException e) {
-			
-			fail("NO debería lanzar excepción aún");
-		}
-		
-		final Integer codigo2 = 56789;
-		final String nombre2 = "Grado en Ingeniería del Software";
-		final Integer creditos2 = 6;
-		
-		Titulacion soft2 = new Titulacion(codigo2, nombre2, creditos2);
-		gestionTitulacion.insertarTitulacion(soft2);
+//		
+//		final Integer codigo = 123456;
+//		final String nombre = "Grado en Ingenieria Informatica";
+//		final Integer creditos = 6;
+//		
+//		try {
+//			Titulacion info = new Titulacion(codigo, nombre, creditos);
+//			gestionTitulacion.insertarTitulacion(info);
+//		} catch (TitulacionYaExistenteException e) {
+//			
+//			fail("NO debería lanzar excepción");
+//		}
+//		
+//		List<Titulacion> titulaciones = gestionTitulacion.obtenerTitulaciones();
+//		assertEquals(1, titulaciones.size());
+//		assertEquals(codigo, titulaciones.get(0).getCodigo());
+//		assertEquals(nombre, titulaciones.get(0).getNombre());
+//		assertEquals(creditos, titulaciones.get(0).getCreditos());
+//	}
+//	
+//	@Test(expected = TitulacionYaExistenteException.class)
+//	@Ignore
+//	public void testInsertarTitulacionYaExistente() throws TitulacionYaExistenteException {
+//		
+//		final Integer codigo = 56789;
+//		final String nombre = "Grado en Ingeniería del Software";
+//		final Integer creditos = 6;
+//		
+//		try {
+//		Titulacion soft = new Titulacion(codigo, nombre, creditos);
+//		gestionTitulacion.insertarTitulacion(soft);
+//		} catch (TitulacionYaExistenteException e) {
+//			
+//			fail("NO debería lanzar excepción aún");
+//		}
+//		
+//		final Integer codigo2 = 56789;
+//		final String nombre2 = "Grado en Ingeniería del Software";
+//		final Integer creditos2 = 6;
+//		
+//		Titulacion soft2 = new Titulacion(codigo2, nombre2, creditos2);
+//		gestionTitulacion.insertarTitulacion(soft2);
 	}
 	
 	@Test
 	@Ignore
 	public void testEliminarTitulacion() {
-		
-		final Integer codigo = 12345;
-		final String nombre = "Grado en Ingeniería Informática";
-		final Integer creditos = 6;
-		
-		try {
-			Titulacion info = new Titulacion(codigo, nombre, creditos);
-			gestionTitulacion.insertarTitulacion(info);
-		} catch (TitulacionYaExistenteException e) {
-			
-			fail("NO debería lanzar excepción");
-		}
-		
-		List<Titulacion> titulaciones = gestionTitulacion.obtenerTitulaciones();
-		assertEquals(1, titulaciones.size());
-		
-		try {
-
-			gestionTitulacion.eliminarTitulacion(codigo);
-			List<Titulacion> titulaciones2 = gestionTitulacion.obtenerTitulaciones();
-			assertEquals(0, titulaciones2.size());
-		} catch (TitulacionNoEncontradaException e) {
-			
-			fail("NO debería lanzar excepción");
-		}
+//		
+//		final Integer codigo = 12345;
+//		final String nombre = "Grado en Ingeniería Informática";
+//		final Integer creditos = 6;
+//		
+//		try {
+//			Titulacion info = new Titulacion(codigo, nombre, creditos);
+//			gestionTitulacion.insertarTitulacion(info);
+//		} catch (TitulacionYaExistenteException e) {
+//			
+//			fail("NO debería lanzar excepción");
+//		}
+//		
+//		List<Titulacion> titulaciones = gestionTitulacion.obtenerTitulaciones();
+//		assertEquals(1, titulaciones.size());
+//		
+//		try {
+//
+//			gestionTitulacion.eliminarTitulacion(codigo);
+//			List<Titulacion> titulaciones2 = gestionTitulacion.obtenerTitulaciones();
+//			assertEquals(0, titulaciones2.size());
+//		} catch (TitulacionNoEncontradaException e) {
+//			
+//			fail("NO debería lanzar excepción");
+//		}
 	}
 
 	@Test
@@ -195,26 +199,26 @@ public class SampleTest {
 	//no funciona bien
 	public void testInsertarCentro() {
 		
-		final String nombre = "ETSI Informatica";
-		final String tlfSecretaria = "87654321";
-		final String direccion = "Teatinos 2";
-		
-	try {
-		
-		Centro inf = new Centro(nombre,direccion, tlfSecretaria);
-		gestionCentro.insertarCentro(inf);
-		
-		try {
-
-			Centro centro = gestionCentro.obtenerCentro(nombre);
-			assertEquals("No es el mismo centro", null, centro);
-
-		}catch(ProyectoException e) {
-			fail("NO deberia lanzar excepcion");
-		}
-	}catch(ProyectoException e) {
-		throw new RuntimeException(e);
-	}
+//		final String nombre = "ETSI Informatica";
+//		final String tlfSecretaria = "87654321";
+//		final String direccion = "Teatinos 2";
+//		
+//	try {
+//		
+//		Centro inf = new Centro(nombre,direccion, tlfSecretaria);
+//		gestionCentro.insertarCentro(inf);
+//		
+//		try {
+//
+//			Centro centro = gestionCentro.obtenerCentro(nombre);
+//			assertEquals("No es el mismo centro", null, centro);
+//
+//		}catch(ProyectoException e) {
+//			fail("NO deberia lanzar excepcion");
+//		}
+//	}catch(ProyectoException e) {
+//		throw new RuntimeException(e);
+//	}
 
 }
 	
@@ -222,16 +226,16 @@ public class SampleTest {
 	@Ignore
 	public void testInsertarClase() {
 		
-		final Clase_ID id = new Clase_ID();
-		final Date hora_inicio = new Date(10^6);
-		id.setHoraInicio(hora_inicio);
-		final Date hora_fin = new Date(10^9);
-		try {
-			Clase clase = new Clase(id, hora_fin);
-			gestionClase.insertarClase(clase);
-		}catch(ProyectoException e) {
-			throw new RuntimeException(e);
-		}
+//		final Clase_ID id = new Clase_ID();
+//		final Date hora_inicio = new Date(10^6);
+//		id.setHoraInicio(hora_inicio);
+//		final Date hora_fin = new Date(10^9);
+//		try {
+//			Clase clase = new Clase(id, hora_fin);
+//			gestionClase.insertarClase(clase);
+//		}catch(ProyectoException e) {
+//			throw new RuntimeException(e);
+//		}
 	}
 	
 	@Test
@@ -254,55 +258,56 @@ public class SampleTest {
 	}
 
 
-	@Test
-	@Ignore
-	public void testInsertarEncuesta() throws EncuestaNoEncontradaException{
-		
-		final DateTimeFormatter fechaEnvio = DateTimeFormatter.ofPattern("12-11-2000");
-		
-		try {
-			Encuesta encuesta = new Encuesta(fechaEnvio);
-			gestionEncuesta.insertarEncuesta(encuesta);
-			
-			try {
-				Encuesta encuest = gestionEncuesta.obtenerEncuesta(fechaEnvio);
-				assertEquals(encuesta.getFechaEnvio(),encuest.getFechaEnvio());
-			}catch(EncuestaNoEncontradaException e){
-				fail("Excepcion");
-			}
-			
-		}catch(EncuestaYaExistenteException e){
-			throw new RuntimeException(e);
-		}		
-	}
-	
-	@Test
-	@Ignore
-	public void testEliminarEncuesta() {
-		try {
-			gestionEncuesta.eliminarEncuesta(DateTimeFormatter.ofPattern("12-11-2000"));
-		}catch (EncuestaNoEncontradaException e) {
-			// TODO: handle exception
-			throw new RuntimeException(e);
-		}
-		
-	}
-	
-	@Test
-	@Ignore
-	public void testActualizarEncuesta() throws EncuestaNoEncontradaException {
-		try {
-			Encuesta encuesta = gestionEncuesta.obtenerEncuesta(DateTimeFormatter.ofPattern("12-11-2000"));
-			assertEquals(encuesta.getFechaEnvio(), DateTimeFormatter.ofPattern("12-11-2000"));
-			DateTimeFormatter fecha_envio = encuesta.getFechaEnvio();
-			encuesta.setFechaEnvio(fecha_envio);
-			gestionEncuesta.actualizarEncuesta(encuesta);
-			assertNotEquals("Deberia haberse actualizado la encuesta", fecha_envio , encuesta.getFechaEnvio());
-			
-		}catch(EncuestaNoEncontradaException e) {
-			throw new RuntimeException(e);
-		}
-	}
+
+//	@Test
+//	public void testInsertarEncuesta() throws EncuestaNoEncontradaException{
+//		
+//		final DateTimeFormatter fechaEnvio = DateTimeFormatter.ofPattern("12-11-2000");
+//		
+//		try {
+//			Encuesta encuesta = new Encuesta(fechaEnvio);
+//			gestionEncuesta.insertarEncuesta(encuesta);
+//			
+//			try {
+//				Encuesta encuest = gestionEncuesta.obtenerEncuesta(fechaEnvio);
+//				assertEquals(encuesta.getFechaEnvio(),encuest.getFechaEnvio());
+//			}catch(EncuestaNoEncontradaException e){
+//				fail("Excepcion");
+//			}
+//			
+//		}catch(EncuestaYaExistenteException e){
+//			throw new RuntimeException(e);
+//		}		
+//	}
+//	
+//	@Test
+//	@Ignore
+//	public void testEliminarEncuesta() {
+//		try {
+//			gestionEncuesta.eliminarEncuesta(DateTimeFormatter.ofPattern("12-11-2000"));
+//		}catch (EncuestaNoEncontradaException e) {
+//			// TODO: handle exception
+//			throw new RuntimeException(e);
+//		}
+//		
+//	}
+//	
+//	@Test
+//	@Ignore
+//	public void testActualizarEncuesta() throws EncuestaNoEncontradaException {
+//		try {
+//			Encuesta encuesta = gestionEncuesta.obtenerEncuesta(DateTimeFormatter.ofPattern("12-11-2000"));
+//			assertEquals(encuesta.getFechaEnvio(), DateTimeFormatter.ofPattern("12-11-2000"));
+//			DateTimeFormatter fecha_envio = encuesta.getFechaEnvio();
+//			encuesta.setFechaEnvio(fecha_envio);
+//			gestionEncuesta.actualizarEncuesta(encuesta);
+//			assertNotEquals("Deberia haberse actualizado la encuesta", fecha_envio , encuesta.getFechaEnvio());
+//			
+//		}catch(EncuestaNoEncontradaException e) {
+//			throw new RuntimeException(e);
+//		}
+//	}
+
 		
 	@Test
 	@Ignore
@@ -341,15 +346,29 @@ public class SampleTest {
 		}catch(AlumnoNoEncontradoException e) {
 			throw new RuntimeException(e);
 		}
-		
 	}
-
-
-	public void testInsertarLoteIngredientesIncorrectos() {
-
-
 		
-	}
+//	@Test
+//	@Ignore
+//	public void testInsertarAsignatura() {
+//		final Integer referencia = 1;
+//		final Integer codigo = 103;
+//		final Integer creditos = 6;
+//		final Boolean ofertada = true;
+//		final String nombre = "Sii";
+//		final String curso = "Tercero";
+//		final String caracter = "OB";
+//		final Integer duracion = 180;
+//		final String unidadTemporal = "1º cuatrimestre";
+//		final String idiosmasImparticion = "Ingles";
+//		
+//		try {
+//			Asignatura asi = new Asignatura(referencia, codigo, creditos, ofertada, nombre, curso, caracter, duracion, unidadTemporal, idiosmasImparticion);
+//			gestionAsignatura.insertarAsignatura(asi);
+//		}catch(AsignaturaYaExistenteException e){
+//			throw new RuntimeException(e);
+//		}
+//	}
 	
 	@Test
 	@Ignore
