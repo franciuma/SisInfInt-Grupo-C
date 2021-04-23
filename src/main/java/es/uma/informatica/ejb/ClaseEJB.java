@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 
 import es.uma.informatica.ejb.exceptions.ClaseNoEncontradaException;
+import es.uma.informatica.ejb.exceptions.ClaseYaExistenteException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
 
@@ -22,12 +23,12 @@ public class ClaseEJB implements GestionClase {
 	private EntityManager em;
 	
 	@Override
-	public void insertarClase(Clase clas) throws ProyectoException {
+	public void insertarClase(Clase clas) throws ClaseYaExistenteException {
 		// TODO Auto-generated method stub
 		Clase clase = em.find(Clase.class,clas.getId());
 		
 		if( clase != null) {
-			throw new ProyectoException("Ya esta esa clase");
+			throw new ClaseYaExistenteException();
 		}else {
 			em.persist(clase);
 		}
