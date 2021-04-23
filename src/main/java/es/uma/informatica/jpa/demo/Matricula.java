@@ -38,6 +38,10 @@ public class Matricula implements Serializable{
 		
 	}
 	
+	public Matricula_ID getId() {
+		return id;
+	}
+	
 	public String getCursoAcademico() {
 		return cursoAcademico;
 	}
@@ -161,4 +165,6 @@ public class Matricula implements Serializable{
 				+ ", turnoPreferente=" + turnoPreferente + ", fechaMatricula=" + fechaMatricula + ", nuevoIngreso="
 				+ nuevoIngreso + ", listadoAsignaturas=" + listadoAsignaturas + "]";
 	}
+
+	
 }
