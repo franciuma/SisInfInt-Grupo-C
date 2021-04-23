@@ -7,6 +7,7 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 
 import org.eclipse.persistence.jpa.jpql.Assert.AssertException;
+import org.glassfish.hk2.runlevel.RunLevelException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -27,17 +29,10 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import es.uma.informatica.ejb.GestionAlumno;
-
-import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
-
-
 import es.uma.informatica.ejb.GestionClase;
 
 
 import es.uma.informatica.ejb.exceptions.*;
-
-
-import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
 
 
@@ -134,6 +129,24 @@ public class Sample_Alumno {
 			throw new RuntimeException(e);
 		}
 		
+	}
+	
+	@Test
+	public void testImportarDatosAlumno() throws AlumnoYaExistenteException, IOException {
+		final String dni = "02758528E";
+		final String nombreCompleto = "Amarilia Espino Melgar";
+		final String emailInstitucional = "06105600003@uma.es";
+		final String emailPersonal = "AmariliaEspinoMelgar@jourrapide.com";
+		final String telefono = "602 758 528";
+		final String movil = "602 758 528";
+		try {
+			Alumno alumno = new Alumno(dni, nombreCompleto, emailInstitucional, emailPersonal, telefono, movil);
+			gestionAlumnos.importarAlumnos();
+			Alumno a = gestionAlumnos.obtenerAlumno(dni);
+			assertEquals("No es el mismo alumno", a,alumno);
+		}catch(AlumnoNoEncontradoException e) {
+			throw new RunLevelException(e);
+		}
 	}
 
 }
