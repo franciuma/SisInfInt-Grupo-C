@@ -75,6 +75,7 @@ public class SampleTest {
 		gestionClase = (GestionClase) ctx.lookup(CLASE_EJB);
 		gestionEncuesta = (GestionEncuesta) ctx.lookup(ENCUESTA_EJB);
 		gestionCentro = (GestionCentro) ctx.lookup(CENTRO_EJB);
+		gestionTitulacion = (GestionTitulacion) ctx.lookup(TITULACION_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 
@@ -123,7 +124,7 @@ public class SampleTest {
 			gestionTitulacion.insertarTitulacion(info);
 		} catch (TitulacionYaExistenteException e) {
 			
-			throw new RuntimeException(e);
+			fail("NO debería lanzar excepción");
 		}
 		
 		List<Titulacion> titulaciones = gestionTitulacion.obtenerTitulaciones();
@@ -132,7 +133,60 @@ public class SampleTest {
 		assertEquals(nombre, titulaciones.get(0).getNombre());
 		assertEquals(creditos, titulaciones.get(0).getCreditos());
 	}
+	
+	@Test(expected = TitulacionYaExistenteException.class)
+	public void testInsertarTitulacionYaExistente() throws TitulacionYaExistenteException {
+		
+		final Integer codigo = 56789;
+		final String nombre = "Grado en Ingeniería del Software";
+		final Integer creditos = 6;
+		
+		try {
+		Titulacion soft = new Titulacion(codigo, nombre, creditos);
+		gestionTitulacion.insertarTitulacion(soft);
+		} catch (TitulacionYaExistenteException e) {
+			
+			fail("NO debería lanzar excepción aún");
+		}
+		
+		final Integer codigo2 = 56789;
+		final String nombre2 = "Grado en Ingeniería del Software";
+		final Integer creditos2 = 6;
+		
+		Titulacion soft2 = new Titulacion(codigo2, nombre2, creditos2);
+		gestionTitulacion.insertarTitulacion(soft2);
+	}
+	
+	@Test
+	public void testEliminarTitulacion() {
+		
+		final Integer codigo = 12345;
+		final String nombre = "Grado en Ingeniería Informática";
+		final Integer creditos = 6;
+		
+		try {
+			Titulacion info = new Titulacion(codigo, nombre, creditos);
+			gestionTitulacion.insertarTitulacion(info);
+		} catch (TitulacionYaExistenteException e) {
+			
+			fail("NO debería lanzar excepción");
+		}
+		
+		List<Titulacion> titulaciones = gestionTitulacion.obtenerTitulaciones();
+		assertEquals(1, titulaciones.size());
+		
+		try {
 
+			gestionTitulacion.eliminarTitulacion(codigo);
+			List<Titulacion> titulaciones2 = gestionTitulacion.obtenerTitulaciones();
+			assertEquals(0, titulaciones2.size());
+		} catch (TitulacionNoEncontradaException e) {
+			
+			fail("NO debería lanzar excepción");
+		}
+	}
+
+	@Test
 	@Ignore
 	//no funciona bien
 	public void testInsertarCentro() {
@@ -246,14 +300,7 @@ public class SampleTest {
 //			throw new RuntimeException(e);
 //		}
 	}
-	
-	@Test
-	@Ignore
-	public void testInsertarLoteProductoNoEncontrado() {
 		
-	}
-	
-	
 	@Test
 	@Ignore
 	public void testEliminarALumno() {
@@ -352,6 +399,13 @@ public class SampleTest {
 	@Test
 	@Ignore
 	public void testEliminarTodosLotesProductoNoEncontrado() {
+		
+	}
+	
+	
+	@Test
+	@Ignore
+	public void testInsertarLoteProductoNoEncontrado() {
 		
 	}
 	

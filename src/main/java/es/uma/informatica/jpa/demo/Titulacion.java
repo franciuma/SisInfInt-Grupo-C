@@ -21,7 +21,7 @@ public class Titulacion implements Serializable {
 	@Id
 	@Column(name = "Codigo_Titulacion")
 	private Integer codigo;
-	@Column(name = "Nombre", nullable = false, length = 20)
+	@Column(name = "Nombre", nullable = false, length = 40)
 	private String nombre;
 	@Column(name = "Creditos", nullable = false)
 	private Integer creditos;
