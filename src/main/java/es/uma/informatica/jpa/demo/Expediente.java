@@ -47,6 +47,10 @@ public class Expediente {
 		return activo;
 	}
 	
+	public boolean getActivo() {
+		return activo;
+	}
+	
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}

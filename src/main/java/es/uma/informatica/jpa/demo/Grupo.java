@@ -81,7 +81,7 @@ public class Grupo {
 	public void setTurnoMañanaTarde(String turnoMañanaTarde) {
 		this.turnoMañanaTarde = turnoMañanaTarde;
 	}
-	public boolean isIngles() {
+	public boolean getIngles() {
 		return ingles;
 	}
 	
@@ -89,7 +89,7 @@ public class Grupo {
 		this.ingles = ingles;
 	}
 	
-	public boolean isVisible() {
+	public boolean getVisible() {
 		return visible;
 	}
 	
