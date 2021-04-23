@@ -82,8 +82,8 @@ public class AlumnosEJB implements GestionAlumno {
 			XSSFSheet sheet = workbook.getSheet("Hoja 1");
 			XSSFRow row = sheet.getRow(0);
 			XSSFCell cell = null;
-			Alumno a = new Alumno();
 			for(int fila=4; fila<row.getRowNum(); fila++) {
+				Alumno a = new Alumno();
 				String dni = (String) sheet.getRow(fila).getCell(1).getStringCellValue();
 				a.setDni(dni);
 				String nombre = (String) sheet.getRow(fila).getCell(2).getStringCellValue() + " " + (String) sheet.getRow(fila).getCell(3).getStringCellValue() + " " + (String) sheet.getRow(fila).getCell(4).getStringCellValue();

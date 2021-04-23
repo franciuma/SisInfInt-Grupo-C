@@ -1,6 +1,7 @@
 package es.uma.informatica.jpa.demo;
 
 import java.sql.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,7 +17,7 @@ public class Encuesta {
 
 	@Id
 	@Column(name = "Fecha_Envio")
-	private Date fechaEnvio;
+	private DateTimeFormatter fechaEnvio;
 	
 	/*@ManyToMany
 	@JoinTable(name = "JND_Encuesta_GruposPorAsig",
@@ -39,15 +40,15 @@ public class Encuesta {
 		
 	}
 	
-	public Encuesta(Date fechaEnvio) {
+	public Encuesta(DateTimeFormatter fechaEnvio) {
 		this.fechaEnvio = fechaEnvio;
 	}
 
-	public Date getFechaEnvio() {
+	public DateTimeFormatter getFechaEnvio() {
 		return fechaEnvio;
 	}
 
-	public void setFechaEnvio(Date fechaEnvio) {
+	public void setFechaEnvio(DateTimeFormatter fechaEnvio) {
 		this.fechaEnvio = fechaEnvio;
 	}
 

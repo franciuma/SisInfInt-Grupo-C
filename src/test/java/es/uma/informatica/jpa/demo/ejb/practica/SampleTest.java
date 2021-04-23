@@ -9,6 +9,8 @@ import static org.junit.Assert.fail;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
@@ -34,7 +36,7 @@ import es.uma.informatica.ejb.GestionTitulacion;
 import es.uma.informatica.ejb.GestionEncuesta;
 import es.uma.informatica.ejb.exceptions.*;
 import es.uma.informatica.jpa.demo.*;
-
+import java.lang.Object;
 
 
 public class SampleTest {
@@ -113,6 +115,7 @@ public class SampleTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testInsertarTitulacion() {
 		
 		final Integer codigo = 123456;
@@ -135,6 +138,7 @@ public class SampleTest {
 	}
 	
 	@Test(expected = TitulacionYaExistenteException.class)
+	@Ignore
 	public void testInsertarTitulacionYaExistente() throws TitulacionYaExistenteException {
 		
 		final Integer codigo = 56789;
@@ -158,6 +162,7 @@ public class SampleTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testEliminarTitulacion() {
 		
 		final Integer codigo = 12345;
@@ -251,10 +256,9 @@ public class SampleTest {
 
 
 	@Test
-	@Ignore
 	public void testInsertarEncuesta() throws EncuestaNoEncontradaException{
 		
-		final Date fechaEnvio = new Date(116,10,3);
+		final DateTimeFormatter fechaEnvio = DateTimeFormatter.ofPattern("12-11-2000");
 		
 		try {
 			Encuesta encuesta = new Encuesta(fechaEnvio);
@@ -275,30 +279,29 @@ public class SampleTest {
 	@Test
 	@Ignore
 	public void testEliminarEncuesta() {
-
-//		try {
-//			gestionEncuesta.eliminarEncuesta("12/12/1222");
-//		}catch (EncuestaNoEncontradaException e) {
-//			// TODO: handle exception
-//			throw new RuntimeException(e);
-//		}
-//		
+		try {
+			gestionEncuesta.eliminarEncuesta(DateTimeFormatter.ofPattern("12-11-2000"));
+		}catch (EncuestaNoEncontradaException e) {
+			// TODO: handle exception
+			throw new RuntimeException(e);
+		}
+		
 	}
 	
 	@Test
 	@Ignore
-	public void testActualizarEncuesta() {
-//		try {
-//			Encuesta encuesta = gestionEncuesta.obtenerEncuesta(fechaEnvio);
-//			assertEquals(encuesta.getFechaEnvio(), "nose");
-//			Date fecha_envio = encuesta.getFechaEnvio();
-//			encuesta.setFechaEnvio(fecha_envio);
-//			gestionEncuesta.actualizarEncuesta(encuesta);
-//			assertNotEquals("Deberia haberse actualizado la encuesta", fecha_envio , encuesta.getFechaEnvio());
-//			
-//		}catch(AlumnoNoEncontradoException e) {
-//			throw new RuntimeException(e);
-//		}
+	public void testActualizarEncuesta() throws EncuestaNoEncontradaException {
+		try {
+			Encuesta encuesta = gestionEncuesta.obtenerEncuesta(DateTimeFormatter.ofPattern("12-11-2000"));
+			assertEquals(encuesta.getFechaEnvio(), DateTimeFormatter.ofPattern("12-11-2000"));
+			DateTimeFormatter fecha_envio = encuesta.getFechaEnvio();
+			encuesta.setFechaEnvio(fecha_envio);
+			gestionEncuesta.actualizarEncuesta(encuesta);
+			assertNotEquals("Deberia haberse actualizado la encuesta", fecha_envio , encuesta.getFechaEnvio());
+			
+		}catch(EncuestaNoEncontradaException e) {
+			throw new RuntimeException(e);
+		}
 	}
 		
 	@Test
