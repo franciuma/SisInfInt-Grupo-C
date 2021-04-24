@@ -20,7 +20,7 @@ public class Centro implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-	private Integer id;
+	private int id;
 	@Column(name = "Nombre", nullable = false, unique = true, length = 50)
 	private String nombre;
 	@Column(name = "Direccion", nullable = false, length = 200)
@@ -40,11 +40,11 @@ public class Centro implements Serializable {
 		this.tlfConserjeria = tlfConserjeria;
 	}
 	
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 	
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
@@ -72,18 +72,18 @@ public class Centro implements Serializable {
 	public void setTlfConserjeria(String tlfConserjeria) {
 		this.tlfConserjeria = tlfConserjeria;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((contieneTitulaciones == null) ? 0 : contieneTitulaciones.hashCode());
 		result = prime * result + ((direccion == null) ? 0 : direccion.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + id;
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((tlfConserjeria == null) ? 0 : tlfConserjeria.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -93,15 +93,17 @@ public class Centro implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Centro other = (Centro) obj;
+		if (contieneTitulaciones == null) {
+			if (other.contieneTitulaciones != null)
+				return false;
+		} else if (!contieneTitulaciones.equals(other.contieneTitulaciones))
+			return false;
 		if (direccion == null) {
 			if (other.direccion != null)
 				return false;
 		} else if (!direccion.equals(other.direccion))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		if (nombre == null) {
 			if (other.nombre != null)
@@ -115,7 +117,6 @@ public class Centro implements Serializable {
 			return false;
 		return true;
 	}
-
 	@Override
 	public String toString() {
 		return "Centro [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", tlfConserjeria="

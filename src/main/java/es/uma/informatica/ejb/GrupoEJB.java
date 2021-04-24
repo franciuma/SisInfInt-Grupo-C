@@ -7,10 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import es.uma.informatica.ejb.exceptions.ExpedienteNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.GrupoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.GrupoYaExistenteException;
-import es.uma.informatica.jpa.demo.Expediente;
 import es.uma.informatica.jpa.demo.Grupo;
 
 @Stateless
@@ -64,7 +62,7 @@ public class GrupoEJB implements GestionGrupo{
 	@Override
 	public void actualizarGrupo(Grupo grupo) throws GrupoNoEncontradoException {
 		// TODO Auto-generated method stub
-		Grupo gr = em.find(Grupo.class, grupo.getId());
+		Grupo gr = obtenerGrupo(grupo.getCurso(), grupo.getLetra(), grupo.getTurnoMañanaTarde(), grupo.getIngles(), grupo.getVisible(), grupo.getAsignar(), grupo.getPlazas());
         gr.setCurso(grupo.getCurso());
         gr.setLetra(grupo.getLetra());
         gr.setTurnoMañanaTarde(grupo.getTurnoMañanaTarde());
@@ -72,7 +70,7 @@ public class GrupoEJB implements GestionGrupo{
         gr.setVisible(grupo.getVisible());
         gr.setAsignar(grupo.getAsignar());
         gr.setPlazas(grupo.getPlazas());
-        em.merge(grupo);
+        em.merge(gr);
 	}
 
 }

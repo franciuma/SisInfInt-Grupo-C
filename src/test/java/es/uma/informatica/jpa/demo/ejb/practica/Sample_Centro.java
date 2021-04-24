@@ -37,7 +37,6 @@ public class Sample_Centro {
 	}
 
 	@Test
-	@Ignore
 	public void testInsertarCentro() {
 				
 		final String nombre = "Facultad de Derecho";
@@ -51,8 +50,10 @@ public class Sample_Centro {
 			
 			try {
 				
-				Centro centro = gestionCentro.obtenerCentro(nombre);
-				assertEquals("No es el mismo centro", nombre, centro.getNombre());
+				Centro centro = gestionCentro.obtenerCentro(nombre,direccion,tlfConserjeria);
+				assertEquals(nombre,centro.getNombre());
+				assertEquals(direccion,centro.getDireccion());
+				assertEquals(tlfConserjeria,centro.getTLF_Conserjeria());
 			} catch (ProyectoException e) {
 				
 				fail("NO debería lanzar excepción");
@@ -67,7 +68,7 @@ public class Sample_Centro {
 	public void testEliminarCentro() {
 
 		try {
-			gestionCentro.eliminarCentro("ETSII Informática");
+			gestionCentro.eliminarCentro("ETSII Informática","Boulevar Louis Pasteur Nº24","952345678");
 		} catch(CentroNoEncontradoException e) {
 			throw new RuntimeException(e);
 		}
@@ -77,7 +78,7 @@ public class Sample_Centro {
 	public void testObtenerCentro() {
 
 		try {
-			gestionCentro.obtenerCentro("ETSII Informática");
+			gestionCentro.obtenerCentro("ETSII Informática","Boulevar Louis Pasteur Nº24","952345678");
 		} catch(CentroNoEncontradoException e) {
 			throw new RuntimeException(e);
 		}
@@ -86,7 +87,7 @@ public class Sample_Centro {
 	@Test
 	public void testActualizarCentro() {
 		try {
-			Centro centro = gestionCentro.obtenerCentro("ETSII Informática");
+			Centro centro = gestionCentro.obtenerCentro("ETSII Informática","Boulevar Louis Pasteur Nº24","952345678");
 			String direccion = centro.getDireccion();
 			String TLF_Conserjeria = centro.getTLF_Conserjeria();
 			assertEquals(direccion, "Boulevar Louis Pasteur Nº24");
