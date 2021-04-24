@@ -20,7 +20,7 @@ public class Asignatura {
 	private Integer creditos;
 	@Column(name = "Ofertada", nullable = false)
 	private Boolean ofertada;
-	@Column(name = "Nombre", nullable = false, length = 20)
+	@Column(name = "Nombre", nullable = false, length = 100)
 	private String nombre;
 	@Column(name = "Curso", length = 10)
 	private String curso;

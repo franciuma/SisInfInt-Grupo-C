@@ -54,6 +54,33 @@ public class Sample_Asignatura {
 	}
 	
 	@Test
+	public void testInsertarAsignatura() {
+		final Integer referencia = 50658;
+		final Integer codigo = 101;
+		final Integer creditos = 6;
+		final Boolean ofertada = true;
+		final String nombre = "Cálculo para la Computación";
+		final String curso = "1";
+		final String caracter = "Obligatoria";
+		final Integer duracion = 1;
+		final String idiomasIm = "No";
+		try {
+			Asignatura calculo = new Asignatura(referencia, codigo, creditos, ofertada, nombre, curso, caracter, duracion, idiomasIm);
+			gestionAsignatura.insertarAsignatura(calculo);
+			
+			try {
+				Asignatura cal = gestionAsignatura.obtenerAsignatura(referencia);
+				assertEquals("No es la misma asignatura", nombre, cal.getNombre());
+				
+			} catch(ProyectoException e) {
+				fail("No deberia lanzar exception");
+			}
+		} catch(ProyectoException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
 	public void testImportarDatosAsignatura() throws AsignaturaYaExistenteException, IOException, AsignaturaNoEncontradaException {
 		final Integer referencia = 50658;
 		final Integer codigo = 101;
@@ -65,7 +92,7 @@ public class Sample_Asignatura {
 		final Integer duracion = 1;
 		final String idiomasIm = "";
 		try {
-			Asignatura calculo = new Asignatura(referencia, codigo, creditos, ofertada, nombre, curso, caracter, duracion, idiomasIm);;
+			Asignatura calculo = new Asignatura(referencia, codigo, creditos, ofertada, nombre, curso, caracter, duracion, idiomasIm);
 			gestionAsignatura.importarAsignatura();
 			Asignatura c = gestionAsignatura.obtenerAsignatura(referencia);
 			assertEquals("No es la misma asignatura", c,calculo);
