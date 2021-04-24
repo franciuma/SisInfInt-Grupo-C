@@ -101,10 +101,17 @@ public class Sample_Grupo {
 	public void testActualizarGrupo() throws GrupoNoEncontradoException {
 		try {
 			Grupo grupo = gestionGrupo.obtenerGrupo(1,"B","Tarde",true,true,"asignao",3);
-			String letra = grupo.getLetra();
-			grupo.setLetra("C");
-			gestionGrupo.actualizarGrupo(grupo);
-			assertNotEquals("Deberia haberse actualizado el grupo", letra , grupo.getLetra());
+			Grupo grupo_new = new Grupo();
+			grupo_new.setCurso(grupo.getCurso());
+			grupo_new.setLetra("C");
+			grupo_new.setTurnoMañanaTarde(grupo.getTurnoMañanaTarde());
+			grupo_new.setIngles(grupo.getIngles());
+			grupo_new.setVisible(grupo.getVisible());
+			grupo_new.setAsignar(grupo.getAsignar());
+			grupo_new.setPlazas(grupo.getPlazas());
+			
+			gestionGrupo.actualizarGrupo(grupo, grupo_new);
+			assertNotEquals("Deberia haberse actualizado el grupo", grupo_new.getLetra() , grupo.getLetra());
 			
 		}catch(GrupoNoEncontradoException e) {
 			throw new RuntimeException(e);

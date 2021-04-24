@@ -53,13 +53,13 @@ public class CentroEJB implements GestionCentro {
 	}
 
 	@Override
-	public void actualizarCentro(Centro centro) throws CentroNoEncontradoException {
+	public void actualizarCentro(Centro centro, Centro centro_new) throws CentroNoEncontradoException {
 		// TODO Auto-generated method stub
 		Centro cen = obtenerCentro(centro.getNombre(), centro.getDireccion(), centro.getTLF_Conserjeria());
-		cen.setNombre(centro.getNombre());
-		cen.setDireccion(centro.getDireccion());
-		cen.setTlfConserjeria(centro.getTLF_Conserjeria());
-		em.merge(centro);
+		cen.setNombre(centro_new.getNombre());
+		cen.setDireccion(centro_new.getDireccion());
+		cen.setTlfConserjeria(centro_new.getTLF_Conserjeria());
+		em.merge(cen);
 	}
 
 	@Override

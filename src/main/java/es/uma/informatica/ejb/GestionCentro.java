@@ -11,7 +11,7 @@ import es.uma.informatica.jpa.demo.Centro;
 @Local
 public interface GestionCentro {
 	public void insertarCentro (Centro centro) throws CentroYaExistenteException;
-	public void actualizarCentro(Centro centro) throws CentroNoEncontradoException;
+	public void actualizarCentro(Centro centro, Centro centro_new) throws CentroNoEncontradoException;
 	public List<Centro> obtenerCentros();
 	public Centro obtenerCentro(String nombre, String direccion, String tlfConserjeria) throws CentroNoEncontradoException;
 	void eliminarCentro(String nombre, String direccion, String tlfConserjeria) throws CentroNoEncontradoException;

@@ -13,7 +13,7 @@ public interface GestionGrupo {
 
 	public void insertarGrupo (Grupo grupo) throws GrupoYaExistenteException;
     public List<Grupo> obtenerGrupos();
-	void actualizarGrupo(Grupo grupo) throws GrupoNoEncontradoException;
+	void actualizarGrupo(Grupo grupo, Grupo grupo_new) throws GrupoNoEncontradoException;
 	Grupo obtenerGrupo(Integer curso, String letra, String turnoMañanaTarde, Boolean ingles, Boolean visible,
 			String asignar, Integer plazas) throws GrupoNoEncontradoException;
 	void eliminarGrupo(Integer curso, String letra, String turnoMañanaTarde, Boolean ingles, Boolean visible,

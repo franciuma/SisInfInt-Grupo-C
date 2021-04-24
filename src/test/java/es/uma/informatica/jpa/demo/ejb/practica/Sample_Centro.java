@@ -88,18 +88,16 @@ public class Sample_Centro {
 	public void testActualizarCentro() {
 		try {
 			Centro centro = gestionCentro.obtenerCentro("ETSII Informática","Boulevar Louis Pasteur Nº24","952345678");
-			String direccion = centro.getDireccion();
-			String TLF_Conserjeria = centro.getTLF_Conserjeria();
-			assertEquals(direccion, "Boulevar Louis Pasteur Nº24");
-			assertEquals(TLF_Conserjeria, "952345678");
+			Centro centro_new = new Centro();
 			
-			centro.setDireccion("Avenida Franz Kafka Nº24");
-			centro.setTlfConserjeria("952484848");
+			centro_new.setNombre(centro.getNombre());
+			centro_new.setDireccion("Avenida Franz Kafka Nº24");
+			centro_new.setTlfConserjeria("952484848");
 			
-			gestionCentro.actualizarCentro(centro);
+			gestionCentro.actualizarCentro(centro, centro_new);
 			
-			assertNotEquals(direccion, centro.getDireccion());
-			assertNotEquals(TLF_Conserjeria, centro.getTLF_Conserjeria());
+			assertNotEquals(centro_new.getDireccion(), centro.getDireccion());
+			assertNotEquals(centro_new.getTLF_Conserjeria(), centro.getTLF_Conserjeria());
 		} catch (CentroNoEncontradoException e) {
 			
 			throw new RuntimeException(e);

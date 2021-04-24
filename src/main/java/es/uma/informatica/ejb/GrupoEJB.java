@@ -60,16 +60,16 @@ public class GrupoEJB implements GestionGrupo{
 	}
 
 	@Override
-	public void actualizarGrupo(Grupo grupo) throws GrupoNoEncontradoException {
+	public void actualizarGrupo(Grupo grupo, Grupo grupo_new) throws GrupoNoEncontradoException {
 		// TODO Auto-generated method stub
 		Grupo gr = obtenerGrupo(grupo.getCurso(), grupo.getLetra(), grupo.getTurnoMañanaTarde(), grupo.getIngles(), grupo.getVisible(), grupo.getAsignar(), grupo.getPlazas());
-        gr.setCurso(grupo.getCurso());
-        gr.setLetra(grupo.getLetra());
-        gr.setTurnoMañanaTarde(grupo.getTurnoMañanaTarde());
-        gr.setIngles(grupo.getIngles());
-        gr.setVisible(grupo.getVisible());
-        gr.setAsignar(grupo.getAsignar());
-        gr.setPlazas(grupo.getPlazas());
+        gr.setCurso(grupo_new.getCurso());
+        gr.setLetra(grupo_new.getLetra());
+        gr.setTurnoMañanaTarde(grupo_new.getTurnoMañanaTarde());
+        gr.setIngles(grupo_new.getIngles());
+        gr.setVisible(grupo_new.getVisible());
+        gr.setAsignar(grupo_new.getAsignar());
+        gr.setPlazas(grupo_new.getPlazas());
         em.merge(gr);
 	}
 
