@@ -18,6 +18,7 @@ import es.uma.informatica.ejb.exceptions.ExpedienteNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ExpedienteYaExistenteException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.Expediente;
+import es.uma.informatica.sii.anotaciones.Requisitos;
 
 public class Sample_Expediente {
 	
@@ -33,7 +34,7 @@ public class Sample_Expediente {
 		gestionExpediente = (GestionExpediente) SuiteTest.ctx.lookup(EXPEDIENTE_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
-	
+	@Requisitos({"RF14"})
 	@Test
 	public void testInsertarExpediente() {
 			
@@ -58,7 +59,7 @@ public class Sample_Expediente {
 			}
 		
 	}
-	
+	@Requisitos({"RF14"})
 	@Test
 	public void testObtenerExpediente() {
 
@@ -68,7 +69,7 @@ public class Sample_Expediente {
 			throw new RuntimeException(e);
 		}
 	}
-	
+	@Requisitos({"RF14"})
 	@Test
 	public void testEliminarExpediente() {
 

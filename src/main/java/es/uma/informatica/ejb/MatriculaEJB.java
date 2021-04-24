@@ -30,11 +30,11 @@ public class MatriculaEJB implements GestionMatricula {
 	@Override
 	public void insertarMatricula(Matricula mat) throws MatriculaYaExistenteException {
 		// TODO Auto-generated method stub
-		Matricula matricula= em.find(Matricula.class,mat.getId());
+		Matricula matricula= em.find(Matricula.class, mat.getId());
 		if(matricula != null) {
 			throw new MatriculaYaExistenteException();
 		}	
-		em.persist(matricula);
+		em.persist(mat);
 	}
 	@Override
 	public Matricula obtenerMatricula(String cursoAcademico) throws MatriculaNoEncontradaException {
@@ -77,7 +77,7 @@ public class MatriculaEJB implements GestionMatricula {
 	}
 	
 	@Override
-	public void importarMatricula() throws IOException, ParseException {
+	public void importarMatricula() throws IOException, ParseException, MatriculaYaExistenteException {
 		try {
 			String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
 			String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Datos alumnadoFAKE.xlsx";
@@ -99,7 +99,7 @@ public class MatriculaEJB implements GestionMatricula {
 					m.setFechaMatricula(date);
 					String listado = (String) sheet.getRow(2).getCell(1).getStringCellValue();
 					m.setListadoAsignaturas(listado);
-					em.persist(m);
+					insertarMatricula(m);
 					//importarMatricula(m);
 					//System.out.println(m.toString());
 				}

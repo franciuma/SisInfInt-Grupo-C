@@ -52,7 +52,7 @@ public class Sample_Titulacion {
 		gestionTitulacion = (GestionTitulacion) SuiteTest.ctx.lookup(TITULACION_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
-
+	@Requisitos({"RF17"})
 	@Test
 	public void testInsertarTitulacion() {
 		
@@ -74,7 +74,7 @@ public class Sample_Titulacion {
 		assertEquals(nombre, titulaciones.get(0).getNombre());
 		assertEquals(creditos, titulaciones.get(0).getCreditos());
 	}
-	
+	@Requisitos({"RF17"})
 	@Test(expected = TitulacionYaExistenteException.class)
 	public void testInsertarTitulacionYaExistente() throws TitulacionYaExistenteException {
 		
@@ -97,7 +97,7 @@ public class Sample_Titulacion {
 		Titulacion soft2 = new Titulacion(codigo2, nombre2, creditos2);
 		gestionTitulacion.insertarTitulacion(soft2);
 	}
-	
+	@Requisitos({"RF17"})
 	@Test
 	public void testEliminarTitulacion() {
 		

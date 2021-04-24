@@ -19,6 +19,7 @@ import es.uma.informatica.ejb.GestionGrupo;
 import es.uma.informatica.ejb.exceptions.GrupoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.Grupo;
+import es.uma.informatica.sii.anotaciones.Requisitos;
 
 public class Sample_Grupo {
 
@@ -35,7 +36,7 @@ public class Sample_Grupo {
 		gestionGrupo = (GestionGrupo) SuiteTest.ctx.lookup(GRUPO_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
-
+	@Requisitos({"RF15"})
 	@Test
 	public void testInsertarGrupo() {
 			final Integer curso = 2;
@@ -74,7 +75,7 @@ public class Sample_Grupo {
 	
 	
 
-	
+	@Requisitos({"RF15"})
 	@Test
 	public void testEliminarGrupo() throws GrupoNoEncontradoException {
 
@@ -85,7 +86,7 @@ public class Sample_Grupo {
 		}
 		
 	}
-	
+	@Requisitos({"RF15"})
 	@Test
 	public void testObtenerGrupo() throws GrupoNoEncontradoException {
 		try {
@@ -94,7 +95,7 @@ public class Sample_Grupo {
 			throw new RuntimeException(e);
 		}
 	}
-	
+	@Requisitos({"RF15"})
 	@Test
 	public void testActualizarGrupo() throws GrupoNoEncontradoException {
 		try {

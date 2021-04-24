@@ -14,7 +14,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 
 @SuiteClasses({Sample_Alumno.class,Sample_Centro.class,Sample_Titulacion.class,Sample_Asignatura.class,
-	Sample_Encuesta.class, Sample_Expediente.class, Sample_Grupo.class, Sample_Optativa.class})
+	Sample_Encuesta.class, Sample_Expediente.class, Sample_Grupo.class, Sample_Optativa.class, Sample_Matricula.class})
 
 
 public class SuiteTest {

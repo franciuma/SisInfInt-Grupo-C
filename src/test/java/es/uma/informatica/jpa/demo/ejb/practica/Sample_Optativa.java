@@ -56,7 +56,7 @@ public class Sample_Optativa {
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 		
 	}
-
+	@Requisitos({"RF16"})
 	@Test
 	public void testInsertarOptativa() {
 		final Integer referencia = 50659;
