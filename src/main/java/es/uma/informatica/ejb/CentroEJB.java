@@ -24,8 +24,7 @@ public class CentroEJB implements GestionCentro {
 		Centro centro = em.find(Centro.class, cen.getId());
 		if(centro != null) 
 			throw new CentroYaExistenteException();
-		else 
-			em.persist(cen);
+		em.persist(cen);
 	}
 
 	@Override

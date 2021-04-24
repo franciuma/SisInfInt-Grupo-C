@@ -1,6 +1,7 @@
 package es.uma.informatica.jpa.demo.ejb.practica;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
 
 import java.util.List;
@@ -82,4 +83,25 @@ public class Sample_Centro {
 		}
 	}
 	
+	@Test
+	public void testActualizarCentro() {
+		try {
+			Centro centro = gestionCentro.obtenerCentro("ETSII Informática");
+			String direccion = centro.getDireccion();
+			String TLF_Conserjeria = centro.getTLF_Conserjeria();
+			assertEquals(direccion, "Boulevar Louis Pasteur Nº24");
+			assertEquals(TLF_Conserjeria, "952345678");
+			
+			centro.setDireccion("Avenida Franz Kafka Nº24");
+			centro.setTlfConserjeria("952484848");
+			
+			gestionCentro.actualizarCentro(centro);
+			
+			assertNotEquals(direccion, centro.getDireccion());
+			assertNotEquals(TLF_Conserjeria, centro.getTLF_Conserjeria());
+		} catch (CentroNoEncontradoException e) {
+			
+			throw new RuntimeException(e);
+		}
+	}
 }
