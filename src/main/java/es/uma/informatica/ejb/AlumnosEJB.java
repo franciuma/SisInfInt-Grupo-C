@@ -78,11 +78,13 @@ public class AlumnosEJB implements GestionAlumno {
 			@SuppressWarnings("deprecation")
 			XSSFWorkbook workbook = new XSSFWorkbook(sFile);
 			XSSFSheet sheet = workbook.getSheet("Hoja1");
-			for(int fila=4; fila<50; fila++) {//Con sheet.getLastRowNum() no funciona el test, transaction aborted
+			for(int fila=4; fila<sheet.getLastRowNum(); fila++) {//Con sheet.getLastRowNum() no funciona el test, transaction aborted
 				Alumno a = new Alumno();
 				String dni = (String) sheet.getRow(fila).getCell(0).getStringCellValue();
 				a.setDni(dni);
-				String nombre = (String) sheet.getRow(fila).getCell(1).getStringCellValue() + " " + (String) sheet.getRow(fila).getCell(2).getStringCellValue() + " " + (String) sheet.getRow(fila).getCell(3).getStringCellValue();
+				String nombre = (String) sheet.getRow(fila).getCell(1).getStringCellValue() + " " 
+						+ (String) sheet.getRow(fila).getCell(2).getStringCellValue() + " " 
+						+ (String) sheet.getRow(fila).getCell(3).getStringCellValue();
 				a.setNombreCompleto(nombre);
 				String emailIns = (String) sheet.getRow(fila).getCell(6).getStringCellValue();
 				a.setEmailInstitucional(emailIns);

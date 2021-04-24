@@ -1,37 +1,39 @@
 package es.uma.informatica.ejb;
 
 import java.io.IOException;
-import java.util.List;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
+import javax.persistence.TypedQuery;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
 import es.uma.informatica.ejb.exceptions.AsignaturaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.AsignaturaYaExistenteException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
-import es.uma.informatica.jpa.demo.Alumno;
 import es.uma.informatica.jpa.demo.Asignatura;
-import es.uma.informatica.jpa.demo.Centro;
-import es.uma.informatica.jpa.demo.Expediente;
+
 
 @Stateless
 public class AsignaturaEJB implements GestionAsignatura{
 
+	@PersistenceContext(name= "Secretaria")
 	private EntityManager em;
 	
 	@Override
 	public void insertarAsignatura(Asignatura asig) throws AsignaturaYaExistenteException {
 		// TODO Auto-generated method stub
-		Asignatura asignatura = em.find(Asignatura.class, asig.getReferencia());
-		if(asignatura != null) {
-			throw new AsignaturaYaExistenteException();
+		try {
+			Asignatura asignatura = em.find(Asignatura.class, asig.getReferencia());
+			if(asignatura != null) {
+				throw new AsignaturaYaExistenteException();
+			}
+			em.persist(asig);
+		} catch (ProyectoException e){
+			throw new RuntimeException(e);
 		}
-			em.persist(asignatura);
 	}
 
 	@Override
@@ -74,8 +76,8 @@ public class AsignaturaEJB implements GestionAsignatura{
 	@Override
 	public List<Asignatura> obtenerAsignaturas() {
 		// TODO Auto-generated method stub
-		List<Asignatura> asignaturas = em.createQuery("select * from Asignatura").getResultList();
-		return asignaturas;
+		TypedQuery<Asignatura> query = em.createQuery("finAll", Asignatura.class);
+		return query.getResultList();
 	}
 	
 	@Override
@@ -86,45 +88,46 @@ public class AsignaturaEJB implements GestionAsignatura{
 			@SuppressWarnings("deprecation")
 			XSSFWorkbook workbook = new XSSFWorkbook(sFile);
 			XSSFSheet sheet = workbook.getSheet("GII");
-			for(int fila=1; fila<20; fila++) {//Con sheet.getLastRowNum() no funciona el test, transaction aborted
-				Asignatura a = new Asignatura();
-				Integer referencia = (int) Math.round(sheet.getRow(fila).getCell(3).getNumericCellValue());
-				a.setReferencia(referencia);
-				Integer codigo = (int) Math.round(sheet.getRow(fila).getCell(2).getNumericCellValue());
-				a.setCodigo(codigo);
-				Integer creditos = (int) Math.round(sheet.getRow(fila).getCell(8).getNumericCellValue());
-				a.setCreditos(creditos);
-				String ofertada = (String) sheet.getRow(fila).getCell(1).getStringCellValue();
-				Boolean ofer = false;
-				if(ofertada.equalsIgnoreCase("Sí")) ofer = true;
-				a.setOfertada(ofer);
-				String nombre = (String) sheet.getRow(fila).getCell(4).getStringCellValue();
-				a.setNombre(nombre);
-				Integer curso = (int) Math.round(sheet.getRow(fila).getCell(5).getNumericCellValue());
-				String cur = curso.toString();
-				a.setCurso(cur);
-				if(sheet.getRow(fila).getCell(10).getCellType() == 0) {
-					Integer carac = (int) Math.round(sheet.getRow(fila).getCell(10).getNumericCellValue());
-					a.setCaracter(carac.toString());
-				} else {
-					String caracter = (String) sheet.getRow(fila).getCell(10).getStringCellValue();
-					if(caracter.equalsIgnoreCase("-")) {
-						caracter = "Obligatoria";
+			for(int fila=1; fila<sheet.getLastRowNum(); fila++) {//Con sheet.getLastRowNum() no funciona el test, transaction aborted
+				if(sheet.getRow(fila).getCell(3).getCellType()==0) {
+					Asignatura a = new Asignatura();
+					Integer referencia = (int) Math.round(sheet.getRow(fila).getCell(3).getNumericCellValue());
+					a.setReferencia(referencia);
+					Integer codigo = (int) Math.round(sheet.getRow(fila).getCell(2).getNumericCellValue());
+					a.setCodigo(codigo);
+					Integer creditos = (int) Math.round(sheet.getRow(fila).getCell(8).getNumericCellValue());
+					a.setCreditos(creditos);
+					String ofertada = (String) sheet.getRow(fila).getCell(1).getStringCellValue();
+					Boolean ofer = false;
+					if(ofertada.equalsIgnoreCase("Sí")) ofer = true;
+					a.setOfertada(ofer);
+					String nombre = (String) sheet.getRow(fila).getCell(4).getStringCellValue();
+					a.setNombre(nombre);
+					Integer curso = (int) Math.round(sheet.getRow(fila).getCell(5).getNumericCellValue());
+					String cur = curso.toString();
+					a.setCurso(cur);
+					if(sheet.getRow(fila).getCell(10).getCellType() == 0) {
+						Integer carac = (int) Math.round(sheet.getRow(fila).getCell(10).getNumericCellValue());
+						a.setCaracter(carac.toString());
 					} else {
-						caracter = "Optativa";
+						String caracter = (String) sheet.getRow(fila).getCell(10).getStringCellValue();
+						if(caracter.equalsIgnoreCase("-")) {
+							caracter = "Obligatoria";
+						} else {
+							caracter = "Optativa";
+						}
+						a.setCaracter(caracter);
 					}
-					a.setCaracter(caracter);
+					String dur = (String) sheet.getRow(fila).getCell(9).getStringCellValue();
+					Integer duracion = 2;
+					if(dur.equalsIgnoreCase("1º Semestre")) {
+						duracion = 1;
+					}
+					a.setDuracion(duracion);
+					String idiomasIm = (String) sheet.getRow(fila).getCell(11).getStringCellValue();
+					a.setIdiomasImparticion(idiomasIm);
+					insertarAsignatura(a);
 				}
-				String dur = (String) sheet.getRow(fila).getCell(9).getStringCellValue();
-				Integer duracion = 2;
-				if(dur.equalsIgnoreCase("1º Semestre")) {
-					duracion = 1;
-				}
-				a.setDuracion(duracion);
-				String idiomasIm = (String) sheet.getRow(fila).getCell(11).getStringCellValue();
-				a.setIdiomasImparticion(idiomasIm);
-		
-				em.persist(a);
 			}
 		} catch(IOException e) {
 			e.printStackTrace();

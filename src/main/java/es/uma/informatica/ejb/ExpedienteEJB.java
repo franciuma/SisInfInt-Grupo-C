@@ -8,11 +8,10 @@ import java.util.List;
 import java.util.logging.Logger;
  
 import javax.ejb.Stateless;
- 
-import es.uma.informatica.ejb.exceptions.ClaseNoEncontradaException;
+
+
 import es.uma.informatica.ejb.exceptions.ExpedienteNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ExpedienteYaExistenteException;
-import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
  
  
@@ -37,20 +36,22 @@ public class ExpedienteEJB implements GestionExpediente{
     @Override
     public Expediente obtenerExpediente(Integer numExpediente) throws ExpedienteNoEncontradoException {
         // TODO Auto-generated method stub
-        Expediente expediente = em.find(Expediente.class, numExpediente);
-        if(expediente == null) {
-            throw new ExpedienteNoEncontradoException();
-        }
-        return expediente;
+    	Query  expedientes = em.createQuery("Select e from Expediente e where e.numExpediente = :numExpediente" );
+		expedientes.setParameter("numExpediente", numExpediente);
+		List<Expediente> expediente = expedientes.getResultList();
+		Expediente ex = expediente.get(0);
+		if(expediente == null) throw new ExpedienteNoEncontradoException();
+		
+		return ex;
     }
  
     @Override
     public void eliminarExpediente(Integer numExpediente) throws ExpedienteNoEncontradoException {
         // TODO Auto-generated method stub
-        Expediente exp = em.find(Expediente.class, numExpediente);
-        if(exp == null) {
-            throw new ExpedienteNoEncontradoException();
-        }
+        Expediente exp = obtenerExpediente(numExpediente);
+//        if(exp == null) {
+//            throw new ExpedienteNoEncontradoException();
+//        }
         em.remove(exp);
     }
  

@@ -12,11 +12,10 @@ import org.junit.runners.*;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-<<<<<<< refs/remotes/origin/dev/franciuma
-@SuiteClasses({Sample_Alumno.class,Sample_Centro.class,Sample_Titulacion.class,Sample_Asignatura.class})
-=======
-@SuiteClasses({Sample_Alumno.class,Sample_Centro.class,Sample_Titulacion.class,Sample_Asignatura.class, Sample_Encuesta.class, Sample_Grupo.class})
->>>>>>> local
+
+@SuiteClasses({Sample_Alumno.class,Sample_Centro.class,Sample_Titulacion.class,Sample_Asignatura.class, Sample_Encuesta.class, Sample_Expediente.class, Sample_Grupo.class})
+
+
 public class SuiteTest {
 	private static final String GLASSFISH_CONFIGI_FILE_PROPERTY = "org.glassfish.ejb.embedded.glassfish.configuration.file";
 	private static final String CONFIG_FILE = "target/test-classes/META-INF/domain.xml";

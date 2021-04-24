@@ -6,11 +6,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import es.uma.informatica.jpa.demo.Alumno;
-<<<<<<< refs/remotes/origin/dev/franciuma
-=======
 import es.uma.informatica.jpa.demo.Centro;
 import es.uma.informatica.jpa.demo.Grupo;
->>>>>>> local
+import es.uma.informatica.jpa.demo.Centro;
+import es.uma.informatica.jpa.demo.Expediente;
 
 
 public class BaseDatos {
@@ -30,8 +29,7 @@ public class BaseDatos {
 		Alumno fransi = new Alumno(dni, nombreCompleto, emailInstitucional, emailPersonal, telefono, movil);
 		em.persist(fransi);
 		
-<<<<<<< refs/remotes/origin/dev/franciuma
-=======
+
 		final String nombre = "ETSII Informática";
 		final String direccion = "Boulevar Louis Pasteur Nº24";
 		final String tlfConserjeria = "952345678";
@@ -49,7 +47,15 @@ public class BaseDatos {
 		
 		Grupo a = new Grupo(curso, letra, turnoMañanaTarde, ingles, visible, asignar, plazas);
 		em.persist(a);
->>>>>>> local
+
+		final Integer numExpediente = 11;
+		final Boolean activo = true;
+		final Integer notaMediaProvisional = 9;
+		
+		Expediente exp1 = new Expediente(numExpediente, activo, notaMediaProvisional);
+		em.persist(exp1);
+		
+
 		em.getTransaction().commit();
 		
 		em.close();

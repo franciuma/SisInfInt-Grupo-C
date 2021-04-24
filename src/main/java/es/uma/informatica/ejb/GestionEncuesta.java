@@ -1,5 +1,6 @@
 package es.uma.informatica.ejb;
 
+import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -14,11 +15,10 @@ import es.uma.informatica.jpa.demo.Encuesta;
 @Local
 public interface GestionEncuesta{
 	
-	/*
-	 * Introducir un alumno en la base de datos.
-	 */
-	public void insertarEncuesta(Encuesta encuest) throws EncuestaYaExistenteException;
-	public Encuesta obtenerEncuesta(DateTimeFormatter fechaEnvio) throws EncuestaNoEncontradaException;
-	void eliminarEncuesta(DateTimeFormatter fechaEnvio) throws EncuestaNoEncontradaException;
+	
+//	public void insertarEncuesta(Encuesta encuest) throws EncuestaYaExistenteException;
+	public Encuesta obtenerEncuesta(Timestamp fechaEnvio) throws EncuestaNoEncontradaException;
+	void eliminarEncuesta(Timestamp fechaEnvio) throws EncuestaNoEncontradaException;
 	public void actualizarEncuesta(Encuesta encuesta) throws EncuestaNoEncontradaException;
+	public void responderEncuesta(Encuesta e) throws EncuestaYaExistenteException;
 }

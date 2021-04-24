@@ -31,6 +31,15 @@ public class Expediente {
 	@OneToMany(mappedBy = "expediente")
 	private List<Matricula> matriculas;
 	
+public Expediente(Integer numExpediente, Boolean activo, Integer notaMediaProvisional) {
+		
+		super();
+		
+		this.numExpediente = numExpediente;
+		this.activo = activo;
+		this.notaMediaProvisional = notaMediaProvisional;
+	}
+	
 	public Expediente() {
 		
 	}
