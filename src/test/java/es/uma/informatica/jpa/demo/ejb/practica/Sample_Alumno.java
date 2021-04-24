@@ -18,6 +18,7 @@ import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
+import es.uma.informatica.sii.anotaciones.Requisitos;
 
 
 
@@ -104,6 +105,7 @@ public class Sample_Alumno {
 		
 	}
 	
+	@Requisitos({"RF7"})
 	@Test
 	public void testImportarDatosAlumno() throws AlumnoYaExistenteException, IOException {
 		final String dni = "02758528E";

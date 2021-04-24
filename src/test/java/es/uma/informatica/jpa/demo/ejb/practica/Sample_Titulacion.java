@@ -33,6 +33,7 @@ import es.uma.informatica.ejb.GestionClase;
 import es.uma.informatica.ejb.GestionTitulacion;
 import es.uma.informatica.ejb.exceptions.*;
 import es.uma.informatica.jpa.demo.*;
+import es.uma.informatica.sii.anotaciones.Requisitos;
 
 
 
@@ -126,6 +127,7 @@ public class Sample_Titulacion {
 		}
 	}
 	
+	@Requisitos({"RF7"})
 	@Test
 	public void testImportarTitulacion() throws TitulacionYaExistenteException {
 		final String nombre = "Grado en Ingeniería Informática";

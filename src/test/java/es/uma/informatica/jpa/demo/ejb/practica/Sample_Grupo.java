@@ -4,22 +4,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
 
-import java.io.IOException;
+
 import java.util.logging.Logger;
 
 import javax.naming.NamingException;
 
-import org.glassfish.hk2.runlevel.RunLevelException;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import es.uma.informatica.ejb.GestionAlumno;
+
 import es.uma.informatica.ejb.GestionGrupo;
-import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
-import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
+
 import es.uma.informatica.ejb.exceptions.GrupoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
-import es.uma.informatica.jpa.demo.Alumno;
 import es.uma.informatica.jpa.demo.Grupo;
 
 public class Sample_Grupo {
@@ -119,22 +117,4 @@ public class Sample_Grupo {
 		
 	}
 	
-	@Test
-	public void testImportarDatosAlumno() throws AlumnoYaExistenteException, IOException {
-//		final String dni = "02758528E";
-//		final String nombreCompleto = "Amarilia Espino Melgar";
-//		final String emailInstitucional = "06105600003@uma.es";
-//		final String emailPersonal = "AmariliaEspinoMelgar@jourrapide.com";
-//		final String telefono = "602 758 528";
-//		final String movil = "602 758 528";
-//		try {
-//			Alumno alumno = new Alumno(dni, nombreCompleto, emailInstitucional, emailPersonal, telefono, movil);
-//			gestionAlumno.importarAlumnos();
-//			Alumno a = gestionAlumno.obtenerAlumno(dni);
-//			assertEquals("No es el mismo alumno", a,alumno);
-//		}catch(AlumnoNoEncontradoException e) {
-//			throw new RunLevelException(e);
-//		}
-	}
-
 }
