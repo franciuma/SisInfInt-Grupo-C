@@ -3,24 +3,18 @@ package es.uma.informatica.ejb;
 import java.io.IOException;
 
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
 import es.uma.informatica.ejb.exceptions.AsignaturaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.AsignaturaYaExistenteException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
-import es.uma.informatica.jpa.demo.Alumno;
 import es.uma.informatica.jpa.demo.Asignatura;
-import es.uma.informatica.jpa.demo.Centro;
-import es.uma.informatica.jpa.demo.Expediente;
+
 
 @Stateless
 public class AsignaturaEJB implements GestionAsignatura{
@@ -31,11 +25,15 @@ public class AsignaturaEJB implements GestionAsignatura{
 	@Override
 	public void insertarAsignatura(Asignatura asig) throws AsignaturaYaExistenteException {
 		// TODO Auto-generated method stub
-		Asignatura asignatura = em.find(Asignatura.class, asig.getReferencia());
-		if(asignatura != null) 
-			throw new AsignaturaYaExistenteException();
-		
-		em.persist(asig);
+		try {
+			Asignatura asignatura = em.find(Asignatura.class, asig.getReferencia());
+			if(asignatura != null) {
+				throw new AsignaturaYaExistenteException();
+			}
+			em.persist(asig);
+		} catch (ProyectoException e){
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
@@ -90,7 +88,7 @@ public class AsignaturaEJB implements GestionAsignatura{
 			@SuppressWarnings("deprecation")
 			XSSFWorkbook workbook = new XSSFWorkbook(sFile);
 			XSSFSheet sheet = workbook.getSheet("GII");
-			for(int fila=1; fila<20; fila++) {//Con sheet.getLastRowNum() no funciona el test, transaction aborted
+			for(int fila=1; fila<sheet.getLastRowNum(); fila++) {//Con sheet.getLastRowNum() no funciona el test, transaction aborted
 				Asignatura a = new Asignatura();
 				Integer referencia = (int) Math.round(sheet.getRow(fila).getCell(3).getNumericCellValue());
 				a.setReferencia(referencia);
@@ -127,8 +125,9 @@ public class AsignaturaEJB implements GestionAsignatura{
 				a.setDuracion(duracion);
 				String idiomasIm = (String) sheet.getRow(fila).getCell(11).getStringCellValue();
 				a.setIdiomasImparticion(idiomasIm);
-		
-				em.persist(a);
+				if(a.getCodigo()!=null) {
+					insertarAsignatura(a);
+				}
 			}
 		} catch(IOException e) {
 			e.printStackTrace();
