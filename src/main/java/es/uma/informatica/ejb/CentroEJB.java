@@ -1,16 +1,19 @@
 package es.uma.informatica.ejb;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import es.uma.informatica.ejb.exceptions.CentroNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.CentroYaExistenteException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.Centro;
+import es.uma.informatica.jpa.demo.Grupo;
 
 @Stateless
 public class CentroEJB implements GestionCentro {
@@ -28,11 +31,13 @@ public class CentroEJB implements GestionCentro {
 	}
 
 	@Override
-	public Centro obtenerCentro(String nombre) throws CentroNoEncontradoException {
+	public Centro obtenerCentro(String nombre,String direccion,String tlfConserjeria) throws CentroNoEncontradoException {
 		// TODO Auto-generated method stub
 		
-		Query centros = em.createQuery("Select e from Centro e where e.nombre = :nombre");
+		TypedQuery<Centro> centros = em.createQuery("Select c from Centro c where c.nombre = :nombre AND c.direccion = :direccion AND c.tlfConserjeria = :tlfConserjeria",Centro.class );
 		centros.setParameter("nombre", nombre);
+		centros.setParameter("direccion", direccion);
+		centros.setParameter("tlfConserjeria", tlfConserjeria);
 		List<Centro> centro = centros.getResultList();
 		Centro cen = centro.get(0);
 		if(centro == null) throw new CentroNoEncontradoException();
@@ -41,16 +46,16 @@ public class CentroEJB implements GestionCentro {
 	}
 
 	@Override
-	public void eliminarCentro(String nombre) throws CentroNoEncontradoException {
+	public void eliminarCentro(String nombre,String direccion,String tlfConserjeria) throws CentroNoEncontradoException {
 		// TODO Auto-generated method stub
-		Centro centro = obtenerCentro(nombre);
+		Centro centro = obtenerCentro(nombre,direccion,tlfConserjeria);
 		em.remove(centro);
 	}
 
 	@Override
 	public void actualizarCentro(Centro centro) throws CentroNoEncontradoException {
 		// TODO Auto-generated method stub
-		Centro cen = em.find(Centro.class, centro.getNombre());
+		Centro cen = obtenerCentro(centro.getNombre(), centro.getDireccion(), centro.getTLF_Conserjeria());
 		cen.setNombre(centro.getNombre());
 		cen.setDireccion(centro.getDireccion());
 		cen.setTlfConserjeria(centro.getTLF_Conserjeria());
@@ -60,7 +65,7 @@ public class CentroEJB implements GestionCentro {
 	@Override
 	public List<Centro> obtenerCentros() {
 		// TODO Auto-generated method stub
-		List<Centro> centros = em.createQuery("Select cen from Centro cen").getResultList();
+		List<Centro> centros = em.createQuery("Select * from Centro").getResultList();
 		return centros;
 	}
 }
