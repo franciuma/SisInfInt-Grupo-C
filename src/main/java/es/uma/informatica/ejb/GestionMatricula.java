@@ -1,5 +1,7 @@
 package es.uma.informatica.ejb;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import es.uma.informatica.ejb.exceptions.MatriculaNoEncontradaException;
@@ -17,6 +19,8 @@ public interface GestionMatricula {
 	public void eliminarMatricula(String cursoAcademico) throws MatriculaNoEncontradaException;
 
 	public List<Matricula> obtenerMatriculas();
+
+	void importarMatricula() throws IOException, ParseException;
 	
 
 }
