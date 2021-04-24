@@ -13,4 +13,5 @@ public interface GestionTitulacion {
 	public void eliminarTitulacion (Integer codigo) throws TitulacionNoEncontradaException;
 	public void actualizarTitulacion (Titulacion titulacion) throws TitulacionNoEncontradaException;
 	public List<Titulacion> obtenerTitulaciones();
+	public void importarTitulacion() throws TitulacionYaExistenteException;
 }
