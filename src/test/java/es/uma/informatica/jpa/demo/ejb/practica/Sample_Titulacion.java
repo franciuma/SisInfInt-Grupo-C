@@ -19,6 +19,7 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 
 import org.eclipse.persistence.jpa.jpql.Assert.AssertException;
+import org.glassfish.hk2.runlevel.RunLevelException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -28,15 +29,9 @@ import org.junit.Test;
 
 import es.uma.informatica.ejb.GestionAlumno;
 import es.uma.informatica.ejb.GestionCentro;
-import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
-
-
 import es.uma.informatica.ejb.GestionClase;
 import es.uma.informatica.ejb.GestionTitulacion;
 import es.uma.informatica.ejb.exceptions.*;
-
-
-import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
 
 
@@ -128,6 +123,21 @@ public class Sample_Titulacion {
 		} catch (TitulacionNoEncontradaException e) {
 			
 			fail("NO debería lanzar excepción");
+		}
+	}
+	
+	@Test
+	public void testImportarTitulacion() throws TitulacionYaExistenteException {
+		final String nombre = "Grado en Ingeniería Informática";
+		final Integer codigo = 1041;
+		final Integer creditos = 240;
+		try {
+			Titulacion inf = new Titulacion(codigo, nombre, creditos);
+			gestionTitulacion.importarTitulacion();
+			Titulacion i = gestionTitulacion.obtenerTitulacion(codigo);
+			assertEquals("No es la misma titulacion",i,inf);
+		} catch(TitulacionNoEncontradaException e) {
+			throw new RunLevelException(e);
 		}
 	}
 
