@@ -86,7 +86,6 @@ public class Sample_Asignatura {
 	}
 	
 	@Test
-	@Ignore
 	public void testImportarDatosAsignatura() throws AsignaturaYaExistenteException, IOException, AsignaturaNoEncontradaException {
 		final Integer referencia = 50658;
 		final Integer codigo = 101;
