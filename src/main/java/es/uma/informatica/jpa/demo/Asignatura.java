@@ -52,7 +52,8 @@ public class Asignatura implements Serializable {
 	@OneToMany(mappedBy = "asignatura")
 	private List<GruposPorAsig> gruposPorAsig;
 	
-	public Asignatura(Integer referencia2, Integer codigo2, Integer creditos2, Boolean ofertada2, String nombre2, String curso2, String caracter2, Integer duracion2, String idiomasIm) {
+	public Asignatura(Integer referencia2, Integer codigo2, Integer creditos2, Boolean ofertada2, String nombre2, 
+			String curso2, String caracter2, Integer duracion2, String idiomasIm) {
 		super();
 		referencia = referencia2;
 		codigo = codigo2;
