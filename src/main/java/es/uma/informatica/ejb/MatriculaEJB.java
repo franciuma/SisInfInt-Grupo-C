@@ -7,6 +7,7 @@ import javax.imageio.IIOException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import es.uma.informatica.ejb.exceptions.*;
 import es.uma.informatica.jpa.demo.*;
@@ -31,7 +32,7 @@ public class MatriculaEJB implements GestionMatricula {
 	public Matricula obtenerMatricula(String cursoAcademico) throws MatriculaNoEncontradaException {
 		// TODO iAuto-generated method stub
 
-		Query  matriculas = em.createQuery("Select m from Matricula m where m.cursoAcademico = :cursoAcademico" );
+		TypedQuery<Matricula>  matriculas = em.createQuery("Select m from Matricula m where m.cursoAcademico = :cursoAcademico" , Matricula.class);
 		matriculas.setParameter("cursoAcademico", cursoAcademico);
 		List<Matricula> matricula = matriculas.getResultList();
 		Matricula mat = matricula.get(0);
