@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 @Entity
 public class Optativa extends Asignatura {
 
-	@Column(name = "Plazas", nullable = false)
+	@Column(name = "Plazas")
 	private Integer plazas;
 	@Column(name = "Mencion", length = 20)
 	private String mencion;
