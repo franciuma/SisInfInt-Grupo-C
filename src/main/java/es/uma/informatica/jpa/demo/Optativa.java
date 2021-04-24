@@ -11,6 +11,19 @@ public class Optativa extends Asignatura {
 	@Column(name = "Mencion", length = 20)
 	private String mencion;
 	
+	public Optativa() {
+		// TODO Auto-generated constructor stub
+	}
+	public Optativa(Integer referencia2, Integer codigo2, Integer creditos2, Boolean ofertada2, String nombre2,
+			String curso2, String caracter2, Integer duracion2, String idiomasIm, Integer plazas, String mencion) {
+		// TODO Auto-generated constructor stub
+		super(referencia2,codigo2, creditos2, ofertada2, nombre2, curso2, caracter2, duracion2, idiomasIm);
+		
+		this.plazas = plazas;
+		this.mencion = mencion;
+		
+	}
+	
 	public Integer getPlazas() {
 		return plazas;
 	}

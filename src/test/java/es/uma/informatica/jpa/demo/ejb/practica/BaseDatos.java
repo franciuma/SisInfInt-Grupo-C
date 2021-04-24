@@ -11,6 +11,7 @@ import es.uma.informatica.jpa.demo.Alumno;
 import es.uma.informatica.jpa.demo.Centro;
 import es.uma.informatica.jpa.demo.Encuesta;
 import es.uma.informatica.jpa.demo.Grupo;
+import es.uma.informatica.jpa.demo.Optativa;
 import es.uma.informatica.jpa.demo.Centro;
 import es.uma.informatica.jpa.demo.Expediente;
 
@@ -64,6 +65,18 @@ public class BaseDatos {
 		
 		Encuesta enc = new Encuesta(fechaEnvio, matriculacionIngles, turnoPreferente);
 		em.persist(enc);
+
+		final Integer referencia = 50670;
+		final Integer codigo = 102;
+		final Integer creditos = 6;
+		final Boolean ofertada = true;
+		final String nombre1 = "Programacion para la Computación";
+		final String curso1 = "1";
+		final String caracter = "Obligatoria";
+		final Integer duracion = 1;
+		final String idiomasIm = "No";
+		final Integer plazas1 = 35;
+		final String mencion = "Informatica";
 
 		em.getTransaction().commit();
 		
