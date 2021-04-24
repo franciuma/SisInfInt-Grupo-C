@@ -37,6 +37,7 @@ public class Sample_Centro {
 	}
 
 	@Test
+	@Ignore
 	public void testInsertarCentro() {
 				
 		final String nombre = "Facultad de Derecho";

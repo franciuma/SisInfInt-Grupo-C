@@ -4,12 +4,16 @@ package es.uma.informatica.ejb;
 import java.io.IOException;
 import java.util.List;
 
+import javax.ejb.Local;
+
 import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
 import es.uma.informatica.ejb.exceptions.AsignaturaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.AsignaturaYaExistenteException;
+import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.Asignatura;
 import es.uma.informatica.jpa.demo.Centro;
 
+@Local
 public interface GestionAsignatura {
 
 	public void insertarAsignatura(Asignatura asig) throws AsignaturaYaExistenteException;
