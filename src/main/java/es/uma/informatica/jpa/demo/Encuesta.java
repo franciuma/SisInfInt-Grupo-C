@@ -20,7 +20,8 @@ public class Encuesta implements Serializable {
 	@Id
 	@Column(name = "Fecha_Envio")
 	private Timestamp fechaEnvio;
-	private String campos;
+	private String matriculacionIngles;
+	private String turnoPreferente;
 	
 	@ManyToOne
 	private Expediente expediente;
@@ -39,12 +40,13 @@ public class Encuesta implements Serializable {
 	
 	private List<GruposPorAsig> perteneceAGruposPorAsig;
 
-	public Encuesta(Timestamp fechaEnvio, String campos) {
+	public Encuesta(Timestamp fechaEnvio, String matriculacionIngles, String turnoPreferente) {
 		
 		super();
 		
 		this.fechaEnvio = fechaEnvio;
-		this.campos = campos;
+		this.matriculacionIngles = matriculacionIngles;
+		this.turnoPreferente = turnoPreferente;
 	}
 	
 	public Encuesta() {
@@ -59,12 +61,20 @@ public class Encuesta implements Serializable {
 		this.fechaEnvio = fechaEnvio;
 	}
 	
-	public String getCampos() {
-		return campos;
+	public String getMatriculacionIngles() {
+		return matriculacionIngles;
 	}
 	
-	public void setCampos(String campos) {
-		this.campos = campos;
+	public void setMatriculacionIngles(String matriculacionIngles) {
+		this.matriculacionIngles = matriculacionIngles;
+	}
+	
+	public String getTurnoPreferente() {
+		return turnoPreferente;
+	}
+	
+	public void setTurnoPreferente(String turnoPreferente) {
+		this.turnoPreferente = turnoPreferente;
 	}
 
 	public List<GruposPorAsig> getPerteneceAGruposPorAsig() {
@@ -87,10 +97,11 @@ public class Encuesta implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((campos == null) ? 0 : campos.hashCode());
 		result = prime * result + ((expediente == null) ? 0 : expediente.hashCode());
 		result = prime * result + ((fechaEnvio == null) ? 0 : fechaEnvio.hashCode());
+		result = prime * result + ((matriculacionIngles == null) ? 0 : matriculacionIngles.hashCode());
 		result = prime * result + ((perteneceAGruposPorAsig == null) ? 0 : perteneceAGruposPorAsig.hashCode());
+		result = prime * result + ((turnoPreferente == null) ? 0 : turnoPreferente.hashCode());
 		return result;
 	}
 
@@ -103,11 +114,6 @@ public class Encuesta implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Encuesta other = (Encuesta) obj;
-		if (campos == null) {
-			if (other.campos != null)
-				return false;
-		} else if (!campos.equals(other.campos))
-			return false;
 		if (expediente == null) {
 			if (other.expediente != null)
 				return false;
@@ -118,10 +124,20 @@ public class Encuesta implements Serializable {
 				return false;
 		} else if (!fechaEnvio.equals(other.fechaEnvio))
 			return false;
+		if (matriculacionIngles == null) {
+			if (other.matriculacionIngles != null)
+				return false;
+		} else if (!matriculacionIngles.equals(other.matriculacionIngles))
+			return false;
 		if (perteneceAGruposPorAsig == null) {
 			if (other.perteneceAGruposPorAsig != null)
 				return false;
 		} else if (!perteneceAGruposPorAsig.equals(other.perteneceAGruposPorAsig))
+			return false;
+		if (turnoPreferente == null) {
+			if (other.turnoPreferente != null)
+				return false;
+		} else if (!turnoPreferente.equals(other.turnoPreferente))
 			return false;
 		return true;
 	}
