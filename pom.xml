@@ -96,6 +96,15 @@
              <artifactId>openxml4j</artifactId>
              <version>1.0-beta</version>
       </dependency> -->
+<<<<<<< refs/remotes/origin/ale
+=======
+      
+    <dependency>
+  		<groupId>es.uma.informatica.sii</groupId>
+  		<artifactId>anotaciones</artifactId>
+  		<version>0.0.1</version>
+  	</dependency>
+>>>>>>> local
   	
   </dependencies>
   
