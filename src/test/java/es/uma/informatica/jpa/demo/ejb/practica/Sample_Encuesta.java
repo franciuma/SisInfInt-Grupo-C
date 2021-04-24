@@ -13,13 +13,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import es.uma.informatica.ejb.GestionEncuesta;
-import es.uma.informatica.ejb.GestionExpediente;
 import es.uma.informatica.ejb.exceptions.EncuestaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.EncuestaYaExistenteException;
-import es.uma.informatica.ejb.exceptions.ExpedienteNoEncontradoException;
-import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.Encuesta;
-import es.uma.informatica.jpa.demo.Expediente;
+import es.uma.informatica.sii.anotaciones.Requisitos;
 
 public class Sample_Encuesta {
 	
@@ -29,7 +26,6 @@ public class Sample_Encuesta {
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest";
 	
 	private GestionEncuesta gestionEncuesta;
-	private GestionExpediente gestionExpediente;
 	
 	@Before
 	public void setup() throws NamingException  {
@@ -37,6 +33,7 @@ public class Sample_Encuesta {
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 	
+	@Requisitos({"RF1"})
 	@Test
 	public void TestResponderEncuesta() throws EncuestaYaExistenteException, EncuestaNoEncontradaException {
 		
@@ -65,6 +62,7 @@ public class Sample_Encuesta {
 		}
 	}
 	
+	@Requisitos({"RF1"})
 	@Test
 	public void TestObtenerEncuesta() {
 		
@@ -79,6 +77,7 @@ public class Sample_Encuesta {
 		}
 	}
 	
+	@Requisitos({"RF1"})
 	@Test
 	public void testActualizarEncuesta() {
 		
@@ -104,6 +103,7 @@ public class Sample_Encuesta {
 		}
 	}
 	
+	@Requisitos({"RF1"})
 	@Test
 	public void testEliminarEncuesta() {
 		

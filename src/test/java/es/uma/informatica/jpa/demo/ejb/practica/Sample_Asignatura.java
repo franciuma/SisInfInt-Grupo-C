@@ -85,6 +85,7 @@ public class Sample_Asignatura {
 		}
 	}
 	
+	@Requisitos({"RF7"})
 	@Test
 	public void testImportarDatosAsignatura() throws AsignaturaYaExistenteException, IOException, AsignaturaNoEncontradaException {
 		final Integer referencia = 50658;
