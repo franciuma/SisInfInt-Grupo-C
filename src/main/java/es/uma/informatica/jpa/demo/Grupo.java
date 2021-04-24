@@ -15,7 +15,7 @@ public class Grupo {
 	@Id 
 	@GeneratedValue
 	@Column(name = "ID")
-	private Integer id;
+	private int id;
 	@Column(nullable = false, name = "Curso")
 	private Integer curso;
 	@Column(nullable = false, name = "Letra", length = 1)
@@ -50,11 +50,22 @@ public class Grupo {
 		
 	}
 	
-	public Integer getId() {
+	public Grupo(Integer curso2, String letra2, String turnoMañanaTarde2, Boolean ingles2,
+			Boolean visible2, String asignar2, Integer plazas2) {
+		curso = curso2;
+		letra = letra2;
+		turnoMañanaTarde = turnoMañanaTarde2;
+		ingles = ingles2;
+		visible = visible2;
+		asignar = asignar2;
+		plazas = plazas2;
+	}
+
+	public int getId() {
 		return id;
 	}
 	
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
@@ -122,7 +133,7 @@ public class Grupo {
 		result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
 		result = prime * result + ((grupos == null) ? 0 : grupos.hashCode());
 		result = prime * result + ((gruposPorAsig == null) ? 0 : gruposPorAsig.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + id;
 		result = prime * result + ((ingles == null) ? 0 : ingles.hashCode());
 		result = prime * result + ((letra == null) ? 0 : letra.hashCode());
 		result = prime * result + ((plazas == null) ? 0 : plazas.hashCode());
@@ -171,10 +182,7 @@ public class Grupo {
 				return false;
 		} else if (!gruposPorAsig.equals(other.gruposPorAsig))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		if (ingles == null) {
 			if (other.ingles != null)

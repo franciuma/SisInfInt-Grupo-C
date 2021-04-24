@@ -11,10 +11,12 @@ import es.uma.informatica.jpa.demo.Grupo;
 @Local
 public interface GestionGrupo {
 
-	public void insertarExpediente (Grupo grupo) throws GrupoYaExistenteException;
-    public Grupo obtenerGrupo(Integer id) throws GrupoNoEncontradoException;
-    public void eliminarGrupo (Integer id) throws GrupoNoEncontradoException;
+	public void insertarGrupo (Grupo grupo) throws GrupoYaExistenteException;
     public List<Grupo> obtenerGrupos();
-    void actualizarExpediente(Grupo grupo) throws GrupoNoEncontradoException;
+	void actualizarGrupo(Grupo grupo) throws GrupoNoEncontradoException;
+	Grupo obtenerGrupo(Integer curso, String letra, String turnoMañanaTarde, Boolean ingles, Boolean visible,
+			String asignar, Integer plazas) throws GrupoNoEncontradoException;
+	void eliminarGrupo(Integer curso, String letra, String turnoMañanaTarde, Boolean ingles, Boolean visible,
+			String asignar, Integer plazas) throws GrupoNoEncontradoException;
     
 }
