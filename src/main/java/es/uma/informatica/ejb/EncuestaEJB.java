@@ -58,6 +58,8 @@ public class EncuestaEJB implements GestionEncuesta {
 	public void actualizarEncuesta(Encuesta encuesta) throws EncuestaNoEncontradaException{
 		Encuesta encuest = em.find(Encuesta.class, encuesta.getFechaEnvio());
 		encuest.setFechaEnvio(encuesta.getFechaEnvio());
+		encuest.setMatriculacionIngles(encuesta.getMatriculacionIngles());
+		encuest.setTurnoPreferente(encuesta.getTurnoPreferente());
 		em.merge(encuesta);
 	}
 }

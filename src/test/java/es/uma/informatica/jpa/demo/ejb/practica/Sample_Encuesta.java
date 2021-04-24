@@ -13,8 +13,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import es.uma.informatica.ejb.GestionEncuesta;
+import es.uma.informatica.ejb.GestionExpediente;
+import es.uma.informatica.ejb.exceptions.EncuestaNoEncontradaException;
+import es.uma.informatica.ejb.exceptions.EncuestaYaExistenteException;
+import es.uma.informatica.ejb.exceptions.ExpedienteNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.Encuesta;
+import es.uma.informatica.jpa.demo.Expediente;
 
 public class Sample_Encuesta {
 	
@@ -24,6 +29,7 @@ public class Sample_Encuesta {
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest";
 	
 	private GestionEncuesta gestionEncuesta;
+	private GestionExpediente gestionExpediente;
 	
 	@Before
 	public void setup() throws NamingException  {
@@ -32,27 +38,83 @@ public class Sample_Encuesta {
 	}
 	
 	@Test
-	public void TestResponderEncuesta() {
+	public void TestResponderEncuesta() throws EncuestaYaExistenteException, EncuestaNoEncontradaException {
 		
 		final Timestamp fechaEnvio = java.sql.Timestamp.valueOf("2021-10-23 10:10:10");
-		final String campos = "Turno preferente: mañana";
+		final String matriculacionIngles = "SI";
+		final String turnoPreferente = "Mañana";
 		
 		try {
 			
-			Encuesta enc = new Encuesta(fechaEnvio, campos);
+			Encuesta enc = new Encuesta(fechaEnvio, matriculacionIngles, turnoPreferente);
 			gestionEncuesta.responderEncuesta(enc);
 			
 			try {
 				
 				Encuesta encuesta = gestionEncuesta.obtenerEncuesta(fechaEnvio);
 				assertEquals(fechaEnvio, encuesta.getFechaEnvio());
-				assertEquals(campos, encuesta.getCampos());
-			}catch(ProyectoException e) {
-				fail("NO deberia lanzar excepcion");
+				assertEquals(matriculacionIngles, encuesta.getMatriculacionIngles());
+				assertEquals(turnoPreferente, encuesta.getTurnoPreferente());
+			}catch(EncuestaNoEncontradaException e) {
+				
+				fail("No se ha encontrado la encuesta insertada");
 			}
-		} catch(ProyectoException e) {
+		} catch(EncuestaYaExistenteException e) {
 			
-			throw new RuntimeException(e);
+			fail("Ya existe una encuesta con esa fecha de envío");
+		}
+	}
+	
+	@Test
+	public void TestObtenerEncuesta() {
+		
+		Timestamp fechaEnvio = java.sql.Timestamp.valueOf("2021-04-24 18:23:15");
+		
+		try {
+			
+			gestionEncuesta.obtenerEncuesta(fechaEnvio);
+		} catch (EncuestaNoEncontradaException e) {
+			
+			fail("La encuesta no existe");
+		}
+	}
+	
+	@Test
+	public void testActualizarEncuesta() {
+		
+		Timestamp fechaEnvio = java.sql.Timestamp.valueOf("2021-04-24 18:23:15");
+		
+		try {
+			
+			Encuesta encuesta = gestionEncuesta.obtenerEncuesta(fechaEnvio);
+			
+			assertEquals(encuesta.getMatriculacionIngles(), "No");
+			assertEquals(encuesta.getTurnoPreferente(), "Tarde");
+			
+			encuesta.setMatriculacionIngles("Si");
+			encuesta.setTurnoPreferente("Mañana");
+			
+			gestionEncuesta.actualizarEncuesta(encuesta);
+			
+			assertEquals(encuesta.getMatriculacionIngles(), "Si");
+			assertEquals(encuesta.getTurnoPreferente(), "Mañana");
+		} catch (EncuestaNoEncontradaException e) {
+			
+			fail("No se ha encontrado la encuesta a actualizar");
+		}
+	}
+	
+	@Test
+	public void testEliminarEncuesta() {
+		
+		Timestamp fechaEnvio = java.sql.Timestamp.valueOf("2021-04-24 18:23:15");
+		
+		try {
+			
+			gestionEncuesta.eliminarEncuesta(fechaEnvio);
+		} catch (EncuestaNoEncontradaException e) {
+			
+			fail("La encuesta no existe");
 		}
 	}
 }

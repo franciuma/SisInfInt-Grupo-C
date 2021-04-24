@@ -1,5 +1,7 @@
 package es.uma.informatica.jpa.demo.ejb.practica;
 
+import java.sql.Timestamp;
+
 import javax.persistence.EntityManager;
 
 import javax.persistence.EntityManagerFactory;
@@ -7,6 +9,7 @@ import javax.persistence.Persistence;
 
 import es.uma.informatica.jpa.demo.Alumno;
 import es.uma.informatica.jpa.demo.Centro;
+import es.uma.informatica.jpa.demo.Encuesta;
 import es.uma.informatica.jpa.demo.Grupo;
 import es.uma.informatica.jpa.demo.Optativa;
 import es.uma.informatica.jpa.demo.Centro;
@@ -56,6 +59,13 @@ public class BaseDatos {
 		Expediente exp1 = new Expediente(numExpediente, activo, notaMediaProvisional);
 		em.persist(exp1);
 		
+		final Timestamp fechaEnvio = java.sql.Timestamp.valueOf("2021-04-24 18:23:15");
+		final String matriculacionIngles = "No";
+		final String turnoPreferente = "Tarde";
+		
+		Encuesta enc = new Encuesta(fechaEnvio, matriculacionIngles, turnoPreferente);
+		em.persist(enc);
+
 		final Integer referencia = 50670;
 		final Integer codigo = 102;
 		final Integer creditos = 6;
@@ -67,8 +77,6 @@ public class BaseDatos {
 		final String idiomasIm = "No";
 		final Integer plazas1 = 35;
 		final String mencion = "Informatica";
-
-		
 
 		em.getTransaction().commit();
 		
