@@ -15,25 +15,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-@IdClass(Encuesta.EncuestaId.class)
 public class Encuesta implements Serializable {
-
-	public static class EncuestaId implements Serializable {
-		
-		private Timestamp fechaEnvio;
-		private Integer expediente;
-		public EncuestaId(Timestamp t, Integer numExp) {
-			
-			fechaEnvio = t;
-			expediente = numExp;
-			
-			
-		}
-	}
 	
 	@Id
 	@Column(name = "Fecha_Envio")
 	private Timestamp fechaEnvio;
+	private String campos;
+	
+	@ManyToOne
+	private Expediente expediente;
 	
 	/*@ManyToMany
 	@JoinTable(name = "JND_Encuesta_GruposPorAsig",
@@ -49,15 +39,12 @@ public class Encuesta implements Serializable {
 	
 	private List<GruposPorAsig> perteneceAGruposPorAsig;
 
-	@Id
-	@ManyToOne
-	private Expediente expediente;
-
-	public Encuesta(Timestamp fechaEnvio) {
+	public Encuesta(Timestamp fechaEnvio, String campos) {
 		
 		super();
 		
 		this.fechaEnvio = fechaEnvio;
+		this.campos = campos;
 	}
 	
 	public Encuesta() {
@@ -70,6 +57,14 @@ public class Encuesta implements Serializable {
 
 	public void setFechaEnvio(Timestamp fechaEnvio) {
 		this.fechaEnvio = fechaEnvio;
+	}
+	
+	public String getCampos() {
+		return campos;
+	}
+	
+	public void setCampos(String campos) {
+		this.campos = campos;
 	}
 
 	public List<GruposPorAsig> getPerteneceAGruposPorAsig() {
@@ -92,6 +87,7 @@ public class Encuesta implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((campos == null) ? 0 : campos.hashCode());
 		result = prime * result + ((expediente == null) ? 0 : expediente.hashCode());
 		result = prime * result + ((fechaEnvio == null) ? 0 : fechaEnvio.hashCode());
 		result = prime * result + ((perteneceAGruposPorAsig == null) ? 0 : perteneceAGruposPorAsig.hashCode());
@@ -107,6 +103,11 @@ public class Encuesta implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Encuesta other = (Encuesta) obj;
+		if (campos == null) {
+			if (other.campos != null)
+				return false;
+		} else if (!campos.equals(other.campos))
+			return false;
 		if (expediente == null) {
 			if (other.expediente != null)
 				return false;
