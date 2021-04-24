@@ -1,11 +1,14 @@
 package es.uma.informatica.ejb;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -22,16 +25,17 @@ import es.uma.informatica.jpa.demo.Expediente;
 @Stateless
 public class AsignaturaEJB implements GestionAsignatura{
 
+	@PersistenceContext(name= "Secretaria")
 	private EntityManager em;
 	
 	@Override
 	public void insertarAsignatura(Asignatura asig) throws AsignaturaYaExistenteException {
 		// TODO Auto-generated method stub
 		Asignatura asignatura = em.find(Asignatura.class, asig.getReferencia());
-		if(asignatura != null) {
+		if(asignatura != null) 
 			throw new AsignaturaYaExistenteException();
-		}
-			em.persist(asignatura);
+		
+		em.persist(asig);
 	}
 
 	@Override
@@ -74,8 +78,8 @@ public class AsignaturaEJB implements GestionAsignatura{
 	@Override
 	public List<Asignatura> obtenerAsignaturas() {
 		// TODO Auto-generated method stub
-		List<Asignatura> asignaturas = em.createQuery("select * from Asignatura").getResultList();
-		return asignaturas;
+		TypedQuery<Asignatura> query = em.createQuery("finAll", Asignatura.class);
+		return query.getResultList();
 	}
 	
 	@Override

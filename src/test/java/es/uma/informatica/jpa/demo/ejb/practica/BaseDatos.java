@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import es.uma.informatica.jpa.demo.Alumno;
+import es.uma.informatica.jpa.demo.Centro;
 
 
 public class BaseDatos {
@@ -24,6 +25,13 @@ public class BaseDatos {
 		
 		Alumno fransi = new Alumno(dni, nombreCompleto, emailInstitucional, emailPersonal, telefono, movil);
 		em.persist(fransi);
+		
+		final String nombre = "ETSII Informática";
+		final String direccion = "Boulevar Louis Pasteur Nº24";
+		final String tlfConserjeria = "952345678";
+		
+		Centro etsii_info = new Centro(nombre, direccion, tlfConserjeria);
+		em.persist(etsii_info);
 		
 		em.getTransaction().commit();
 		

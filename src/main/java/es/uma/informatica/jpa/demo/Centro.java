@@ -1,6 +1,7 @@
 package es.uma.informatica.jpa.demo;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,13 +11,17 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Centro {
+public class Centro implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
 	private Integer id;
-	@Column(name = "Nombre", nullable = false, unique = true, length = 20)
+	@Column(name = "Nombre", nullable = false, unique = true, length = 50)
 	private String nombre;
 	@Column(name = "Direccion", nullable = false, length = 200)
 	private String direccion;
@@ -29,8 +34,10 @@ public class Centro {
 	public Centro() {
 		// TODO Auto-generated constructor stub
 	}
-	public Centro(String nombre) {
+	public Centro(String nombre, String direccion, String tlfConserjeria) {
 		this.nombre = nombre;
+		this.direccion = direccion;
+		this.tlfConserjeria = tlfConserjeria;
 	}
 	
 	public Integer getId() {
