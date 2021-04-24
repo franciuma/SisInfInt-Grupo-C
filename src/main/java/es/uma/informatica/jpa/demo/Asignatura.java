@@ -1,16 +1,26 @@
 package es.uma.informatica.jpa.demo;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Asignatura {
+@NamedQueries({
+	@NamedQuery ( name = "finAll", query = "select a from Asignatura a")
+})
+public class Asignatura implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id 
 	@Column(name = "Referencia")
 	private Integer referencia;
@@ -20,7 +30,7 @@ public class Asignatura {
 	private Integer creditos;
 	@Column(name = "Ofertada", nullable = false)
 	private Boolean ofertada;
-	@Column(name = "Nombre", nullable = false, length = 20)
+	@Column(name = "Nombre", nullable = false, length = 100)
 	private String nombre;
 	@Column(name = "Curso", length = 10)
 	private String curso;
@@ -43,6 +53,7 @@ public class Asignatura {
 	private List<GruposPorAsig> gruposPorAsig;
 	
 	public Asignatura(Integer referencia2, Integer codigo2, Integer creditos2, Boolean ofertada2, String nombre2, String curso2, String caracter2, Integer duracion2, String idiomasIm) {
+		super();
 		referencia = referencia2;
 		codigo = codigo2;
 		creditos = creditos2;
@@ -222,5 +233,29 @@ public class Asignatura {
 		return "Asignatura [referencia=" + referencia + ", codigo=" + codigo + ", creditos=" + creditos + ", ofertada="
 				+ ofertada + ", nombre=" + nombre + ", curso=" + curso + ", caracter=" + caracter + ", Duracion="
 				+ Duracion + ", unidadTemporal=" + unidadTemporal + ", idiomasImparticion=" + idiomasImparticion + "]";
+	}
+
+	public Titulacion getTitulacion() {
+		return titulacion;
+	}
+
+	public void setTitulacion(Titulacion titulacion) {
+		this.titulacion = titulacion;
+	}
+
+	public List<Clase> getClases() {
+		return clases;
+	}
+
+	public void setClases(List<Clase> clases) {
+		this.clases = clases;
+	}
+
+	public List<GruposPorAsig> getGruposPorAsig() {
+		return gruposPorAsig;
+	}
+
+	public void setGruposPorAsig(List<GruposPorAsig> gruposPorAsig) {
+		this.gruposPorAsig = gruposPorAsig;
 	}
 }
