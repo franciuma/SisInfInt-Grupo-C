@@ -22,11 +22,11 @@ public class MatriculaEJB implements GestionMatricula {
 	@Override
 	public void insertarMatricula(Matricula mat) throws MatriculaYaExistenteException {
 		// TODO Auto-generated method stub
-		Matricula matricula= em.find(Matricula.class,mat.getId());
+		Matricula matricula= em.find(Matricula.class, mat.getId());
 		if(matricula != null) {
 			throw new MatriculaYaExistenteException();
 		}	
-		em.persist(matricula);
+		em.persist(mat);
 	}
 	@Override
 	public Matricula obtenerMatricula(String cursoAcademico) throws MatriculaNoEncontradaException {

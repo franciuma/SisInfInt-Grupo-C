@@ -3,9 +3,11 @@ package es.uma.informatica.jpa.demo;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -31,12 +33,26 @@ public class Matricula implements Serializable{
 	@Column(name = "Listado_Asignaturas", length = 500)
 	private String listadoAsignaturas;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Expediente expediente;
 	
 	public Matricula() {
 		
 	}
+	public Matricula(Matricula_ID id, String cursoAcademico, String estado, Integer numArchivo, String turnoPreferente,
+			Date fechaMatricula, Boolean nuevoIngreso, String listadoAsignaturas, Expediente expediente) {
+		super();
+		this.id = id;
+		this.cursoAcademico = cursoAcademico;
+		this.estado = estado;
+		this.numArchivo = numArchivo;
+		this.turnoPreferente = turnoPreferente;
+		this.fechaMatricula = fechaMatricula;
+		this.nuevoIngreso = nuevoIngreso;
+		this.listadoAsignaturas = listadoAsignaturas;
+		this.expediente = expediente;
+	}
+
 	
 	public String getCursoAcademico() {
 		return cursoAcademico;
