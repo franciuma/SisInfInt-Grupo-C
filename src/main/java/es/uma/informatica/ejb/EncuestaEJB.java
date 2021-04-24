@@ -39,7 +39,7 @@ public class EncuestaEJB implements GestionEncuesta {
 	}
 	
 	@Override
-	public Encuesta obtenerEncuesta(DateTimeFormatter fecha_envio) throws EncuestaNoEncontradaException {
+	public Encuesta obtenerEncuesta(Date fecha_envio) throws EncuestaNoEncontradaException {
 		// TODO iAuto-generated method stub
 		Encuesta encuesta = em.find(Encuesta.class, fecha_envio);
 		if(encuesta == null) {
@@ -49,7 +49,7 @@ public class EncuestaEJB implements GestionEncuesta {
 	}
 	
 	@Override
-	public void eliminarEncuesta(DateTimeFormatter fecha_envio) throws EncuestaNoEncontradaException {
+	public void eliminarEncuesta(Date fecha_envio) throws EncuestaNoEncontradaException {
 		// TODO Auto-generated method stub
 		Encuesta encuesta = em.find(Encuesta.class, fecha_envio);
 		if(encuesta == null) {
