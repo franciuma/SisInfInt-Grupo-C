@@ -32,19 +32,21 @@ public class Sample_Encuesta {
 	}
 	
 	@Test
-	public void TestInsertarEncuesta() {
+	public void TestResponderEncuesta() {
 		
 		final Timestamp fechaEnvio = java.sql.Timestamp.valueOf("2021-10-23 10:10:10");
+		final String campos = "Turno preferente: mañana";
 		
 		try {
 			
-			Encuesta enc = new Encuesta(fechaEnvio);
-			gestionEncuesta.insertarEncuesta(enc);
+			Encuesta enc = new Encuesta(fechaEnvio, campos);
+			gestionEncuesta.responderEncuesta(enc);
 			
 			try {
 				
 				Encuesta encuesta = gestionEncuesta.obtenerEncuesta(fechaEnvio);
 				assertEquals(fechaEnvio, encuesta.getFechaEnvio());
+				assertEquals(campos, encuesta.getCampos());
 			}catch(ProyectoException e) {
 				fail("NO deberia lanzar excepcion");
 			}
