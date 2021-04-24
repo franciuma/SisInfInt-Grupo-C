@@ -36,7 +36,7 @@ public class Sample_Alumno {
 		gestionAlumno = (GestionAlumno) SuiteTest.ctx.lookup(ALUMNOS_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
-
+	@Requisitos({"RF11"})
 	@Test
 	public void testInsertarAlumno() {
 		
@@ -68,7 +68,7 @@ public class Sample_Alumno {
 	
 	
 
-	
+	@Requisitos({"RF11"})
 	@Test
 	public void testEliminarALumno() {
 
@@ -79,7 +79,7 @@ public class Sample_Alumno {
 		}
 		
 	}
-	
+	@Requisitos({"RF11"})
 	@Test
 	public void testObtenerAlumno() {
 		try {
@@ -88,7 +88,7 @@ public class Sample_Alumno {
 			throw new RuntimeException(e);
 		}
 	}
-	
+	@Requisitos({"RF11"})
 	@Test
 	public void testActualizarAlumno() {
 		try {
