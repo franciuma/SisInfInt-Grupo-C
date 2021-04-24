@@ -1,6 +1,7 @@
 package es.uma.informatica.jpa.demo.ejb.practica;
 
 import static org.junit.Assert.assertEquals;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThrows;
@@ -15,7 +16,9 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.ejb.embeddable.EJBContainer;
+import javax.inject.Inject;
 import javax.naming.Context;
 import javax.naming.NamingException;
 
@@ -35,15 +38,16 @@ import es.uma.informatica.ejb.GestionClase;
 
 import es.uma.informatica.ejb.exceptions.*;
 import es.uma.informatica.jpa.demo.*;
+import es.uma.informatica.sii.anotaciones.Requisitos;
 
 
 
 public class Sample_Asignatura {
 	
-	private static final Logger LOG = Logger.getLogger(Sample_Alumno.class.getCanonicalName());
+	private static final Logger LOG = Logger.getLogger(Sample_Asignatura.class.getCanonicalName());
 
 	private static final String ASIGNATURA_EJB = "java:global/classes/AsignaturaEJB";
-	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest";
+	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest2";
 	
 	private GestionAsignatura gestionAsignatura;
 	
@@ -51,8 +55,9 @@ public class Sample_Asignatura {
 	public void setup() throws NamingException  {
 		gestionAsignatura = (GestionAsignatura) SuiteTest.ctx.lookup(ASIGNATURA_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
+		
 	}
-	
+
 	@Test
 	public void testInsertarAsignatura() {
 		final Integer referencia = 50658;
@@ -81,6 +86,7 @@ public class Sample_Asignatura {
 	}
 	
 	@Test
+	@Ignore
 	public void testImportarDatosAsignatura() throws AsignaturaYaExistenteException, IOException, AsignaturaNoEncontradaException {
 		final Integer referencia = 50658;
 		final Integer codigo = 101;

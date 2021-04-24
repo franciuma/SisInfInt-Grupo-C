@@ -1,11 +1,13 @@
 package es.uma.informatica.ejb;
 
 import java.io.IOException;
+
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import es.uma.informatica.ejb.exceptions.AsignaturaNoEncontradaException;
@@ -17,7 +19,7 @@ import es.uma.informatica.jpa.demo.Asignatura;
 @Stateless
 public class AsignaturaEJB implements GestionAsignatura{
 
-	@PersistenceContext(name= "Secretaria2")
+	@PersistenceContext(name= "Secretaria")
 	private EntityManager em;
 	
 	@Override
@@ -74,8 +76,8 @@ public class AsignaturaEJB implements GestionAsignatura{
 	@Override
 	public List<Asignatura> obtenerAsignaturas() {
 		// TODO Auto-generated method stub
-		List<Asignatura> asignaturas = em.createQuery("select * from Asignatura").getResultList();
-		return asignaturas;
+		TypedQuery<Asignatura> query = em.createQuery("finAll", Asignatura.class);
+		return query.getResultList();
 	}
 	
 	@Override

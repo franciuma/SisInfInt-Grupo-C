@@ -7,7 +7,7 @@ import java.util.List;
 import javax.ejb.Local;
 import es.uma.informatica.jpa.demo.Alumno;
 
-@Local
+
 public interface GestionAlumno{
 	
 	/*

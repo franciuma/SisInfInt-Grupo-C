@@ -38,7 +38,7 @@ import es.uma.informatica.jpa.demo.*;
 
 public class Sample_Titulacion {
 	
-	private static final Logger LOG = Logger.getLogger(Sample_Centro.class.getCanonicalName());
+	private static final Logger LOG = Logger.getLogger(Sample_Titulacion.class.getCanonicalName());
 
 	private static final String TITULACION_EJB = "java:global/classes/TitulacionEJB";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest";
