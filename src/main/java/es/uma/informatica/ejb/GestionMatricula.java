@@ -20,7 +20,7 @@ public interface GestionMatricula {
 
 	public List<Matricula> obtenerMatriculas();
 
-	void importarMatricula() throws IOException, ParseException;
+	void importarMatricula() throws IOException, ParseException, MatriculaYaExistenteException;
 	
 
 }

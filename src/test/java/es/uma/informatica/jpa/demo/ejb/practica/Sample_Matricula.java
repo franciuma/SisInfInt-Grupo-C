@@ -33,6 +33,8 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.google.protobuf.TextFormat.ParseException;
+
 import es.uma.informatica.ejb.GestionAlumno;
 import es.uma.informatica.ejb.GestionAsignatura;
 import es.uma.informatica.ejb.GestionClase;
@@ -58,7 +60,7 @@ public class Sample_Matricula {
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 		
 	}
-
+	@Requisitos({"RF18"})
 	@Test
 	public void testInsertarAsignatura() {
 		final Matricula_ID mat_id = new Matricula_ID(1232442L);
@@ -91,6 +93,23 @@ public class Sample_Matricula {
 		}
 	}
 	
+	@Requisitos({"RF10"})
+	@Test
+	@Ignore
+	public void testImportarDatosMatricula() throws AlumnoYaExistenteException, IOException, ParseException, MatriculaYaExistenteException, java.text.ParseException {
+		final String curso = "2020/2021";
+		final String estado = "Activa";
+		final String turno = "Mañana";
+		final String listado = "101-,107-,201-,203-,204-,205-,207-,208-,401-,807-";
+		try {
+			Matricula matricula = new Matricula(curso, estado, turno, listado);
+			gestionMatricula.importarMatricula();
+			Matricula m = gestionMatricula.obtenerMatricula(curso);
+			assertEquals("No es la misma matricula",listado,m.getListadoAsignaturas());
+		} catch(MatriculaNoEncontradaException e) {
+			throw new RunLevelException(e);
+		}
+	}
 	
 
 }

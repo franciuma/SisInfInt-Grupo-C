@@ -57,7 +57,7 @@ public class Sample_Asignatura {
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 		
 	}
-
+	@Requisitos({"RF12"})
 	@Test
 	public void testInsertarAsignatura() {
 		final Integer referencia = 50658;

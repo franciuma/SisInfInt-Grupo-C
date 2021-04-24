@@ -18,6 +18,7 @@ import es.uma.informatica.ejb.GestionCentro;
 import es.uma.informatica.ejb.exceptions.*;
 
 import es.uma.informatica.jpa.demo.*;
+import es.uma.informatica.sii.anotaciones.Requisitos;
 
 public class Sample_Centro {
 	
@@ -36,6 +37,7 @@ public class Sample_Centro {
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 
+	@Requisitos({"RF13"})
 	@Test
 	public void testInsertarCentro() {
 				
@@ -63,7 +65,7 @@ public class Sample_Centro {
 			throw new RuntimeException(e);
 		}
 	}
-	
+	@Requisitos({"RF13"})
 	@Test
 	public void testEliminarCentro() {
 
@@ -74,6 +76,7 @@ public class Sample_Centro {
 		}
 	}
 	
+	@Requisitos({"RF13"})
 	@Test
 	public void testObtenerCentro() {
 
@@ -83,7 +86,7 @@ public class Sample_Centro {
 			throw new RuntimeException(e);
 		}
 	}
-	
+	@Requisitos({"RF13"})
 	@Test
 	public void testActualizarCentro() {
 		try {

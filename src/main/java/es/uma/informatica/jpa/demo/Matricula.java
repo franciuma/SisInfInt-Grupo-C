@@ -55,6 +55,13 @@ public class Matricula implements Serializable{
 	}
 
 	
+	public Matricula(String curso, String estado2, String turno, String listado) {
+		// TODO Auto-generated constructor stub
+		cursoAcademico = curso;
+		estado = estado2;
+		turnoPreferente = turno;
+		listadoAsignaturas = listado;
+	}
 	public String getCursoAcademico() {
 		return cursoAcademico;
 	}
