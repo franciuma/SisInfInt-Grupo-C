@@ -47,7 +47,7 @@ public class Sample_Asignatura {
 	private static final Logger LOG = Logger.getLogger(Sample_Asignatura.class.getCanonicalName());
 
 	private static final String ASIGNATURA_EJB = "java:global/classes/AsignaturaEJB";
-	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest2";
+	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest";
 	
 	private GestionAsignatura gestionAsignatura;
 	
