@@ -10,8 +10,13 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+	@NamedQuery ( name = "finAllMatricula", query = "select a from Matricula a")
+})
 public class Matricula implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -188,5 +193,14 @@ public class Matricula implements Serializable{
 
 	public Matricula_ID getId() {
 		return id;
+	}
+	public Expediente getExpediente() {
+		return expediente;
+	}
+	public void setExpediente(Expediente expediente) {
+		this.expediente = expediente;
+	}
+	public void setId(Matricula_ID id) {
+		this.id = id;
 	}
 }

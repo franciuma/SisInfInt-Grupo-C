@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
-	@NamedQuery ( name = "finAll", query = "select a from Asignatura a")
+	@NamedQuery ( name = "finAllAsignatura", query = "select a from Asignatura a")
 })
 public class Asignatura implements Serializable {
 

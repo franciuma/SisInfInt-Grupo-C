@@ -95,12 +95,12 @@ public class Sample_Matricula {
 	
 	@Requisitos({"RF10"})
 	@Test
-	@Ignore
+	
 	public void testImportarDatosMatricula() throws AlumnoYaExistenteException, IOException, ParseException, MatriculaYaExistenteException, java.text.ParseException {
 		final String curso = "2020/2021";
 		final String estado = "Activa";
 		final String turno = "Mañana";
-		final String listado = "101-,107-,201-,203-,204-,205-,207-,208-,401-,807-";
+		final String listado = "101-,103-,105-,109-,110-,202-,204-,205-,206-,208-,209-";
 		try {
 			Matricula matricula = new Matricula(curso, estado, turno, listado);
 			gestionMatricula.importarMatricula();
