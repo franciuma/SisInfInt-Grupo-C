@@ -1,11 +1,11 @@
 package es.uma.informatica.ejb;
  
 import javax.persistence.EntityManager;
+
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
- 
+import javax.persistence.TypedQuery;
+
 import java.util.List;
-import java.util.logging.Logger;
  
 import javax.ejb.Stateless;
 
@@ -36,11 +36,11 @@ public class ExpedienteEJB implements GestionExpediente{
     @Override
     public Expediente obtenerExpediente(Integer numExpediente) throws ExpedienteNoEncontradoException {
         // TODO Auto-generated method stub
-    	Query  expedientes = em.createQuery("Select e from Expediente e where e.numExpediente = :numExpediente" );
+    	TypedQuery<Expediente>  expedientes = em.createQuery("Select e from Expediente e where e.numExpediente = :numExpediente" ,Expediente.class);
 		expedientes.setParameter("numExpediente", numExpediente);
 		List<Expediente> expediente = expedientes.getResultList();
 		Expediente ex = expediente.get(0);
-		if(expediente == null) throw new ExpedienteNoEncontradoException();
+		if(ex == null) throw new ExpedienteNoEncontradoException();
 		
 		return ex;
     }
@@ -58,7 +58,7 @@ public class ExpedienteEJB implements GestionExpediente{
     @Override
     public void actualizarExpediente(Expediente expediente) throws ExpedienteNoEncontradoException {
         // TODO Auto-generated method stub
-        Expediente exp = em.find(Expediente.class, expediente.getNumExpediente());
+        Expediente exp = obtenerExpediente(expediente.getNumExpediente());
         exp.setNotaMediaProvisional(expediente.getNotaMediaProvisional());
         exp.setActivo(expediente.getActivo());
         em.merge(exp);
@@ -67,8 +67,8 @@ public class ExpedienteEJB implements GestionExpediente{
     @Override
     public List<Expediente> obtenerExpedientes() {
         // TODO Auto-generated method stub
-        List<Expediente> exp = em.createQuery("Select * from Expediente").getResultList();
-        return exp;
+    	TypedQuery<Expediente> query = em.createNamedQuery("findAllExpedientes", Expediente.class);
+        return query.getResultList();
     }
     
     

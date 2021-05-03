@@ -71,7 +71,7 @@ public class MatriculaEJB implements GestionMatricula {
 	
 	@Override
 	public List<Matricula> obtenerMatriculas() {
-		TypedQuery<Matricula> query = em.createQuery("finAllMatricula", Matricula.class);
+		TypedQuery<Matricula> query = em.createNamedQuery("finAllMatricula", Matricula.class);
 		return query.getResultList();
 	}
 	

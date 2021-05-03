@@ -123,6 +123,15 @@ public class Sample_Alumno {
 			throw new RunLevelException(e);
 		}
 	}
+	
+	@Test
+	public void testObteneralumnos() {
+		try {
+			gestionAlumno.obtenerAlumnos();
+		}catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }
 	

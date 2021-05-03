@@ -68,7 +68,7 @@ public class AlumnosEJB implements GestionAlumno {
 	}
 	@Override
 	public List<Alumno> obtenerAlumnos() {
-		TypedQuery<Alumno> query = em.createQuery("finAllAlumnos", Alumno.class);
+		TypedQuery<Alumno> query = em.createNamedQuery("finAllAlumnos", Alumno.class);
 
 		return query.getResultList();
 	}

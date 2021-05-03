@@ -39,7 +39,7 @@ public class GrupoEJB implements GestionGrupo{
         grupos.setParameter("plazas", plazas);
         List<Grupo> grupo = grupos.getResultList();
         Grupo gru = grupo.get(0);
-		if(grupo == null) {
+		if(gru == null) {
             throw new GrupoNoEncontradoException();
         }
         return gru;
@@ -55,8 +55,8 @@ public class GrupoEJB implements GestionGrupo{
 	@Override
 	public List<Grupo> obtenerGrupos() {
 		// TODO Auto-generated method stub
-		List<Grupo> grup = em.createQuery("Select * from Grupo").getResultList();
-		return grup;
+		TypedQuery<Grupo> query = em.createNamedQuery("findAllGrupos", Grupo.class);
+		return query.getResultList();
 	}
 
 	@Override
