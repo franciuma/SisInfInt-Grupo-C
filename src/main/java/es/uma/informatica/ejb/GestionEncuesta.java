@@ -1,8 +1,7 @@
 package es.uma.informatica.ejb;
 
 import java.sql.Timestamp;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
 
 import javax.ejb.Local;
 

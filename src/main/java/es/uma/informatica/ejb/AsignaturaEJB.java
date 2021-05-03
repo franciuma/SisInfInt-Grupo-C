@@ -2,11 +2,11 @@ package es.uma.informatica.ejb;
 
 import java.io.IOException;
 
+
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -60,7 +60,7 @@ public class AsignaturaEJB implements GestionAsignatura{
 	@Override
 	public void actualizarAsignatura(Asignatura asignatura) throws AsignaturaNoEncontradaException{
 		// TODO Auto-generated method stub
-		Asignatura asi = em.find(Asignatura.class, asignatura.getReferencia());
+		Asignatura asi = obtenerAsignatura(asignatura.getReferencia());
 		asi.setCaracter(asignatura.getCaracter());
 		asi.setCodigo(asignatura.getCodigo());
         asi.setCreditos(asignatura.getCreditos());

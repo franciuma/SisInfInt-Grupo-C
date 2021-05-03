@@ -2,12 +2,13 @@ package es.uma.informatica.ejb;
 
 import es.uma.informatica.ejb.exceptions.*;
 
+
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.Local;
 import es.uma.informatica.jpa.demo.Alumno;
 
-
+@Local
 public interface GestionAlumno{
 	
 	/*

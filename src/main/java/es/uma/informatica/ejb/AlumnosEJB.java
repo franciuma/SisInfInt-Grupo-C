@@ -2,8 +2,9 @@ package es.uma.informatica.ejb;
 
 
 import javax.persistence.EntityManager;
+
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -38,12 +39,12 @@ public class AlumnosEJB implements GestionAlumno {
 	public Alumno obtenerAlumno(String dni) throws AlumnoNoEncontradoException {
 		// TODO iAuto-generated method stub
 
-		Query  alumnos = em.createQuery("Select e from Alumno e where e.dni = :dni" );
+		TypedQuery<Alumno>  alumnos = em.createQuery("Select e from Alumno e where e.dni = :dni" , Alumno.class);
 		alumnos.setParameter("dni", dni);
 		List<Alumno> alumno = alumnos.getResultList();
 		Alumno al = alumno.get(0);
-		if(alumno == null) throw new AlumnoNoEncontradoException();
-		
+		if(al == null) throw new AlumnoNoEncontradoException();
+	
 		return al;
 	}
 	
@@ -56,7 +57,7 @@ public class AlumnosEJB implements GestionAlumno {
 	@Override
 	public void actualizarAlumno(Alumno alumno) throws AlumnoNoEncontradoException {
 	
-		Alumno al = em.find(Alumno.class, alumno.getId());
+		Alumno al = obtenerAlumno(alumno.getDni());
 		al.setEmailPersonal(alumno.getEmailPersonal());
 		al.setMovil(alumno.getMovil());
 		al.setTelefono(alumno.getTelefono());
@@ -67,8 +68,9 @@ public class AlumnosEJB implements GestionAlumno {
 	}
 	@Override
 	public List<Alumno> obtenerAlumnos() {
-		List<Alumno> alumnos = em.createQuery("Select al from Alumno al").getResultList();
-		return alumnos;
+		TypedQuery<Alumno> query = em.createQuery("finAllAlumnos", Alumno.class);
+
+		return query.getResultList();
 	}
 	@Override
 	public void importarAlumnos() throws IOException, AlumnoYaExistenteException {

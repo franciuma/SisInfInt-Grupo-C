@@ -1,5 +1,5 @@
 package es.uma.informatica.ejb;
-import java.util.Date;
+
 import java.util.List;
 
 import javax.ejb.Local;

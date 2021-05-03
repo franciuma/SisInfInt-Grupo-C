@@ -1,6 +1,7 @@
 package es.uma.informatica.ejb;
 
 import java.io.IOException;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,10 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import javax.ejb.Stateless;
-import javax.imageio.IIOException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -44,7 +43,7 @@ public class MatriculaEJB implements GestionMatricula {
 		matriculas.setParameter("cursoAcademico", cursoAcademico);
 		List<Matricula> matricula = matriculas.getResultList();
 		Matricula mat = matricula.get(0);
-		if(matricula == null) {
+		if(mat == null) {
 			throw new MatriculaNoEncontradaException();
 		}
 		
@@ -59,8 +58,8 @@ public class MatriculaEJB implements GestionMatricula {
 	}
 	
 	@Override
-	public void actualizarMatricula(Matricula mat){
-		Matricula matri = em.find(Matricula.class,mat.getId());
+	public void actualizarMatricula(Matricula mat) throws MatriculaNoEncontradaException{
+		Matricula matri = obtenerMatricula(mat.getCursoAcademico());
 		matri.setEstado(mat.getEstado());
 		matri.setFechaMatricula(mat.getFechaMatricula());
 		matri.setListadoAsignaturas(mat.getListadoAsignaturas());
