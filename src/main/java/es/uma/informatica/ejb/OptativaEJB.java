@@ -5,7 +5,8 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
- 
+import javax.persistence.TypedQuery;
+
 import es.uma.informatica.ejb.exceptions.OptativaNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.OptativaYaExistenteException;
 import es.uma.informatica.jpa.demo.Optativa;
@@ -40,8 +41,8 @@ public class OptativaEJB implements GestionOptativa{
         em.remove(opt);
     }
     public List<Optativa> obtenerOptativas(){
-        List<Optativa> opt = em.createQuery("Select * from Optativa").getResultList();
-        return opt;
+    	TypedQuery<Optativa> query = em.createNamedQuery("findAllOptativas", Optativa.class); 
+        return query.getResultList();
     }
     public void actualizarOptativa(Optativa optativa) throws OptativaNoEncontradoException{
         Optativa opt = em.find(Optativa.class, optativa.getReferencia());

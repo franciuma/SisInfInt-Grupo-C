@@ -62,7 +62,7 @@ public class CentroEJB implements GestionCentro {
 	@Override
 	public List<Centro> obtenerCentros() {
 		// TODO Auto-generated method stub
-		TypedQuery<Centro> query = em.createQuery("findAllCentros", Centro.class);
+		TypedQuery<Centro> query = em.createNamedQuery("findAllCentros", Centro.class);
 		return query.getResultList();
 	}
 }

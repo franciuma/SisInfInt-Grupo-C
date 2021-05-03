@@ -3,9 +3,8 @@ package es.uma.informatica.ejb;
 
 import javax.persistence.EntityManager;
 
-import javax.persistence.PersistenceContext;
 
-import java.util.logging.Logger;
+import javax.persistence.PersistenceContext;
 
 import javax.ejb.Stateless;
 
@@ -17,7 +16,6 @@ import es.uma.informatica.jpa.demo.*;
 @Stateless
 public class ClaseEJB implements GestionClase {
 	
-	private static final Logger LOG = Logger.getLogger(ClaseEJB.class.getCanonicalName());
 	@PersistenceContext(name= "Secretaria")
 	private EntityManager em;
 	

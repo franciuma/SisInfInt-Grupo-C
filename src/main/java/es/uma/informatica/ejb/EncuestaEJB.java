@@ -3,26 +3,21 @@ package es.uma.informatica.ejb;
 
 import javax.persistence.EntityManager;
 
+
 import javax.persistence.PersistenceContext;
 
 import java.sql.Timestamp;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 
-import es.uma.informatica.ejb.exceptions.ClaseNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.EncuestaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.EncuestaYaExistenteException;
-import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.*;
 
 
 @Stateless
 public class EncuestaEJB implements GestionEncuesta {
 	
-	private static final Logger LOG = Logger.getLogger(EncuestaEJB.class.getCanonicalName());
 	@PersistenceContext(name= "Secretaria")
 	private EntityManager em;
 	

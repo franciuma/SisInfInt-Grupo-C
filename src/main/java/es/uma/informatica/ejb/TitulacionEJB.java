@@ -1,18 +1,19 @@
 package es.uma.informatica.ejb;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import es.uma.informatica.ejb.exceptions.TitulacionNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.TitulacionYaExistenteException;
-import es.uma.informatica.jpa.demo.Alumno;
 import es.uma.informatica.jpa.demo.Titulacion;
 
 @Stateless
@@ -43,7 +44,7 @@ public class TitulacionEJB implements GestionTitulacion {
 	@Override
 	public void eliminarTitulacion(Integer codigo) throws TitulacionNoEncontradaException {
 		// TODO Auto-generated method stub
-		Titulacion titulacion = em.find(Titulacion.class, codigo);
+		Titulacion titulacion = obtenerTitulacion(codigo);
 		if(titulacion == null)
 			throw new TitulacionNoEncontradaException();
 		em.remove(titulacion);
@@ -52,7 +53,7 @@ public class TitulacionEJB implements GestionTitulacion {
 	@Override
 	public void actualizarTitulacion(Titulacion titulacion) throws TitulacionNoEncontradaException {
 		// TODO Auto-generated method stub
-		Titulacion tit = em.find(Titulacion.class, titulacion.getCodigo());
+		Titulacion tit = obtenerTitulacion(titulacion.getCodigo());
 		tit.setCodigo(titulacion.getCodigo());
 		tit.setCreditos(titulacion.getCreditos());
 		tit.setNombre(titulacion.getNombre());
@@ -62,8 +63,8 @@ public class TitulacionEJB implements GestionTitulacion {
 	@Override
 	public List<Titulacion> obtenerTitulaciones() {
 		// TODO Auto-generated method stub
-		List<Titulacion> titulaciones = em.createQuery("Select tit from Titulacion tit").getResultList();
-		return titulaciones;
+		TypedQuery<Titulacion> query = em.createNamedQuery("findAllTitulaciones", Titulacion.class);
+		return query.getResultList();
 	}
 
 	@Override

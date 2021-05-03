@@ -2,10 +2,16 @@ package es.uma.informatica.jpa.demo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(name = "findAllOptativas", query = "select opt from Optativa opt")
 public class Optativa extends Asignatura {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Column(name = "Plazas")
 	private Integer plazas;
 	@Column(name = "Mencion", length = 20)
