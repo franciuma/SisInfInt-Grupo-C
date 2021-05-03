@@ -72,8 +72,8 @@ public class MatriculaEJB implements GestionMatricula {
 	
 	@Override
 	public List<Matricula> obtenerMatriculas() {
-		List<Matricula> matriculas = em.createQuery("Select * from Matricula").getResultList();
-		return matriculas;
+		TypedQuery<Matricula> query = em.createQuery("finAllMatricula", Matricula.class);
+		return query.getResultList();
 	}
 	
 	@Override
@@ -97,8 +97,12 @@ public class MatriculaEJB implements GestionMatricula {
 					DateFormat format = new SimpleDateFormat("DD/MM/YYYY", Locale.ENGLISH);
 					Date date = format.parse(fecha);
 					m.setFechaMatricula(date);
-					String listado = (String) sheet.getRow(2).getCell(1).getStringCellValue();
+					String listado = (String) sheet.getRow(fila).getCell(16).getStringCellValue();
 					m.setListadoAsignaturas(listado);
+					String numero_expediente = (String) sheet.getRow(fila).getCell(4).getStringCellValue();
+					Long x = Long.parseLong(numero_expediente);
+					Matricula_ID m_id = new Matricula_ID(x);
+					m.setId(m_id);
 					insertarMatricula(m);
 					//importarMatricula(m);
 					//System.out.println(m.toString());

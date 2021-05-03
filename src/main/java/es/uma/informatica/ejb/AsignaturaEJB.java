@@ -76,7 +76,7 @@ public class AsignaturaEJB implements GestionAsignatura{
 	@Override
 	public List<Asignatura> obtenerAsignaturas() {
 		// TODO Auto-generated method stub
-		TypedQuery<Asignatura> query = em.createQuery("finAll", Asignatura.class);
+		TypedQuery<Asignatura> query = em.createQuery("finAllAsignatura", Asignatura.class);
 		return query.getResultList();
 	}
 	
