@@ -9,8 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(name = "findAllCentros", query = "select c from Centro c")
 public class Centro implements Serializable {
 	
 	/**

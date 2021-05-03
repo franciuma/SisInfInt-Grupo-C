@@ -4,10 +4,13 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.ejb.Local;
+
 import es.uma.informatica.ejb.exceptions.MatriculaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.MatriculaYaExistenteException;
 import es.uma.informatica.jpa.demo.Matricula;
 
+@Local
 public interface GestionMatricula {
 
 	public void insertarMatricula(Matricula mat) throws MatriculaYaExistenteException;

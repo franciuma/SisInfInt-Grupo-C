@@ -2,6 +2,7 @@ package es.uma.informatica.ejb;
  
 
 import es.uma.informatica.ejb.exceptions.ExpedienteNoEncontradoException;
+
 import es.uma.informatica.ejb.exceptions.ExpedienteYaExistenteException;
 
 import java.util.List;
@@ -9,7 +10,6 @@ import java.util.List;
  
  
 import javax.ejb.Local;
-import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.Expediente;
  
 @Local

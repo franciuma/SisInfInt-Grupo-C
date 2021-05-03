@@ -1,19 +1,16 @@
 package es.uma.informatica.ejb;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import es.uma.informatica.ejb.exceptions.CentroNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.CentroYaExistenteException;
-import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.Centro;
-import es.uma.informatica.jpa.demo.Grupo;
 
 @Stateless
 public class CentroEJB implements GestionCentro {
@@ -40,7 +37,7 @@ public class CentroEJB implements GestionCentro {
 		centros.setParameter("tlfConserjeria", tlfConserjeria);
 		List<Centro> centro = centros.getResultList();
 		Centro cen = centro.get(0);
-		if(centro == null) throw new CentroNoEncontradoException();
+		if(cen == null) throw new CentroNoEncontradoException();
 		
 		return cen;
 	}
@@ -65,7 +62,7 @@ public class CentroEJB implements GestionCentro {
 	@Override
 	public List<Centro> obtenerCentros() {
 		// TODO Auto-generated method stub
-		List<Centro> centros = em.createQuery("Select * from Centro").getResultList();
-		return centros;
+		TypedQuery<Centro> query = em.createQuery("findAllCentros", Centro.class);
+		return query.getResultList();
 	}
 }
