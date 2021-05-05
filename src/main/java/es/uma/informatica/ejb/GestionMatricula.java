@@ -8,6 +8,7 @@ import javax.ejb.Local;
 
 import es.uma.informatica.ejb.exceptions.MatriculaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.MatriculaYaExistenteException;
+import es.uma.informatica.jpa.demo.Expediente;
 import es.uma.informatica.jpa.demo.Matricula;
 
 @Local
@@ -15,11 +16,11 @@ public interface GestionMatricula {
 
 	public void insertarMatricula(Matricula mat) throws MatriculaYaExistenteException;
 
-	public Matricula obtenerMatricula(String dni) throws MatriculaNoEncontradaException;
+	public Matricula obtenerMatricula(String dni, Expediente exp) throws MatriculaNoEncontradaException;
 
 	public void actualizarMatricula(Matricula mat) throws MatriculaNoEncontradaException;
 
-	public void eliminarMatricula(String cursoAcademico) throws MatriculaNoEncontradaException;
+	public void eliminarMatricula(String cursoAcademico, Expediente exp) throws MatriculaNoEncontradaException;
 
 	public List<Matricula> obtenerMatriculas();
 

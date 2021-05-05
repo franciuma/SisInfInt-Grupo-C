@@ -9,21 +9,16 @@ public class Matricula_ID implements Serializable {
 		
 	
 	private static final long serialVersionUID = 1L;
-	private Long expediente;
+	private Integer expediente;
+	private String cursoAcademico;
 	
 	public Matricula_ID() {
 		// TODO Auto-generated constructor stub
 	}
-	public Matricula_ID(Long expediente) {
-		super();
+	public Matricula_ID(Integer expediente, String curso) {
+		// TODO Auto-generated constructor stub
 		this.expediente = expediente;
-	}
-	
-	public Long getExpediente() {
-		return expediente;
-	}
-	public void setExpediente(Long expediente) {
-		this.expediente = expediente;
+		cursoAcademico = curso;
 	}
 	@Override
 	public int hashCode() {
@@ -47,6 +42,18 @@ public class Matricula_ID implements Serializable {
 		} else if (!expediente.equals(other.expediente))
 			return false;
 		return true;
+	}
+	public Integer getExpediente() {
+		return expediente;
+	}
+	public void setExpediente(Integer expediente) {
+		this.expediente = expediente;
+	}
+	public String getCursoAcademico() {
+		return cursoAcademico;
+	}
+	public void setCursoAcademico(String cursoAcademico) {
+		this.cursoAcademico = cursoAcademico;
 	}
 	
 	

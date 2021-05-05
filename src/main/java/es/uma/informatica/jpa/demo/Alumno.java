@@ -52,6 +52,10 @@ public class Alumno implements Serializable {
 		
 	}
 	
+	public void insertar_Expediente(Expediente exp) {
+		expedientes.add(exp);
+	}
+	
 	public String getDni() {
 		return dni;
 	}
@@ -168,5 +172,13 @@ public class Alumno implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public List<Expediente> getExpedientes() {
+		return expedientes;
+	}
+
+	public void setExpedientes(List<Expediente> expedientes) {
+		this.expedientes = expedientes;
 	}
 }

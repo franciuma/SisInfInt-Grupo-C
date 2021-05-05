@@ -50,12 +50,16 @@ public class Sample_Matricula {
 	private static final Logger LOG = Logger.getLogger(Sample_Matricula.class.getCanonicalName());
 
 	private static final String MATRICULA_EJB = "java:global/classes/MatriculaEJB";
+	private static final String ALUMNOS_EJB = "java:global/classes/AlumnosEJB";
+
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "SecretariaTest";
 	
 	private GestionMatricula gestionMatricula;
-	
+	private GestionAlumno gestionAlumno;
+
 	@Before
 	public void setup() throws NamingException  {
+		gestionAlumno = (GestionAlumno) SuiteTest.ctx.lookup(ALUMNOS_EJB);
 		gestionMatricula = (GestionMatricula) SuiteTest.ctx.lookup(MATRICULA_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 		
@@ -63,7 +67,7 @@ public class Sample_Matricula {
 	@Requisitos({"RF18"})
 	@Test
 	public void testInsertarAsignatura() {
-		final Matricula_ID mat_id = new Matricula_ID(1232442L);
+		final Matricula_ID mat_id = new Matricula_ID(1232442,"sii");
 		final  String cursoAcademico = "pa";
 		final  String estado = "estado";
 	
@@ -78,7 +82,7 @@ public class Sample_Matricula {
 		final  String listadoAsignaturas = "si";
 		final Integer numExpediente = 22;
 		final Boolean activo = true;
-		final Integer notaMediaProvisional = 8;
+		final Double notaMediaProvisional = 8.0;
 		final Expediente exp1 = new Expediente(numExpediente,activo,notaMediaProvisional);
 		
 		
@@ -100,11 +104,14 @@ public class Sample_Matricula {
 		final String curso = "2020/2021";
 		final String estado = "Activa";
 		final String turno = "Mañana";
-		final String listado = "101-,103-,105-,109-,110-,202-,204-,205-,206-,208-,209-";
+		final String listado = "101-,102-,103-,104-,105-,106-,107-,108-,109-,110-";
+		final Integer exp = 104200004;
+		final Expediente expediente = new Expediente();
+		expediente.setNumExpediente(exp);
 		try {
 			Matricula matricula = new Matricula(curso, estado, turno, listado);
 			gestionMatricula.importarMatricula();
-			Matricula m = gestionMatricula.obtenerMatricula(curso);
+			Matricula m = gestionMatricula.obtenerMatricula(curso, expediente);
 			assertEquals("No es la misma matricula",listado,m.getListadoAsignaturas());
 		} catch(MatriculaNoEncontradaException e) {
 			throw new RunLevelException(e);
