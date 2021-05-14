@@ -26,7 +26,7 @@ public class Asignatura_Matricula implements Serializable {
 	private Asignatura asignatura;
 	
 	@MapsId("idMatricula")
-	@Id
+	//@Id
 	@ManyToOne
 	private Matricula matricula;
 	
