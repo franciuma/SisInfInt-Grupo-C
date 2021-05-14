@@ -8,6 +8,7 @@
   
 <modules>
 	<module>SisInfInt-Grupo-C-ejb</module>
+	<module>jpa.demo-war</module>
 </modules>
   
 </project>
