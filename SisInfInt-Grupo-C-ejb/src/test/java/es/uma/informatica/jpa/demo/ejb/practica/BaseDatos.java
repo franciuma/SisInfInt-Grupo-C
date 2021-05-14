@@ -54,7 +54,7 @@ public class BaseDatos {
 
 		final Integer numExpediente = 11;
 		final Boolean activo = true;
-		final Double notaMediaProvisional = 9.0;
+		final Integer notaMediaProvisional = 9;
 		
 		Expediente exp1 = new Expediente(numExpediente, activo, notaMediaProvisional);
 		em.persist(exp1);

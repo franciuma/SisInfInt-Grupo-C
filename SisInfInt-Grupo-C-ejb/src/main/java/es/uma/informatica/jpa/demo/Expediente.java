@@ -6,13 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
-@NamedQueries(value = { @NamedQuery(name = "findAllExpedientes", query = "select exp from Expediente exp")})
-
+@NamedQuery(name = "findAllExpedientes", query = "select exp from Expediente exp")
 public class Expediente {
 
 	@Id
@@ -21,7 +19,7 @@ public class Expediente {
 	@Column(name = "Activo")
 	private Boolean activo;
 	@Column(name = "Nota_Media_Provisional")
-	private Double notaMediaProvisional;
+	private Integer notaMediaProvisional;
 	
 	@ManyToOne
 	private Titulacion titulacion;
@@ -35,7 +33,7 @@ public class Expediente {
 	@OneToMany(mappedBy = "expediente")
 	private List<Matricula> matriculas;
 	
-public Expediente(Integer numExpediente, Boolean activo, Double notaMediaProvisional) {
+public Expediente(Integer numExpediente, Boolean activo, Integer notaMediaProvisional) {
 		
 		super();
 		
@@ -46,13 +44,6 @@ public Expediente(Integer numExpediente, Boolean activo, Double notaMediaProvisi
 	
 	public Expediente() {
 		
-	}
-	
-	public void insertarEncuesta(Encuesta en) {
-		encuestas.add(en);
-	}
-	public void insertarMatricula(Matricula ma) {
-		matriculas.add(ma);
 	}
 	
 	public Integer getNumExpediente() {
@@ -75,11 +66,11 @@ public Expediente(Integer numExpediente, Boolean activo, Double notaMediaProvisi
 		this.activo = activo;
 	}
 	
-	public Double getNotaMediaProvisional() {
+	public Integer getNotaMediaProvisional() {
 		return notaMediaProvisional;
 	}
 	
-	public void setNotaMediaProvisional(Double notaMediaProvisional) {
+	public void setNotaMediaProvisional(Integer notaMediaProvisional) {
 		this.notaMediaProvisional = notaMediaProvisional;
 	}
 
@@ -121,37 +112,5 @@ public Expediente(Integer numExpediente, Boolean activo, Double notaMediaProvisi
 	public String toString() {
 		return "Expedientes [numExpediente=" + numExpediente + ", activo=" + activo + ", notaMediaProvisional="
 				+ notaMediaProvisional + "]";
-	}
-
-	public Titulacion getTitulacion() {
-		return titulacion;
-	}
-
-	public void setTitulacion(Titulacion titulacion) {
-		this.titulacion = titulacion;
-	}
-
-	public Alumno getAlumno() {
-		return alumno;
-	}
-
-	public void setAlumno(Alumno alumno) {
-		this.alumno = alumno;
-	}
-
-	public List<Encuesta> getEncuestas() {
-		return encuestas;
-	}
-
-	public void setEncuestas(List<Encuesta> encuestas) {
-		this.encuestas = encuestas;
-	}
-
-	public List<Matricula> getMatriculas() {
-		return matriculas;
-	}
-
-	public void setMatriculas(List<Matricula> matriculas) {
-		this.matriculas = matriculas;
 	}
 }

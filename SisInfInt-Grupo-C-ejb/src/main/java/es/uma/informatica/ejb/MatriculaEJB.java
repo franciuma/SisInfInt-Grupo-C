@@ -8,10 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -28,8 +25,6 @@ public class MatriculaEJB implements GestionMatricula {
 	
 	@PersistenceContext(name= "Secretaria")
 	private EntityManager em;
-	
-	private AlumnosEJB alumno_ejb;
 
 	@Override
 	public void insertarMatricula(Matricula mat) throws MatriculaYaExistenteException {
@@ -41,12 +36,11 @@ public class MatriculaEJB implements GestionMatricula {
 		em.persist(mat);
 	}
 	@Override
-	public Matricula obtenerMatricula(String cursoAcademico, Expediente exp) throws MatriculaNoEncontradaException {
+	public Matricula obtenerMatricula(String cursoAcademico) throws MatriculaNoEncontradaException {
 		// TODO iAuto-generated method stub
 
-		TypedQuery<Matricula>  matriculas = em.createQuery("Select m from Matricula m where m.cursoAcademico = :cursoAcademico AND m.expediente = :expediente" , Matricula.class);
+		TypedQuery<Matricula>  matriculas = em.createQuery("Select m from Matricula m where m.cursoAcademico = :cursoAcademico" , Matricula.class);
 		matriculas.setParameter("cursoAcademico", cursoAcademico);
-		matriculas.setParameter("expediente", exp);
 		List<Matricula> matricula = matriculas.getResultList();
 		Matricula mat = matricula.get(0);
 		if(mat == null) {
@@ -57,15 +51,15 @@ public class MatriculaEJB implements GestionMatricula {
 	}
 	
 	@Override
-	public void eliminarMatricula(String cursoAcademico, Expediente exp) throws MatriculaNoEncontradaException {
-		Matricula matricula = obtenerMatricula(cursoAcademico, exp);
+	public void eliminarMatricula(String cursoAcademico) throws MatriculaNoEncontradaException {
+		Matricula matricula = obtenerMatricula(cursoAcademico);
 		em.remove(matricula);
 		
 	}
 	
 	@Override
 	public void actualizarMatricula(Matricula mat) throws MatriculaNoEncontradaException{
-		Matricula matri = obtenerMatricula(mat.getCursoAcademico(),mat.getExpediente());
+		Matricula matri = obtenerMatricula(mat.getCursoAcademico());
 		matri.setEstado(mat.getEstado());
 		matri.setFechaMatricula(mat.getFechaMatricula());
 		matri.setListadoAsignaturas(mat.getListadoAsignaturas());
@@ -104,47 +98,11 @@ public class MatriculaEJB implements GestionMatricula {
 					m.setFechaMatricula(date);
 					String listado = (String) sheet.getRow(fila).getCell(16).getStringCellValue();
 					m.setListadoAsignaturas(listado);
-					
-//					//ALumno 
-//					String dni = (String) sheet.getRow(fila).getCell(0).getStringCellValue();
-//					Alumno alumno = new Alumno();
-//					try {
-//						alumno_ejb.obtenerAlumno(dni);
-//					} catch (AlumnoNoEncontradoException e) {
-//						// TODO Auto-generated catch block
-//						
-//					}
-//					try {
-//						alumno = alumno_ejb.obtenerAlumno(dni);
-//					}catch(AlumnoNoEncontradoException e) {
-////						String nombre = (String) sheet.getRow(fila).getCell(1).getStringCellValue();
-////						String apellido1 = (String) sheet.getRow(fila).getCell(2).getStringCellValue();
-////						String apellido2 = (String) sheet.getRow(fila).getCell(3).getStringCellValue();
-////						String email_institucional = (String) sheet.getRow(fila).getCell(6).getStringCellValue();
-////						nombre += " " + apellido1 + " " + apellido2;
-////						alumno.setDni(dni);
-////						alumno.setEmailInstitucional(email_institucional);
-////						alumno.setNombreCompleto(nombre);
-////						//Aun faltan parametros si hay que añadirlo com un nuevo alumno
-//			
-//						
-//					}
-					
-					//Expediente
 					String numero_expediente = (String) sheet.getRow(fila).getCell(4).getStringCellValue();
-					Integer x = Integer.parseInt(numero_expediente);
-					Matricula_ID m_id = new Matricula_ID(x,curso);
+					Long x = Long.parseLong(numero_expediente);
+					Matricula_ID m_id = new Matricula_ID(x);
 					m.setId(m_id);
-					Expediente expediente = new Expediente();
-					expediente.setNumExpediente(x);
-					m.setExpediente(expediente);
 					insertarMatricula(m);
-//					//Expediente realcion con alumno
-//					expediente.setAlumno(alumno);
-//					//Alumno relacionado con un expediente
-//					alumno.insertar_Expediente(expediente);
-//					//Expediente relacionado con matricula
-//					expediente.insertarMatricula(m);
 					//importarMatricula(m);
 					//System.out.println(m.toString());
 				}

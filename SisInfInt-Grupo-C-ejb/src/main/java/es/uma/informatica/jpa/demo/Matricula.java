@@ -1,7 +1,6 @@
 package es.uma.informatica.jpa.demo;
 
 import java.io.Serializable;
-
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.IdClass;
 import javax.persistence.Inheritance;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -19,7 +17,6 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
 	@NamedQuery ( name = "finAllMatricula", query = "select a from Matricula a")
 })
-
 public class Matricula implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
