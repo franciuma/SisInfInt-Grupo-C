@@ -9,32 +9,29 @@ import javax.inject.Named;
 import es.uma.informatica.ejb.GestionAlumno;
 import es.uma.informatica.jpa.demo.Alumno;
 
-@Named(value="alumnos")
+@Named(value="alumnos2")
 @RequestScoped
-public class alumnos {
+public class Alumnos {
 	
 	@Inject
 	private GestionAlumno alumnos;
 	private Alumno alumno;
-	private List<Alumno> list_alumnos;
+	private List<Alumno> listAlumnos;
 	
 	
-	public alumnos() {
+	public Alumnos() {
 		// TODO Auto-generated constructor stub
-		list_alumnos = alumnos.obtenerAlumnos();
+		alumno = new Alumno();
 	}
-	public List<Alumno> getList_alumnos() {
-		return list_alumnos;
+	public List<Alumno> getListAlumnos() {
+		listAlumnos = alumnos.obtenerAlumnos();
+		return listAlumnos;
 	}
 
-	public void setList_alumnos(List<Alumno> list_alumnos) {
-		this.list_alumnos = list_alumnos;
+	public void setListAlumnos(List<Alumno> list_alumnos) {
+		this.listAlumnos = list_alumnos;
 	}
 	
-	public String listar_alumnos(){
-		list_alumnos=alumnos.obtenerAlumnos();
-		return null;
-	}
 	public Alumno getAlumno() {
 		return alumno;
 	}
