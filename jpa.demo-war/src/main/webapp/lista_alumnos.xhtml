@@ -18,13 +18,31 @@
 				<f:facet name="header">Nombre</f:facet>
 				<h:outputText value="#{al.nombreCompleto}" />
 			</h:column>
-			<h:column>
-				<h:commandButton value="Modificar"
-					action="#{alumnos2.modificarAlumno(al)}" />
+						<h:column>
+				<f:facet name="header">Telefono </f:facet>
+				<h:outputText value="#{al.telefono}" />
 			</h:column>
 
 			<h:column>
-				<h:commandButton value="Eliminar" action="#{alumnos2.eliminarAlumno(al)}" />
+				<f:facet name="header">Movil</f:facet>
+				<h:outputText value="#{al.movil}" />
+			</h:column>
+						<h:column>
+				<f:facet name="header">Correo 1 </f:facet>
+				<h:outputText value="#{al.emailInstitucional}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Correo 2</f:facet>
+				<h:outputText value="#{al.emailPersonal}" />
+			</h:column>
+			<h:column>
+				<h:commandButton value="Modificar"
+					action="#{alumnos2.modoModificarAlumno(al)}" />
+			</h:column>
+
+			<h:column>
+				<h:commandButton value="Eliminar" action="#{alumnos2.eliminarAlumno(al)}" onclick= "alert('ALUMNO BORRADO');"/>
 			</h:column>
 
 		</h:dataTable>

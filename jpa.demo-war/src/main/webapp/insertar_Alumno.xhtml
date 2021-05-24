@@ -55,5 +55,13 @@
                 </c:otherwise>
 
             </c:choose>
+
+	<h:form id="importarALumnos" method="post"
+		enctype="multipart/form-data">
+		<h:inputFile value = "#{alumnos2.upload}">
+		<f:ajax listener="#{alumnos2.importarAlumnos()}"></f:ajax>
+		</h:inputFile>
+	</h:form>
+
 </h:body>
 </html>
