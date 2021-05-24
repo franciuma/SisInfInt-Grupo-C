@@ -16,38 +16,38 @@
 		
 		 <h:panelGrid columns="3">
 		<h:outputText value="Dni:" />
-		<h:inputText id="dni" value="#{insertar_alumno.alumno.dni}" />
+		<h:inputText id="dni" value="#{alumnos2.alumno.dni}" />
 		<h:message for="dni" />
 		<h:outputText value="Nombre:" />
-		<h:inputText id="nombre" value="#{insertar_alumno.alumno.nombreCompleto}" />
+		<h:inputText id="nombre" value="#{alumnos2.alumno.nombreCompleto}" />
 		<h:message for="nombre" />
 		<h:outputText value="Telefono" />
-		<h:inputText id="telefono" value="#{insertar_alumno.alumno.telefono}" />
+		<h:inputText id="telefono" value="#{alumnos2.alumno.telefono}" />
 		<h:message for="telefono" />
 		<h:outputText value="Movil" />
-		<h:inputText id="movil" value="#{insertar_alumno.alumno.movil}" />
+		<h:inputText id="movil" value="#{alumnos2.alumno.movil}" />
 		<h:message for="movil" />
 		<h:outputText value="E-mail-institucional:" />
-		<h:inputText id="email-institucional" value="#{insertar_alumno.alumno.emailInstitucional}"
+		<h:inputText id="email-institucional" value="#{alumnos2.alumno.emailInstitucional}"
 			required="true"
 			validatorMessage="Compruebe que ha introducido un e-mail-institucional correcto">
 			<f:validateRegex pattern=".+@.+" />
 		</h:inputText>
 		<h:message for="email-institucional" />
 		<h:outputText value="E-mail-personal:" />
-		<h:inputText id="email-personal" value="#{insertar_alumno.alumno.emailPersonal}"
+		<h:inputText id="email-personal" value="#{alumnos2.alumno.emailPersonal}"
 			required="true"
 			validatorMessage="Compruebe que ha introducido un e-mail-personal correcto">
 			<f:validateRegex pattern=".+@.+" />
 		</h:inputText>
 		<h:message for="email-personall" />
-		<h:commandButton value="Crear Alumno" type ="submit" action="#{insertar_alumno.anaidir_Alumno()}"/>
+		<h:commandButton value="Crear Alumno" type ="submit" action="#{alumnos2.anaidir_Alumno()}"/>
 		 </h:panelGrid>
 		 <h:messages/>
 	</h:form>
 	
 	<c:choose>
-                <c:when test="#{insertar_alumno.insertar_AL}">
+                <c:when test="#{alumnos2.insertar_AL}">
                     <h:link outcome="index.xhtml">Registro con éxito</h:link>
                 </c:when>
                 <c:otherwise>
