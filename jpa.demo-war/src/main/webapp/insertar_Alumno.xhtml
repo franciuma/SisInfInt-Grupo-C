@@ -58,9 +58,14 @@
 
 	<h:form id="importarALumnos" method="post"
 		enctype="multipart/form-data">
-		<h:inputFile value = "#{alumnos2.upload}">
-		<f:ajax listener="#{alumnos2.importarAlumnos()}"></f:ajax>
-		</h:inputFile>
+		<h:inputFile id = "file"/>
+		<script>
+		function leerRuta(idFile) {
+			var ruta = document.getElementById('file').value;
+			return ruta;
+		}
+		</script>
+		<h:commandButton value="Enviar Fichero" type ="submit" action="#{alumnos2.importarAlumnos()}"/>
 	</h:form>
 
 </h:body>
