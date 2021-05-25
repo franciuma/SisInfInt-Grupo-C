@@ -116,7 +116,9 @@ public class Sample_Alumno {
 		final String movil = "602 758 528";
 		try {
 			Alumno alumno = new Alumno(dni, nombreCompleto, emailInstitucional, emailPersonal, telefono, movil);
-			gestionAlumno.importarAlumnos();
+			String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
+			String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Datos alumnadoFAKE.xlsx";
+			gestionAlumno.importarAlumnos(sFile);
 			Alumno a = gestionAlumno.obtenerAlumno(dni);
 			assertEquals("No es el mismo alumno", a,alumno);
 		}catch(AlumnoNoEncontradoException e) {

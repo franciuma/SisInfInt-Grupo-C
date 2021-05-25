@@ -3,6 +3,7 @@ package es.uma.informatica.ejb;
 
 import javax.persistence.EntityManager;
 
+
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -11,7 +12,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
 import java.util.List;
-
+import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 
@@ -20,8 +21,10 @@ import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
 import es.uma.informatica.jpa.demo.*;
 
 
+
 @Stateless
 public class AlumnosEJB implements GestionAlumno {
+	private static final Logger LOGGER = Logger.getLogger(AlumnosEJB.class.getCanonicalName());
 	
 	@PersistenceContext(name= "Secretaria")
 	private EntityManager em;
@@ -56,12 +59,12 @@ public class AlumnosEJB implements GestionAlumno {
 	}
 	@Override
 	public void actualizarAlumno(Alumno alumno) throws AlumnoNoEncontradoException {
-	
+		LOGGER.info("DENTRO DEL EJB :--------------> " + alumno.toString());
 		Alumno al = obtenerAlumno(alumno.getDni());
 		al.setEmailPersonal(alumno.getEmailPersonal());
 		al.setMovil(alumno.getMovil());
 		al.setTelefono(alumno.getTelefono());
-		em.merge(alumno);
+		em.merge(al);
 		
 		
 		
@@ -73,10 +76,11 @@ public class AlumnosEJB implements GestionAlumno {
 		return query.getResultList();
 	}
 	@Override
-	public void importarAlumnos() throws IOException, AlumnoYaExistenteException {
+	public void importarAlumnos(String sFile) throws IOException, AlumnoYaExistenteException {
 		try {
-			String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
-			String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Datos alumnadoFAKE.xlsx";
+//			String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
+//			String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Datos alumnadoFAKE.xlsx";
+			LOGGER.info("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII : " + sFile);
 			@SuppressWarnings("deprecation")
 			XSSFWorkbook workbook = new XSSFWorkbook(sFile);
 			XSSFSheet sheet = workbook.getSheet("Hoja1");
