@@ -7,20 +7,27 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<title>Hola Mundo</title>
+	<title>Pagina Principal</title>
+	<link
+		href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="css/normalize.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+
 </h:head>
 <h:body>
 	<h1 id="cabecera">
 		<h:outputText id="texto" value="#{saludo.saludo}"></h:outputText>
 	</h1>
-	<div>
-		<p>
-			<h:link outcome="insertar_Alumno.xhtml">Insertar Alumno</h:link>
-		</p>
-		<p>
-			<h:link outcome="lista_alumnos.xhtml">Listar Alumnos</h:link>
-		</p>
-	</div>
+
+	<h:form styleClass="navegacion" >
+		<h:panelGrid columns="1">
+			<h:column><h:link outcome="insertar_Alumno.xhtml">Insertar Alumno</h:link></h:column>
+			<h:column><h:link outcome="lista_alumnos.xhtml">Listar Alumnos</h:link></h:column>
+		</h:panelGrid>
+
+
+	</h:form>
 
 </h:body>
 </html>
