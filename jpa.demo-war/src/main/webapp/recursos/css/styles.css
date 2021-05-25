@@ -80,12 +80,13 @@ h4{
 
 }
 
-.boton-verde{
+.boton-color{
 
-  background-color: #71B100
+  background-color: orange;
 
 }
 /*Formularios Inputs*/
+
 input:not([type = "submit"]), textarea,select{
   padding: : 2rem;
   display: block;
@@ -93,15 +94,12 @@ input:not([type = "submit"]), textarea,select{
   border : none;
   border-radius: 1rem;
   background-color: #e1e1e1;
-  margin-bottom: 2rem;
+ /* margin-bottom: 2rem; */
+ 
 
 }
 
-input [type = "radio"]{
-  width: auto;
-  margin: 2rem 0 0 0;
 
-}
 select{
   -webkit-appearance: none;
   appearance: none;
@@ -111,11 +109,40 @@ textarea{
   height: 20rem;
 }
 
+/*Formulario tabla*/
+table{
+	table-layout: fixed;
+	width: 100%;
+	
+}
+
+theah th:nth-child(1){
+	width: 5%;
+}
+theah th:nth-child(2){
+	width: 5%;
+}
+theah th:nth-child(3){
+	width: 10%;
+}
+theah th:nth-child(4){
+	width: 10%;
+}
+theah th:nth-child(5){
+	width: 35%;
+}
+theah th:nth-child(6){
+	width: 35%;
+}
+td,th{
+	padding: 2rem;
+}
+
 /*Navegacion*/
 
 .navegacion a:link {
 
-    color: white;
+    color: blue;
     text-decoration: none;
     font-size: 1.8rem;
     margin-right: 2rem;/* 20px */
@@ -123,7 +150,7 @@ textarea{
 }
 .navegacion a:hover{
 
-  color : green;
+  color : red;
 
 
 }

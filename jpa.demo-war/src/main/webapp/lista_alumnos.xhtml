@@ -11,14 +11,14 @@
 	<link
 		href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
 		rel="stylesheet" />
-	<link rel="stylesheet" href="css/normalize.css" />
-	<link rel="stylesheet" href="css/styles.css" />
+	<link rel="stylesheet" href="recursos/css/normalize.css" />
+	<link rel="stylesheet" href="recursos/css/styles.css" />
 
 </h:head>
 
 <h:body>
 	<div class="contenedor seccion ">
-	<h:form id="alumnos-id" styleClass="contenido-centrado">
+	<h:form id="alumnos-id" styleClass="centrar-texto navegacion">
 		<h:dataTable value="#{alumnos2.listAlumnos}" var="al">
 			<h:column>
 				<f:facet name="header">DNI </f:facet>
@@ -59,9 +59,9 @@
 			</h:column>
 
 		</h:dataTable>
-
+		<h:link outcome="index.xhtml">Atrás</h:link>
 	</h:form>
-	<h:link outcome="index.xhtml">Atrás</h:link>
+	
 	</div>
 	
 </h:body>
