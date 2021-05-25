@@ -19,6 +19,6 @@ public interface GestionAlumno{
 	public void eliminarAlumno (String dni) throws AlumnoNoEncontradoException;
 	public void actualizarAlumno (Alumno alumno) throws AlumnoNoEncontradoException;
 	public List<Alumno> obtenerAlumnos ();
-	public void importarAlumnos() throws IOException, AlumnoYaExistenteException;
+	public void importarAlumnos(String sFile) throws IOException, AlumnoYaExistenteException;
 
 }
