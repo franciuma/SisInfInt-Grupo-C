@@ -15,7 +15,9 @@ img{
 body{
   font-family: 'Lato', sans-serif;
   font-size: 1.6rem;
+  font-color: white;
   line-height: 2;
+  background: #2874a6;
 }
 .contenedor{
 
@@ -88,15 +90,23 @@ h4{
 /*Formularios Inputs*/
 
 input:not([type = "submit"]), textarea,select{
-  padding:  2rem 0rem;
+  /*padding:  2rem 0rem;
   display: block;
   width : 100%;
   border : none;
   border-radius: 1rem;
   background-color: #e1e1e1;
-  margin-bottom: 2rem; 
+  margin-bottom: 2rem;*/
  
-
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
 }
 
 
@@ -146,7 +156,7 @@ textarea{
 
 .navegacion a:link {
 
-    color: blue;
+    color: white;
     text-decoration: none;
     font-size: 1.8rem;
     margin-right: 2rem;/* 20px */
