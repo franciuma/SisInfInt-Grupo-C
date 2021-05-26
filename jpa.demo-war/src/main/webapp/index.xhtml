@@ -8,27 +8,17 @@
 
 <h:head>
 	<title>Pagina Principal</title>
-	<link
-		href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
-		rel="stylesheet" />
-	<link rel="stylesheet" href="recursos/css/normalize.css" />
-	<link rel="stylesheet" href="recursos/css/styles.css" />
-
+	<link rel="stylesheet" href="recursos/css/styleIndex.css" />
 </h:head>
+
 <h:body>
-	<h1 id="cabecera">
-		<h:outputText id="texto" value="#{saludo.saludo}"></h:outputText>
-	</h1>
-
-	<h:form styleClass="navegacion centrar" >
-		<h:panelGrid columns="1">
-			<h:column><h:link outcome="insertar_Alumno.xhtml">Insertar Alumno</h:link></h:column>
-			<h:column><h:link outcome="lista_alumnos.xhtml">Listar Alumnos</h:link></h:column>
-			<h:column><h:link outcome="login.xhtml">Volver al login</h:link></h:column>
-		</h:panelGrid>
-
-
-	</h:form>
-
+	<div class="menu-box">
+	<h2>Pagina Principal</h2>
+		<h:form>
+			<h:link outcome="insertar_Alumno_v2.xhtml">Insertar Alumno</h:link>
+			<h:link outcome="lista_alumnos.xhtml">Listar Alumnos</h:link>
+			<h:link outcome="login.xhtml">Volver al login</h:link>
+		</h:form>
+	</div>
 </h:body>
 </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+<h:head>
+	<title>Insertar Alumno</title>
+	<link
+		href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="recursos/css/normalize.css" />
+	<link rel="stylesheet" href="recursos/css/styleInsertar.css" />
+
+</h:head>
+<h:body>
+	<div class="form-box">
+		<h2>Insertar Alumno</h2>
+		<h:form>
+			<div class="input-box">
+				<h:inputText id="dni" value="#{alumnos2.alumno.dni}" />
+				<label>Dni</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="nombre" value="#{alumnos2.alumno.nombreCompleto}" />
+				<label>Nombre</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="telefono" value="#{alumnos2.alumno.telefono}" />
+				<label>Telefono</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="movil" value="#{alumnos2.alumno.movil}" />
+				<label>Movil</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="email-institucional" value="#{alumnos2.alumno.emailInstitucional}" required="true" validatorMessage="Compruebe que ha introducido un e-mail-institucional correcto">
+				<f:validateRegex pattern=".+@.+" />
+				</h:inputText>
+				<label>Email Institucional</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="email-personal" value="#{alumnos2.alumno.emailPersonal}" required="true" validatorMessage="Compruebe que ha introducido un e-mail-personal correcto">
+				<f:validateRegex pattern=".+@.+" />
+				</h:inputText>
+				<label>Email Personal</label>
+			</div>
+			<h:commandButton value="Crear Alumno" type ="submit" action="#{alumnos2.anaidir_Alumno()}"/>
+			<h:link outcome ="index.xhtml">Atrás</h:link>
+			
+			<c:choose>
+				<c:when test="#{alumnos2.insertar_AL}">
+					<h:link outcome="index.xhtml">Registro con éxito</h:link>
+				</c:when>
+		      	<c:otherwise>
+		         	Acceso Irregular
+		     	</c:otherwise>
+		
+		            </c:choose>
+		</h:form>
+		<h:form id="importarALumnos" method="post" enctype="multipart/form-data">
+			<h:inputFile id = "file"/>
+			<script>
+				function leerRuta(idFile) {
+					var ruta = document.getElementById('file').value;
+					return ruta;
+				}
+			</script>
+			<h:commandButton value="Enviar Fichero" type ="submit" action="#{alumnos2.importarAlumnos()}"/>
+		</h:form>
+	</div>
+</h:body>
+</html>
