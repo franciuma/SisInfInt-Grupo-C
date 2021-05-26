@@ -17,7 +17,6 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 
 import es.uma.informatica.ejb.exceptions.*;
-import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
 import es.uma.informatica.jpa.demo.*;
 
 
@@ -109,5 +108,16 @@ public class AlumnosEJB implements GestionAlumno {
 			e.printStackTrace();
 		}
 		
+	}
+	@Override
+	public boolean autenticar(String dni, String nombre) {
+		// TODO Auto-generated method stub
+		try {
+			Alumno al = obtenerAlumno(dni);
+			return al.getNombreCompleto().equals(nombre);
+		}catch (AlumnoNoEncontradoException e) {
+			return false;
+		}
+			
 	}
 }
