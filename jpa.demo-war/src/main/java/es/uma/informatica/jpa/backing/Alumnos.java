@@ -32,6 +32,16 @@ public class Alumnos {
 	public String importarAlumnos() {
 		String sFile = Paths.get(upload.getName()).getFileName().toString();
 		
+		/* 	1ERA OPCIÓN
+		 * - Crear con FILE un fichero temporal con nombre con prefijo aleatorio
+		 * - Pasamos la ruta de ese fichero al upload.write 
+		 * upload.write("/tmp/alumnos.xlsx"); */
+		
+		/* 2A OPCIÓN
+		 * - Asegurarnos de que no existe el archivo antes de hacer write porque si no no funciona
+		 * - Pasamos la ruta del fichero al upload.write
+		 * upload.write("/tmp/alumnos.xlsx"); */
+		
 		try {
 			alumnos.importarAlumnos(sFile);
 			return "lista_alumnos.xhtml";

@@ -47,8 +47,11 @@
 			<f:validateRegex pattern=".+@.+" />
 		</h:inputText>
 		<h:message for="email-personall" />
-		<h:commandButton value="Crear Alumno" type ="submit" action="#{alumnos2.anaidir_Alumno()}" styleClass="boton boton-color"/>
-		<h:link outcome="index.xhtml">Atrás</h:link>
+
+
+		<h:commandButton value="Crear Alumno" type ="submit" action="#{alumnos2.anaidir_Alumno()}"/>
+		<h:link outcome ="index.xhtml">Atrás</h:link>
+
 		 </h:panelGrid>
 		 <h:messages/>
 	</h:form>
