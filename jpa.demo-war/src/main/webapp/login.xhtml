@@ -17,11 +17,11 @@
   <h:form>
     <div class="user-box">
       <h:inputText value="#{alumnos2.alumno.dni}" required="true"/>
-      <label>Username</label>
+      <label>Usuario</label>
     </div>
     <div class="user-box">
-     <h:inputText value="#{alumnos2.alumno.nombreCompleto}" type="password" required="true"/>
-      <label>Password</label>
+     <h:inputSecret value="#{alumnos2.alumno.nombreCompleto}" required="true"/>
+      <label>Contraseña</label>
     </div>
     <h:commandLink type ="submit" action="#{alumnos2.autenticar()}" >
     
@@ -31,7 +31,7 @@
       <span></span>
       Entrar
     </h:commandLink> 
-<h:column><h:link outcome="insertar_Alumno.xhtml">Insertar Alumno</h:link></h:column>
+<h:column><h:link outcome="insertar_Alumno.xhtml">TO-DO(next: registro)</h:link></h:column>
   </h:form>
 </div>
 </h:body>
