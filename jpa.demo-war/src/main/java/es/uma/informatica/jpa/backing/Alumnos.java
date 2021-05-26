@@ -95,6 +95,20 @@ public class Alumnos {
 		return null;
 	}
 	
+	public String autenticar(){
+		LOGGER.info("alumno: " + alumno.getDni() + " | " + alumno.getNombreCompleto());
+		try {
+			 boolean t = alumnos.autenticar(alumno.getDni(), alumno.getNombreCompleto());
+			if (t)return "index.xhtml";
+			else return "insertar_Alumno.xhtml";
+		}catch (AlumnoNoEncontradoException e) {
+			// TODO: handle exception
+			return "insertar_Alumno.xhtml";
+		}
+		
+		
+	}
+	
 	public String modoModificarAlumno(Alumno al) {
 		LOGGER.info("ALUMNO QUE SUPUESTAMENTE LLEGA ME CAGO DIOOOS: " + al.toString());
 		alumno = al;

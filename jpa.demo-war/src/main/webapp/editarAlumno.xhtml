@@ -6,8 +6,17 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+<h:head>
+	<title>Editar ALumno</title>
+	<link
+		href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="recursos/css/normalize.css" />
+	<link rel="stylesheet" href="recursos/css/styles.css" />
+
+</h:head>
 <h:body>
-	<h:form id = "tabla_insertar_alumno">
+	<h:form id = "tabla_insertar_alumno" styleClass="navegacion ">
 		<h:outputText value="Dni : #{alumnos2.alumno.dni}" />
 		 <h:panelGrid columns="3">
 		<h:inputHidden value="#{alumnos2.alumno.dni}"/>
