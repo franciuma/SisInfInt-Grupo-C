@@ -3,14 +3,22 @@ package es.uma.informatica.jpa.backing;
 import java.io.IOException;
 
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 import javax.swing.text.Document;
+
+import org.primefaces.component.fileupload.FileUpload;
+import org.primefaces.model.file.UploadedFile;
 
 import es.uma.informatica.ejb.GestionAlumno;
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
@@ -24,34 +32,50 @@ public class Alumnos {
 	
 	@Inject
 	private GestionAlumno alumnos;
-	private Part upload;
+	private UploadedFile upload;
 	private Alumno alumno;
 	private boolean insertar_AL;
 	private List<Alumno> listAlumnos;
 	
 	public String importarAlumnos() {
-		String sFile = Paths.get(upload.getName()).getFileName().toString();
-		
-		/* 	1ERA OPCIÓN
-		 * - Crear con FILE un fichero temporal con nombre con prefijo aleatorio
-		 * - Pasamos la ruta de ese fichero al upload.write 
-		 * upload.write("/tmp/alumnos.xlsx"); */
-		
-		/* 2A OPCIÓN
-		 * - Asegurarnos de que no existe el archivo antes de hacer write porque si no no funciona
-		 * - Pasamos la ruta del fichero al upload.write
-		 * upload.write("/tmp/alumnos.xlsx"); */
 		
 		try {
-			alumnos.importarAlumnos(sFile);
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection cn = DriverManager.getConnection("jdbc:h2:mem");
+			PreparedStatement st = cn.prepareStatement("INSERT INTO imgs (img) VALUES (?)");
+			st.setBinaryStream(1, upload.getInputStream());
+			st.executeUpdate();
+			cn.close();
+			FacesMessage message = new FacesMessage("EXITO", upload.getFileName() + "fue subido");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 			return "lista_alumnos.xhtml";
-		} catch (AlumnoYaExistenteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		}catch (Exception e) {
+			// TODO: handle exception
+			FacesMessage message = new FacesMessage("Error con la conexión");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
+//		String sFile = Paths.get(upload.getName()).getFileName().toString();
+//		
+//		/* 	1ERA OPCIÓN
+//		 * - Crear con FILE un fichero temporal con nombre con prefijo aleatorio
+//		 * - Pasamos la ruta de ese fichero al upload.write 
+//		 * upload.write("/tmp/alumnos.xlsx"); */
+//		
+//		/* 2A OPCIÓN
+//		 * - Asegurarnos de que no existe el archivo antes de hacer write porque si no no funciona
+//		 * - Pasamos la ruta del fichero al upload.write
+//		 * upload.write("/tmp/alumnos.xlsx"); */
+//		
+//		try {
+//			alumnos.importarAlumnos(sFile);
+//			return "lista_alumnos.xhtml";
+//		} catch (AlumnoYaExistenteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		return null;
 	}
 	public Alumnos() {
@@ -138,11 +162,11 @@ public class Alumnos {
 		this.insertar_AL = insertar_AL;
 	}
 
-	public Part getUpload() {
+	public UploadedFile getUpload() {
 		return upload;
 	}
 
-	public void setUpload(Part upload) {
+	public void setUpload(UploadedFile upload) {
 		this.upload = upload;
 	}
 	
