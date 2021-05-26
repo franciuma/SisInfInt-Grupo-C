@@ -8,14 +8,31 @@
 
 <h:head>
 	<title>Login</title>
+	<link rel="stylesheet" href="recursos/css/styleLogin.css" />
 </h:head>
 
 <h:body>
-	<h:form>
-		Login: <h:inputText value="#{alumnos2.alumno.dni}"/> <br/>
-		Contrasenia <h:inputText value="#{alumnos2.alumno.nombreCompleto}"/> <br/> 
-		<h:commandButton value="Login" action="#{alumnos2.autenticar()}"/>
-		<h:column><h:link outcome="insertar_Alumno.xhtml">Insertar Alumno</h:link></h:column>
-	</h:form>
+	<div class="login-box">
+  <h2>Login</h2>
+  <h:form>
+    <div class="user-box">
+      <h:inputText value="#{alumnos2.alumno.dni}" required="true"/>
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+     <h:inputText value="#{alumnos2.alumno.nombreCompleto}" type="password" required="true"/>
+      <label>Password</label>
+    </div>
+    <h:commandButton  value= "Submit" type ="submit" action="#{alumnos2.autenticar()}" styleClass="login-box2">
+    
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </h:commandButton> 
+
+  </h:form>
+</div>
 </h:body>
 </html>

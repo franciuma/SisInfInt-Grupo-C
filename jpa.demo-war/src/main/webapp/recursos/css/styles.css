@@ -88,13 +88,13 @@ h4{
 /*Formularios Inputs*/
 
 input:not([type = "submit"]), textarea,select{
-  padding:  2rem;
+  padding:  2rem 0rem;
   display: block;
   width : 100%;
   border : none;
   border-radius: 1rem;
   background-color: #e1e1e1;
- /* margin-bottom: 2rem; */
+  margin-bottom: 2rem; 
  
 
 }
@@ -106,37 +106,41 @@ select{
 }
 
 textarea{
-  height: 20rem;
+  height: 10rem;
 }
 
 /*Formulario tabla*/
-table{
+
+.table-mostrar table{
 	table-layout: fixed;
 	width: 100%;
-	
 }
 
-theah th:nth-child(1){
+.table-mostrar theah th:nth-child(1){
 	width: 5%;
 }
-theah th:nth-child(2){
+
+.table-mostrar theah th:nth-child(2){
 	width: 5%;
 }
-theah th:nth-child(3){
+.table-mostrar theah th:nth-child(3){
 	width: 10%;
 }
-theah th:nth-child(4){
+.table-mostrar theah th:nth-child(4){
 	width: 10%;
 }
-theah th:nth-child(5){
+.table-mostrar theah th:nth-child(5){
 	width: 35%;
 }
-theah th:nth-child(6){
+.table-mostrar theah th:nth-child(6){
 	width: 35%;
 }
-td,th{
+
+.table-mostrar td,th{
 	padding: 2rem;
 }
+
+
 
 /*Navegacion*/
 
@@ -157,4 +161,8 @@ td,th{
 .navegacion a:last-of-type{
 
     margin:0;
+}
+
+.tabla-formulario table{
+	width: 50%;
 }
