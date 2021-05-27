@@ -20,6 +20,6 @@ public interface GestionAlumno{
 	public void actualizarAlumno (Alumno alumno) throws AlumnoNoEncontradoException;
 	public List<Alumno> obtenerAlumnos ();
 	public void importarAlumnos(String sFile) throws IOException, AlumnoYaExistenteException;
-	public boolean autenticar(String dni, String contra) throws AlumnoNoEncontradoException;
+	public boolean autenticar(String dni, String contra);
 
 }

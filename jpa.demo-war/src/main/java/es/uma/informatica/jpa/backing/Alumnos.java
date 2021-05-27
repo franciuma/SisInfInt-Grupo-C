@@ -23,6 +23,7 @@ import org.primefaces.model.file.UploadedFile;
 import es.uma.informatica.ejb.GestionAlumno;
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
+import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.Alumno;
 
 @Named(value="alumnos2")
@@ -40,11 +41,15 @@ public class Alumnos {
 	public String importarAlumnos() {
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection cn = DriverManager.getConnection("jdbc:h2:mem");
-			PreparedStatement st = cn.prepareStatement("INSERT INTO imgs (img) VALUES (?)");
+			LOGGER.info("Ha realizado la conexion");
+			PreparedStatement st = cn.prepareStatement("INSERT INTO img (img) VALUES (?)");
+			LOGGER.info("Ha realizado la conexion2");
 			st.setBinaryStream(1, upload.getInputStream());
+			LOGGER.info("Ha realizado la conexion3");
 			st.executeUpdate();
+			LOGGER.info("Ha realizado la conexion4");
 			cn.close();
 			FacesMessage message = new FacesMessage("EXITO", upload.getFileName() + "fue subido");
 			FacesContext.getCurrentInstance().addMessage(null, message);
@@ -121,14 +126,16 @@ public class Alumnos {
 	
 	public String autenticar(){
 		LOGGER.info("alumno: " + alumno.getDni() + " | " + alumno.getNombreCompleto());
-		try {
-			 boolean t = alumnos.autenticar(alumno.getDni(), alumno.getNombreCompleto());
+		
+			boolean t = alumnos.autenticar(alumno.getDni(), alumno.getNombreCompleto());
 			if (t)return "index.xhtml";
-			else return "insertar_Alumno.xhtml";
-		}catch (AlumnoNoEncontradoException e) {
+
+			return null;
+			
+	
 			// TODO: handle exception
-			return "insertar_Alumno.xhtml";
-		}
+			
+		
 		
 		
 	}
