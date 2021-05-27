@@ -36,9 +36,11 @@ public class CentroEJB implements GestionCentro {
 		centros.setParameter("direccion", direccion);
 		centros.setParameter("tlfConserjeria", tlfConserjeria);
 		List<Centro> centro = centros.getResultList();
-		Centro cen = centro.get(0);
-		if(cen == null) throw new CentroNoEncontradoException();
 		
+		if(centro == null || centro.size() == 0) {
+			throw new CentroNoEncontradoException();
+		}
+		Centro cen = centro.get(0);
 		return cen;
 	}
 
