@@ -17,9 +17,14 @@
 </h:head>
 
 <h:body>
+				
 	<div class="contenedor seccion ">
 	<h:form id="alumnos-id" styleClass="centrar-texto navegacion table-mostrar">
+	<h:commandButton value="Eliminar Todos"
+					action="#{alumnos2.borrarTodos()}"
+					onclick="alert('ALUMNOs BORRADOs');" />
 		<h:dataTable value="#{alumnos2.listAlumnos}" var="al">
+		
 			<h:column>
 				<f:facet name="header">DNI </f:facet>
 				<h:outputText value="#{al.dni}" />

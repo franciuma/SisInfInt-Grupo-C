@@ -122,4 +122,20 @@ public class AlumnosEJB implements GestionAlumno {
 		
 			
 	}
+	
+	@Override
+	public void eliminarTodos() {
+		// TODO Auto-generated method stub
+		List<Alumno> alumnos = obtenerAlumnos();
+		if(alumnos.size() != 0) {
+			for (Alumno al : alumnos) {
+				try {
+					eliminarAlumno(al.getDni());
+				} catch (AlumnoNoEncontradoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 }

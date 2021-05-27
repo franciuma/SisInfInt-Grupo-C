@@ -21,5 +21,6 @@ public interface GestionAlumno{
 	public List<Alumno> obtenerAlumnos ();
 	public void importarAlumnos(String sFile) throws IOException, AlumnoYaExistenteException;
 	public boolean autenticar(String dni, String contra);
+	public void eliminarTodos();
 
 }

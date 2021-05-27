@@ -1,29 +1,20 @@
 package es.uma.informatica.jpa.backing;
 
-import java.io.IOException;
+import java.io.File;
 
-import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Part;
-import javax.swing.text.Document;
-
-import org.primefaces.component.fileupload.FileUpload;
-import org.primefaces.model.file.UploadedFile;
-
 import es.uma.informatica.ejb.GestionAlumno;
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
-import es.uma.informatica.ejb.exceptions.ProyectoException;
+
 import es.uma.informatica.jpa.demo.Alumno;
 
 @Named(value="alumnos2")
@@ -33,34 +24,28 @@ public class Alumnos {
 	
 	@Inject
 	private GestionAlumno alumnos;
-	private UploadedFile upload;
+	//private UploadedFile upload;
+	private Part upload;
+	public Part getUpload() {
+		return upload;
+	}
+	public void setUpload(Part upload) {
+		this.upload = upload;
+	}
+
 	private Alumno alumno;
 	private boolean insertar_AL;
 	private List<Alumno> listAlumnos;
 	
+	public String borrarTodos() {
+		alumnos.eliminarTodos();
+		FacesMessage message = new FacesMessage("Borrado con exito");
+		FacesContext.getCurrentInstance().addMessage(null, message);
+		return null;
+	}
 	public String importarAlumnos() {
 		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection cn = DriverManager.getConnection("jdbc:h2:mem");
-			LOGGER.info("Ha realizado la conexion");
-			PreparedStatement st = cn.prepareStatement("INSERT INTO img (img) VALUES (?)");
-			LOGGER.info("Ha realizado la conexion2");
-			st.setBinaryStream(1, upload.getInputStream());
-			LOGGER.info("Ha realizado la conexion3");
-			st.executeUpdate();
-			LOGGER.info("Ha realizado la conexion4");
-			cn.close();
-			FacesMessage message = new FacesMessage("EXITO", upload.getFileName() + "fue subido");
-			FacesContext.getCurrentInstance().addMessage(null, message);
-			return "lista_alumnos.xhtml";
-		}catch (Exception e) {
-			// TODO: handle exception
-			FacesMessage message = new FacesMessage("Error con la conexión");
-			FacesContext.getCurrentInstance().addMessage(null, message);
-		}
-//		String sFile = Paths.get(upload.getName()).getFileName().toString();
-//		
+
 //		/* 	1ERA OPCIÓN
 //		 * - Crear con FILE un fichero temporal con nombre con prefijo aleatorio
 //		 * - Pasamos la ruta de ese fichero al upload.write 
@@ -71,16 +56,30 @@ public class Alumnos {
 //		 * - Pasamos la ruta del fichero al upload.write
 //		 * upload.write("/tmp/alumnos.xlsx"); */
 //		
-//		try {
-//			alumnos.importarAlumnos(sFile);
-//			return "lista_alumnos.xhtml";
-//		} catch (AlumnoYaExistenteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
+		String sFile ="/tmp/alumnos.xlsx"; 
+		File filtemp = new File(sFile);
+		
+		try {
+			upload.write(sFile);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			alumnos.importarAlumnos(sFile);
+			filtemp.delete();
+			return "lista_alumnos.xhtml";
+		} catch (AlumnoYaExistenteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		filtemp.delete();
 		return null;
 	}
 	public Alumnos() {
@@ -169,13 +168,7 @@ public class Alumnos {
 		this.insertar_AL = insertar_AL;
 	}
 
-	public UploadedFile getUpload() {
-		return upload;
-	}
 
-	public void setUpload(UploadedFile upload) {
-		this.upload = upload;
-	}
 	
 
 

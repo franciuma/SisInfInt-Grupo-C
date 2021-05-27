@@ -5,7 +5,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
+	
 	>
 	
 	
@@ -55,9 +55,9 @@
 			
 		</h:form>
 		<h:form id="importarALumnos" method="post" enctype="multipart/form-data">
-			<p:growl showDetail="true"/>
-			<p:fileUpload value="#{alumnos2.upload}" mode="simple"/>		
-			<h:commandButton value="Enviar Fichero"  actionListener="#{alumnos2.importarAlumnos()}"/>
+			<h:inputFile id = "file" value="#{alumnos2.upload}"/>
+		
+		<h:commandButton value="Enviar Fichero" type ="submit" action="#{alumnos2.importarAlumnos()}"/>
 		</h:form>
 	</div>
 </h:body>
