@@ -39,9 +39,11 @@ public class ExpedienteEJB implements GestionExpediente{
     	TypedQuery<Expediente>  expedientes = em.createQuery("Select e from Expediente e where e.numExpediente = :numExpediente" ,Expediente.class);
 		expedientes.setParameter("numExpediente", numExpediente);
 		List<Expediente> expediente = expedientes.getResultList();
-		Expediente ex = expediente.get(0);
-		if(ex == null) throw new ExpedienteNoEncontradoException();
 		
+		if(expediente == null || expediente.size() == 0) {
+			throw new ExpedienteNoEncontradoException();
+		}
+		Expediente ex = expediente.get(0);
 		return ex;
     }
  

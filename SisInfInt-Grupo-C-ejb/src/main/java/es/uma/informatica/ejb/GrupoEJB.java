@@ -38,10 +38,11 @@ public class GrupoEJB implements GestionGrupo{
         grupos.setParameter("asignar", asignar);
         grupos.setParameter("plazas", plazas);
         List<Grupo> grupo = grupos.getResultList();
-        Grupo gru = grupo.get(0);
-		if(gru == null) {
+        
+		if(grupo == null || grupo.size() == 0) {
             throw new GrupoNoEncontradoException();
         }
+		Grupo gru = grupo.get(0);
         return gru;
 	}
 

@@ -42,11 +42,11 @@ public class MatriculaEJB implements GestionMatricula {
 		TypedQuery<Matricula>  matriculas = em.createQuery("Select m from Matricula m where m.cursoAcademico = :cursoAcademico" , Matricula.class);
 		matriculas.setParameter("cursoAcademico", cursoAcademico);
 		List<Matricula> matricula = matriculas.getResultList();
-		Matricula mat = matricula.get(0);
-		if(mat == null) {
+		
+		if(matricula == null || matricula.size() == 0) {
 			throw new MatriculaNoEncontradaException();
 		}
-		
+		Matricula mat = matricula.get(0);
 		return mat;
 	}
 	
