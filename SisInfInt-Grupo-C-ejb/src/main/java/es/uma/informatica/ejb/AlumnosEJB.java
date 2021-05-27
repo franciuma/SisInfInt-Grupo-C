@@ -44,9 +44,8 @@ public class AlumnosEJB implements GestionAlumno {
 		TypedQuery<Alumno>  alumnos = em.createQuery("Select e from Alumno e where e.dni = :dni" , Alumno.class);
 		alumnos.setParameter("dni", dni);
 		List<Alumno> alumno = alumnos.getResultList();
+		if(alumno == null || alumno.size() == 0) throw new AlumnoNoEncontradoException();
 		Alumno al = alumno.get(0);
-		if(al == null) throw new AlumnoNoEncontradoException();
-	
 		return al;
 	}
 	
@@ -112,12 +111,31 @@ public class AlumnosEJB implements GestionAlumno {
 	@Override
 	public boolean autenticar(String dni, String nombre) {
 		// TODO Auto-generated method stub
+
 		try {
 			Alumno al = obtenerAlumno(dni);
 			return al.getNombreCompleto().equals(nombre);
-		}catch (AlumnoNoEncontradoException e) {
+		} catch (AlumnoNoEncontradoException e) {
+			// TODO Auto-generated catch block
 			return false;
 		}
+		
 			
+	}
+	
+	@Override
+	public void eliminarTodos() {
+		// TODO Auto-generated method stub
+		List<Alumno> alumnos = obtenerAlumnos();
+		if(alumnos.size() != 0) {
+			for (Alumno al : alumnos) {
+				try {
+					eliminarAlumno(al.getDni());
+				} catch (AlumnoNoEncontradoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }

@@ -12,11 +12,46 @@
 		href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
 		rel="stylesheet" />
 	<link rel="stylesheet" href="recursos/css/normalize.css" />
-	<link rel="stylesheet" href="recursos/css/styles.css" />
+	<link rel="stylesheet" href="recursos/css/styleInsertar.css" />
 
 </h:head>
 <h:body>
-	<h:form id = "tabla_insertar_alumno" styleClass="navegacion ">
+<div class="form-box">
+		<h2>Modificar Alumno con dni : <h:outputText value="#{alumnos2.alumno.dni}" /></h2>
+		
+		<h:form>
+			<h:inputHidden value="#{alumnos2.alumno.dni}"/>
+
+			<div class="input-box">
+				<h:inputText id="nombre" value="#{alumnos2.alumno.nombreCompleto}" />
+				<label>Nombre</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="telefono" value="#{alumnos2.alumno.telefono}" />
+				<label>Telefono</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="movil" value="#{alumnos2.alumno.movil}" />
+				<label>Movil</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="email-institucional" value="#{alumnos2.alumno.emailInstitucional}" readonly="true"/>
+				
+				<label>Email Institucional</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="email-personal" value="#{alumnos2.alumno.emailPersonal}"  validatorMessage="Compruebe que ha introducido un e-mail-personal correcto">
+				<f:validateRegex pattern=".+@.+" />
+				</h:inputText>
+				<label>Email Personal</label>
+			</div>
+			<h:commandLink value="Actualizar Alumno" type ="submit" action="#{alumnos2.actualizarAlumno()}"/>
+			<h:link outcome ="index.xhtml">Atrás</h:link>
+			
+			
+		</h:form>
+		</div>
+	<!-- <h:form id = "tabla_insertar_alumno" styleClass="navegacion ">
 		<h:outputText value="Dni : #{alumnos2.alumno.dni}" />
 		 <h:panelGrid columns="3">
 		<h:inputHidden value="#{alumnos2.alumno.dni}"/>
@@ -44,6 +79,6 @@
 		<h:link outcome="lista_alumnos.xhtml">Atrás</h:link>
 		 </h:panelGrid>
 		 <h:messages/>
-	</h:form>
+	</h:form> -->
 </h:body>
 </html>
