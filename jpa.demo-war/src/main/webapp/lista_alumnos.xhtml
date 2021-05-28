@@ -11,19 +11,21 @@
 	<link
 		href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
 		rel="stylesheet" />
-	<link rel="stylesheet" href="recursos/css/normalize.css" />
-	<link rel="stylesheet" href="recursos/css/styles.css" />
+	<link rel="stylesheet" href="recursos/css/styleListar.css" />
 
 </h:head>
 
 <h:body>
 				
-	<div class="contenedor seccion ">
-	<h:form id="alumnos-id" styleClass="centrar-texto navegacion table-mostrar">
-	<h:commandButton value="Eliminar Todos"
+	<div class="list-box">
+	<h:form id="alumnos-id">
+		<h:link outcome="index.xhtml">Atrás</h:link>
+		<h2>Listado de Alumnos</h2>
+		<h:commandButton value="Eliminar Todos"
 					action="#{alumnos2.borrarTodos()}"
-					onclick="alert('ALUMNOs BORRADOs');" />
-		<h:dataTable value="#{alumnos2.listAlumnos}" var="al">
+					onclick="alert('ALUMNOs BORRADOs');" 
+					class="deleteAllButton"/>
+		<h:dataTable value="#{alumnos2.listAlumnos}" var="al" class="datatable-box">
 		
 			<h:column>
 				<f:facet name="header">DNI </f:facet>
@@ -54,7 +56,7 @@
 			</h:column>
 			<h:column>
 				<h:commandButton value="Modificar"
-					action="#{alumnos2.modoModificarAlumno(al)}" />
+					action="#{alumnos2.modoModificarAlumno(al)}" class="modifyColumn"/>
 			</h:column>
 
 			<h:column>
@@ -64,7 +66,6 @@
 			</h:column>
 
 		</h:dataTable>
-		<h:link outcome="index.xhtml">Atrás</h:link>
 	</h:form>
 	
 	</div>
