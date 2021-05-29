@@ -4,6 +4,8 @@ import java.io.File;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -20,6 +22,7 @@ import es.uma.informatica.ejb.exceptions.MatriculaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.MatriculaYaExistenteException;
 import es.uma.informatica.jpa.demo.Alumno;
 import es.uma.informatica.jpa.demo.Matricula;
+import es.uma.informatica.jpa.demo.Matricula_ID;
 
 @Named(value="matriculas")
 @RequestScoped
@@ -38,6 +41,16 @@ public class Matriculas {
 	}
 
 	private Matricula matricula;
+	private Matricula_ID matricula_id;
+	private String expediente;
+	private String fecha_ingreso;
+	public Matricula_ID getMatricula_id() {
+		return matricula_id;
+	}
+	public void setMatricula_id(Matricula_ID matricula_id) {
+		this.matricula_id = matricula_id;
+	}
+
 	private boolean insertar_MA;
 	private List<Matricula> listMatriculas;
 	
@@ -81,6 +94,7 @@ public class Matriculas {
 	public Matriculas() {
 		// TODO Auto-generated constructor stub
 		matricula = new Matricula();
+		matricula_id = new Matricula_ID();
 		insertar_MA = false;
 	}
 	
@@ -88,10 +102,21 @@ public class Matriculas {
 	public String aniadir_Matricula() {
 		
 		try {
+			Long exp = Long.parseLong(expediente);
+			SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+			Date fecha = null;
+			fecha = formatoDelTexto.parse(fecha_ingreso);
+			matricula.setFechaMatricula(fecha);
+			matricula_id.setExpediente(exp);
+			matricula.setId(matricula_id);
+			LOGGER.info("Matricula: " + matricula.toString());
 			matriculas.insertarMatricula(matricula);
 			setInsertar_MA(true);
 			return "exitoInsertarMatricula.xhtml";
 		} catch (MatriculaYaExistenteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -148,6 +173,18 @@ public class Matriculas {
 
 	public void setInsertar_MA(boolean insertar_MA) {
 		this.insertar_MA = insertar_MA;
+	}
+	public String getExpediente() {
+		return expediente;
+	}
+	public void setExpediente(String expediente) {
+		this.expediente = expediente;
+	}
+	public String getFecha_ingreso() {
+		return fecha_ingreso;
+	}
+	public void setFecha_ingreso(String fecha_ingreso) {
+		this.fecha_ingreso = fecha_ingreso;
 	}
 
 

@@ -23,6 +23,10 @@
 		<h2>Insertar Matricula</h2>
 		<h:form>
 			<div class="input-box">
+				<h:inputText id="expediente" value="#{matriculas.expediente}" />
+				<label>Expediente</label>
+			</div>
+			<div class="input-box">
 				<h:inputText id="cursoAcademico" value="#{matriculas.matricula.cursoAcademico}" />
 				<label>Curso Academico</label>
 			</div>
@@ -41,7 +45,7 @@
 				<label>Turno Preferente</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="fechaMatricula" value="#{matriculas.matricula.fechaMatricula}" />
+				<h:inputText id="fechaMatricula" value="#{matriculas.fecha_ingreso}" />
 				<label>fecha</label>
 			</div>
 			<div class="input-box">
