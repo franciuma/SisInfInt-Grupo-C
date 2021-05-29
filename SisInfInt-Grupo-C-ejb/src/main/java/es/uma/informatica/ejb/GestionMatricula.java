@@ -23,7 +23,9 @@ public interface GestionMatricula {
 
 	public List<Matricula> obtenerMatriculas();
 
-	void importarMatricula() throws IOException, ParseException, MatriculaYaExistenteException;
+	void importarMatricula(String sFile) throws IOException, ParseException, MatriculaYaExistenteException;
+
+	void eliminarTodas();
 	
 
 }

@@ -76,10 +76,10 @@ public class MatriculaEJB implements GestionMatricula {
 	}
 	
 	@Override
-	public void importarMatricula() throws IOException, ParseException, MatriculaYaExistenteException {
+	public void importarMatricula(String sFile) throws IOException, ParseException, MatriculaYaExistenteException {
 		try {
-			String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
-			String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Datos alumnadoFAKE.xlsx";
+			//String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
+			//String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Datos alumnadoFAKE.xlsx";
 			@SuppressWarnings("deprecation")
 			XSSFWorkbook workbook = new XSSFWorkbook(sFile);
 			XSSFSheet sheet = workbook.getSheet("Hoja1");
@@ -109,6 +109,22 @@ public class MatriculaEJB implements GestionMatricula {
 			}
 		} catch(IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void eliminarTodas() {
+		// TODO Auto-generated method stub
+		List<Matricula> matriculas = obtenerMatriculas();
+		if(matriculas.size() != 0) {
+			for (Matricula mat : matriculas) {
+				try {
+					eliminarMatricula(mat.getCursoAcademico());
+				} catch (MatriculaNoEncontradaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 }
