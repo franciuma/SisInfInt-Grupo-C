@@ -103,7 +103,9 @@ public class Sample_Matricula {
 		final String listado = "101-,103-,105-,109-,110-,202-,204-,205-,206-,208-,209-";
 		try {
 			Matricula matricula = new Matricula(curso, estado, turno, listado);
-			gestionMatricula.importarMatricula();
+			String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
+			String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Datos alumnadoFAKE.xlsx";
+			gestionMatricula.importarMatricula(sFile);
 			Matricula m = gestionMatricula.obtenerMatricula(curso);
 			assertEquals("No es la misma matricula",listado,m.getListadoAsignaturas());
 		} catch(MatriculaNoEncontradaException e) {

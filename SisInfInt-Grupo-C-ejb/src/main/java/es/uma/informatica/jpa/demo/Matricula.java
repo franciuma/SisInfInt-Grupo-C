@@ -1,6 +1,7 @@
 package es.uma.informatica.jpa.demo;
 
 import java.io.Serializable;
+
 import java.util.Date;
 import java.util.List;
 
