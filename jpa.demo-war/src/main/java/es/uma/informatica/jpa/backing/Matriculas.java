@@ -124,7 +124,7 @@ public class Matriculas {
 	}
 	public String eliminarMatricula(Matricula mat) {
 		try {
-			matriculas.eliminarMatricula(mat.getCursoAcademico());
+			matriculas.eliminarMatricula(mat);
 		} catch (MatriculaNoEncontradaException e) {
 			// TODO Auto-generated catch block
 			return "index.xhtml";

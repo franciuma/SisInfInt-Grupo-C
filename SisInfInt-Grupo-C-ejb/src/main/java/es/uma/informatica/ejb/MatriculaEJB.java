@@ -36,11 +36,12 @@ public class MatriculaEJB implements GestionMatricula {
 		em.persist(mat);
 	}
 	@Override
-	public Matricula obtenerMatricula(String cursoAcademico) throws MatriculaNoEncontradaException {
+	public Matricula obtenerMatricula(String cursoAcademico,Matricula_ID matri) throws MatriculaNoEncontradaException {
 		// TODO iAuto-generated method stub
 
-		TypedQuery<Matricula>  matriculas = em.createQuery("Select m from Matricula m where m.cursoAcademico = :cursoAcademico" , Matricula.class);
+		TypedQuery<Matricula>  matriculas = em.createQuery("Select m from Matricula m where m.cursoAcademico = :cursoAcademico AND m.id = :mat_id" , Matricula.class);
 		matriculas.setParameter("cursoAcademico", cursoAcademico);
+		matriculas.setParameter("mat_id", matri);
 		List<Matricula> matricula = matriculas.getResultList();
 		
 		if(matricula == null || matricula.size() == 0) {
@@ -51,15 +52,15 @@ public class MatriculaEJB implements GestionMatricula {
 	}
 	
 	@Override
-	public void eliminarMatricula(String cursoAcademico) throws MatriculaNoEncontradaException {
-		Matricula matricula = obtenerMatricula(cursoAcademico);
+	public void eliminarMatricula(Matricula mat) throws MatriculaNoEncontradaException {
+		Matricula matricula = obtenerMatricula(mat.getCursoAcademico(), mat.getId());
 		em.remove(matricula);
 		
 	}
 	
 	@Override
 	public void actualizarMatricula(Matricula mat) throws MatriculaNoEncontradaException{
-		Matricula matri = obtenerMatricula(mat.getCursoAcademico());
+		Matricula matri = obtenerMatricula(mat.getCursoAcademico(), mat.getId());
 		matri.setEstado(mat.getEstado());
 		matri.setFechaMatricula(mat.getFechaMatricula());
 		matri.setListadoAsignaturas(mat.getListadoAsignaturas());
@@ -119,7 +120,7 @@ public class MatriculaEJB implements GestionMatricula {
 		if(matriculas.size() != 0) {
 			for (Matricula mat : matriculas) {
 				try {
-					eliminarMatricula(mat.getCursoAcademico());
+					eliminarMatricula(mat);
 				} catch (MatriculaNoEncontradaException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

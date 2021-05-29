@@ -14,6 +14,9 @@ body {
   background-attachment: fixed;
 }
 
+table.auto{
+	table-layout:auto;
+}
 .list-box {
   margin: 0 auto;
   margin-top: 50px;
@@ -28,6 +31,7 @@ body {
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0,0,0,.6);
   border-radius: 10px;
+  overflow-x: scroll;
 }
 
 .list-box h2 {
