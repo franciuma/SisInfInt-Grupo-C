@@ -37,7 +37,7 @@ public class Asignatura implements Serializable {
 	@Column(name = "Caracter", length = 20)
 	private String caracter;
 	@Column(name = "Duracion")
-	private Integer Duracion;
+	private Integer duracion;
 	@Column(name = "Unidad_Temporal_Cuatrimestre", length = 20)
 	private String unidadTemporal;
 	@Column(name = "Idiomas_Imparticion", length = 100)
@@ -62,7 +62,7 @@ public class Asignatura implements Serializable {
 		nombre = nombre2;
 		curso = curso2;
 		caracter = caracter2;
-		Duracion = duracion2;
+		duracion = duracion2;
 		idiomasImparticion = idiomasIm;
 	}
 	
@@ -127,11 +127,11 @@ public class Asignatura implements Serializable {
 	}
 	
 	public Integer getDuracion() {
-		return Duracion;
+		return duracion;
 	}
 	
-	public void setDuracion(Integer duracion) {
-		Duracion = duracion;
+	public void setDuracion(Integer durac) {
+		duracion = durac;
 	}
 	
 	public String getUnidadTemporal() {
@@ -154,7 +154,7 @@ public class Asignatura implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Duracion == null) ? 0 : Duracion.hashCode());
+		result = prime * result + ((duracion == null) ? 0 : duracion.hashCode());
 		result = prime * result + ((caracter == null) ? 0 : caracter.hashCode());
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		result = prime * result + ((creditos == null) ? 0 : creditos.hashCode());
@@ -176,10 +176,10 @@ public class Asignatura implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Asignatura other = (Asignatura) obj;
-		if (Duracion == null) {
-			if (other.Duracion != null)
+		if (duracion == null) {
+			if (other.duracion != null)
 				return false;
-		} else if (!Duracion.equals(other.Duracion))
+		} else if (!duracion.equals(other.duracion))
 			return false;
 		if (caracter == null) {
 			if (other.caracter != null)
@@ -233,7 +233,7 @@ public class Asignatura implements Serializable {
 	public String toString() {
 		return "Asignatura [referencia=" + referencia + ", codigo=" + codigo + ", creditos=" + creditos + ", ofertada="
 				+ ofertada + ", nombre=" + nombre + ", curso=" + curso + ", caracter=" + caracter + ", Duracion="
-				+ Duracion + ", unidadTemporal=" + unidadTemporal + ", idiomasImparticion=" + idiomasImparticion + "]";
+				+ duracion + ", unidadTemporal=" + unidadTemporal + ", idiomasImparticion=" + idiomasImparticion + "]";
 	}
 
 	public Titulacion getTitulacion() {

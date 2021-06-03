@@ -20,8 +20,8 @@ public interface GestionExpediente {
      */
     public void insertarExpediente (Expediente expediente) throws ExpedienteYaExistenteException;
     public Expediente obtenerExpediente(Integer numExpediente) throws ExpedienteNoEncontradoException;
-    public void eliminarExpediente (Integer numExpediente) throws ExpedienteNoEncontradoException;
+    public void eliminarExpediente (Expediente ex) throws ExpedienteNoEncontradoException;
     public List<Expediente> obtenerExpedientes();
     void actualizarExpediente(Expediente expediente) throws ExpedienteNoEncontradoException;
-    
+    void eliminarTodos();
 }

@@ -12,8 +12,10 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import es.uma.informatica.ejb.exceptions.AsignaturaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.AsignaturaYaExistenteException;
+import es.uma.informatica.ejb.exceptions.MatriculaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.Asignatura;
+import es.uma.informatica.jpa.demo.Matricula;
 
 
 @Stateless
@@ -48,13 +50,10 @@ public class AsignaturaEJB implements GestionAsignatura{
 	}
 
 	@Override
-	public void eliminarAsignatura(Integer referencia) throws AsignaturaNoEncontradaException {
-		// TODO Auto-generated method stub
-		Asignatura asignatura = em.find(Asignatura.class, referencia);
-		if(asignatura == null) {
-            throw new AsignaturaNoEncontradaException();
-        }
+	public void eliminarAsignatura(Asignatura asi) throws AsignaturaNoEncontradaException {
+		Asignatura asignatura = obtenerAsignatura(asi.getReferencia());
 		em.remove(asignatura);
+		
 	}
 
 	@Override
@@ -81,10 +80,10 @@ public class AsignaturaEJB implements GestionAsignatura{
 	}
 	
 	@Override
-	public void importarAsignatura() throws IOException, AsignaturaYaExistenteException {
+	public void importarAsignatura(String sFile) throws IOException, AsignaturaYaExistenteException {
 		try {
-			String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
-			String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Oferta asignaturas.xlsx";
+			//String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
+			//String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Oferta asignaturas.xlsx";
 			@SuppressWarnings("deprecation")
 			XSSFWorkbook workbook = new XSSFWorkbook(sFile);
 			XSSFSheet sheet = workbook.getSheet("GII");
@@ -133,6 +132,22 @@ public class AsignaturaEJB implements GestionAsignatura{
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public void eliminarTodas() {
+		// TODO Auto-generated method stub
+		List<Asignatura> asignaturas = obtenerAsignaturas();
+		if(asignaturas.size() != 0) {
+			for (Asignatura asi : asignaturas) {
+				try {
+					eliminarAsignatura(asi);
+				} catch (AsignaturaNoEncontradaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 }
