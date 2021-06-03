@@ -48,9 +48,9 @@ public class ExpedienteEJB implements GestionExpediente{
     }
  
     @Override
-    public void eliminarExpediente(Integer numExpediente) throws ExpedienteNoEncontradoException {
+    public void eliminarExpediente(Expediente ex) throws ExpedienteNoEncontradoException {
         // TODO Auto-generated method stub
-        Expediente exp = obtenerExpediente(numExpediente);
+        Expediente exp = obtenerExpediente(ex.getNumExpediente());
 //        if(exp == null) {
 //            throw new ExpedienteNoEncontradoException();
 //        }
@@ -72,6 +72,12 @@ public class ExpedienteEJB implements GestionExpediente{
     	TypedQuery<Expediente> query = em.createNamedQuery("findAllExpedientes", Expediente.class);
         return query.getResultList();
     }
+
+	@Override
+	public void eliminarTodos() {
+		// TODO Auto-generated method stub
+		
+	}
     
     
     

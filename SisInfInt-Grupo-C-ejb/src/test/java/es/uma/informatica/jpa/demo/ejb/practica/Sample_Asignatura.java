@@ -11,6 +11,7 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
@@ -87,7 +88,7 @@ public class Sample_Asignatura {
 	
 	@Requisitos({"RF7"})
 	@Test
-	public void testImportarDatosAsignatura() throws AsignaturaYaExistenteException, IOException, AsignaturaNoEncontradaException {
+	public void testImportarDatosAsignatura() throws AsignaturaYaExistenteException, IOException, AsignaturaNoEncontradaException, ParseException {
 		final Integer referencia = 50658;
 		final Integer codigo = 101;
 		final Integer creditos = 6;
@@ -99,7 +100,9 @@ public class Sample_Asignatura {
 		final String idiomasIm = "";
 		try {
 			Asignatura calculo = new Asignatura(referencia, codigo, creditos, ofertada, nombre, curso, caracter, duracion, idiomasIm);
-			gestionAsignatura.importarAsignatura();
+			String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
+			String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Datos asignaturaFAKE.xlsx";
+			gestionAsignatura.importarAsignatura(sFile);
 			Asignatura c = gestionAsignatura.obtenerAsignatura(referencia);
 			assertEquals("No es la misma asignatura", c,calculo);
 		}catch(AsignaturaYaExistenteException e) {
