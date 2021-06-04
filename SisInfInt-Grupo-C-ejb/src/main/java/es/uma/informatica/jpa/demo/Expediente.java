@@ -43,7 +43,7 @@ public Expediente(Integer numExpediente, Boolean activo, Double notaMediaProvisi
 	}
 	
 	public Expediente() {
-		
+		activo = true;
 	}
 	
 	public Integer getNumExpediente() {

@@ -108,10 +108,12 @@ public class AlumnosEJB implements GestionAlumno {
 					if(sheet.getRow(fila).getCell(17).getCellType()==0) {
 						Double nota_media = (double) Math.round(sheet.getRow(fila).getCell(17).getNumericCellValue());
 						ex = new Expediente(x, true, nota_media);
+						LOGGER.info(nota_media.toString());
 
 					} else {
 						String nota_media = (String) sheet.getRow(fila).getCell(17).getStringCellValue();
 						Double nota_med = Double.parseDouble(nota_media);
+						LOGGER.info(nota_med.toString());
 						ex = new Expediente(x, true, nota_med);
 					}
 					//em.persist(a);
