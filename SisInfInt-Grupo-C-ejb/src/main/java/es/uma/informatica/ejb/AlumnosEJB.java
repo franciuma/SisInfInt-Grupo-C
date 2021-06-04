@@ -116,6 +116,7 @@ public class AlumnosEJB implements GestionAlumno {
 					}
 					//em.persist(a);
 					//espediente del alumno	
+					//hola
 					List exps = a.getExpedientes();
 					exps.add(ex);
 					a.setExpedientes(exps);
