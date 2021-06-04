@@ -40,7 +40,7 @@ public class Sample_Expediente {
 			
 			final Integer numExpediente = 22;
 			final Boolean activo = true;
-			final Integer notaMediaProvisional = 8;
+			final Double notaMediaProvisional = 8.0;
 			
 		try {
 			

@@ -59,7 +59,7 @@ public class Alumnos {
 
 		String sFile ="/tmp/alumnos.xlsx"; 
 		File filtemp = new File(sFile);
-		
+		filtemp.delete();
 		try {
 			upload.write(sFile);
 		} catch (IOException e) {

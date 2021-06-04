@@ -98,8 +98,28 @@ public class AlumnosEJB implements GestionAlumno {
 				a.setTelefono(telfFijo);
 				String telfMov = (String) sheet.getRow(fila).getCell(9).getStringCellValue();
 				a.setMovil(telfMov);
+				
+
+				
 				if(a.getDni().length() > 2) {
+					String numero_expediente = (String) sheet.getRow(fila).getCell(4).getStringCellValue();
+					Integer x = Integer.parseInt(numero_expediente);
+					Expediente ex = null;
+					if(sheet.getRow(fila).getCell(17).getCellType()==0) {
+						Double nota_media = (double) Math.round(sheet.getRow(fila).getCell(17).getNumericCellValue());
+						ex = new Expediente(x, true, nota_media);
+
+					} else {
+						String nota_media = (String) sheet.getRow(fila).getCell(17).getStringCellValue();
+						Double nota_med = Double.parseDouble(nota_media);
+						ex = new Expediente(x, true, nota_med);
+					}
 					//em.persist(a);
+					//espediente del alumno	
+//					List exps = a.getExpedientes();
+//					exps.add(ex);
+//					a.setExpedientes(exps);
+					//el alumno
 					insertarAlumno(a);
 				}
 			}
