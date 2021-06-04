@@ -50,8 +50,7 @@ public class Alumno implements Serializable {
 	}
 	
 	public Alumno() {
-		
-		
+		expedientes = new ArrayList<Expediente>();
 	}
 	
 	public String getDni() {

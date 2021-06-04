@@ -24,7 +24,7 @@
 		<h:commandButton value="Eliminar Todos"
 					action="#{expedientes.borrarTodos()}"
 					onclick="alert('EXPEDIENTEs BORRADOs');" />
-		<h:dataTable value="#{expedientes.listExpedientes}" var="ex">
+		<h:dataTable value="#{expedientes.getListExpedientes()}" var="ex">
 		
 			<h:column>
 				<f:facet name="header">Numero Expediente</f:facet>
