@@ -103,6 +103,7 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 		this.insertar_EX = insertar_EX;
 	}
 	public List<Expediente> getListExpedientes() {
+		listExpedientes = expedientes.obtenerExpedientes();
 		return listExpedientes;
 	}
 	public void setListExpedientes(List<Expediente> listExpedientes) {

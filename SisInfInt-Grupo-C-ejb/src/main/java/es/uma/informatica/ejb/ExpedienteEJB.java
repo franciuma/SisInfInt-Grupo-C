@@ -76,7 +76,9 @@ public class ExpedienteEJB implements GestionExpediente{
 	@Override
 	public void eliminarTodos() {
 		// TODO Auto-generated method stub
-		
+		for(Expediente ex : obtenerExpedientes()) {
+			em.remove(ex);
+		}
 	}
     
     
