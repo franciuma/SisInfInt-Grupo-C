@@ -25,7 +25,7 @@
 	<h:commandLink value="Eliminar Todas"
 					action="#{matriculas.borrarTodas()}"
 					onclick="alert('MATRICULAs BORRADAs');" />
-		<h:dataTable value="#{matriculas.listMatriculas}" var="ma">
+		<h:dataTable value="#{matriculas.getListMatriculas()}" var="ma">
 		
 			<h:column>
 				<f:facet name="header">Curso Academico </f:facet>

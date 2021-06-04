@@ -42,7 +42,7 @@ public class Asignaturas {
 	private boolean insertar_AS;
 	private List<Asignatura> listAsignaturas;
 	
-	public String borrarTodos() {
+	public String borrarTodas() {
 		asignaturas.eliminarTodas();
 		FacesMessage message = new FacesMessage("Borrado con exito");
 		FacesContext.getCurrentInstance().addMessage(null, message);
@@ -63,7 +63,7 @@ public class Asignaturas {
 		try {
 			asignaturas.importarAsignatura(sFile);
 			filtemp.delete();
-			return "lista_alumnos.xhtml";
+			return "lista_asignaturas.xhtml";
 		} catch (AsignaturaYaExistenteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,6 +133,7 @@ public class Asignaturas {
 		this.insertar_AS = insertar_AS;
 	}
 	public List<Asignatura> getListAsignaturas() {
+		listAsignaturas = asignaturas.obtenerAsignaturas();
 		return listAsignaturas;
 	}
 	public void setListAsignaturas(List<Asignatura> listAsignaturas) {
