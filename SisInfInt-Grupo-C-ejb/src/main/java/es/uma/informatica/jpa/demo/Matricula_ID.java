@@ -9,20 +9,20 @@ public class Matricula_ID implements Serializable {
 		
 	
 	private static final long serialVersionUID = 1L;
-	private Long expediente;
+	private Integer expediente;
 	
 	public Matricula_ID() {
 		// TODO Auto-generated constructor stub
 	}
-	public Matricula_ID(Long expediente) {
+	public Matricula_ID(Integer expediente) {
 		super();
 		this.expediente = expediente;
 	}
 	
-	public Long getExpediente() {
+	public Integer getExpediente() {
 		return expediente;
 	}
-	public void setExpediente(Long expediente) {
+	public void setExpediente(Integer expediente) {
 		this.expediente = expediente;
 	}
 	@Override

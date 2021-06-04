@@ -72,9 +72,10 @@ public class Sample_Expediente {
 	@Requisitos({"RF14"})
 	@Test
 	public void testEliminarExpediente() {
-
+		
 		try {
-			gestionExpediente.eliminarExpediente(11);
+			Expediente exp = gestionExpediente.obtenerExpediente(11);
+			gestionExpediente.eliminarExpediente(exp);
 		}catch (ExpedienteNoEncontradoException e) {
 			throw new RuntimeException(e);
 		}

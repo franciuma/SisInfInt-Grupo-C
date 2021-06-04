@@ -102,7 +102,7 @@ public class Matriculas {
 	public String aniadir_Matricula() {
 		
 		try {
-			Long exp = Long.parseLong(expediente);
+			Integer exp = Integer.parseInt(expediente);
 			SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
 			Date fecha = null;
 			fecha = formatoDelTexto.parse(fecha_ingreso);

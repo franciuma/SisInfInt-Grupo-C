@@ -100,7 +100,7 @@ public class MatriculaEJB implements GestionMatricula {
 					String listado = (String) sheet.getRow(fila).getCell(16).getStringCellValue();
 					m.setListadoAsignaturas(listado);
 					String numero_expediente = (String) sheet.getRow(fila).getCell(4).getStringCellValue();
-					Long x = Long.parseLong(numero_expediente);
+					Integer x = Integer.parseInt(numero_expediente);
 					Matricula_ID m_id = new Matricula_ID(x);
 					m.setId(m_id);
 					insertarMatricula(m);

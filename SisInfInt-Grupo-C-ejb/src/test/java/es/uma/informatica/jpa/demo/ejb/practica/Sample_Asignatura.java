@@ -101,7 +101,7 @@ public class Sample_Asignatura {
 		try {
 			Asignatura calculo = new Asignatura(referencia, codigo, creditos, ofertada, nombre, curso, caracter, duracion, idiomasIm);
 			String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
-			String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Datos asignaturaFAKE.xlsx";
+			String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Oferta asignaturas.xlsx";
 			gestionAsignatura.importarAsignatura(sFile);
 			Asignatura c = gestionAsignatura.obtenerAsignatura(referencia);
 			assertEquals("No es la misma asignatura", c,calculo);
