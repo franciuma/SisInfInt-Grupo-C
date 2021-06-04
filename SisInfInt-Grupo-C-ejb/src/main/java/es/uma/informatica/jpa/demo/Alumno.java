@@ -1,6 +1,7 @@
 package es.uma.informatica.jpa.demo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -45,6 +46,7 @@ public class Alumno implements Serializable {
 		this.emailPersonal = emailPersonal;
 		this.telefono = telefono;
 		this.movil = movil;
+		expedientes = new ArrayList<Expediente>();
 	}
 	
 	public Alumno() {
@@ -168,5 +170,13 @@ public class Alumno implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public List<Expediente> getExpedientes() {
+		return expedientes;
+	}
+
+	public void setExpedientes(List<Expediente> expedientes) {
+		this.expedientes = expedientes;
 	}
 }

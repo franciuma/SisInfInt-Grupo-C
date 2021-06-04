@@ -78,7 +78,7 @@ public class Sample_Matricula {
 		final  String listadoAsignaturas = "si";
 		final Integer numExpediente = 22;
 		final Boolean activo = true;
-		final Integer notaMediaProvisional = 8;
+		final Double notaMediaProvisional = 8.0;
 		final Expediente exp1 = new Expediente(numExpediente,activo,notaMediaProvisional);
 		
 		

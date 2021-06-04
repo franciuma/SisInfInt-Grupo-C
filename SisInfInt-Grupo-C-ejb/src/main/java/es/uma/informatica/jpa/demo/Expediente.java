@@ -19,7 +19,7 @@ public class Expediente {
 	@Column(name = "Activo")
 	private Boolean activo;
 	@Column(name = "Nota_Media_Provisional")
-	private Integer notaMediaProvisional;
+	private Double notaMediaProvisional;
 	
 	@ManyToOne
 	private Titulacion titulacion;
@@ -33,7 +33,7 @@ public class Expediente {
 	@OneToMany(mappedBy = "expediente")
 	private List<Matricula> matriculas;
 	
-public Expediente(Integer numExpediente, Boolean activo, Integer notaMediaProvisional) {
+public Expediente(Integer numExpediente, Boolean activo, Double notaMediaProvisional) {
 		
 		super();
 		
@@ -66,11 +66,11 @@ public Expediente(Integer numExpediente, Boolean activo, Integer notaMediaProvis
 		this.activo = activo;
 	}
 	
-	public Integer getNotaMediaProvisional() {
+	public Double getNotaMediaProvisional() {
 		return notaMediaProvisional;
 	}
 	
-	public void setNotaMediaProvisional(Integer notaMediaProvisional) {
+	public void setNotaMediaProvisional(Double notaMediaProvisional) {
 		this.notaMediaProvisional = notaMediaProvisional;
 	}
 

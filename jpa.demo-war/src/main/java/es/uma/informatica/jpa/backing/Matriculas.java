@@ -66,7 +66,7 @@ public class Matriculas {
 
 		String sFile ="/tmp/matriculas.xlsx"; 
 		File filtemp = new File(sFile);
-
+		filtemp.delete();
 		try {
 			upload.write(sFile);
 		} catch (IOException e) {
