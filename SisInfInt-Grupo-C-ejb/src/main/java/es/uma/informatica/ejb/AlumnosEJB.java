@@ -130,7 +130,9 @@ public class AlumnosEJB implements GestionAlumno {
 		if(alumnos.size() != 0) {
 			for (Alumno al : alumnos) {
 				try {
-					eliminarAlumno(al.getDni());
+					if(!al.getDni().equals("admin")) {
+						eliminarAlumno(al.getDni());
+					}
 				} catch (AlumnoNoEncontradoException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
