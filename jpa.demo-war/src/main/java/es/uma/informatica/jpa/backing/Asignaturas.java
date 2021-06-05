@@ -57,7 +57,8 @@ public class Asignaturas {
 			upload.write(sFile);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Error al subir el fichero");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		
 		try {
@@ -66,10 +67,12 @@ public class Asignaturas {
 			return "lista_asignaturas.xhtml";
 		} catch (AsignaturaYaExistenteException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Asignatura ya existente");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Error al leer el fichero de Asignaturas");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 	
 		filtemp.delete();
@@ -87,10 +90,11 @@ public class Asignaturas {
 			
 			asignaturas.insertarAsignatura(asignatura);
 			setInsertar_AS(true);
-			return "exitoInsertarAsignatura.xhtml";
+			return "lista_asignaturas.xhtml";
 		} catch (AsignaturaYaExistenteException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Asignatura ya existente");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
 	}
@@ -99,7 +103,8 @@ public class Asignaturas {
 			asignaturas.eliminarAsignatura(as);
 		} catch (AsignaturaNoEncontradaException e) {
 			// TODO Auto-generated catch block
-			return "index.xhtml";
+			FacesMessage message = new FacesMessage("Asignatura no existente");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
 	}
@@ -110,7 +115,8 @@ public class Asignaturas {
 			return "lista_asignaturas.xhtml";
 		} catch (AsignaturaNoEncontradaException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Asignatura no existente");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
 	}

@@ -32,9 +32,17 @@ public class AlumnosEJB implements GestionAlumno {
 	public void insertarAlumno(Alumno alum) throws AlumnoYaExistenteException {
 		// TODO Auto-generated method stub
 		Alumno alumno = em.find(Alumno.class,alum.getId());
-		if( alumno != null)
-			throw new AlumnoYaExistenteException();
-		em.persist(alum);
+		if (alumno == null ) {
+			try {
+				obtenerAlumno(alum.getDni());
+				throw new AlumnoYaExistenteException();
+			} catch (AlumnoNoEncontradoException e) {
+				// TODO Auto-generated catch block
+				em.persist(alum);
+			}
+			
+		}else throw new AlumnoYaExistenteException();
+
 		 
 	}
 	@Override
@@ -108,14 +116,17 @@ public class AlumnosEJB implements GestionAlumno {
 					if(sheet.getRow(fila).getCell(17).getCellType()==0) {
 						Double nota_media = (double) Math.round(sheet.getRow(fila).getCell(17).getNumericCellValue());
 						ex = new Expediente(x, true, nota_media);
+						LOGGER.info(nota_media.toString());
 
 					} else {
 						String nota_media = (String) sheet.getRow(fila).getCell(17).getStringCellValue();
 						Double nota_med = Double.parseDouble(nota_media);
+						LOGGER.info(nota_med.toString());
 						ex = new Expediente(x, true, nota_med);
 					}
 					//em.persist(a);
 					//espediente del alumno	
+					//hola
 					List exps = a.getExpedientes();
 					exps.add(ex);
 					a.setExpedientes(exps);

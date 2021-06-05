@@ -71,7 +71,8 @@ public class Matriculas {
 			upload.write(sFile);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Error al subir el fichero");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 
 		try {
@@ -80,10 +81,12 @@ public class Matriculas {
 			return "lista_matriculas.xhtml";
 		} catch (MatriculaYaExistenteException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Matricula ya existente");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Error al leer el fichero");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 
 		filtemp.delete();
@@ -112,13 +115,15 @@ public class Matriculas {
 			LOGGER.info("Matricula: " + matricula.toString());
 			matriculas.insertarMatricula(matricula);
 			setInsertar_MA(true);
-			return "exitoInsertarMatricula.xhtml";
+			return "lista_matriculas.xhtml";
 		} catch (MatriculaYaExistenteException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Matricula ya existente");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Error al leer la fecha de ingreso");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
 	}
@@ -127,7 +132,8 @@ public class Matriculas {
 			matriculas.eliminarMatricula(mat);
 		} catch (MatriculaNoEncontradaException e) {
 			// TODO Auto-generated catch block
-			return "index.xhtml";
+			FacesMessage message = new FacesMessage("Matricula no existente");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
 	}
@@ -138,7 +144,8 @@ public class Matriculas {
 			return "lista_matriculas.xhtml";
 		} catch (MatriculaNoEncontradaException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Matricula no existente");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
 	}

@@ -69,14 +69,15 @@
 				<label>Idiomas Imparticion</label>
 			</div>
 
-			<h:commandButton value="Crear Asignatura" type ="submit" action="#{asignaturas.aniadir_Asignatura()}"/>
-			<h:link outcome ="index.xhtml">Atrás</h:link>
+			<h:commandLink value="Crear Asignatura" type ="submit" action="#{asignaturas.aniadir_Asignatura()}"/>
+			
 			
 		</h:form>
 		<h:form id="importarAsignaturas" method="post" enctype="multipart/form-data">
 			<h:inputFile id = "file" value="#{asignaturas.upload}"/>
 		
-		<h:commandButton value="Enviar Fichero" type ="submit" action="#{asignaturas.importarAsignaturas()}"/>
+		<h:commandLink value="Enviar Fichero" type ="submit" action="#{asignaturas.importarAsignaturas()}"/>
+		<h:link outcome ="index_asignatura.xhtml">Atrás</h:link>
 		</h:form>
 	</div>
 </h:body>
