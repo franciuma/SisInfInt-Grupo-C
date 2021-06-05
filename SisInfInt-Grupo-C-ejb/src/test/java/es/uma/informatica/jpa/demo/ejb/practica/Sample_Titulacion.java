@@ -7,6 +7,7 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.HashMap;
@@ -129,17 +130,28 @@ public class Sample_Titulacion {
 	
 	@Requisitos({"RF7"})
 	@Test
-	public void testImportarTitulacion() throws TitulacionYaExistenteException {
+	public void testImportarTitulacion() throws TitulacionYaExistenteException, IOException {
 		final String nombre = "Grado en Ingeniería Informática";
 		final Integer codigo = 1041;
 		final Integer creditos = 240;
 		try {
 			Titulacion inf = new Titulacion(codigo, nombre, creditos);
-			gestionTitulacion.importarTitulacion();
+			String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
+			String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Titulacion.xlsx";
+			gestionTitulacion.importarTitulacion(sFile);
 			Titulacion i = gestionTitulacion.obtenerTitulacion(codigo);
 			assertEquals("No es la misma titulacion",i,inf);
 		} catch(TitulacionNoEncontradaException e) {
 			throw new RunLevelException(e);
+		}
+	}
+	
+	@Test
+	public void testObtenerTitulaciones() {
+		try {
+			gestionTitulacion.obtenerTitulaciones();
+		}catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

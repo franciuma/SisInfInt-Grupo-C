@@ -82,8 +82,6 @@ public class AsignaturaEJB implements GestionAsignatura{
 	@Override
 	public void importarAsignatura(String sFile) throws IOException, AsignaturaYaExistenteException {
 		try {
-			//String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
-			//String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Oferta asignaturas.xlsx";
 			@SuppressWarnings("deprecation")
 			XSSFWorkbook workbook = new XSSFWorkbook(sFile);
 			XSSFSheet sheet = workbook.getSheet("GII");
