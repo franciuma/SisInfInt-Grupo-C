@@ -19,7 +19,7 @@
 				
 	<div class="list-box">
 	<h:form id="expedientes-id">
-		<h:link outcome="index.xhtml">Atrás</h:link>
+		<h:link outcome="index_expediente.xhtml">Atrás</h:link>
 		<h2>Listado de Expedientes</h2>
 		<h:commandButton value="Eliminar Todos"
 					action="#{expedientes.borrarTodos()}"
@@ -49,7 +49,7 @@
 
 			<h:column>
 				<h:commandButton value="Eliminar"
-					action="#{asignaturas.eliminarExpediente(ex)}"
+					action="#{expedientes.eliminarExpediente(ex)}"
 					onclick="alert('EXPEDIENTE BORRADO');" />
 			</h:column>
 

@@ -60,7 +60,8 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 			return "lista_expedientes.xhtml";
 		} catch (ExpedienteYaExistenteException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Expediente ya existente");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
 	}
@@ -70,18 +71,20 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 		expedientes.eliminarExpediente(ex);
 	} catch (ExpedienteNoEncontradoException e) {
 		// TODO Auto-generated catch block
-		return "index.xhtml";
+		FacesMessage message = new FacesMessage("Expediente no existente");
+		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
 	return null;
 	}
 
-	public String actualizarAsignatura() {
+	public String actualizarExpediente() {
 	try {
 		expedientes.actualizarExpediente(expediente);
 		return "lista_expedientes.xhtml";
 	} catch (ExpedienteNoEncontradoException e) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
+		FacesMessage message = new FacesMessage("Expediente no existente");
+		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
 	return null;
 	}

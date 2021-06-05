@@ -97,7 +97,7 @@ public class Alumnos {
 			
 			alumnos.insertarAlumno(alumno);
 			setInsertar_AL(true);
-			return "exitoInsertarAlumno.xhtml";
+			return "lista_alumnos.xhtml";
 		} catch (AlumnoYaExistenteException e) {
 			// TODO Auto-generated catch block
 			FacesMessage message = new FacesMessage("Alumno ya existente");
