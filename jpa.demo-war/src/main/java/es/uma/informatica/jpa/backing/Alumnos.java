@@ -64,7 +64,8 @@ public class Alumnos {
 			upload.write(sFile);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Error al subir el fichero");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		
 		try {
@@ -73,10 +74,12 @@ public class Alumnos {
 			return "lista_alumnos.xhtml";
 		} catch (AlumnoYaExistenteException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Alumno ya existente");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Error al leer el fichero");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 	
 		filtemp.delete();
@@ -97,16 +100,19 @@ public class Alumnos {
 			return "exitoInsertarAlumno.xhtml";
 		} catch (AlumnoYaExistenteException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Alumno ya existente");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+			return null;
 		}
-		return null;
+		
 	}
 	public String eliminarAlumno(Alumno al) {
 		try {
 			alumnos.eliminarAlumno(al.getDni());
 		} catch (AlumnoNoEncontradoException e) {
 			// TODO Auto-generated catch block
-			return "index.xhtml";
+			FacesMessage message = new FacesMessage("Alumno no encontrado");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
 	}
@@ -118,7 +124,8 @@ public class Alumnos {
 			return "lista_alumnos.xhtml";
 		} catch (AlumnoNoEncontradoException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("Alumno no encontrado");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
 	}
@@ -128,7 +135,8 @@ public class Alumnos {
 		
 			boolean t = alumnos.autenticar(alumno.getDni(), alumno.getNombreCompleto());
 			if (t)return "index.xhtml";
-
+			FacesMessage message = new FacesMessage("Usuario/contrasenia incorrecorectos");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 			return null;
 			
 	

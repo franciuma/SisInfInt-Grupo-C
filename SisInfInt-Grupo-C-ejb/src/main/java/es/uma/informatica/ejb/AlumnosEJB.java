@@ -32,9 +32,17 @@ public class AlumnosEJB implements GestionAlumno {
 	public void insertarAlumno(Alumno alum) throws AlumnoYaExistenteException {
 		// TODO Auto-generated method stub
 		Alumno alumno = em.find(Alumno.class,alum.getId());
-		if( alumno != null)
-			throw new AlumnoYaExistenteException();
-		em.persist(alum);
+		if (alumno == null ) {
+			try {
+				obtenerAlumno(alum.getDni());
+				throw new AlumnoYaExistenteException();
+			} catch (AlumnoNoEncontradoException e) {
+				// TODO Auto-generated catch block
+				em.persist(alum);
+			}
+			
+		}else throw new AlumnoYaExistenteException();
+
 		 
 	}
 	@Override

@@ -19,33 +19,41 @@
 
 </h:head>
 <h:body>
+	
 	<div class="form-box">
 		<h2>Insertar Alumno</h2>
-		<h:form>
+		<h:form id = "insertar-alumno">
+			<h:message for = "insertar-alumno"/>
 			<div class="input-box">
 				<h:inputText id="dni" value="#{alumnos2.alumno.dni}" />
+				
 				<label>Dni</label>
 			</div>
 			<div class="input-box">
 				<h:inputText id="nombre" value="#{alumnos2.alumno.nombreCompleto}" />
+				
 				<label>Nombre</label>
 			</div>
 			<div class="input-box">
 				<h:inputText id="telefono" value="#{alumnos2.alumno.telefono}" />
+				
 				<label>Telefono</label>
 			</div>
 			<div class="input-box">
 				<h:inputText id="movil" value="#{alumnos2.alumno.movil}" />
+				<h:message for="movil"/>
 				<label>Movil</label>
 			</div>
 			<div class="input-box">
 				<h:inputText id="email-institucional" value="#{alumnos2.alumno.emailInstitucional}" required="true" validatorMessage="Compruebe que ha introducido un e-mail-institucional correcto">
+				
 				<f:validateRegex pattern=".+@.+" />
 				</h:inputText>
 				<label>Email Institucional</label>
 			</div>
 			<div class="input-box">
 				<h:inputText id="email-personal" value="#{alumnos2.alumno.emailPersonal}" required="true" validatorMessage="Compruebe que ha introducido un e-mail-personal correcto">
+				
 				<f:validateRegex pattern=".+@.+" />
 				</h:inputText>
 				<label>Email Personal</label>
