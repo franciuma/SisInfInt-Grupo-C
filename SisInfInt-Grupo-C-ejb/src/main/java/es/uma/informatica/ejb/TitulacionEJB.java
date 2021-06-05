@@ -12,8 +12,10 @@ import javax.persistence.TypedQuery;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import es.uma.informatica.ejb.exceptions.AsignaturaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.TitulacionNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.TitulacionYaExistenteException;
+import es.uma.informatica.jpa.demo.Asignatura;
 import es.uma.informatica.jpa.demo.Titulacion;
 
 @Stateless
@@ -68,11 +70,9 @@ public class TitulacionEJB implements GestionTitulacion {
 	}
 
 	@Override
-	public void importarTitulacion() throws TitulacionYaExistenteException {
+	public void importarTitulacion(String sFile) throws IOException, TitulacionYaExistenteException {
 		// TODO Auto-generated method stub
 		try {
-			String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
-			String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Titulacion.xlsx";
 			@SuppressWarnings("deprecation")
 			XSSFWorkbook workbook = new XSSFWorkbook(sFile);
 			XSSFSheet sheet = workbook.getSheet("Hoja1");
@@ -92,5 +92,21 @@ public class TitulacionEJB implements GestionTitulacion {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-	}		
+	}
+
+	@Override
+	public void eliminarTodas() {
+		// TODO Auto-generated method stub
+		List<Titulacion> titulaciones = obtenerTitulaciones();
+		if(titulaciones.size() != 0) {
+			for (Titulacion tit : titulaciones) {
+				try {
+					eliminarTitulacion(tit.getCodigo());
+				} catch (TitulacionNoEncontradaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}	
 }
