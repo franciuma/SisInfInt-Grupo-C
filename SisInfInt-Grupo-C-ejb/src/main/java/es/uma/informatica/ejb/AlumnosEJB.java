@@ -112,25 +112,28 @@ public class AlumnosEJB implements GestionAlumno {
 				if(a.getDni().length() > 2) {
 					String numero_expediente = (String) sheet.getRow(fila).getCell(4).getStringCellValue();
 					Integer x = Integer.parseInt(numero_expediente);
-					Expediente ex = null;
-					if(sheet.getRow(fila).getCell(17).getCellType()==0) {
-						Double nota_media = (double) Math.round(sheet.getRow(fila).getCell(17).getNumericCellValue());
-						ex = new Expediente(x, true, nota_media);
-						LOGGER.info(nota_media.toString());
-
-					} else {
-						String nota_media = (String) sheet.getRow(fila).getCell(17).getStringCellValue();
-						Double nota_med = Double.parseDouble(nota_media);
-						LOGGER.info(nota_med.toString());
-						ex = new Expediente(x, true, nota_med);
+					if(em.find(Expediente.class, x) == null) {
+						Expediente ex = null;
+						if(sheet.getRow(fila).getCell(17).getCellType()==0) {
+							Double nota_media = (double) Math.round(sheet.getRow(fila).getCell(17).getNumericCellValue());
+							ex = new Expediente(x, true, nota_media);
+							LOGGER.info(nota_media.toString());
+	
+						} else {
+							String nota_media = (String) sheet.getRow(fila).getCell(17).getStringCellValue();
+							Double nota_med = Double.parseDouble(nota_media);
+							LOGGER.info(nota_med.toString());
+							ex = new Expediente(x, true, nota_med);
+						}
+						//em.persist(a);
+						//espediente del alumno	
+						//hola
+						List exps = a.getExpedientes();
+						exps.add(ex);
+						a.setExpedientes(exps);
+						em.persist(ex);
 					}
-					//em.persist(a);
-					//espediente del alumno	
-					//hola
-					List exps = a.getExpedientes();
-					exps.add(ex);
-					a.setExpedientes(exps);
-					em.persist(ex);
+					
 					//el alumno
 					insertarAlumno(a);
 				}
