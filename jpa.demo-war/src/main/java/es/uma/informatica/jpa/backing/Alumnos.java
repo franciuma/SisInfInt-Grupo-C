@@ -41,7 +41,9 @@ public class Alumnos {
 	private Alumno alumno;
 	private boolean insertar_AL;
 	private List<Alumno> listAlumnos;
-	
+	private boolean buscar;
+	private String dni;
+
 	public String borrarTodos() {
 		alumnos.eliminarTodos();
 		FacesMessage message = new FacesMessage("Borrado con exito");
@@ -144,15 +146,20 @@ public class Alumnos {
 				return "index.xhtml";
 			}
 			FacesMessage message = new FacesMessage("Usuario/contrasenia incorrecorectos");
+
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			return null;
-			
+	}
 	
-			// TODO: handle exception
-			
-		
-		
-		
+	public Alumno BuscarAlumno(String dni) {
+		Alumno alumno = null;
+		try {
+			alumno = alumnos.obtenerAlumno(dni);
+		}catch(AlumnoNoEncontradoException e){
+			FacesMessage message = new FacesMessage("Alumno no encontrado");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}
+		return alumno;
 	}
 	
 	public String modoModificarAlumno(Alumno al) {
@@ -160,6 +167,12 @@ public class Alumnos {
 		alumno = al;
 		return "editarAlumno.xhtml";
 	}
+	
+	public String VarBuscar() {
+		buscar = true;
+		return null;
+	}
+	
 	public List<Alumno> getListAlumnos() {
 		listAlumnos = alumnos.obtenerAlumnos();
 		return listAlumnos;
@@ -184,10 +197,19 @@ public class Alumnos {
 		this.insertar_AL = insertar_AL;
 	}
 
-
+	public boolean isBuscar() {
+		return buscar;
+	}
 	
-
-
+	public void setBuscar(boolean buscar) {
+		this.buscar = buscar;
+	}
 	
+	public String getDni() {
+		return dni;
+	}
 	
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
 }
