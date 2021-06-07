@@ -42,7 +42,17 @@ public class Centro implements Serializable {
 		this.tlfConserjeria = tlfConserjeria;
 	}
 	
+<<<<<<< HEAD:SisInfInt-Grupo-C-ejb/src/main/java/es/uma/informatica/jpa/demo/Centro.java
 	public int getId() {
+=======
+	public Centro(String nombre2, String direccion2, String tlfSecretaria) {
+		nombre = nombre2;
+		direccion = direccion2;
+		tlfConserjeria = tlfSecretaria;
+	}
+
+	public Integer getId() {
+>>>>>>> 2c21fa8abf028974942618bb3e85f14b74057578:src/main/java/es/uma/informatica/jpa/demo/Centro.java
 		return id;
 	}
 	

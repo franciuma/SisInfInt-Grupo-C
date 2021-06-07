@@ -6,11 +6,73 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   
+<<<<<<< HEAD
 <modules>
 	<module>SisInfInt-Grupo-C-ejb</module>
 	<module>jpa.demo-war</module>
 	<module>jpa.demo-ear</module>
 	<module>jpa.demo-tests</module>
 </modules>
+=======
+  	<dependency>
+      <groupId>org.glassfish.main.extras</groupId>
+      <artifactId>glassfish-embedded-all</artifactId>
+      <version>5.1.0</version>
+      <scope>test</scope>
+    </dependency>
+  
+  	<dependency>
+  		<groupId>org.apache.commons</groupId>
+  		<artifactId>commons-csv</artifactId>
+  		<version>1.6</version>
+  	</dependency>
+  
+  	<dependency>
+  		<groupId>org.apache.poi</groupId>
+  		<artifactId>poi-ooxml</artifactId>
+  		<version>4.1.2</version>
+  	</dependency>
+  
+  	<dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13</version>
+      <scope>test</scope>
+    </dependency>
+   
+  	<dependency>
+  		<groupId>mysql</groupId>
+  		<artifactId>mysql-connector-java</artifactId>
+  		<version>8.0.19</version>
+  	</dependency>
+  	
+  	<dependency>
+		<groupId>javax</groupId>
+		<artifactId>javaee-api</artifactId>
+		<version>8.0</version>
+		<scope>provided</scope>
+	</dependency>
+  	
+  	<dependency>
+   		<groupId>org.eclipse.persistence</groupId>
+   	 	<artifactId>eclipselink</artifactId>
+   		 <version>2.7.6</version>
+	</dependency>
+
+
+  	<dependency>
+  		<groupId>org.apache.commons</groupId>
+  		<artifactId>commons-csv</artifactId>
+  		<version>1.6</version>
+  	</dependency>
+  	
+  	<dependency>
+  		<groupId>org.apache.poi</groupId>
+  		<artifactId>poi</artifactId>
+  		<version>5.0.0</version>
+  	</dependency>
+  	
+  </dependencies>
+>>>>>>> 2c21fa8abf028974942618bb3e85f14b74057578
   
 </project>

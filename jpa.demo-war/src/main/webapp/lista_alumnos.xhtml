@@ -19,56 +19,122 @@
 <h:body>
 
 	<div class="list-box">
-	<h:form id="alumnos-id">
-		<h:link outcome="index_alumnos.xhtml" id = "boton-atras-vista-lista-alumno">Atrás</h:link>
-		<h2>Listado de Alumnos</h2>
-		<h:commandButton value="Eliminar Todos"
-					action="#{alumnos2.borrarTodos()}"
-					onclick="alert('ALUMNOs BORRADOs');" 
-					class="deleteAllButton"
-					id = "boton-eliminarTodos-alumno"/>
-		<h:dataTable value="#{alumnos2.listAlumnos}" var="al" class="datatable-box">
-		
-			<h:column>
-				<f:facet name="header">DNI </f:facet>
-				<h:outputText value="#{al.dni}" id = "dni-alumno"/>
-			</h:column>
+		<h:form id="alumnos-id">
+			<h:link outcome="index_alumnos.xhtml"
+				id="boton-atras-vista-lista-alumno">Atrás</h:link>
+			<h2>Listado de Alumnos</h2>
 
-			<h:column>
-				<f:facet name="header">Nombre</f:facet>
-				<h:outputText value="#{al.nombreCompleto}" id = "nombre-alumno"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Telefono </f:facet>
-				<h:outputText value="#{al.telefono}" id = "telefono-alumno"/>
-			</h:column>
+			<label>Introduce el DNI:</label>
+			<h:inputText value="#{alumnos2.dni}" />
 
-			<h:column>
-				<f:facet name="header">Movil</f:facet>
-				<h:outputText value="#{al.movil}" id = "movil" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Correo 1 </f:facet>
-				<h:outputText value="#{al.emailInstitucional}" id = "email-institucional-alumno"/>
-			</h:column>
+			<h:commandButton value="Filtrar" action="#{alumnos2.VarBuscar()}"
+				class="deleteAllButton" />
+				
+			<h:commandButton value="Mostrar todos" action="lista_alumnos.xhtml"
+				class="deleteAllButton" />
 
-			<h:column>
-				<f:facet name="header">Correo 2</f:facet>
-				<h:outputText value="#{al.emailPersonal}" id = "email-personal-alumno"/>
-			</h:column>
-			<h:column>
-				<h:commandButton value="Modificar"
-					action="#{alumnos2.modoModificarAlumno(al)}" class="modifyColumn" id = "boton-modificar-alumno"/>
-			</h:column>
+			<h:commandButton value="Eliminar Todos"
+				action="#{alumnos2.borrarTodos()}"
+				onclick="alert('ALUMNOS BORRADOS');" class="deleteAllButton"
+				id="boton-eliminarTodos-alumno" />
 
-			<h:column>
-				<h:commandButton value="Eliminar"
-					action="#{alumnos2.eliminarAlumno(al)}"
-					onclick="alert('ALUMNO BORRADO');" id = "boton-eliminar-alumno"/>
-			</h:column>
+			<c:choose>
+				<c:when test="#{alumnos2.buscar}">
+					<h:dataTable value="#{alumnos2.BuscarAlumno(alumnos2.dni)}"
+						var="al" class="datatable-box">
 
-		</h:dataTable>
-	</h:form>
+						<h:column>
+							<f:facet name="header">DNI </f:facet>
+							<h:outputText value="#{al.dni}" id="dni-alumno" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Nombre</f:facet>
+							<h:outputText value="#{al.nombreCompleto}" id="nombre-alumno" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Telefono </f:facet>
+							<h:outputText value="#{al.telefono}" id="telefono-alumno" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Movil</f:facet>
+							<h:outputText value="#{al.movil}" id="movil" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Correo 1 </f:facet>
+							<h:outputText value="#{al.emailInstitucional}"
+								id="email-institucional-alumno" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Correo 2</f:facet>
+							<h:outputText value="#{al.emailPersonal}"
+								id="email-personal-alumno" />
+						</h:column>
+						<h:column>
+							<h:commandButton value="Modificar"
+								action="#{alumnos2.modoModificarAlumno(al)}"
+								class="modifyColumn" id="boton-modificar-alumno" />
+						</h:column>
+
+						<h:column>
+							<h:commandButton value="Eliminar"
+								action="#{alumnos2.eliminarAlumno(al)}"
+								onclick="alert('ALUMNO BORRADO');" id="boton-eliminar-alumno" />
+						</h:column>
+
+					</h:dataTable>
+				</c:when>
+				<c:otherwise>
+					<h:dataTable value="#{alumnos2.listAlumnos}" var="al"
+						class="datatable-box">
+
+						<h:column>
+							<f:facet name="header">DNI </f:facet>
+							<h:outputText value="#{al.dni}" id="dni-alumno" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Nombre</f:facet>
+							<h:outputText value="#{al.nombreCompleto}" id="nombre-alumno" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Telefono </f:facet>
+							<h:outputText value="#{al.telefono}" id="telefono-alumno" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Movil</f:facet>
+							<h:outputText value="#{al.movil}" id="movil" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Correo 1 </f:facet>
+							<h:outputText value="#{al.emailInstitucional}"
+								id="email-institucional-alumno" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Correo 2</f:facet>
+							<h:outputText value="#{al.emailPersonal}"
+								id="email-personal-alumno" />
+						</h:column>
+						<h:column>
+							<h:commandButton value="Modificar"
+								action="#{alumnos2.modoModificarAlumno(al)}"
+								class="modifyColumn" id="boton-modificar-alumno" />
+						</h:column>
+
+						<h:column>
+							<h:commandButton value="Eliminar"
+								action="#{alumnos2.eliminarAlumno(al)}"
+								onclick="alert('ALUMNO BORRADO');" id="boton-eliminar-alumno" />
+						</h:column>
+
+					</h:dataTable>
+				</c:otherwise>
+			</c:choose>
+		</h:form>
 	</div>
 
 </h:body>

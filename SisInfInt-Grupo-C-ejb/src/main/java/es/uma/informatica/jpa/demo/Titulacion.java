@@ -14,10 +14,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+<<<<<<< HEAD:SisInfInt-Grupo-C-ejb/src/main/java/es/uma/informatica/jpa/demo/Titulacion.java
 @NamedQueries( { @NamedQuery (name = "findAllTitulaciones", query = "select tit from Titulacion tit") })
 
 public class Titulacion implements Serializable {
 
+=======
+public class Titulacion implements Serializable {
+
+>>>>>>> 2c21fa8abf028974942618bb3e85f14b74057578:src/main/java/es/uma/informatica/jpa/demo/Titulacion.java
 	/**
 	 * 
 	 */
