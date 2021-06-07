@@ -9,9 +9,12 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 import es.uma.informatica.ejb.GestionGrupo;
+import es.uma.informatica.ejb.GestionTitulacion;
 import es.uma.informatica.ejb.exceptions.GrupoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.GrupoYaExistenteException;
+import es.uma.informatica.ejb.exceptions.TitulacionNoEncontradaException;
 import es.uma.informatica.jpa.demo.Grupo;
+import es.uma.informatica.jpa.demo.Titulacion;
 
 @Named(value="grupos")
 @RequestScoped
@@ -27,8 +30,17 @@ public class Grupos {
 	public void setUpload(Part upload) {
 		this.upload = upload;
 	}
-
+	@Inject
+	private GestionTitulacion titulaciones;
 	private Grupo grupo;
+	private String titulacion;
+	public String getTitulacion() {
+		return titulacion;
+	}
+	public void setTitulacion(String titulacion) {
+		this.titulacion = titulacion;
+	}
+
 	private boolean insertar_GR;
 	private List<Grupo> listGrupos;
 	private boolean buscar;
@@ -54,22 +66,26 @@ public class Grupos {
 		return "lista_grupos.xhtml";
 	}
 	public String anaidir_Grupo() {
-		
 		try {
+			Integer titulo = Integer.parseInt(titulacion);
+			Titulacion tit = titulaciones.obtenerTitulacion(titulo);	
+			grupo.setTitulacion(tit);		
 			grupos.insertarGrupo(grupo);
 			setInsertar_GR(true);
 			return "lista_grupos.xhtml";
 		} catch (GrupoYaExistenteException e) {
-			// TODO Auto-generated catch block
 			FacesMessage message = new FacesMessage("Alumno ya existente");
 			FacesContext.getCurrentInstance().addMessage(null, message);
+			return null;
+		} catch (TitulacionNoEncontradaException e) {
+			e.printStackTrace();
 			return null;
 		}
 		
 	}
 	public String eliminarGrupo(Grupo gr) {
 		try {
-			grupos.eliminarGrupo(gr.getCurso(), gr.getLetra(), gr.getTurnoMañanaTarde(), gr.getIngles(), gr.getVisible(), gr.getAsignar(), gr.getPlazas());
+			grupos.eliminarGrupo(gr.getCurso(), gr.getLetra(), gr.getTitulacion());
 		} catch (GrupoNoEncontradoException e) {
 			// TODO Auto-generated catch block
 			FacesMessage message = new FacesMessage("Alumno no encontrado");
@@ -98,7 +114,7 @@ public class Grupos {
 	public Grupo BuscarGrupo(String id) {
 		Grupo grupo = null;
 		try {
-			grupo = grupos.obtenerGrupo(grupo.getCurso(), grupo.getLetra(),grupo.getTurnoMañanaTarde(), grupo.getIngles(), grupo.getVisible(), grupo.getAsignar(), grupo.getPlazas());
+			grupo = grupos.obtenerGrupo(grupo.getCurso(), grupo.getLetra(),grupo.getTitulacion());
 		}catch(GrupoNoEncontradoException e){
 			FacesMessage message = new FacesMessage("Alumno no encontrado");
 			FacesContext.getCurrentInstance().addMessage(null, message);
