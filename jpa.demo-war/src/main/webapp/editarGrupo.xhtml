@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Editar Grupo</title>
+	<link
+		href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="recursos/css/normalize.css" />
+	<link rel="stylesheet" href="recursos/css/styleInsertar.css" />
+
+</h:head>
+<h:body>
+<div class="form-box">
+		<h2>Modificar grupo con id : <h:outputText value="#{grupos.grupo.id}" /></h2>
+		
+		<h:form>
+			<h:inputHidden value="#{grupos.grupo.id}"/>
+
+			<div class="input-box">
+				<h:inputText id="curso" value="#{grupos.grupo.curso}" />
+				<label>Curso</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="letra" value="#{grupos.grupo.letra}" />
+				<label>Letra</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="turnoMañanaTarde" value="#{grupos.grupo.turnoMañanaTarde}" />
+				<label>Turno</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="asignar" value="#{grupos.grupo.plazas}" readonly="true"/>
+				<label>Plazas</label>
+				
+			</div>
+			</div>
+			<h:commandLink value="Actualizar Grupo" type ="submit" action="#{grupos.actualizarGrupo()}"/>
+			<h:link outcome ="index_grupos.xhtml">Atrás</h:link>
+			
+			
+		</h:form>
+		</div>

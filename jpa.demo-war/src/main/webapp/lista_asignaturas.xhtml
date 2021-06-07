@@ -4,7 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
 
 <h:head>
 	<title>Lista de Asignaturas</title>
@@ -17,76 +19,152 @@
 </h:head>
 
 <h:body>
-				
+
 	<div class="list-box">
-	<h:form id="asignaturas-id" styleClass="centrar-texto navegacion table-mostrar">
-	<h:link outcome="index_asignatura.xhtml">Atrás</h:link>
-	<h2>Listado de Asignaturas</h2>
-	<h:commandLink value="Eliminar Todas"
-					action="#{asignaturas.borrarTodas()}"
-					onclick="alert('ASIGNATURAs BORRADAs');" />
-		<h:dataTable value="#{asignaturas.getListAsignaturas()}" var="as">
-		
-			<h:column>
-				<f:facet name="header">Referencia </f:facet>
-				<h:outputText value="#{as.referencia}" />
-			</h:column>
+		<h:form id="asignaturas-id"
+			styleClass="centrar-texto navegacion table-mostrar">
+			<h:link outcome="index_asignatura.xhtml">Atrás</h:link>
+			<h2>Listado de Asignaturas</h2>
 
-			<h:column>
-				<f:facet name="header">Codigo Asignatura</f:facet>
-				<h:outputText value="#{as.codigo}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Creditos </f:facet>
-				<h:outputText value="#{as.creditos}" />
-			</h:column>
+			<label>Introduce la referencia:</label>
+			<h:inputText value="#{asignaturas.referencia}" />
 
-			<h:column>
-				<f:facet name="header">Ofertada</f:facet>
-				<h:outputText value="#{as.ofertada}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Nombre </f:facet>
-				<h:outputText value="#{as.nombre}" />
-			</h:column>
+			<h:commandButton value="Filtrar" action="#{asignaturas.VarBuscar()}"
+				class="deleteAllButton" />
 
-			<h:column>
-				<f:facet name="header">Curso</f:facet>
-				<h:outputText value="#{as.curso}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Caracter</f:facet>
-				<h:outputText value="#{as.caracter}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Duracion</f:facet>
-				<h:outputText value="#{as.duracion}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Unidad Temporal Cuatrimestre</f:facet>
-				<h:outputText value="#{as.unidadTemporal}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Idiomas Imparticion</f:facet>
-				<h:outputText value="#{as.idiomasImparticion}" />
-			</h:column>
-			<h:column>
-				<h:commandButton value="Modificar"
-					action="#{asignaturas.modoModificarAsignatura(as)}" />
-			</h:column>
+			<h:commandButton value="Mostrar todos"
+				action="lista_asignaturas.xhtml" class="deleteAllButton" />
 
-			<h:column>
-				<h:commandButton value="Eliminar"
-					action="#{asignaturas.eliminarAsignatura(as)}"
-					onclick="alert('ASIGNATURA BORRADA');" />
-			</h:column>
+			<h:commandLink value="Eliminar Todas"
+				action="#{asignaturas.borrarTodas()}"
+				onclick="alert('ASIGNATURAS BORRADAS');" />
 
-		</h:dataTable>
-		
-	</h:form>
-	
+			<c:choose>
+				<c:when test="#{asignaturas.buscar}">
+					<h:dataTable
+						value="#{asignaturas.BuscarAsignatura(asignaturas.referencia)}"
+						var="as">
+
+						<h:column>
+							<f:facet name="header">Referencia </f:facet>
+							<h:outputText value="#{as.referencia}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Codigo Asignatura</f:facet>
+							<h:outputText value="#{as.codigo}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Creditos </f:facet>
+							<h:outputText value="#{as.creditos}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Ofertada</f:facet>
+							<h:outputText value="#{as.ofertada}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nombre </f:facet>
+							<h:outputText value="#{as.nombre}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Curso</f:facet>
+							<h:outputText value="#{as.curso}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Caracter</f:facet>
+							<h:outputText value="#{as.caracter}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Duracion</f:facet>
+							<h:outputText value="#{as.duracion}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Unidad Temporal Cuatrimestre</f:facet>
+							<h:outputText value="#{as.unidadTemporal}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Idiomas Imparticion</f:facet>
+							<h:outputText value="#{as.idiomasImparticion}" />
+						</h:column>
+						<h:column>
+							<h:commandButton value="Modificar"
+								action="#{asignaturas.modoModificarAsignatura(as)}" />
+						</h:column>
+
+						<h:column>
+							<h:commandButton value="Eliminar"
+								action="#{asignaturas.eliminarAsignatura(as)}"
+								onclick="alert('ASIGNATURA BORRADA');" />
+						</h:column>
+
+					</h:dataTable>
+				</c:when>
+				<c:otherwise>
+					<h:dataTable value="#{asignaturas.getListAsignaturas()}" var="as">
+
+						<h:column>
+							<f:facet name="header">Referencia </f:facet>
+							<h:outputText value="#{as.referencia}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Codigo Asignatura</f:facet>
+							<h:outputText value="#{as.codigo}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Creditos </f:facet>
+							<h:outputText value="#{as.creditos}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Ofertada</f:facet>
+							<h:outputText value="#{as.ofertada}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nombre </f:facet>
+							<h:outputText value="#{as.nombre}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Curso</f:facet>
+							<h:outputText value="#{as.curso}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Caracter</f:facet>
+							<h:outputText value="#{as.caracter}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Duracion</f:facet>
+							<h:outputText value="#{as.duracion}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Unidad Temporal Cuatrimestre</f:facet>
+							<h:outputText value="#{as.unidadTemporal}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Idiomas Imparticion</f:facet>
+							<h:outputText value="#{as.idiomasImparticion}" />
+						</h:column>
+						<h:column>
+							<h:commandButton value="Modificar"
+								action="#{asignaturas.modoModificarAsignatura(as)}" />
+						</h:column>
+
+						<h:column>
+							<h:commandButton value="Eliminar"
+								action="#{asignaturas.eliminarAsignatura(as)}"
+								onclick="alert('ASIGNATURA BORRADA');" />
+						</h:column>
+
+					</h:dataTable>
+				</c:otherwise>
+			</c:choose>
+		</h:form>
+
 	</div>
-	
+
 </h:body>
 
 </html>

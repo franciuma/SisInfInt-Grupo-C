@@ -52,6 +52,15 @@ public class Grupo {
 		
 	}
 	
+	public Grupo(int curso2, String letra2, String turno, boolean ingles2, boolean visible2, Titulacion tit) {
+		curso = curso2;
+		letra = letra2;
+		turnoMañanaTarde = turno;
+		ingles = ingles2;
+		visible = visible2;
+		titulacion = tit;
+	}
+	
 	public Grupo(Integer curso2, String letra2, String turnoMañanaTarde2, Boolean ingles2,
 			Boolean visible2, String asignar2, Integer plazas2) {
 		curso = curso2;
@@ -225,5 +234,53 @@ public class Grupo {
 				+ ", ingles=" + ingles + ", visible=" + visible + ", asignar=" + asignar + ", plazas=" + plazas
 				+ ", titulacion=" + titulacion + ", grupos=" + grupos + ", grupo=" + grupo + ", gruposPorAsig="
 				+ gruposPorAsig + ", clases=" + clases + "]";
+	}
+
+	public Titulacion getTitulacion() {
+		return titulacion;
+	}
+
+	public void setTitulacion(Titulacion titulacion) {
+		this.titulacion = titulacion;
+	}
+
+	public List<Grupo> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
+	}
+
+	public Grupo getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
+	}
+
+	public List<GruposPorAsig> getGruposPorAsig() {
+		return gruposPorAsig;
+	}
+
+	public void setGruposPorAsig(List<GruposPorAsig> gruposPorAsig) {
+		this.gruposPorAsig = gruposPorAsig;
+	}
+
+	public List<Clase> getClases() {
+		return clases;
+	}
+
+	public void setClases(List<Clase> clases) {
+		this.clases = clases;
+	}
+
+	public void setIngles(Boolean ingles) {
+		this.ingles = ingles;
+	}
+
+	public void setVisible(Boolean visible) {
+		this.visible = visible;
 	}
 }

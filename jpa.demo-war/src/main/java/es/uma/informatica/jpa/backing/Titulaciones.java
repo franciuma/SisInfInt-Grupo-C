@@ -2,6 +2,7 @@ package es.uma.informatica.jpa.backing;
 
 import java.io.File;
 
+import es.uma.informatica.jpa.demo.Alumno;
 import es.uma.informatica.jpa.demo.Titulacion;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 import es.uma.informatica.ejb.GestionTitulacion;
+import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.TitulacionNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.TitulacionYaExistenteException;
 
@@ -35,6 +37,8 @@ public class Titulaciones {
 	private Titulacion titulacion;
 	private boolean insertar_TI;
 	private List<Titulacion> listTitulaciones;
+	private boolean buscar;
+	private String codigo;
 	
 	public String borrarTodas() {
 		titulaciones.eliminarTodas();
@@ -114,10 +118,29 @@ public class Titulaciones {
 		return null;
 	}
 	
+	public Titulacion BuscarTitulacion(String codigo) {
+		Titulacion titulacion = null;
+		try {
+			if(!codigo.equals("")) {
+				titulacion = titulaciones.obtenerTitulacion(Integer.parseInt(codigo));
+			}
+		}catch(TitulacionNoEncontradaException e){
+			FacesMessage message = new FacesMessage("Titulacion no encontrada");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}
+		return titulacion;
+	}
+	
 	public String modoModificarTitulacion(Titulacion tit) {
 		titulacion = tit;
 		return "editarTitulacion.xhtml";
 	}
+	
+	public String VarBuscar() {
+		buscar = true;
+		return null;
+	}
+	
 	public List<Titulacion> getListTitulaciones() {
 		listTitulaciones = titulaciones.obtenerTitulaciones();
 		return listTitulaciones;
@@ -142,10 +165,19 @@ public class Titulaciones {
 		this.insertar_TI = insertar_TI;
 	}
 
-
+	public boolean isBuscar() {
+		return buscar;
+	}
 	
-
-
+	public void setBuscar(boolean buscar) {
+		this.buscar = buscar;
+	}
 	
+	public String getCodigo() {
+		return codigo;
+	}
 	
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 }
