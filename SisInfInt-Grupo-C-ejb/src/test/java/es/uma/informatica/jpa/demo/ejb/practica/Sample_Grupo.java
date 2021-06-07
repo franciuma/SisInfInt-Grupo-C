@@ -19,6 +19,7 @@ import es.uma.informatica.ejb.GestionGrupo;
 import es.uma.informatica.ejb.exceptions.GrupoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.Grupo;
+import es.uma.informatica.jpa.demo.Titulacion;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 
 public class Sample_Grupo {
@@ -46,16 +47,15 @@ public class Sample_Grupo {
 			final Boolean visible = true;
 			final String asignar = "asignao";
 			final Integer plazas = 3;
+			final Titulacion tit = new Titulacion(11, "sheesh", 66);
 			
 		try {
 			
-			Grupo g = new Grupo(curso,letra,turnoMañanaTarde,ingles,visible,asignar,plazas);
+			Grupo g = new Grupo(curso,letra,turnoMañanaTarde,ingles,visible,asignar,plazas,tit);
 			gestionGrupo.insertarGrupo(g);
 			
 			try {
-
-	
-				Grupo grup = gestionGrupo.obtenerGrupo(curso,letra,turnoMañanaTarde,ingles,visible,asignar,plazas);
+				Grupo grup = gestionGrupo.obtenerGrupo(curso,letra,tit);
 				assertEquals(curso,grup.getCurso());
 				assertEquals(letra,grup.getLetra());
 				assertEquals(turnoMañanaTarde,grup.getTurnoMañanaTarde());
@@ -78,9 +78,25 @@ public class Sample_Grupo {
 	@Requisitos({"RF15"})
 	@Test
 	public void testEliminarGrupo() throws GrupoNoEncontradoException {
-
+			
+		final Integer curso = 2;
+		final String letra = "A";
+		final String turnoMañanaTarde = "mañana";
+		final Boolean ingles = true;
+		final Boolean visible = true;
+		final String asignar = "asignao";
+		final Integer plazas = 3;
+		final Titulacion tit = new Titulacion(11, "sheesh", 66);
+	
 		try {
-			gestionGrupo.eliminarGrupo(1,"B","Tarde",true,true,"asignao",3);
+			Grupo g = new Grupo(curso,letra,turnoMañanaTarde,ingles,visible,asignar,plazas,tit);
+			gestionGrupo.insertarGrupo(g);
+		}catch(ProyectoException e) {
+			throw new RuntimeException(e);
+		}
+		
+		try {
+			gestionGrupo.eliminarGrupo(2,"A",tit);
 		}catch (GrupoNoEncontradoException e) {
 			throw new RuntimeException(e);
 		}
@@ -89,8 +105,26 @@ public class Sample_Grupo {
 	@Requisitos({"RF15"})
 	@Test
 	public void testObtenerGrupo() throws GrupoNoEncontradoException {
+		final Integer curso = 2;
+		final String letra = "A";
+		final String turnoMañanaTarde = "mañana";
+		final Boolean ingles = true;
+		final Boolean visible = true;
+		final String asignar = "asignao";
+		final Integer plazas = 3;
+		final Titulacion tit = new Titulacion(11, "sheesh", 66);
+		Grupo g = new Grupo(curso,letra,turnoMañanaTarde,ingles,visible,asignar,plazas,tit);
 		try {
-			gestionGrupo.obtenerGrupo(1,"B","Tarde",true,true,"asignao",3);
+			gestionGrupo.insertarGrupo(g);
+		}catch(ProyectoException e) {
+			throw new RuntimeException(e);
+		}
+		
+		try {
+			Grupo buscado = gestionGrupo.obtenerGrupo(2,"A",tit);
+			assertEquals(buscado.getCurso(), g.getCurso());
+			assertEquals(buscado.getLetra(), g.getLetra());
+			assertEquals(buscado.getTitulacion(), g.getTitulacion());
 		}catch (GrupoNoEncontradoException e) {
 			throw new RuntimeException(e);
 		}
@@ -98,10 +132,26 @@ public class Sample_Grupo {
 	@Requisitos({"RF15"})
 	@Test
 	public void testActualizarGrupo() throws GrupoNoEncontradoException {
+		final Integer curso = 2;
+		final String letra = "A";
+		final String turnoMañanaTarde = "mañana";
+		final Boolean ingles = true;
+		final Boolean visible = true;
+		final String asignar = "asignao";
+		final Integer plazas = 3;
+		final Titulacion tit = new Titulacion(11, "sheesh", 66);
+		Grupo g = new Grupo(curso,letra,turnoMañanaTarde,ingles,visible,asignar,plazas,tit);
+		
 		try {
-			Grupo grupo = gestionGrupo.obtenerGrupo(1,"B","Tarde",true,true,"asignao",3);
+			gestionGrupo.insertarGrupo(g);
+		}catch(ProyectoException e) {
+			throw new RuntimeException(e);
+		}
+		
+		try {
+			Grupo grupo = gestionGrupo.obtenerGrupo(2,"A",tit);
 			Grupo grupo_new = new Grupo();
-			grupo_new.setCurso(grupo.getCurso());
+			grupo_new.setCurso(1);
 			grupo_new.setLetra("C");
 			grupo_new.setTurnoMañanaTarde(grupo.getTurnoMañanaTarde());
 			grupo_new.setIngles(grupo.getIngles());

@@ -2,6 +2,7 @@ package es.uma.informatica.jpa.demo;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public class Grupo {
 	@Column(name = "Plazas")
 	private Integer plazas;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Titulacion titulacion;
 	
 	@OneToMany(mappedBy = "grupo")

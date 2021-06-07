@@ -85,7 +85,7 @@ public class Grupos {
 	}
 	public String eliminarGrupo(Grupo gr) {
 		try {
-			grupos.eliminarGrupo(gr.getCurso(), gr.getLetra(), gr.getTurnoMañanaTarde(), gr.getIngles(), gr.getVisible(), gr.getAsignar(), gr.getPlazas());
+			grupos.eliminarGrupo(gr.getCurso(), gr.getLetra(), gr.getTitulacion());
 		} catch (GrupoNoEncontradoException e) {
 			// TODO Auto-generated catch block
 			FacesMessage message = new FacesMessage("Alumno no encontrado");
@@ -114,7 +114,7 @@ public class Grupos {
 	public Grupo BuscarGrupo(String id) {
 		Grupo grupo = null;
 		try {
-			grupo = grupos.obtenerGrupo(grupo.getCurso(), grupo.getLetra(),grupo.getTurnoMañanaTarde(), grupo.getIngles(), grupo.getVisible(), grupo.getAsignar(), grupo.getPlazas());
+			grupo = grupos.obtenerGrupo(grupo.getCurso(), grupo.getLetra(),grupo.getTitulacion());
 		}catch(GrupoNoEncontradoException e){
 			FacesMessage message = new FacesMessage("Alumno no encontrado");
 			FacesContext.getCurrentInstance().addMessage(null, message);
