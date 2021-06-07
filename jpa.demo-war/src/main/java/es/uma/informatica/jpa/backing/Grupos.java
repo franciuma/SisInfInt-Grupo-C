@@ -9,9 +9,12 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 import es.uma.informatica.ejb.GestionGrupo;
+import es.uma.informatica.ejb.GestionTitulacion;
 import es.uma.informatica.ejb.exceptions.GrupoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.GrupoYaExistenteException;
+import es.uma.informatica.ejb.exceptions.TitulacionNoEncontradaException;
 import es.uma.informatica.jpa.demo.Grupo;
+import es.uma.informatica.jpa.demo.Titulacion;
 
 @Named(value="grupos")
 @RequestScoped
@@ -27,8 +30,17 @@ public class Grupos {
 	public void setUpload(Part upload) {
 		this.upload = upload;
 	}
-
+	@Inject
+	private GestionTitulacion titulaciones;
 	private Grupo grupo;
+	private String titulacion;
+	public String getTitulacion() {
+		return titulacion;
+	}
+	public void setTitulacion(String titulacion) {
+		this.titulacion = titulacion;
+	}
+
 	private boolean insertar_GR;
 	private List<Grupo> listGrupos;
 	private boolean buscar;
@@ -54,15 +66,23 @@ public class Grupos {
 		return "lista_grupos.xhtml";
 	}
 	public String anaidir_Grupo() {
-		
+		LOGGER.info("richaaaaaaaaaaaaaaaaaaaaaaaaarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
 		try {
+			LOGGER.info("Titulacion String es: " + titulacion);
+			Integer titulo = Integer.parseInt(titulacion);
+			LOGGER.info("Titulacion Integer es: " + titulo);
+			Titulacion tit = titulaciones.obtenerTitulacion(titulo);	
+			LOGGER.info("Titulacion Objeto es: " + tit.toString());
+			grupo.setTitulacion(tit);		
 			grupos.insertarGrupo(grupo);
 			setInsertar_GR(true);
 			return "lista_grupos.xhtml";
 		} catch (GrupoYaExistenteException e) {
-			// TODO Auto-generated catch block
 			FacesMessage message = new FacesMessage("Alumno ya existente");
 			FacesContext.getCurrentInstance().addMessage(null, message);
+			return null;
+		} catch (TitulacionNoEncontradaException e) {
+			e.printStackTrace();
 			return null;
 		}
 		
