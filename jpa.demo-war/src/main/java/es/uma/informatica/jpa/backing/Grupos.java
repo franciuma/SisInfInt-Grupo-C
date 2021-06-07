@@ -66,13 +66,9 @@ public class Grupos {
 		return "lista_grupos.xhtml";
 	}
 	public String anaidir_Grupo() {
-		LOGGER.info("richaaaaaaaaaaaaaaaaaaaaaaaaarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
 		try {
-			LOGGER.info("Titulacion String es: " + titulacion);
 			Integer titulo = Integer.parseInt(titulacion);
-			LOGGER.info("Titulacion Integer es: " + titulo);
 			Titulacion tit = titulaciones.obtenerTitulacion(titulo);	
-			LOGGER.info("Titulacion Objeto es: " + tit.toString());
 			grupo.setTitulacion(tit);		
 			grupos.insertarGrupo(grupo);
 			setInsertar_GR(true);
