@@ -19,9 +19,11 @@ import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
 import es.uma.informatica.ejb.exceptions.AsignaturaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.AsignaturaYaExistenteException;
 import es.uma.informatica.ejb.exceptions.MatriculaNoEncontradaException;
+import es.uma.informatica.ejb.exceptions.TitulacionNoEncontradaException;
 import es.uma.informatica.jpa.demo.Alumno;
 import es.uma.informatica.jpa.demo.Asignatura;
 import es.uma.informatica.jpa.demo.Matricula;
+import es.uma.informatica.jpa.demo.Titulacion;
 
 @Named(value="asignaturas")
 @RequestScoped
@@ -41,6 +43,8 @@ public class Asignaturas {
 	private Asignatura asignatura;
 	private boolean insertar_AS;
 	private List<Asignatura> listAsignaturas;
+	private boolean buscar;
+	private String referencia;
 	
 	public String borrarTodas() {
 		asignaturas.eliminarTodas();
@@ -126,26 +130,63 @@ public class Asignaturas {
 		return "editarAsignatura.xhtml";
 	}
 	
+	public Asignatura BuscarAsignatura(String referencia) {
+		Asignatura asignatura = null;
+		try {
+			if(!referencia.equals("")) {
+				asignatura = asignaturas.obtenerAsignatura(Integer.parseInt(referencia));
+			}
+		}catch(AsignaturaNoEncontradaException e){
+			FacesMessage message = new FacesMessage("Asignatura no encontrada");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}
+		return asignatura;
+	}
+	
+	public String VarBuscar() {
+		buscar = true;
+		return null;
+	}
+	
 	public Asignatura getAsignatura() {
 		return asignatura;
 	}
+	
 	public void setAsignatura(Asignatura asignatura) {
 		this.asignatura = asignatura;
 	}
+	
 	public boolean isInsertar_AS() {
 		return insertar_AS;
 	}
+	
 	public void setInsertar_AS(boolean insertar_AS) {
 		this.insertar_AS = insertar_AS;
 	}
+	
 	public List<Asignatura> getListAsignaturas() {
 		listAsignaturas = asignaturas.obtenerAsignaturas();
 		return listAsignaturas;
 	}
+	
 	public void setListAsignaturas(List<Asignatura> listAsignaturas) {
 		this.listAsignaturas = listAsignaturas;
 	}
 	
+	public boolean isBuscar() {
+		return buscar;
+	}
 	
+	public void setBuscar(boolean buscar) {
+		this.buscar = buscar;
+	}
+	
+	public String getReferencia() {
+		return referencia;
+	}
+	
+	public void setReferencia(String referencia) {
+		this.referencia = referencia;
+	}
 	
 }

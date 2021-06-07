@@ -18,5 +18,6 @@ public interface GestionGrupo {
 			String asignar, Integer plazas) throws GrupoNoEncontradoException;
 	void eliminarGrupo(Integer curso, String letra, String turnoMañanaTarde, Boolean ingles, Boolean visible,
 			String asignar, Integer plazas) throws GrupoNoEncontradoException;
+	public void eliminarTodos();
     
 }

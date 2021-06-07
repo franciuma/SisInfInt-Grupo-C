@@ -7,8 +7,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.GrupoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.GrupoYaExistenteException;
+import es.uma.informatica.jpa.demo.Alumno;
 import es.uma.informatica.jpa.demo.Grupo;
 
 @Stateless
@@ -72,6 +74,22 @@ public class GrupoEJB implements GestionGrupo{
         gr.setAsignar(grupo_new.getAsignar());
         gr.setPlazas(grupo_new.getPlazas());
         em.merge(gr);
+	}
+	
+	@Override
+	public void eliminarTodos() {
+		// TODO Auto-generated method stub
+		List<Grupo> grupos = obtenerGrupos();
+		if(grupos.size() != 0) {
+			for (Grupo gr : grupos) {
+				try {
+					eliminarGrupo(gr.getCurso(),gr.getLetra(),gr.getTurnoMañanaTarde(),gr.getIngles(),gr.getVisible(),gr.getAsignar(),gr.getPlazas());
+				} catch (GrupoNoEncontradoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 }

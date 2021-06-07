@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <h:head>
 	<title>Lista de Alumnos</title>
@@ -16,60 +17,121 @@
 </h:head>
 
 <h:body>
-				
+
 	<div class="list-box">
-	<h:form id="alumnos-id">
-		<h:link outcome="index_alumnos.xhtml">Atrás</h:link>
-		<h2>Listado de Alumnos</h2>
-		<h:commandButton value="Eliminar Todos"
-					action="#{alumnos2.borrarTodos()}"
-					onclick="alert('ALUMNOs BORRADOs');" 
-					class="deleteAllButton"/>
-		<h:dataTable value="#{alumnos2.listAlumnos}" var="al" class="datatable-box">
-		
-			<h:column>
-				<f:facet name="header">DNI </f:facet>
-				<h:outputText value="#{al.dni}" />
-			</h:column>
+		<h:form id="alumnos-id">
+			<h:link outcome="index_alumnos.xhtml">Atrás</h:link>
+			<h2>Listado de Alumnos</h2>
 
-			<h:column>
-				<f:facet name="header">Nombre</f:facet>
-				<h:outputText value="#{al.nombreCompleto}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Telefono </f:facet>
-				<h:outputText value="#{al.telefono}" />
-			</h:column>
+			<label>Introduce el DNI:</label>
+			<h:inputText value="#{alumnos2.dni}" />
 
-			<h:column>
-				<f:facet name="header">Movil</f:facet>
-				<h:outputText value="#{al.movil}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Correo 1 </f:facet>
-				<h:outputText value="#{al.emailInstitucional}" />
-			</h:column>
+			<h:commandButton value="Filtrar" action="#{alumnos2.VarBuscar()}"
+				class="deleteAllButton" />
 
-			<h:column>
-				<f:facet name="header">Correo 2</f:facet>
-				<h:outputText value="#{al.emailPersonal}" />
-			</h:column>
-			<h:column>
-				<h:commandButton value="Modificar"
-					action="#{alumnos2.modoModificarAlumno(al)}" class="modifyColumn"/>
-			</h:column>
+			<h:commandButton value="Mostrar todos" action="lista_alumnos.xhtml"
+				class="deleteAllButton" />
 
-			<h:column>
-				<h:commandButton value="Eliminar"
-					action="#{alumnos2.eliminarAlumno(al)}"
-					onclick="alert('ALUMNO BORRADO');" />
-			</h:column>
+			<h:commandButton value="Eliminar Todos"
+				action="#{alumnos2.borrarTodos()}"
+				onclick="alert('ALUMNOS BORRADOS');" class="deleteAllButton" />
 
-		</h:dataTable>
-	</h:form>
-	
+			<c:choose>
+				<c:when test="#{alumnos2.buscar}">
+					<h:dataTable value="#{alumnos2.BuscarAlumno(alumnos2.dni)}"
+						var="al" class="datatable-box">
+
+						<h:column>
+							<f:facet name="header">DNI </f:facet>
+							<h:outputText value="#{al.dni}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Nombre</f:facet>
+							<h:outputText value="#{al.nombreCompleto}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Telefono </f:facet>
+							<h:outputText value="#{al.telefono}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Movil</f:facet>
+							<h:outputText value="#{al.movil}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Correo 1 </f:facet>
+							<h:outputText value="#{al.emailInstitucional}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Correo 2</f:facet>
+							<h:outputText value="#{al.emailPersonal}" />
+						</h:column>
+						<h:column>
+							<h:commandButton value="Modificar"
+								action="#{alumnos2.modoModificarAlumno(al)}"
+								class="modifyColumn" />
+						</h:column>
+
+						<h:column>
+							<h:commandButton value="Eliminar"
+								action="#{alumnos2.eliminarAlumno(al)}"
+								onclick="alert('ALUMNO BORRADO');" />
+						</h:column>
+
+					</h:dataTable>
+				</c:when>
+				<c:otherwise>
+					<h:dataTable value="#{alumnos2.listAlumnos}" var="al"
+						class="datatable-box">
+
+						<h:column>
+							<f:facet name="header">DNI </f:facet>
+							<h:outputText value="#{al.dni}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Nombre</f:facet>
+							<h:outputText value="#{al.nombreCompleto}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Telefono </f:facet>
+							<h:outputText value="#{al.telefono}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Movil</f:facet>
+							<h:outputText value="#{al.movil}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Correo 1 </f:facet>
+							<h:outputText value="#{al.emailInstitucional}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Correo 2</f:facet>
+							<h:outputText value="#{al.emailPersonal}" />
+						</h:column>
+						<h:column>
+							<h:commandButton value="Modificar"
+								action="#{alumnos2.modoModificarAlumno(al)}"
+								class="modifyColumn" />
+						</h:column>
+
+						<h:column>
+							<h:commandButton value="Eliminar"
+								action="#{alumnos2.eliminarAlumno(al)}"
+								onclick="alert('ALUMNO BORRADO');" />
+						</h:column>
+
+					</h:dataTable>
+				</c:otherwise>
+			</c:choose>
+		</h:form>
+
 	</div>
-	
+
 </h:body>
 
 </html>

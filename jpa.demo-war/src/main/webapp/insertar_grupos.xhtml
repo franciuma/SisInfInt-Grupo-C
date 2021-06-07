@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	
+	>
+	
+	
+<h:head>
+	<title>Insertar Alumno</title>
+	<link
+		href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="recursos/css/normalize.css" />
+	<link rel="stylesheet" href="recursos/css/styleInsertar.css" />
+
+</h:head>
+<h:body>
+	
+	<div class="form-box">
+		<h2>Insertar Grupo</h2>
+		<h:form id = "insertar-grupo">
+			<h:message for = "insertar-grupo"/>
+			<div class="input-box">
+				<h:inputText id="id" value="#{grupos.grupo.id}" />
+				<label>id</label>
+			</div>
+			
+			<div class="input-box">
+				<h:inputText id="curso" value="#{grupos.grupo.curso}" />
+				<label>Curso</label>
+			</div>
+			
+			<div class="input-box">
+				<h:inputText id="letra" value="#{grupos.grupo.letra}" />
+				<label>Letra</label>
+			</div>
+			
+			<div class="input-box">
+				<h:inputText id="turno" value="#{grupos.grupo.turnoMañanaTarde}" />
+				<label>Turno</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="ingles" value="#{grupos.grupo.ingles}" />
+				<label>Ingles</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="visible" value="#{grupos.grupo.visible}" />
+				<h:message for="visible"/>
+				<label>Visible</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="asignar" value="#{grupos.grupo.asignar}" />
+				<label>Asignar</label>
+			</div>
+			<div class="input-box">
+				<h:inputText id="plazas" value="#{grupos.grupo.plazas}" />
+				<label>Plazas</label>
+			</div>
+			
+			<h:commandLink value="Crear Grupo" type ="submit" action="#{grupos.anaidir_Grupo()}"/>
+			
+	</div>
+</h:body>
+</html>
