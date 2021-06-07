@@ -52,6 +52,15 @@ public class Grupo {
 		
 	}
 	
+	public Grupo(int curso2, String letra2, String turno, boolean ingles2, boolean visible2, Titulacion tit) {
+		curso = curso2;
+		letra = letra2;
+		turnoMañanaTarde = turno;
+		ingles = ingles2;
+		visible = visible2;
+		titulacion = tit;
+	}
+	
 	public Grupo(Integer curso2, String letra2, String turnoMañanaTarde2, Boolean ingles2,
 			Boolean visible2, String asignar2, Integer plazas2) {
 		curso = curso2;
