@@ -2,6 +2,7 @@ package es.uma.informatica.jpa.backing;
 
 import java.io.File;
 
+
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
@@ -24,7 +25,11 @@ public class Alumnos {
 	
 	@Inject
 	private GestionAlumno alumnos;
+	
 	//private UploadedFile upload;
+	@Inject
+	private InfoSesion sesion;
+	
 	private Part upload;
 	public Part getUpload() {
 		return upload;
@@ -134,7 +139,10 @@ public class Alumnos {
 		LOGGER.info("alumno: " + alumno.getDni() + " | " + alumno.getNombreCompleto());
 		
 			boolean t = alumnos.autenticar(alumno.getDni(), alumno.getNombreCompleto());
-			if (t)return "index.xhtml";
+			if (t) {
+				sesion.setAlumno(alumno);
+				return "index.xhtml";
+			}
 			FacesMessage message = new FacesMessage("Usuario/contrasenia incorrecorectos");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			return null;
