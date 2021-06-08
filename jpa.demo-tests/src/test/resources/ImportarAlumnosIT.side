@@ -1,0 +1,185 @@
+{
+  "id": "5708fbbb-502a-4eb3-8e75-3f7c9f670e56",
+  "version": "2.0",
+  "name": "123",
+  "url": "http://0.0.0.0:8080",
+  "tests": [{
+    "id": "a8c7f70e-a72f-4b68-9eae-5699beb46cca",
+    "name": "ImportarAlumIT",
+    "commands": [{
+      "id": "758e00db-7694-4df4-89e8-72759d3bab94",
+      "comment": "",
+      "command": "open",
+      "target": "/jpa.demo-war/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "84720e05-5faf-44bc-bd83-571165397448",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "593x580",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "debf498a-5694-469b-b2e7-ddc3736c6c77",
+      "comment": "",
+      "command": "click",
+      "target": "id=Login-Form:Login-DNI",
+      "targets": [
+        ["id=Login-Form:Login-DNI", "id"],
+        ["name=Login-Form:Login-DNI", "name"],
+        ["css=#Login-Form\\3ALogin-DNI", "css:finder"],
+        ["xpath=//input[@id='Login-Form:Login-DNI']", "xpath:attributes"],
+        ["xpath=//form[@id='Login-Form']/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4d492b1a-7a38-493d-a178-9f40482dfbce",
+      "comment": "",
+      "command": "type",
+      "target": "id=Login-Form:Login-NombreCompleto",
+      "targets": [
+        ["id=Login-Form:Login-NombreCompleto", "id"],
+        ["name=Login-Form:Login-NombreCompleto", "name"],
+        ["css=#Login-Form\\3ALogin-NombreCompleto", "css:finder"],
+        ["xpath=//input[@id='Login-Form:Login-NombreCompleto']", "xpath:attributes"],
+        ["xpath=//form[@id='Login-Form']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "admin"
+    }, {
+      "id": "500eb7a5-e56b-49a2-9498-545fd484066a",
+      "comment": "",
+      "command": "type",
+      "target": "id=Login-Form:Login-DNI",
+      "targets": [
+        ["id=Login-Form:Login-DNI", "id"],
+        ["name=Login-Form:Login-DNI", "name"],
+        ["css=#Login-Form\\3ALogin-DNI", "css:finder"],
+        ["xpath=//input[@id='Login-Form:Login-DNI']", "xpath:attributes"],
+        ["xpath=//form[@id='Login-Form']/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin"
+    }, {
+      "id": "cebe8be9-1797-4cdf-ade5-15b398c9491d",
+      "comment": "",
+      "command": "click",
+      "target": "css=a:nth-child(5)",
+      "targets": [
+        ["css=a:nth-child(5)", "css:finder"],
+        ["xpath=//a[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='Login-Form']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "85cd38b5-a451-4fdc-aad2-ec751c907356",
+      "comment": "",
+      "command": "click",
+      "target": "id=indexIndex:vista-index-alumnos",
+      "targets": [
+        ["id=indexIndex:vista-index-alumnos", "id"],
+        ["name=indexIndex:vista-index-alumnos", "name"],
+        ["css=#indexIndex\\3Avista-index-alumnos", "css:finder"],
+        ["xpath=//a[contains(text(),'Alumnos')]", "xpath:link"],
+        ["xpath=//a[@id='indexIndex:vista-index-alumnos']", "xpath:attributes"],
+        ["xpath=//form[@id='indexIndex']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/jpa.demo-war/faces/index_alumnos.xhtml')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "913f53d6-3bd3-4585-82e7-d971b4b5103e",
+      "comment": "",
+      "command": "click",
+      "target": "id=indexAl:IndAl-InsertarAl",
+      "targets": [
+        ["id=indexAl:IndAl-InsertarAl", "id"],
+        ["name=indexAl:IndAl-InsertarAl", "name"],
+        ["css=#indexAl\\3AIndAl-InsertarAl", "css:finder"],
+        ["xpath=//a[contains(text(),'Insertar Alumno')]", "xpath:link"],
+        ["xpath=//a[@id='indexAl:IndAl-InsertarAl']", "xpath:attributes"],
+        ["xpath=//form[@id='indexAl']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/jpa.demo-war/faces/insertar_Alumno_v2.xhtml')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cbd52283-dc28-4a5f-ae6c-c9572a29cc80",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsAl-importarALumnos:InsAl-file",
+      "targets": [
+        ["id=InsAl-importarALumnos:InsAl-file", "id"],
+        ["name=InsAl-importarALumnos:InsAl-file", "name"],
+        ["css=#InsAl-importarALumnos\\3AInsAl-file", "css:finder"],
+        ["xpath=//input[@id='InsAl-importarALumnos:InsAl-file']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAl-importarALumnos']/input[2]", "xpath:idRelative"],
+        ["xpath=//form[2]/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5fdf44a4-0180-4d6b-bab0-cf91bec7b251",
+      "comment": "",
+      "command": "type",
+      "target": "id=InsAl-importarALumnos:InsAl-file",
+      "targets": [
+        ["id=InsAl-importarALumnos:InsAl-file", "id"],
+        ["name=InsAl-importarALumnos:InsAl-file", "name"],
+        ["css=#InsAl-importarALumnos\\3AInsAl-file", "css:finder"],
+        ["xpath=//input[@id='InsAl-importarALumnos:InsAl-file']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAl-importarALumnos']/input[2]", "xpath:idRelative"],
+        ["xpath=//form[2]/input[2]", "xpath:position"]
+      ],
+      "value": "C:\\fakepath\\Datos alumnadoFAKE.xlsx"
+    }, {
+      "id": "d35f1cdb-607b-4d98-b021-aa5999724eef",
+      "comment": "",
+      "command": "click",
+      "target": "css=a:nth-child(3)",
+      "targets": [
+        ["css=a:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Enviar Fichero')]", "xpath:link"],
+        ["xpath=(//a[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//form[@id='InsAl-importarALumnos']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//form[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "781efb75-5986-4026-9698-eedeb15c2d6e",
+      "comment": "",
+      "command": "click",
+      "target": "id=LiAl-alumnos-id:LiAl-boton-eliminarTodos-alumno",
+      "targets": [
+        ["id=LiAl-alumnos-id:LiAl-boton-eliminarTodos-alumno", "id"],
+        ["name=LiAl-alumnos-id:LiAl-boton-eliminarTodos-alumno", "name"],
+        ["css=#LiAl-alumnos-id\\3ALiAl-boton-eliminarTodos-alumno", "css:finder"],
+        ["xpath=//input[@id='LiAl-alumnos-id:LiAl-boton-eliminarTodos-alumno']", "xpath:attributes"],
+        ["xpath=//form[@id='LiAl-alumnos-id']/input[5]", "xpath:idRelative"],
+        ["xpath=//input[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d0a11be1-6984-481a-9d12-13da0d8fa890",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "ALUMNOs BORRADOs",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "bea46b7e-8f31-43fe-b744-6493c9896f2f",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["a8c7f70e-a72f-4b68-9eae-5699beb46cca"]
+  }],
+  "urls": ["http://0.0.0.0:8080/"],
+  "plugins": []
+}
