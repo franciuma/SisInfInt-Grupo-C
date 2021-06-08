@@ -120,24 +120,24 @@ public class Grupos {
 		return "editarGrupo.xhtml";
 	}
 	
-<<<<<<< HEAD
-	public Grupo BuscarGrupos(String id) {
-		Grupo grupo = null;
-		try {
-			grupo = grupos.obtenerGrupo(grupo.getCurso(), grupo.getLetra(),grupo.getTitulacion());
-		}catch(GrupoNoEncontradoException e){
-			FacesMessage message = new FacesMessage("Alumno no encontrado");
-			FacesContext.getCurrentInstance().addMessage(null, message);
-		}
-		return grupo;
-	}
-	
-	public String VarBuscar() {
-		buscar = true;
-		return null;
-	}
-=======
->>>>>>> f6dca13bad673eb129fe07239078f7744c2a2aaa
+//<<<<<<< HEAD
+//	public Grupo BuscarGrupos(String id) {
+//		Grupo grupo = null;
+//		try {
+//			grupo = grupos.obtenerGrupo(grupo.getCurso(), grupo.getLetra(),grupo.getTitulacion());
+//		}catch(GrupoNoEncontradoException e){
+//			FacesMessage message = new FacesMessage("Alumno no encontrado");
+//			FacesContext.getCurrentInstance().addMessage(null, message);
+//		}
+//		return grupo;
+//	}
+//	
+//	public String VarBuscar() {
+//		buscar = true;
+//		return null;
+//	}
+//=======
+//>>>>>>> f6dca13bad673eb129fe07239078f7744c2a2aaa
 	
 	public List<Grupo> getListGrupos() {
 		listGrupos = grupos.obtenerGrupos();

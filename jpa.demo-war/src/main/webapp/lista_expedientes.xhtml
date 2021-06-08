@@ -25,7 +25,7 @@
 		<h2>Listado de Expedientes</h2>
 		
 		<label>Introduce el numero de expediente:</label>
-		<h:inputText value="#{expedientes.expediente.numExpediente}"/>
+		<h:inputText value="#{expedientes.numExpediente}"/>
 
 		<h:commandButton value="Filtrar" action="#{expedientes.varBuscar()}"
 			class="deleteAllButton" />
@@ -36,12 +36,11 @@
 		
 		<h:commandButton value="Eliminar Todos"
 					action="#{expedientes.borrarTodos()}"
-<<<<<<< HEAD
 					onclick="alert('EXPEDIENTES BORRADOS');" />
 		
 		<c:choose>
 			<c:when test="#{expedientes.buscar})">
-		<h:dataTable value="#{expedientes.buscarExp(expedientes.expediente.numExpediente)}" var="ex" class="datatable-box">
+		<h:dataTable value="#{expedientes.buscarExpediente(expedientes.numExpediente)}" var="ex" class="datatable-box">
 		
 			<h:column>
 				<f:facet name="header">Numero Expediente</f:facet>
@@ -64,11 +63,8 @@
 		</h:dataTable>
 		</c:when>
 		<c:otherwise>
-		<h:dataTable value="#{expedientes.getListExpedientes()}" var="ex" class="datatable-box">
-=======
-					onclick="alert('EXPEDIENTEs BORRADOs');" id="LiExp-EliminarTodos"/>
+		
 		<h:dataTable value="#{expedientes.getListExpedientes()}" var="ex">
->>>>>>> f6dca13bad673eb129fe07239078f7744c2a2aaa
 		
 			<h:column>
 				<f:facet name="header">Numero Expediente</f:facet>

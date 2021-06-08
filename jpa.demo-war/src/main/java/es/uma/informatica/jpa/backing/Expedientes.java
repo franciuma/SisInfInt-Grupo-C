@@ -36,12 +36,7 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 	private boolean insertar_EX;
 	private List<Expediente> listExpedientes;
 	private boolean buscar;
-
-	public Expedientes() {
-		// TODO Auto-generated constructor stub
-		expediente = new Expediente();
-		insertar_EX = false;
-	}
+	private String numExpediente;
 	
 	public String aniadir_Expediente(){
 		
@@ -81,7 +76,7 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 	return null;
 	}
 
-	public Expediente buscarExp(String numExpediente) {
+	public Expediente buscarExpediente(String numExpediente) {
 		Expediente expediente = null;
 		try {
 			if(!numExpediente.equals("")) {
@@ -134,6 +129,17 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 		FacesMessage message = new FacesMessage("Borrado con exito");
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		return null;
+	}
+	public String getNumExpediente() {
+		return numExpediente;
+	}
+	public void setNumExpediente(String numExpediente) {
+		this.numExpediente = numExpediente;
+	}
+	public Expedientes() {
+		// TODO Auto-generated constructor stub
+		expediente = new Expediente();
+		insertar_EX = false;
 	}
 	
 }
