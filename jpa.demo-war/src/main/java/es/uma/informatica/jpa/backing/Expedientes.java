@@ -9,7 +9,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Part;
-
+import es.uma.informatica.ejb.GestionAlumno;
+import es.uma.informatica.ejb.GestionAsignatura;
 import es.uma.informatica.ejb.GestionExpediente;
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ExpedienteNoEncontradoException;
@@ -31,6 +32,9 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 	public void setUpload(Part upload) {
 		this.upload = upload;
 	}
+	
+	@Inject
+	private GestionAlumno alumnos;
 
 	private Expediente expediente;
 	private boolean insertar_EX;
