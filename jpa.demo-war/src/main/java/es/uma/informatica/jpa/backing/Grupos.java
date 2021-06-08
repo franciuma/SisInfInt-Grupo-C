@@ -87,8 +87,7 @@ public class Grupos {
 		try {
 			grupos.eliminarGrupo(gr.getCurso(), gr.getLetra(), gr.getTitulacion());
 		} catch (GrupoNoEncontradoException e) {
-			// TODO Auto-generated catch block
-			FacesMessage message = new FacesMessage("Alumno no encontrado");
+			FacesMessage message = new FacesMessage("Grupo no encontrado");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
@@ -100,7 +99,7 @@ public class Grupos {
 			return "lista_grupos.xhtml";
 		} catch (GrupoNoEncontradoException e) {
 			// TODO Auto-generated catch block
-			FacesMessage message = new FacesMessage("Alumno no encontrado");
+			FacesMessage message = new FacesMessage("Grupo no encontrado");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
@@ -111,12 +110,12 @@ public class Grupos {
 		return "editarGrupo.xhtml";
 	}
 	
-	public Grupo BuscarGrupo(String id) {
+	public Grupo buscarGrupo(String id) {
 		Grupo grupo = null;
 		try {
 			grupo = grupos.obtenerGrupo(grupo.getCurso(), grupo.getLetra(),grupo.getTitulacion());
 		}catch(GrupoNoEncontradoException e){
-			FacesMessage message = new FacesMessage("Alumno no encontrado");
+			FacesMessage message = new FacesMessage("GRupo no encontrado");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return grupo;
