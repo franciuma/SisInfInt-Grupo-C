@@ -57,17 +57,6 @@
 							<h:outputText value="#{ti.creditos}" />
 						</h:column>
 
-						<h:column>
-							<h:commandButton value="Modificar"
-								action="#{titulaciones.modoModificarTitulacion(ti)}" />
-						</h:column>
-
-						<h:column>
-							<h:commandButton value="Eliminar"
-								action="#{titulaciones.eliminarTitulacion(ti)}"
-								onclick="alert('TITULACION BORRADA');" />
-						</h:column>
-
 					</h:dataTable>
 				</c:when>
 				<c:otherwise>

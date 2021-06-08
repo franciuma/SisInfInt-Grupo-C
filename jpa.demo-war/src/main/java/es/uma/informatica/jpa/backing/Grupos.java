@@ -40,7 +40,8 @@ public class Grupos {
 	public void setTitulacion(String titulacion) {
 		this.titulacion = titulacion;
 	}
-
+	
+	private Grupo grupoviejo;
 	private boolean insertar_GR;
 	private List<Grupo> listGrupos;
 	private boolean buscar;
@@ -96,7 +97,7 @@ public class Grupos {
 	
 	public String actualizarGrupo() {
 		try {
-			grupos.actualizarGrupo(grupo, grupo);
+			grupos.actualizarGrupo(grupoviejo, grupo);
 			return "lista_grupos.xhtml";
 		} catch (GrupoNoEncontradoException e) {
 			// TODO Auto-generated catch block
@@ -107,11 +108,12 @@ public class Grupos {
 	}
 	
 	public String modoModificarGrupo(Grupo gr) {
+		grupoviejo = gr;
 		grupo = gr;
 		return "editarGrupo.xhtml";
 	}
 	
-	public Grupo BuscarGrupo(String id) {
+	public Grupo BuscarGrupos(String id) {
 		Grupo grupo = null;
 		try {
 			grupo = grupos.obtenerGrupo(grupo.getCurso(), grupo.getLetra(),grupo.getTitulacion());

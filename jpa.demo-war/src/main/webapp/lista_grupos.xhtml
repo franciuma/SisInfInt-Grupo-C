@@ -24,7 +24,7 @@
 			<h2>Listado de Grupos</h2>
 
 			<label>Introduce el id:</label>
-			<h:inputText value="#{grupos.id}" />
+			<h:inputText value="#{grupos.grupo.id}" />
 
 			<h:commandButton value="Filtrar" action="#{grupos.VarBuscar()}"
 				class="deleteAllButton" />
@@ -40,11 +40,6 @@
 				<c:when test="#{grupos.buscar}">
 					<h:dataTable value="#{grupos.BuscarGrupos(grupos.id)}" var="gr"
 						class="datatable-box">
-
-						<h:column>
-							<f:facet name="header">ID </f:facet>
-							<h:outputText value="#{gr.id}" />
-						</h:column>
 
 						<h:column>
 							<f:facet name="header">Curso</f:facet>

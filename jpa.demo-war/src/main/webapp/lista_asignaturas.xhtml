@@ -88,16 +88,6 @@
 							<f:facet name="header">Idiomas Imparticion</f:facet>
 							<h:outputText value="#{as.idiomasImparticion}" />
 						</h:column>
-						<h:column>
-							<h:commandButton value="Modificar"
-								action="#{asignaturas.modoModificarAsignatura(as)}" />
-						</h:column>
-
-						<h:column>
-							<h:commandButton value="Eliminar"
-								action="#{asignaturas.eliminarAsignatura(as)}"
-								onclick="alert('ASIGNATURA BORRADA');" />
-						</h:column>
 
 					</h:dataTable>
 				</c:when>

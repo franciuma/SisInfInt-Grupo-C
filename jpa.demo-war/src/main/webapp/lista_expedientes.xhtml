@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <h:head>
 	<title>Lista de Expedientes</title>
@@ -21,10 +22,47 @@
 	<h:form id="expedientes-id">
 		<h:link outcome="index_expediente.xhtml">Atrás</h:link>
 		<h2>Listado de Expedientes</h2>
+		
+		<label>Introduce el numero de expediente:</label>
+		<h:inputText value="#{expedientes.expediente.numExpediente}"/>
+
+		<h:commandButton value="Filtrar" action="#{expedientes.varBuscar()}"
+			class="deleteAllButton" />
+
+		<h:commandButton value="Mostrar todos"
+			action="lista_expedientes.xhtml" class="deleteAllButton" />
+		
+		
 		<h:commandButton value="Eliminar Todos"
 					action="#{expedientes.borrarTodos()}"
-					onclick="alert('EXPEDIENTEs BORRADOs');" />
-		<h:dataTable value="#{expedientes.getListExpedientes()}" var="ex">
+					onclick="alert('EXPEDIENTES BORRADOS');" />
+		
+		<c:choose>
+			<c:when test="#{expedientes.buscar})">
+		<h:dataTable value="#{expedientes.buscarExp(expedientes.expediente.numExpediente)}" var="ex" class="datatable-box">
+		
+			<h:column>
+				<f:facet name="header">Numero Expediente</f:facet>
+				<h:outputText value="#{ex.numExpediente}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Activo</f:facet>
+				<h:outputText value="#{ex.activo}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nota Media Provisional</f:facet>
+				<h:outputText value="#{ex.notaMediaProvisional}"> 
+					<f:convertNumber type="number" />
+				</h:outputText>
+			</h:column>
+			
+
+
+		</h:dataTable>
+		</c:when>
+		<c:otherwise>
+		<h:dataTable value="#{expedientes.getListExpedientes()}" var="ex" class="datatable-box">
 		
 			<h:column>
 				<f:facet name="header">Numero Expediente</f:facet>
@@ -54,6 +92,8 @@
 			</h:column>
 
 		</h:dataTable>
+		</c:otherwise>
+		</c:choose>
 	</h:form>
 	
 	</div>

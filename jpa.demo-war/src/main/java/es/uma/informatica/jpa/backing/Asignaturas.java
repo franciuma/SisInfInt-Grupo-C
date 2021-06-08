@@ -14,16 +14,9 @@ import javax.inject.Named;
 import javax.servlet.http.Part;
 
 import es.uma.informatica.ejb.GestionAsignatura;
-import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
-import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
 import es.uma.informatica.ejb.exceptions.AsignaturaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.AsignaturaYaExistenteException;
-import es.uma.informatica.ejb.exceptions.MatriculaNoEncontradaException;
-import es.uma.informatica.ejb.exceptions.TitulacionNoEncontradaException;
-import es.uma.informatica.jpa.demo.Alumno;
 import es.uma.informatica.jpa.demo.Asignatura;
-import es.uma.informatica.jpa.demo.Matricula;
-import es.uma.informatica.jpa.demo.Titulacion;
 
 @Named(value="asignaturas")
 @RequestScoped
