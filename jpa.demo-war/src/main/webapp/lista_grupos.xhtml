@@ -25,6 +25,7 @@
 			<h2>Listado de Grupos</h2>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<label>Introduce el id:</label>
 			<h:inputText value="#{grupos.id}" id="LiGr-IdGrupos"/>
 
@@ -96,16 +97,24 @@
 				</c:when>
 				<c:otherwise>
 				
+=======
+			<h:commandButton value="Eliminar Todos"
+				action="#{grupos.borrarTodos()}" onclick="alert('GRUPOS BORRADOS');"
+				class="deleteAllButton" />
+>>>>>>> affcefdfe33ef26e52588266771bc807137c2b79
 					<h:dataTable value="#{grupos.listGrupos}" var="gr"
 						class="datatable-box">
 
 						<h:column>
+<<<<<<< HEAD
 <<<<<<< HEAD
 							<f:facet name="header">ID </f:facet>
 							<h:outputText value="#{gr.id}" id="LiGr-IdC2"/>
 						</h:column>
 
 						<h:column>
+=======
+>>>>>>> affcefdfe33ef26e52588266771bc807137c2b79
 =======
 >>>>>>> affcefdfe33ef26e52588266771bc807137c2b79
 							<f:facet name="header">Curso</f:facet>
