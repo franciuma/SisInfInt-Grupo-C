@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <h:head>
 	<title>Lista de Matriculas</title>
@@ -17,65 +18,126 @@
 </h:head>
 
 <h:body>
-				
+
 	<div class="list-box">
-	<h:form id="LiMa-matriculas-id" styleClass="centrar-texto navegacion table-mostrar">
-	<h:message for = "LiMa-matriculas-id"/>
-	<h:link outcome="index_matricula.xhtml">Atrás</h:link>
-	<h2>Listado de Matriculas</h2>
-	<h:commandLink value="Eliminar Todas"
-					action="#{matriculas.borrarTodas()}"
-					onclick="alert('MATRICULAs BORRADAS');" id="LiMa-EliminarTodas"/>
-		<h:dataTable value="#{matriculas.getListMatriculas()}" var="ma">
-		
-			<h:column>
-				<f:facet name="header">Curso Academico </f:facet>
-				<h:outputText value="#{ma.cursoAcademico}" id="LiMa-CursoAcad"/>
-			</h:column>
+		<h:form id="LiMa-matriculas-id"
+			styleClass="centrar-texto navegacion table-mostrar">
+			<h:message for = "LiMa-matriculas-id"/>
+			<h:link outcome="index_matricula.xhtml">Atrás</h:link>
+			<h2>Listado de Matriculas</h2>
 
-			<h:column>
-				<f:facet name="header">Estado</f:facet>
-				<h:outputText value="#{ma.estado}" id="LiMa-Estado"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Numero de archivo </f:facet>
-				<h:outputText value="#{ma.numArchivo}" id="LiMa-NumArchivo"/>
-			</h:column>
+			<label>Introduce el curso academico:</label>
+			<h:inputText id="LiMa-CursoAcad" value="#{matriculas.curso_academico}" />
 
-			<h:column>
-				<f:facet name="header">Turno preferente</f:facet>
-				<h:outputText value="#{ma.turnoPreferente}" id="LiMa-TurnoPref"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">fecha de matricula </f:facet>
-				<h:outputText value="#{ma.fechaMatricula}" id="LiMa-FechaDeMatr"/>
-			</h:column>
+			<h:commandButton id="LiMa-FiltrarMa" value="Filtrar" action="#{matriculas.VarBuscar()}"
+				class="deleteAllButton" />
 
-			<h:column>
-				<f:facet name="header">Nuevo ingreso</f:facet>
-				<h:outputText value="#{ma.nuevoIngreso}" id="LiMa-NuevoIngr"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">listado de asignaturas</f:facet>
-				<h:outputText value="#{ma.listadoAsignaturas}" id="LiMa-ListadoAsig"/>
-			</h:column>
-			<h:column>
-				<h:commandButton value="Modificar"
-					action="#{matriculas.modoModificarMatricula(ma)}" id="LiMa-Modificar"/>
-			</h:column>
+			<h:commandButton id="LiMa-MostrarTodasMa" value="Mostrar todos"
+				action="lista_matriculas.xhtml" class="deleteAllButton" />
 
-			<h:column>
-				<h:commandButton value="Eliminar"
-					action="#{matriculas.eliminarMatricula(ma)}"
-					onclick="alert('MATRICULA BORRADA');" id="LiMa-Eliminar"/>
-			</h:column>
 
-		</h:dataTable>
-		
-	</h:form>
-	
+			<h:commandLink id="LiMa-EliminarTodasMa" value="Eliminar Todas"
+				action="#{matriculas.borrarTodas()}"
+				onclick="alert('MATRICULAs BORRADAS');" />
+			<c:choose>
+				<c:when test="#{matriculas.buscar}">
+					<h:dataTable value="#{matriculas.BuscarMatricula()}" var="ma">
+
+						<h:column>
+							<f:facet name="header">Curso Academico </f:facet>
+							<h:outputText value="#{ma.cursoAcademico}" id="LiMa-CursoAcadC1"/>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Estado</f:facet>
+							<h:outputText value="#{ma.estado}" id="LiMa-EstadoC1"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Numero de archivo </f:facet>
+							<h:outputText value="#{ma.numArchivo}" id="LiMa-NumArchivoC1"/>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Turno preferente</f:facet>
+							<h:outputText value="#{ma.turnoPreferente}" id="LiMa-TurnoPrefC1"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">fecha de matricula </f:facet>
+							<h:outputText value="#{ma.fechaMatricula}" id="LiMa-FechaDeMatrC1"/>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Nuevo ingreso</f:facet>
+							<h:outputText value="#{ma.nuevoIngreso}" id="LiMa-NuevoIngrC1"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">listado de asignaturas</f:facet>
+							<h:outputText value="#{ma.listadoAsignaturas}" id="LiMa-ListadoAsigC1"/>
+						</h:column>
+						<h:column>
+							<h:commandButton value="Modificar"
+								action="#{matriculas.modoModificarMatricula(ma)}" id="LiMa-ModificarC1"/>
+						</h:column>
+
+						<h:column>
+							<h:commandButton value="Eliminar"
+								action="#{matriculas.eliminarMatricula(ma)}"
+								onclick="alert('MATRICULA BORRADA');" id="LiMa-EliminarC1"/>
+						</h:column>
+
+					</h:dataTable>
+				</c:when>
+				<c:otherwise>
+					<h:dataTable value="#{matriculas.getListMatriculas()}" var="ma">
+
+						<h:column>
+							<f:facet name="header">Curso Academico </f:facet>
+							<h:outputText value="#{ma.cursoAcademico}" id="LiMa-CursoAcadC2"/>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Estado</f:facet>
+							<h:outputText value="#{ma.estado}" id="LiMa-EstadoC2"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Numero de archivo </f:facet>
+							<h:outputText value="#{ma.numArchivo}" id="LiMa-NumArchivoC2"/>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Turno preferente</f:facet>
+							<h:outputText value="#{ma.turnoPreferente}" id="LiMa-TurnoPrefC2"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">fecha de matricula </f:facet>
+							<h:outputText value="#{ma.fechaMatricula}" id="LiMa-FechaDeMatrC2"/>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Nuevo ingreso</f:facet>
+							<h:outputText value="#{ma.nuevoIngreso}" id="LiMa-NuevoIngrC2"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">listado de asignaturas</f:facet>
+							<h:outputText value="#{ma.listadoAsignaturas}" id="LiMa-ListadoAsigC2"/>
+						</h:column>
+						<h:column>
+							<h:commandButton value="Modificar"
+								action="#{matriculas.modoModificarMatricula(ma)}" id="LiMa-ModificarC2"/>
+						</h:column>
+
+						<h:column>
+							<h:commandButton value="Eliminar"
+								action="#{matriculas.eliminarMatricula(ma)}"
+								onclick="alert('MATRICULA BORRADA');" id="LiMa-EliminarC2"/>
+						</h:column>
+
+					</h:dataTable>
+				</c:otherwise>
+			</c:choose>
+		</h:form>
 	</div>
-	
+
 </h:body>
 
 </html>

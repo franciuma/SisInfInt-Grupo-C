@@ -10,7 +10,7 @@
 	
 	
 <h:head>
-	<title>Insertar Alumno</title>
+	<title>Insertar Grupo</title>
 	<link
 		href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
 		rel="stylesheet" />
@@ -56,6 +56,11 @@
 				<h:inputText id="InsGr-plazas" value="#{grupos.grupo.plazas}" />
 				<label>Plazas</label>
 			</div>
+			<div class="input-box">
+				<h:inputText id="titulacion" value="#{grupos.titulacion}" />
+				<label>Titulacion</label>
+			</div>
+			
 			
 			<h:commandLink id="InsGr-CrearGrupo" value="Crear Grupo" type ="submit" action="#{grupos.anaidir_Grupo()}"/>
 			

@@ -29,16 +29,12 @@ public class GrupoEJB implements GestionGrupo{
 	}
 
 	@Override
-	public Grupo obtenerGrupo(Integer curso, String letra, String turnoMañanaTarde, Boolean ingles, Boolean visible, String asignar, Integer plazas) throws GrupoNoEncontradoException {
+	public Grupo obtenerGrupo(Integer curso, String letra, Titulacion tit) throws GrupoNoEncontradoException {
 		// TODO Auto-generated method stub
-		TypedQuery<Grupo> grupos = em.createQuery("Select g from Grupo g where g.curso = :curso AND g.letra = :letra AND g.turnoMañanaTarde = :turnoMañanaTarde AND g.ingles = :ingles AND g.visible = :visible AND g.asignar = :asignar AND g.plazas = :plazas",Grupo.class );
+		TypedQuery<Grupo> grupos = em.createQuery("Select g from Grupo g where g.curso = :curso AND g.letra = :letra AND g.titulacion = :tit",Grupo.class );
         grupos.setParameter("curso", curso);
         grupos.setParameter("letra", letra);
-        grupos.setParameter("turnoMañanaTarde", turnoMañanaTarde);
-        grupos.setParameter("ingles", ingles);
-        grupos.setParameter("visible", visible);
-        grupos.setParameter("asignar", asignar);
-        grupos.setParameter("plazas", plazas);
+        grupos.setParameter("tit", tit);
         List<Grupo> grupo = grupos.getResultList();
         
 		if(grupo == null || grupo.size() == 0) {
@@ -49,9 +45,9 @@ public class GrupoEJB implements GestionGrupo{
 	}
 
 	@Override
-	public void eliminarGrupo(Integer curso, String letra, String turnoMañanaTarde, Boolean ingles, Boolean visible, String asignar, Integer plazas) throws GrupoNoEncontradoException {
+	public void eliminarGrupo(Integer curso, String letra, Titulacion tit) throws GrupoNoEncontradoException {
 		// TODO Auto-generated method stub
-		Grupo grup = obtenerGrupo(curso,letra,turnoMañanaTarde,ingles,visible,asignar,plazas);
+		Grupo grup = obtenerGrupo(curso,letra,tit);
         em.remove(grup);
 	}
 
@@ -65,7 +61,7 @@ public class GrupoEJB implements GestionGrupo{
 	@Override
 	public void actualizarGrupo(Grupo grupo, Grupo grupo_new) throws GrupoNoEncontradoException {
 		// TODO Auto-generated method stub
-		Grupo gr = obtenerGrupo(grupo.getCurso(), grupo.getLetra(), grupo.getTurnoMañanaTarde(), grupo.getIngles(), grupo.getVisible(), grupo.getAsignar(), grupo.getPlazas());
+		Grupo gr = obtenerGrupo(grupo.getCurso(), grupo.getLetra(), grupo.getTitulacion());
         gr.setCurso(grupo_new.getCurso());
         gr.setLetra(grupo_new.getLetra());
         gr.setTurnoMañanaTarde(grupo_new.getTurnoMañanaTarde());
@@ -83,7 +79,7 @@ public class GrupoEJB implements GestionGrupo{
 		if(grupos.size() != 0) {
 			for (Grupo gr : grupos) {
 				try {
-					eliminarGrupo(gr.getCurso(),gr.getLetra(),gr.getTurnoMañanaTarde(),gr.getIngles(),gr.getVisible(),gr.getAsignar(),gr.getPlazas());
+					eliminarGrupo(gr.getCurso(),gr.getLetra(),gr.getTitulacion());
 				} catch (GrupoNoEncontradoException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

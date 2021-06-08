@@ -76,6 +76,11 @@
 						</h:column>
 
 						<h:column>
+							<f:facet name="header">Titulacion</f:facet>
+							<h:outputText value="#{gr.titulacion}" />
+						</h:column>
+						
+						<h:column>
 							<h:commandButton value="Modificar"
 								action="#{grupos.modoModificarGrupo(gr)}" class="modifyColumn" id="LiGr-ModificarC1"/>
 						</h:column>
@@ -123,6 +128,11 @@
 						<h:column>
 							<f:facet name="header">Plazas</f:facet>
 							<h:outputText value="#{gr.plazas}" id="LiGr-PlazasC2"/>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Titulacion</f:facet>
+							<h:outputText value="#{gr.titulacion.nombre}" />
 						</h:column>
 
 						<h:column>

@@ -44,12 +44,8 @@ public class Matriculas {
 	private Matricula_ID matricula_id;
 	private String expediente;
 	private String fecha_ingreso;
-	public Matricula_ID getMatricula_id() {
-		return matricula_id;
-	}
-	public void setMatricula_id(Matricula_ID matricula_id) {
-		this.matricula_id = matricula_id;
-	}
+	private String curso_academico;
+	private boolean buscar;
 
 	private boolean insertar_MA;
 	private List<Matricula> listMatriculas;
@@ -156,7 +152,23 @@ public class Matriculas {
 		return "editarMatricula.xhtml";
 	}
 	
+	public String VarBuscar() {
+		buscar = true;
+		return null;
+	}
 	
+	public Matricula BuscarMatricula(String curso_academico) {
+		Matricula matricula = null;
+		Matricula_ID matriculaid = null;
+		try {
+			matricula.setCursoAcademico(curso_academico);
+			matricula = matriculas.obtenerMatricula(expediente, matriculaid);
+		}catch(MatriculaNoEncontradaException e){
+			FacesMessage message = new FacesMessage("Alumno no encontrado");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}
+		return matricula;
+	}
 	
 	public List<Matricula> getListMatriculas() {
 		listMatriculas = matriculas.obtenerMatriculas();
@@ -194,7 +206,24 @@ public class Matriculas {
 		this.fecha_ingreso = fecha_ingreso;
 	}
 
-
+	public String getCurso_academico() {
+		return curso_academico;
+	}
+	public void setCurso_academico(String curso_academico) {
+		this.curso_academico = curso_academico;
+	}
+	public boolean isBuscar() {
+		return buscar;
+	}
+	public void setBuscar(boolean buscar) {
+		this.buscar = buscar;
+	}
+	public Matricula_ID getMatricula_id() {
+		return matricula_id;
+	}
+	public void setMatricula_id(Matricula_ID matricula_id) {
+		this.matricula_id = matricula_id;
+	}
 	
 
 
