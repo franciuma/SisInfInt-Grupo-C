@@ -27,10 +27,13 @@
 			<h2>Listado de Matriculas</h2>
 
 			<label>Introduce el curso academico:</label>
-			<h:inputText id="LiMa-CursoAcad" value="#{matriculas.curso_academico}" />
+					<h:inputText id="LiMa-CursoAcad" value="#{matriculas.curso_academico}" />
+			
+			<label>Introduce el expediente:</label>
+			<h:inputText id="LiMa-exp" value="#{matriculas.expediente}" />
 
-			<h:commandButton id="LiMa-FiltrarMa" value="Filtrar" action="#{matriculas.VarBuscar()}"
-				class="deleteAllButton" />
+			<h:commandButton id="LiMa-FiltrarMa" value="Filtrar" action="#{matriculas.varBuscar()}"/>
+
 
 			<h:commandButton id="LiMa-MostrarTodasMa" value="Mostrar todos"
 				action="lista_matriculas.xhtml" class="deleteAllButton" />
@@ -38,11 +41,16 @@
 
 			<h:commandLink id="LiMa-EliminarTodasMa" value="Eliminar Todas"
 				action="#{matriculas.borrarTodas()}"
-				onclick="alert('MATRICULAs BORRADAS');" />
+				onclick="alert('MATRICULAS BORRADAS');" />
+				
 			<c:choose>
 				<c:when test="#{matriculas.buscar}">
-					<h:dataTable value="#{matriculas.BuscarMatricula()}" var="ma">
-
+					<h:dataTable value="#{matriculas.buscarMatricula(matriculas.curso_academico,matriculas.expediente)}" var="ma">
+						<h:column>
+							<f:facet name="header">Expediente </f:facet>
+							<h:outputText value="#{ma.id.expediente}" id="LiMa-expC1"/>
+						</h:column>
+						
 						<h:column>
 							<f:facet name="header">Curso Academico </f:facet>
 							<h:outputText value="#{ma.cursoAcademico}" id="LiMa-CursoAcadC1"/>
@@ -74,21 +82,15 @@
 							<f:facet name="header">listado de asignaturas</f:facet>
 							<h:outputText value="#{ma.listadoAsignaturas}" id="LiMa-ListadoAsigC1"/>
 						</h:column>
-						<h:column>
-							<h:commandButton value="Modificar"
-								action="#{matriculas.modoModificarMatricula(ma)}" id="LiMa-ModificarC1"/>
-						</h:column>
-
-						<h:column>
-							<h:commandButton value="Eliminar"
-								action="#{matriculas.eliminarMatricula(ma)}"
-								onclick="alert('MATRICULA BORRADA');" id="LiMa-EliminarC1"/>
-						</h:column>
-
 					</h:dataTable>
 				</c:when>
 				<c:otherwise>
 					<h:dataTable value="#{matriculas.getListMatriculas()}" var="ma">
+
+						<h:column>
+							<f:facet name="header">expediente</f:facet>
+							<h:outputText value="#{ma.id.expediente}" id="LiMa-expC2"/>
+						</h:column>
 
 						<h:column>
 							<f:facet name="header">Curso Academico </f:facet>

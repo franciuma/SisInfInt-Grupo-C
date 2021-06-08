@@ -9,15 +9,13 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Part;
-
 import es.uma.informatica.ejb.GestionAlumno;
 import es.uma.informatica.ejb.GestionAsignatura;
 import es.uma.informatica.ejb.GestionExpediente;
-import es.uma.informatica.ejb.exceptions.AsignaturaNoEncontradaException;
-import es.uma.informatica.ejb.exceptions.AsignaturaYaExistenteException;
+import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ExpedienteNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ExpedienteYaExistenteException;
-import es.uma.informatica.jpa.demo.Asignatura;
+import es.uma.informatica.jpa.demo.Alumno;
 import es.uma.informatica.jpa.demo.Expediente;
 
 @Named(value="expedientes")
@@ -41,19 +39,8 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 	private Expediente expediente;
 	private boolean insertar_EX;
 	private List<Expediente> listExpedientes;
-	
-	public String borrarTodos() {
-		expedientes.eliminarTodos();
-		FacesMessage message = new FacesMessage("Borrado con exito");
-		FacesContext.getCurrentInstance().addMessage(null, message);
-		return null;
-	}
-	
-	public Expedientes() {
-		// TODO Auto-generated constructor stub
-		expediente = new Expediente();
-		insertar_EX = false;
-	}
+	private boolean buscar;
+	private String numExpediente;
 	
 	public String aniadir_Expediente(){
 		
@@ -93,6 +80,24 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 	return null;
 	}
 
+	public Expediente buscarExpediente(String numExpediente) {
+		Expediente expediente = null;
+		try {
+			if(!numExpediente.equals("")) {
+				expediente = expedientes.obtenerExpediente(Integer.parseInt(numExpediente));
+			}
+		}catch(ExpedienteNoEncontradoException e){
+			FacesMessage message = new FacesMessage("Expediente no encontrado");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}
+		return expediente;	
+	}
+	
+	public String varBuscar() {
+		buscar = true;
+		return null;
+	}
+	
 	public String modoModificarExpediente(Expediente ex) {
 	expediente = ex;
 	return "editarExpediente.xhtml";
@@ -116,6 +121,29 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 	public void setListExpedientes(List<Expediente> listExpedientes) {
 		this.listExpedientes = listExpedientes;
 	}
-	
+	public boolean isBuscar() {
+		return buscar;
+	}
+	public void setBuscar(boolean buscar) {
+		this.buscar = buscar;
+	}
+
+	public String borrarTodos() {
+		expedientes.eliminarTodos();
+		FacesMessage message = new FacesMessage("Borrado con exito");
+		FacesContext.getCurrentInstance().addMessage(null, message);
+		return null;
+	}
+	public String getNumExpediente() {
+		return numExpediente;
+	}
+	public void setNumExpediente(String numExpediente) {
+		this.numExpediente = numExpediente;
+	}
+	public Expedientes() {
+		// TODO Auto-generated constructor stub
+		expediente = new Expediente();
+		insertar_EX = false;
+	}
 	
 }
