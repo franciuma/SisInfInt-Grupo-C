@@ -19,22 +19,23 @@
 <h:body>
 
 	<div class="list-box">
-		<h:form id="grupos-id">
+		<h:form id="LiGr-grupos-id">
+		<h:message for = "LiGr-grupos-id"/>
 			<h:link outcome="index_grupos.xhtml">Atrás</h:link>
 			<h2>Listado de Grupos</h2>
 
 			<label>Introduce el id:</label>
-			<h:inputText value="#{grupos.id}" />
+			<h:inputText value="#{grupos.id}" id="LiGr-IdGrupos"/>
 
 			<h:commandButton value="Filtrar" action="#{grupos.VarBuscar()}"
-				class="deleteAllButton" />
+				class="deleteAllButton" id="LiGr-Filtrar"/>
 
 			<h:commandButton value="Mostrar todos" action="lista_grupos.xhtml"
-				class="deleteAllButton" />
+				class="deleteAllButton" id="LiGr-MostrarTodos"/>
 
 			<h:commandButton value="Eliminar Todos"
 				action="#{grupos.borrarTodos()}" onclick="alert('GRUPOS BORRADOS');"
-				class="deleteAllButton" />
+				class="deleteAllButton" id="LiGr-EliminarTodos"/>
 
 			<c:choose>
 				<c:when test="#{grupos.buscar}">
@@ -43,46 +44,46 @@
 
 						<h:column>
 							<f:facet name="header">ID </f:facet>
-							<h:outputText value="#{gr.id}" />
+							<h:outputText value="#{gr.id}" id="LiGr-IdC1"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Curso</f:facet>
-							<h:outputText value="#{gr.curso}" />
+							<h:outputText value="#{gr.curso}" id="LiGr-CursoC1"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Letra </f:facet>
-							<h:outputText value="#{gr.letra}" />
+							<h:outputText value="#{gr.letra}" id="LiGr-LetraC1"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Turno Preferente</f:facet>
-							<h:outputText value="#{gr.turnoMañanaTarde}" />
+							<h:outputText value="#{gr.turnoMañanaTarde}" id="LiGr-TurnoPrefC1"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Visible </f:facet>
-							<h:outputText value="#{gr.visible}" />
+							<h:outputText value="#{gr.visible}" id="LiGr-VisibleC1"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Asignar</f:facet>
-							<h:outputText value="#{gr.asignar}" />
+							<h:outputText value="#{gr.asignar}" id="LiGr-AsignarC1"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Plazas</f:facet>
-							<h:outputText value="#{gr.plazas}" />
+							<h:outputText value="#{gr.plazas}" id="LiGr-PlazasC1"/>
 						</h:column>
 
 						<h:column>
 							<h:commandButton value="Modificar"
-								action="#{grupos.modoModificarGrupo(gr)}" class="modifyColumn" />
+								action="#{grupos.modoModificarGrupo(gr)}" class="modifyColumn" id="LiGr-ModificarC1"/>
 						</h:column>
 
 						<h:column>
 							<h:commandButton value="Eliminar"
 								action="#{grupos.eliminarGrupo(gr)}"
-								onclick="alert('GRUPO BORRADO');" />
+								onclick="alert('GRUPO BORRADO');" id="LiGr-EliminarC1"/>
 						</h:column>
 
 					</h:dataTable>
@@ -93,46 +94,46 @@
 
 						<h:column>
 							<f:facet name="header">ID </f:facet>
-							<h:outputText value="#{gr.id}" />
+							<h:outputText value="#{gr.id}" id="LiGr-IdC2"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Curso</f:facet>
-							<h:outputText value="#{gr.curso}" />
+							<h:outputText value="#{gr.curso}" id="LiGr-CursoC2"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Letra </f:facet>
-							<h:outputText value="#{gr.letra}" />
+							<h:outputText value="#{gr.letra}" id="LiGr-LetraC2"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Turno Preferente</f:facet>
-							<h:outputText value="#{gr.turnoMañanaTarde}" />
+							<h:outputText value="#{gr.turnoMañanaTarde}" id="LiGr-TurnoPrefC2"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Visible </f:facet>
-							<h:outputText value="#{gr.visible}" />
+							<h:outputText value="#{gr.visible}" id="LiGr-VisibleC2"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Asignar</f:facet>
-							<h:outputText value="#{gr.asignar}" />
+							<h:outputText value="#{gr.asignar}" id="LiGr-AsignarC2"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Plazas</f:facet>
-							<h:outputText value="#{gr.plazas}" />
+							<h:outputText value="#{gr.plazas}" id="LiGr-PlazasC2"/>
 						</h:column>
 
 						<h:column>
 							<h:commandButton value="Modificar"
-								action="#{grupos.modoModificarGrupo(gr)}" class="modifyColumn" />
+								action="#{grupos.modoModificarGrupo(gr)}" class="modifyColumn" id="LiGr-ModificarC2"/>
 						</h:column>
 
 						<h:column>
 							<h:commandButton value="Eliminar"
 								action="#{grupos.eliminarGrupo(gr)}"
-								onclick="alert('GRUPO BORRADO');" />
+								onclick="alert('GRUPO BORRADO');" id="LiGr-EliminarC2"/>
 						</h:column>
 
 					</h:dataTable>

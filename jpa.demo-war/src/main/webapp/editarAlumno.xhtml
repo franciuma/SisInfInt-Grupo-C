@@ -17,30 +17,31 @@
 </h:head>
 <h:body>
 <div class="form-box">
-		<h2>Modificar Alumno con dni : <h:outputText value="#{alumnos2.alumno.dni}" /></h2>
+		<h2>Modificar Alumno con dni : <h:outputText id="EdAl-DNI1" value="#{alumnos2.alumno.dni}" /></h2>
 		
-		<h:form>
-			<h:inputHidden value="#{alumnos2.alumno.dni}"/>
+		<h:form id="EdAl-EditarAlumno">
+		<h:message for = "EdAl-EditarAlumno"/>
+			<h:inputHidden id="EdAl-DNI2" value="#{alumnos2.alumno.dni}"/>
 
 			<div class="input-box">
-				<h:inputText id="nombre" value="#{alumnos2.alumno.nombreCompleto}" />
+				<h:inputText id="EdAl-nombre" value="#{alumnos2.alumno.nombreCompleto}" />
 				<label>Nombre</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="telefono" value="#{alumnos2.alumno.telefono}" />
+				<h:inputText id="EdAl-telefono" value="#{alumnos2.alumno.telefono}" />
 				<label>Telefono</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="movil" value="#{alumnos2.alumno.movil}" />
+				<h:inputText id="EdAl-movil" value="#{alumnos2.alumno.movil}" />
 				<label>Movil</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="email-institucional" value="#{alumnos2.alumno.emailInstitucional}" readonly="true"/>
+				<h:inputText id="EdAl-email-institucional" value="#{alumnos2.alumno.emailInstitucional}" readonly="true"/>
 				
 				<label>Email Institucional</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="email-personal" value="#{alumnos2.alumno.emailPersonal}"  validatorMessage="Compruebe que ha introducido un e-mail-personal correcto">
+				<h:inputText id="EdAl-email-personal" value="#{alumnos2.alumno.emailPersonal}"  validatorMessage="Compruebe que ha introducido un e-mail-personal correcto">
 				<f:validateRegex pattern=".+@.+" />
 				</h:inputText>
 				<label>Email Personal</label>

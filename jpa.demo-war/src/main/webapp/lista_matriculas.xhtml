@@ -19,54 +19,55 @@
 <h:body>
 				
 	<div class="list-box">
-	<h:form id="matriculas-id" styleClass="centrar-texto navegacion table-mostrar">
+	<h:form id="LiMa-matriculas-id" styleClass="centrar-texto navegacion table-mostrar">
+	<h:message for = "LiMa-matriculas-id"/>
 	<h:link outcome="index_matricula.xhtml">Atrás</h:link>
 	<h2>Listado de Matriculas</h2>
 	<h:commandLink value="Eliminar Todas"
 					action="#{matriculas.borrarTodas()}"
-					onclick="alert('MATRICULAs BORRADAS');" />
+					onclick="alert('MATRICULAs BORRADAS');" id="LiMa-EliminarTodas"/>
 		<h:dataTable value="#{matriculas.getListMatriculas()}" var="ma">
 		
 			<h:column>
 				<f:facet name="header">Curso Academico </f:facet>
-				<h:outputText value="#{ma.cursoAcademico}" />
+				<h:outputText value="#{ma.cursoAcademico}" id="LiMa-CursoAcad"/>
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Estado</f:facet>
-				<h:outputText value="#{ma.estado}" />
+				<h:outputText value="#{ma.estado}" id="LiMa-Estado"/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Numero de archivo </f:facet>
-				<h:outputText value="#{ma.numArchivo}" />
+				<h:outputText value="#{ma.numArchivo}" id="LiMa-NumArchivo"/>
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Turno preferente</f:facet>
-				<h:outputText value="#{ma.turnoPreferente}" />
+				<h:outputText value="#{ma.turnoPreferente}" id="LiMa-TurnoPref"/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">fecha de matricula </f:facet>
-				<h:outputText value="#{ma.fechaMatricula}" />
+				<h:outputText value="#{ma.fechaMatricula}" id="LiMa-FechaDeMatr"/>
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Nuevo ingreso</f:facet>
-				<h:outputText value="#{ma.nuevoIngreso}" />
+				<h:outputText value="#{ma.nuevoIngreso}" id="LiMa-NuevoIngr"/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">listado de asignaturas</f:facet>
-				<h:outputText value="#{ma.listadoAsignaturas}" />
+				<h:outputText value="#{ma.listadoAsignaturas}" id="LiMa-ListadoAsig"/>
 			</h:column>
 			<h:column>
 				<h:commandButton value="Modificar"
-					action="#{matriculas.modoModificarMatricula(ma)}" />
+					action="#{matriculas.modoModificarMatricula(ma)}" id="LiMa-Modificar"/>
 			</h:column>
 
 			<h:column>
 				<h:commandButton value="Eliminar"
 					action="#{matriculas.eliminarMatricula(ma)}"
-					onclick="alert('MATRICULA BORRADA');" />
+					onclick="alert('MATRICULA BORRADA');" id="LiMa-Eliminar"/>
 			</h:column>
 
 		</h:dataTable>

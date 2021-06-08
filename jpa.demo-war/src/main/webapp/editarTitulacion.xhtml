@@ -17,17 +17,18 @@
 </h:head>
 <h:body>
 <div class="form-box">
-		<h2>Modificar Titulacion con codigo : <h:outputText value="#{titulaciones.titulacion.codigo}" /></h2>
+		<h2>Modificar Titulacion con codigo : <h:outputText id="EdTi-Codigo1" value="#{titulaciones.titulacion.codigo}" /></h2>
 		
-		<h:form>
-			<h:inputHidden value="#{titulaciones.titulacion.codigo}"/>
+		<h:form id="EdTi-EditarTi">
+		<h:message for = "EdTi-EditarTi"/>
+			<h:inputHidden id="EdTi-Codigo2" value="#{titulaciones.titulacion.codigo}"/>
 
 			<div class="input-box">
-				<h:inputText id="nombre" value="#{titulaciones.titulacion.nombre}" />
+				<h:inputText id="EdTi-nombre" value="#{titulaciones.titulacion.nombre}" />
 				<label>Nombre</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="telefono" value="#{titulaciones.titulacion.creditos}" />
+				<h:inputText id="EdTi-telefono" value="#{titulaciones.titulacion.creditos}" />
 				<label>Creditos</label>
 			</div>
 			
