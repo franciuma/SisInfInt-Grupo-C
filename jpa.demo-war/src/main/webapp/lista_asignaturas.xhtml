@@ -21,23 +21,24 @@
 <h:body>
 
 	<div class="list-box">
-		<h:form id="asignaturas-id"
+		<h:form id="LiAsi-asignaturas-id"
 			styleClass="centrar-texto navegacion table-mostrar">
+			<h:message for = "LiAsi-asignaturas-id"/>
 			<h:link outcome="index_asignatura.xhtml">Atrás</h:link>
 			<h2>Listado de Asignaturas</h2>
 
 			<label>Introduce la referencia:</label>
-			<h:inputText value="#{asignaturas.referencia}" />
+			<h:inputText id="LiAsi-RefeAsig" value="#{asignaturas.referencia}" />
 
 			<h:commandButton value="Filtrar" action="#{asignaturas.VarBuscar()}"
-				class="deleteAllButton" />
+				class="deleteAllButton" id="LiAsi-Filtrar"/>
 
 			<h:commandButton value="Mostrar todos"
-				action="lista_asignaturas.xhtml" class="deleteAllButton" />
+				action="lista_asignaturas.xhtml" class="deleteAllButton" id="LiAsi-MostrarTodas" />
 
 			<h:commandLink value="Eliminar Todas"
 				action="#{asignaturas.borrarTodas()}"
-				onclick="alert('ASIGNATURAS BORRADAS');" />
+				onclick="alert('ASIGNATURAS BORRADAS');" id="LiAsi-EliminarTodas" />
 
 			<c:choose>
 				<c:when test="#{asignaturas.buscar}">
@@ -47,47 +48,60 @@
 
 						<h:column>
 							<f:facet name="header">Referencia </f:facet>
-							<h:outputText value="#{as.referencia}" />
+							<h:outputText value="#{as.referencia}" id="LiAsi-ReferenciaC1"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Codigo Asignatura</f:facet>
-							<h:outputText value="#{as.codigo}" />
+							<h:outputText value="#{as.codigo}" id="LiAsi-CodigoC1"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Creditos </f:facet>
-							<h:outputText value="#{as.creditos}" />
+							<h:outputText value="#{as.creditos}" id="LiAsi-CreditosC1"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Ofertada</f:facet>
-							<h:outputText value="#{as.ofertada}" />
+							<h:outputText value="#{as.ofertada}" id="LiAsi-OfertadaC1"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Nombre </f:facet>
-							<h:outputText value="#{as.nombre}" />
+							<h:outputText value="#{as.nombre}" id="LiAsi-NombreC1"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Curso</f:facet>
-							<h:outputText value="#{as.curso}" />
+							<h:outputText value="#{as.curso}" id="LiAsi-CursoC1"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Caracter</f:facet>
-							<h:outputText value="#{as.caracter}" />
+							<h:outputText value="#{as.caracter}" id="LiAsi-CaracterC1"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Duracion</f:facet>
-							<h:outputText value="#{as.duracion}" />
+							<h:outputText value="#{as.duracion}" id="LiAsi-DuracionAsigC1"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Unidad Temporal Cuatrimestre</f:facet>
-							<h:outputText value="#{as.unidadTemporal}" />
+							<h:outputText value="#{as.unidadTemporal}" id="LiAsi-UnidadTempCuatriC1"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Idiomas Imparticion</f:facet>
-							<h:outputText value="#{as.idiomasImparticion}" />
+							<h:outputText value="#{as.idiomasImparticion}" id="LiAsi-IdiomasImpartC1"/>
 						</h:column>
+<<<<<<< HEAD
+=======
+						<h:column>
+							<h:commandButton value="Modificar"
+								action="#{asignaturas.modoModificarAsignatura(as)}" id="LiAsi-ModificarC1"/>
+						</h:column>
+
+						<h:column>
+							<h:commandButton value="Eliminar"
+								action="#{asignaturas.eliminarAsignatura(as)}"
+								onclick="alert('ASIGNATURA BORRADA');" id="LiAsi-EliminarC1"/>
+						</h:column>
+>>>>>>> f6dca13bad673eb129fe07239078f7744c2a2aaa
 
 					</h:dataTable>
 				</c:when>
@@ -96,56 +110,56 @@
 
 						<h:column>
 							<f:facet name="header">Referencia </f:facet>
-							<h:outputText value="#{as.referencia}" />
+							<h:outputText value="#{as.referencia}" id="LiAsi-ReferenciaC2"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Codigo Asignatura</f:facet>
-							<h:outputText value="#{as.codigo}" />
+							<h:outputText value="#{as.codigo}" id="LiAsi-CodigoC2"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Creditos </f:facet>
-							<h:outputText value="#{as.creditos}" />
+							<h:outputText value="#{as.creditos}" id="LiAsi-CreditosC2"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Ofertada</f:facet>
-							<h:outputText value="#{as.ofertada}" />
+							<h:outputText value="#{as.ofertada}" id="LiAsi-OfertadaC2"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Nombre </f:facet>
-							<h:outputText value="#{as.nombre}" />
+							<h:outputText value="#{as.nombre}" id="LiAsi-NombreC2"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Curso</f:facet>
-							<h:outputText value="#{as.curso}" />
+							<h:outputText value="#{as.curso}" id="LiAsi-CursoC2"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Caracter</f:facet>
-							<h:outputText value="#{as.caracter}" />
+							<h:outputText value="#{as.caracter}" id="LiAsi-CaracterC2"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Duracion</f:facet>
-							<h:outputText value="#{as.duracion}" />
+							<h:outputText value="#{as.duracion}" id="LiAsi-DurcacionC2"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Unidad Temporal Cuatrimestre</f:facet>
-							<h:outputText value="#{as.unidadTemporal}" />
+							<h:outputText value="#{as.unidadTemporal}" id="LiAsi-UnidadTempCuatriC2"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Idiomas Imparticion</f:facet>
-							<h:outputText value="#{as.idiomasImparticion}" />
+							<h:outputText value="#{as.idiomasImparticion}" id="LiAsi-IdiomasImpartC2"/>
 						</h:column>
 						<h:column>
 							<h:commandButton value="Modificar"
-								action="#{asignaturas.modoModificarAsignatura(as)}" />
+								action="#{asignaturas.modoModificarAsignatura(as)}" id="LiAsi-ModificarC2"/>
 						</h:column>
 
 						<h:column>
 							<h:commandButton value="Eliminar"
 								action="#{asignaturas.eliminarAsignatura(as)}"
-								onclick="alert('ASIGNATURA BORRADA');" />
+								onclick="alert('ASIGNATURA BORRADA');" id="LiAsi-EliminarC2"/>
 						</h:column>
 
 					</h:dataTable>

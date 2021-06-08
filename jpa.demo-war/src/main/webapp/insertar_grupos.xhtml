@@ -22,38 +22,38 @@
 	
 	<div class="form-box">
 		<h2>Insertar Grupo</h2>
-		<h:form id = "insertar-grupo">
-			<h:message for = "insertar-grupo"/>
-				<h:inputHidden id="id" value="#{grupos.grupo.id}" />
+		<h:form id = "InsGr-insertar-grupo">
+			<h:message for = "InsGr-insertar-grupo"/>
+				<h:inputHidden id="InsGr-id" value="#{grupos.grupo.id}" />
 			<div class="input-box">
-				<h:inputText id="curso" value="#{grupos.grupo.curso}" />
+				<h:inputText id="InsGr-curso" value="#{grupos.grupo.curso}" />
 				<label>Curso</label>
 			</div>
 			
 			<div class="input-box">
-				<h:inputText id="letra" value="#{grupos.grupo.letra}" />
+				<h:inputText id="InsGr-letra" value="#{grupos.grupo.letra}" />
 				<label>Letra</label>
 			</div>
 			
 			<div class="input-box">
-				<h:inputText id="turno" value="#{grupos.grupo.turnoMañanaTarde}" />
+				<h:inputText id="InsGr-turno" value="#{grupos.grupo.turnoMañanaTarde}" />
 				<label>Turno</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="ingles" value="#{grupos.grupo.ingles}" />
+				<h:inputText id="InsGr-ingles" value="#{grupos.grupo.ingles}" />
 				<label>Ingles</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="visible" value="#{grupos.grupo.visible}" />
-				<h:message for="visible"/>
+				<h:inputText id="InsGr-visible" value="#{grupos.grupo.visible}" />
+				<h:message for="InsGr-visible"/>
 				<label>Visible</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="asignar" value="#{grupos.grupo.asignar}" />
+				<h:inputText id="InsGr-asignar" value="#{grupos.grupo.asignar}" />
 				<label>Asignar</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="plazas" value="#{grupos.grupo.plazas}" />
+				<h:inputText id="InsGr-plazas" value="#{grupos.grupo.plazas}" />
 				<label>Plazas</label>
 			</div>
 			<div class="input-box">
@@ -62,9 +62,9 @@
 			</div>
 			
 			
-			<h:commandLink value="Crear Grupo" type ="submit" action="#{grupos.anaidir_Grupo()}"/>
+			<h:commandLink id="InsGr-CrearGrupo" value="Crear Grupo" type ="submit" action="#{grupos.anaidir_Grupo()}"/>
 			
-			<h:commandLink value="Crear Todos los Grupos" type ="submit" action="#{grupos.crearGrupos()}"/>
+			<h:commandLink id="InsGr-CrearTodosGrupos" value="Crear Todos los Grupos" type ="submit" action="#{grupos.crearGrupos()}"/>
 		</h:form>
 	</div>
 </h:body>

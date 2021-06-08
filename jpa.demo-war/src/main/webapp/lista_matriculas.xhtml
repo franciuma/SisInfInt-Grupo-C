@@ -20,25 +20,32 @@
 <h:body>
 
 	<div class="list-box">
-		<h:form id="matriculas-id"
+		<h:form id="LiMa-matriculas-id"
 			styleClass="centrar-texto navegacion table-mostrar">
+			<h:message for = "LiMa-matriculas-id"/>
 			<h:link outcome="index_matricula.xhtml">Atrás</h:link>
 			<h2>Listado de Matriculas</h2>
 
 			<label>Introduce el curso academico:</label>
+<<<<<<< HEAD
 			<h:inputText value="#{matriculas.curso_academico}" />
 			
 			<label>Introduce el expediente:</label>
 			<h:inputText value="#{matriculas.expediente}" />
 
 			<h:commandButton value="Filtrar" action="#{matriculas.varBuscar()}"
+=======
+			<h:inputText id="LiMa-CursoAcad" value="#{matriculas.curso_academico}" />
+
+			<h:commandButton id="LiMa-FiltrarMa" value="Filtrar" action="#{matriculas.VarBuscar()}"
+>>>>>>> f6dca13bad673eb129fe07239078f7744c2a2aaa
 				class="deleteAllButton" />
 
-			<h:commandButton value="Mostrar todos"
+			<h:commandButton id="LiMa-MostrarTodasMa" value="Mostrar todos"
 				action="lista_matriculas.xhtml" class="deleteAllButton" />
 
 
-			<h:commandLink value="Eliminar Todas"
+			<h:commandLink id="LiMa-EliminarTodasMa" value="Eliminar Todas"
 				action="#{matriculas.borrarTodas()}"
 				onclick="alert('MATRICULAS BORRADAS');" />
 			<c:choose>
@@ -51,36 +58,50 @@
 						
 						<h:column>
 							<f:facet name="header">Curso Academico </f:facet>
-							<h:outputText value="#{ma.cursoAcademico}" />
+							<h:outputText value="#{ma.cursoAcademico}" id="LiMa-CursoAcadC1"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Estado</f:facet>
-							<h:outputText value="#{ma.estado}" />
+							<h:outputText value="#{ma.estado}" id="LiMa-EstadoC1"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Numero de archivo </f:facet>
-							<h:outputText value="#{ma.numArchivo}" />
+							<h:outputText value="#{ma.numArchivo}" id="LiMa-NumArchivoC1"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Turno preferente</f:facet>
-							<h:outputText value="#{ma.turnoPreferente}" />
+							<h:outputText value="#{ma.turnoPreferente}" id="LiMa-TurnoPrefC1"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">fecha de matricula </f:facet>
-							<h:outputText value="#{ma.fechaMatricula}" />
+							<h:outputText value="#{ma.fechaMatricula}" id="LiMa-FechaDeMatrC1"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Nuevo ingreso</f:facet>
-							<h:outputText value="#{ma.nuevoIngreso}" />
+							<h:outputText value="#{ma.nuevoIngreso}" id="LiMa-NuevoIngrC1"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">listado de asignaturas</f:facet>
-							<h:outputText value="#{ma.listadoAsignaturas}" />
+							<h:outputText value="#{ma.listadoAsignaturas}" id="LiMa-ListadoAsigC1"/>
 						</h:column>
+<<<<<<< HEAD
 					
+=======
+						<h:column>
+							<h:commandButton value="Modificar"
+								action="#{matriculas.modoModificarMatricula(ma)}" id="LiMa-ModificarC1"/>
+						</h:column>
+
+						<h:column>
+							<h:commandButton value="Eliminar"
+								action="#{matriculas.eliminarMatricula(ma)}"
+								onclick="alert('MATRICULA BORRADA');" id="LiMa-EliminarC1"/>
+						</h:column>
+
+>>>>>>> f6dca13bad673eb129fe07239078f7744c2a2aaa
 					</h:dataTable>
 				</c:when>
 				<c:otherwise>
@@ -93,51 +114,50 @@
 
 						<h:column>
 							<f:facet name="header">Curso Academico </f:facet>
-							<h:outputText value="#{ma.cursoAcademico}" />
+							<h:outputText value="#{ma.cursoAcademico}" id="LiMa-CursoAcadC2"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Estado</f:facet>
-							<h:outputText value="#{ma.estado}" />
+							<h:outputText value="#{ma.estado}" id="LiMa-EstadoC2"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Numero de archivo </f:facet>
-							<h:outputText value="#{ma.numArchivo}" />
+							<h:outputText value="#{ma.numArchivo}" id="LiMa-NumArchivoC2"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Turno preferente</f:facet>
-							<h:outputText value="#{ma.turnoPreferente}" />
+							<h:outputText value="#{ma.turnoPreferente}" id="LiMa-TurnoPrefC2"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">fecha de matricula </f:facet>
-							<h:outputText value="#{ma.fechaMatricula}" />
+							<h:outputText value="#{ma.fechaMatricula}" id="LiMa-FechaDeMatrC2"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Nuevo ingreso</f:facet>
-							<h:outputText value="#{ma.nuevoIngreso}" />
+							<h:outputText value="#{ma.nuevoIngreso}" id="LiMa-NuevoIngrC2"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">listado de asignaturas</f:facet>
-							<h:outputText value="#{ma.listadoAsignaturas}" />
+							<h:outputText value="#{ma.listadoAsignaturas}" id="LiMa-ListadoAsigC2"/>
 						</h:column>
 						<h:column>
 							<h:commandButton value="Modificar"
-								action="#{matriculas.modoModificarMatricula(ma)}" />
+								action="#{matriculas.modoModificarMatricula(ma)}" id="LiMa-ModificarC2"/>
 						</h:column>
 
 						<h:column>
 							<h:commandButton value="Eliminar"
 								action="#{matriculas.eliminarMatricula(ma)}"
-								onclick="alert('MATRICULA BORRADA');" />
+								onclick="alert('MATRICULA BORRADA');" id="LiMa-EliminarC2"/>
 						</h:column>
 
 					</h:dataTable>
 				</c:otherwise>
 			</c:choose>
 		</h:form>
-
 	</div>
 
 </h:body>

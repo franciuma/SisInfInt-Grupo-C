@@ -21,26 +21,28 @@
 <h:body>
 	<div class="form-box">
 		<h2>Insertar Titulacion</h2>
-		<h:form>
+		<h:form id="InsTit-InsertarTitu">
+		<h:message for = "InsTit-InsertarTitu"/>
 			<div class="input-box">
-				<h:inputText id="codigo" value="#{titulaciones.titulacion.codigo}" />
+				<h:inputText id="InsTit-codigo" value="#{titulaciones.titulacion.codigo}" />
 				<label>Codigo de la titulacion</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="nombre" value="#{titulaciones.titulacion.nombre}" />
+				<h:inputText id="InsTit-nombre" value="#{titulaciones.titulacion.nombre}" />
 				<label>Nombre</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="creditos" value="#{titulaciones.titulacion.creditos}" />
+				<h:inputText id="InsTit-creditos" value="#{titulaciones.titulacion.creditos}" />
 				<label>Creditos</label>
 			</div>
 			
-			<h:commandLink value="Crear Titulacion" type ="submit" action="#{titulaciones.anaidir_Titulacion()}"/>
+			<h:commandLink id="InsTit-BotonCrearTit" value="Crear Titulacion" type ="submit" action="#{titulaciones.anaidir_Titulacion()}"/>
 			
 			
 		</h:form>
-		<h:form id="importarTitulaciones" method="post" enctype="multipart/form-data">
-			<h:inputFile id = "file" value="#{titulaciones.upload}"/>
+		<h:form id="InsTit-importarTitulaciones" method="post" enctype="multipart/form-data">
+		<h:message for = "InsTit-importarTitulaciones"/>
+			<h:inputFile id = "InsTit-file" value="#{titulaciones.upload}"/>
 		
 		<h:commandLink value="Enviar Fichero" type ="submit" action="#{titulaciones.importarTitulaciones()}"/>
 		<h:link outcome ="index_titulacion.xhtml">Atrás</h:link>

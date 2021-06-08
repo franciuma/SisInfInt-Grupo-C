@@ -17,17 +17,18 @@
 </h:head>
 <h:body>
 <div class="form-box">
-		<h2>Modificar Expediente con numero expediente : <h:outputText value="#{expedientes.expediente.numExpediente}" /></h2>
+		<h2>Modificar Expediente con numero expediente : <h:outputText  id="EdEx-numEXP1" value="#{expedientes.expediente.numExpediente}" /></h2>
 		
-		<h:form>
-			<h:inputHidden value="#{expedientes.expediente.numExpediente}"/>
+		<h:form id="EdEx-EditarEx">
+		<h:message for = "EdEx-EditarEx"/>
+			<h:inputHidden id="EdEx-numEXP2" value="#{expedientes.expediente.numExpediente}"/>
 
 			<div class="input-box">
-				<h:inputText id="activo" value="#{expedientes.expediente.activo}" />
+				<h:inputText id="EdEx-activo" value="#{expedientes.expediente.activo}" />
 				<label>Activo</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="Nota_Media_Provisional" value="#{expedientes.expediente.notaMediaProvisional}" />
+				<h:inputText id="EdEx-Nota_Media_Provisional" value="#{expedientes.expediente.notaMediaProvisional}" />
 				<label>notaMediaProvisional</label>
 			</div>
 			<h:commandLink value="Actualizar Expediente" type ="submit" action="#{expedientes.actualizarExpediente()}"/>

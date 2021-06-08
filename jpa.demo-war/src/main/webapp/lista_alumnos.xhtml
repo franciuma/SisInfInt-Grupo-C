@@ -19,8 +19,9 @@
 <h:body>
 
 	<div class="list-box">
-	<h:form id="alumnos-id">
-		<h:link outcome="index_alumnos.xhtml" id = "boton-atras-vista-lista-alumno">Atrás</h:link>
+	<h:form id="LiAl-alumnos-id">
+	<h:message for = "LiAl-alumnos-id"/>
+		<h:link outcome="index_alumnos.xhtml" id = "LiAl-boton-atras-vista-lista-alumno">Atrás</h:link>
 		<h2>Listado de Alumnos</h2>
 		
 		<label>Introduce el DNI:</label>
@@ -37,7 +38,8 @@
 					action="#{alumnos2.borrarTodos()}"
 					onclick="alert('ALUMNOs BORRADOs');" 
 					class="deleteAllButton"
-					id = "boton-eliminarTodos-alumno"/>
+					id = "LiAl-boton-eliminarTodos-alumno"/>
+
 					
 		<c:choose>
 				<c:when test="#{alumnos2.buscar}">
@@ -74,44 +76,45 @@
 		</h:dataTable>
 		</c:when>
 		<c:otherwise>
+
 		<h:dataTable value="#{alumnos2.listAlumnos}" var="al" class="datatable-box">
 		
 			<h:column>
 				<f:facet name="header">DNI </f:facet>
-				<h:outputText value="#{al.dni}" id = "dni-alumno"/>
+				<h:outputText value="#{al.dni}" id = "LiAl-dni-alumno"/>
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Nombre</f:facet>
-				<h:outputText value="#{al.nombreCompleto}" id = "nombre-alumno"/>
+				<h:outputText value="#{al.nombreCompleto}" id = "LiAl-nombre-alumno"/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Telefono </f:facet>
-				<h:outputText value="#{al.telefono}" id = "telefono-alumno"/>
+				<h:outputText value="#{al.telefono}" id = "LiAl-telefono-alumno"/>
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Movil</f:facet>
-				<h:outputText value="#{al.movil}" id = "movil" />
+				<h:outputText value="#{al.movil}" id = "LiAl-movil" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">Correo 1 </f:facet>
-				<h:outputText value="#{al.emailInstitucional}" id = "email-institucional-alumno"/>
+				<h:outputText value="#{al.emailInstitucional}" id = "LiAl-email-institucional-alumno"/>
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Correo 2</f:facet>
-				<h:outputText value="#{al.emailPersonal}" id = "email-personal-alumno"/>
+				<h:outputText value="#{al.emailPersonal}" id = "LiAl-email-personal-alumno"/>
 			</h:column>
 			<h:column>
 				<h:commandButton value="Modificar"
-					action="#{alumnos2.modoModificarAlumno(al)}" class="modifyColumn" id = "boton-modificar-alumno"/>
+					action="#{alumnos2.modoModificarAlumno(al)}" class="modifyColumn" id = "LiAl-boton-modificar-alumno"/>
 			</h:column>
 
 			<h:column>
 				<h:commandButton value="Eliminar"
 					action="#{alumnos2.eliminarAlumno(al)}"
-					onclick="alert('ALUMNO BORRADO');" id = "boton-eliminar-alumno"/>
+					onclick="alert('ALUMNO BORRADO');" id = "LiAl-boton-eliminar-alumno"/>
 			</h:column>
 
 		</h:dataTable>

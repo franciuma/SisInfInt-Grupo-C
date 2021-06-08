@@ -20,23 +20,24 @@
 <h:body>
 
 	<div class="list-box">
-		<h:form id="asignaturas-id"
+		<h:form id="LiTit-titulaciones-id"
 			styleClass="centrar-texto navegacion table-mostrar">
+			<h:message for = "LiTit-titulaciones-id"/>
 			<h:link outcome="index_titulacion.xhtml">Atrás</h:link>
 			<h2>Listado de Titulaciones</h2>
 			
 			<label>Introduce el codigo:</label>
-			<h:inputText value="#{titulaciones.codigo}" />
+			<h:inputText value="#{titulaciones.codigo}" id="LiTit-Codigo"/>
 			
 			<h:commandButton value="Filtrar" action="#{titulaciones.VarBuscar()}"
-				class="deleteAllButton" />
+				class="deleteAllButton" id="LiTit-Filtrar"/>
 				
 			<h:commandButton value="Mostrar todos" action="lista_titulaciones.xhtml"
-				class="deleteAllButton" />
+				class="deleteAllButton" id="LiTit-MostrarTodos"/>
 			
 			<h:commandLink value="Eliminar Todas"
 				action="#{titulaciones.borrarTodas()}"
-				onclick="alert('TITULACIONES BORRADAS');" />
+				onclick="alert('TITULACIONES BORRADAS');" id="LiTit-EliminarTodas"/>
 
 
 			<c:choose>
@@ -45,18 +46,32 @@
 
 						<h:column>
 							<f:facet name="header">Codigo </f:facet>
-							<h:outputText value="#{ti.codigo}" />
+							<h:outputText value="#{ti.codigo}" id="LiTit-CodigoC1"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Nombre</f:facet>
-							<h:outputText value="#{ti.nombre}" />
+							<h:outputText value="#{ti.nombre}" id="LiTit-NombreC1"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Creditos </f:facet>
-							<h:outputText value="#{ti.creditos}" />
+							<h:outputText value="#{ti.creditos}" id="LiTit-CreditosC1"/>
 						</h:column>
 
+<<<<<<< HEAD
+=======
+						<h:column>
+							<h:commandButton value="Modificar"
+								action="#{titulaciones.modoModificarTitulacion(ti)}" id="LiTit-ModificarC1"/>
+						</h:column>
+
+						<h:column>
+							<h:commandButton value="Eliminar"
+								action="#{titulaciones.eliminarTitulacion(ti)}"
+								onclick="alert('TITULACION BORRADA');" id="LiTit-EliminarC1"/>
+						</h:column>
+
+>>>>>>> f6dca13bad673eb129fe07239078f7744c2a2aaa
 					</h:dataTable>
 				</c:when>
 				<c:otherwise>
@@ -64,27 +79,27 @@
 
 						<h:column>
 							<f:facet name="header">Codigo </f:facet>
-							<h:outputText value="#{ti.codigo}" />
+							<h:outputText value="#{ti.codigo}" id="LiTit-CodigoC2"/>
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Nombre</f:facet>
-							<h:outputText value="#{ti.nombre}" />
+							<h:outputText value="#{ti.nombre}" id="LiTit-NombreC2"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Creditos </f:facet>
-							<h:outputText value="#{ti.creditos}" />
+							<h:outputText value="#{ti.creditos}" id="LiTit-CreditosC2"/>
 						</h:column>
 
 						<h:column>
 							<h:commandButton value="Modificar"
-								action="#{titulaciones.modoModificarTitulacion(ti)}" />
+								action="#{titulaciones.modoModificarTitulacion(ti)}" id="LiTit-ModificarC2"/>
 						</h:column>
 
 						<h:column>
 							<h:commandButton value="Eliminar"
 								action="#{titulaciones.eliminarTitulacion(ti)}"
-								onclick="alert('TITULACION BORRADA');" />
+								onclick="alert('TITULACION BORRADA');" id="LiTit-EliminarC2"/>
 						</h:column>
 
 					</h:dataTable>

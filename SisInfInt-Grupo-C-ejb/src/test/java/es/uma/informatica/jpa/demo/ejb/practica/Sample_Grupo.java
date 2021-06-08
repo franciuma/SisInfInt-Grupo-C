@@ -3,19 +3,11 @@ package es.uma.informatica.jpa.demo.ejb.practica;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
-
-
 import java.util.logging.Logger;
-
 import javax.naming.NamingException;
-
-
 import org.junit.Before;
 import org.junit.Test;
-
-
 import es.uma.informatica.ejb.GestionGrupo;
-
 import es.uma.informatica.ejb.exceptions.GrupoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.Grupo;
@@ -167,5 +159,4 @@ public class Sample_Grupo {
 		}
 		
 	}
-	
 }

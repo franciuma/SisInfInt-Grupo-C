@@ -23,7 +23,9 @@ public class Grupos {
 	
 	@Inject
 	private GestionGrupo grupos;
+	
 	private Part upload;
+	private String id ;
 	public Part getUpload() {
 		return upload;
 	}
@@ -34,6 +36,7 @@ public class Grupos {
 	private GestionTitulacion titulaciones;
 	private Grupo grupo;
 	private String titulacion;
+	private Boolean buscar;
 	public String getTitulacion() {
 		return titulacion;
 	}
@@ -44,8 +47,6 @@ public class Grupos {
 	private Grupo grupoviejo;
 	private boolean insertar_GR;
 	private List<Grupo> listGrupos;
-	private boolean buscar;
-	private String id;
 
 	public String borrarTodos() {
 		grupos.eliminarTodos();
@@ -54,6 +55,12 @@ public class Grupos {
 		return null;
 	}
 	
+	public String VarBuscar() {
+		return null;
+	}
+	public Grupo BuscarGrupos(String id) {
+		return null;
+	}
 	public Grupos() {
 		// TODO Auto-generated constructor stub
 		grupo = new Grupo();
@@ -75,11 +82,12 @@ public class Grupos {
 			setInsertar_GR(true);
 			return "lista_grupos.xhtml";
 		} catch (GrupoYaExistenteException e) {
-			FacesMessage message = new FacesMessage("Alumno ya existente");
+			FacesMessage message = new FacesMessage("Grupo ya existente");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			return null;
 		} catch (TitulacionNoEncontradaException e) {
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("TITULACION NO existente");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 			return null;
 		}
 		
@@ -88,8 +96,7 @@ public class Grupos {
 		try {
 			grupos.eliminarGrupo(gr.getCurso(), gr.getLetra(), gr.getTitulacion());
 		} catch (GrupoNoEncontradoException e) {
-			// TODO Auto-generated catch block
-			FacesMessage message = new FacesMessage("Alumno no encontrado");
+			FacesMessage message = new FacesMessage("Grupo no encontrado");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
@@ -101,7 +108,7 @@ public class Grupos {
 			return "lista_grupos.xhtml";
 		} catch (GrupoNoEncontradoException e) {
 			// TODO Auto-generated catch block
-			FacesMessage message = new FacesMessage("Alumno no encontrado");
+			FacesMessage message = new FacesMessage("Grupo no encontrado");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
@@ -113,6 +120,7 @@ public class Grupos {
 		return "editarGrupo.xhtml";
 	}
 	
+<<<<<<< HEAD
 	public Grupo BuscarGrupos(String id) {
 		Grupo grupo = null;
 		try {
@@ -128,6 +136,8 @@ public class Grupos {
 		buscar = true;
 		return null;
 	}
+=======
+>>>>>>> f6dca13bad673eb129fe07239078f7744c2a2aaa
 	
 	public List<Grupo> getListGrupos() {
 		listGrupos = grupos.obtenerGrupos();
@@ -152,20 +162,17 @@ public class Grupos {
 	public void setInsertar_GR(boolean insertar_GR) {
 		this.insertar_GR = insertar_GR;
 	}
-
-	public boolean isBuscar() {
+	public Boolean getBuscar() {
 		return buscar;
 	}
-	
-	public void setBuscar(boolean buscar) {
+	public void setBuscar(Boolean buscar) {
 		this.buscar = buscar;
 	}
-	
 	public String getId() {
 		return id;
 	}
-	
-	public void setDni(String id) {
+	public void setId(String id) {
 		this.id = id;
 	}
+
 }
