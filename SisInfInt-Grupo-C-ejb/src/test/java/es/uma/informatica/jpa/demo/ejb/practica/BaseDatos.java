@@ -12,6 +12,7 @@ import es.uma.informatica.jpa.demo.Centro;
 import es.uma.informatica.jpa.demo.Encuesta;
 import es.uma.informatica.jpa.demo.Grupo;
 import es.uma.informatica.jpa.demo.Optativa;
+import es.uma.informatica.jpa.demo.Titulacion;
 import es.uma.informatica.jpa.demo.Centro;
 import es.uma.informatica.jpa.demo.Expediente;
 
@@ -51,6 +52,7 @@ public class BaseDatos {
 		
 		Grupo a = new Grupo(curso, letra, turnoMañanaTarde, ingles, visible, asignar, plazas);
 		em.persist(a);
+		
 
 		final Integer numExpediente = 11;
 		final Boolean activo = true;
