@@ -70,10 +70,10 @@ public class Sample_Titulacion {
 		}
 		
 		List<Titulacion> titulaciones = gestionTitulacion.obtenerTitulaciones();
-		assertEquals(1, titulaciones.size());
-		assertEquals(codigo, titulaciones.get(0).getCodigo());
-		assertEquals(nombre, titulaciones.get(0).getNombre());
-		assertEquals(creditos, titulaciones.get(0).getCreditos());
+		assertEquals(2, titulaciones.size());
+		assertEquals(codigo, titulaciones.get(1).getCodigo());
+		assertEquals(nombre, titulaciones.get(1).getNombre());
+		assertEquals(creditos, titulaciones.get(1).getCreditos());
 	}
 	@Requisitos({"RF17"})
 	@Test(expected = TitulacionYaExistenteException.class)
@@ -115,13 +115,13 @@ public class Sample_Titulacion {
 		}
 		
 		List<Titulacion> titulaciones = gestionTitulacion.obtenerTitulaciones();
-		assertEquals(1, titulaciones.size());
+		assertEquals(2, titulaciones.size());
 		
 		try {
 
 			gestionTitulacion.eliminarTitulacion(codigo);
 			List<Titulacion> titulaciones2 = gestionTitulacion.obtenerTitulaciones();
-			assertEquals(0, titulaciones2.size());
+			assertEquals(1, titulaciones2.size());
 		} catch (TitulacionNoEncontradaException e) {
 			
 			fail("NO debería lanzar excepción");
