@@ -53,6 +53,9 @@ public class BaseDatos {
 		Grupo a = new Grupo(curso, letra, turnoMañanaTarde, ingles, visible, asignar, plazas);
 		em.persist(a);
 		
+		final Titulacion tit = new Titulacion(11, "sheesh", 66);
+		em.persist(tit);
+		
 
 		final Integer numExpediente = 11;
 		final Boolean activo = true;
