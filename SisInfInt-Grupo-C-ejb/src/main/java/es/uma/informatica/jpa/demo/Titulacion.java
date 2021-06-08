@@ -3,6 +3,7 @@ package es.uma.informatica.jpa.demo;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -36,7 +37,7 @@ public class Titulacion implements Serializable {
 		inverseJoinColumns = @JoinColumn(name = "Centro_FK"))
 	private List<Centro> perteneceAcentros;
 	
-	@OneToMany(mappedBy = "titulacion")
+	@OneToMany(mappedBy = "titulacion", cascade = CascadeType.REMOVE)
 	private List<Grupo> grupos;
 	
 	@OneToMany(mappedBy = "titulacion")

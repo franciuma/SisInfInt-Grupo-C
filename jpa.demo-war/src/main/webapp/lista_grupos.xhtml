@@ -24,8 +24,13 @@
 			<h:link outcome="index_grupos.xhtml">Atrás</h:link>
 			<h2>Listado de Grupos</h2>
 
+
+			<h:commandButton value="Eliminar Todos"
+				action="#{grupos.borrarTodos()}" onclick="alert('GRUPOS BORRADOS');"
+				class="deleteAllButton" />
+
 			<label>Introduce el id:</label>
-			<h:inputText value="#{grupos.id}" id="LiGr-IdGrupos"/>
+		
 
 			<h:commandButton value="Filtrar" action="#{grupos.VarBuscar()}"
 				class="deleteAllButton" id="LiGr-Filtrar"/>
@@ -94,6 +99,7 @@
 					</h:dataTable>
 				</c:when>
 				<c:otherwise>
+
 					<h:dataTable value="#{grupos.listGrupos}" var="gr"
 						class="datatable-box">
 
@@ -103,6 +109,7 @@
 						</h:column>
 
 						<h:column>
+
 							<f:facet name="header">Curso</f:facet>
 							<h:outputText value="#{gr.curso}" id="LiGr-CursoC2"/>
 						</h:column>
@@ -145,10 +152,11 @@
 								action="#{grupos.eliminarGrupo(gr)}"
 								onclick="alert('GRUPO BORRADO');" id="LiGr-EliminarC2"/>
 						</h:column>
-
+	
 					</h:dataTable>
-				</c:otherwise>
-			</c:choose>
+					</c:otherwise>
+					</c:choose>
+				
 		</h:form>
 
 	</div>
