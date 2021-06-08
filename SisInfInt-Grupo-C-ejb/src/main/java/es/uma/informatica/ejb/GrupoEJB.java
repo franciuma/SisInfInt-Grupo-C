@@ -3,6 +3,8 @@ package es.uma.informatica.ejb;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.management.RuntimeErrorException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -17,28 +19,31 @@ public class GrupoEJB implements GestionGrupo{
 	@PersistenceContext(name= "Secretaria")
 	private EntityManager em;
 	
+	@Inject
 	GestionTitulacion titulaciones;
 	
 	@Override
 	public void insertarGrupo(Grupo grupo) throws GrupoYaExistenteException {
 		// TODO Auto-generated method stub
-		Grupo grup = em.find(Grupo.class,grupo.getId());
-		if( grup != null && grup.getTitulacion() == grupo.getTitulacion()) 
-			throw new GrupoYaExistenteException();
-		em.persist(grupo);
+		//Grupo grup = em.find(Grupo.class,grupo.getId());
+		Grupo grup;
+		try {
+			grup = obtenerGrupo(grupo.getCurso(), grupo.getLetra(), grupo.getTitulacion());
+			//if( grup != null ) 
+				throw new GrupoYaExistenteException();
+			
+		} catch (GrupoNoEncontradoException e) {
+			em.persist(grupo);
+		}
 	}
 
 	@Override
-	public Grupo obtenerGrupo(Integer curso, String letra, String turnoMañanaTarde, Boolean ingles, Boolean visible, String asignar, Integer plazas) throws GrupoNoEncontradoException {
+	public Grupo obtenerGrupo(Integer curso, String letra, Titulacion tit) throws GrupoNoEncontradoException {
 		// TODO Auto-generated method stub
-		TypedQuery<Grupo> grupos = em.createQuery("Select g from Grupo g where g.curso = :curso AND g.letra = :letra AND g.turnoMañanaTarde = :turnoMañanaTarde AND g.ingles = :ingles AND g.visible = :visible AND g.asignar = :asignar AND g.plazas = :plazas",Grupo.class );
+		TypedQuery<Grupo> grupos = em.createQuery("Select g from Grupo g where g.curso = :curso AND g.letra = :letra AND g.titulacion = :tit",Grupo.class );
         grupos.setParameter("curso", curso);
         grupos.setParameter("letra", letra);
-        grupos.setParameter("turnoMañanaTarde", turnoMañanaTarde);
-        grupos.setParameter("ingles", ingles);
-        grupos.setParameter("visible", visible);
-        grupos.setParameter("asignar", asignar);
-        grupos.setParameter("plazas", plazas);
+        grupos.setParameter("tit", tit);
         List<Grupo> grupo = grupos.getResultList();
         
 		if(grupo == null || grupo.size() == 0) {
@@ -49,9 +54,9 @@ public class GrupoEJB implements GestionGrupo{
 	}
 
 	@Override
-	public void eliminarGrupo(Integer curso, String letra, String turnoMañanaTarde, Boolean ingles, Boolean visible, String asignar, Integer plazas) throws GrupoNoEncontradoException {
+	public void eliminarGrupo(Integer curso, String letra, Titulacion tit) throws GrupoNoEncontradoException {
 		// TODO Auto-generated method stub
-		Grupo grup = obtenerGrupo(curso,letra,turnoMañanaTarde,ingles,visible,asignar,plazas);
+		Grupo grup = obtenerGrupo(curso,letra,tit);
         em.remove(grup);
 	}
 
@@ -65,7 +70,7 @@ public class GrupoEJB implements GestionGrupo{
 	@Override
 	public void actualizarGrupo(Grupo grupo, Grupo grupo_new) throws GrupoNoEncontradoException {
 		// TODO Auto-generated method stub
-		Grupo gr = obtenerGrupo(grupo.getCurso(), grupo.getLetra(), grupo.getTurnoMañanaTarde(), grupo.getIngles(), grupo.getVisible(), grupo.getAsignar(), grupo.getPlazas());
+		Grupo gr = obtenerGrupo(grupo.getCurso(), grupo.getLetra(), grupo.getTitulacion());
         gr.setCurso(grupo_new.getCurso());
         gr.setLetra(grupo_new.getLetra());
         gr.setTurnoMañanaTarde(grupo_new.getTurnoMañanaTarde());
@@ -83,9 +88,8 @@ public class GrupoEJB implements GestionGrupo{
 		if(grupos.size() != 0) {
 			for (Grupo gr : grupos) {
 				try {
-					eliminarGrupo(gr.getCurso(),gr.getLetra(),gr.getTurnoMañanaTarde(),gr.getIngles(),gr.getVisible(),gr.getAsignar(),gr.getPlazas());
+					eliminarGrupo(gr.getCurso(),gr.getLetra(),gr.getTitulacion());
 				} catch (GrupoNoEncontradoException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -94,192 +98,195 @@ public class GrupoEJB implements GestionGrupo{
 	
 	@Override
 	public void crearGrupos() {
-		for(Titulacion tit : titulaciones.obtenerTitulaciones()) {
-			if(tit.getCodigo() == 1041) {//INFORMATICA
-				for(int i = 0; i<4; i++) {
-					if(i==0) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						Grupo g2 = new Grupo(i+1, "B", "Mañana", false, true,tit);
-						Grupo g3 = new Grupo(i+1, "C", "Tarde", false, true,tit);
-						Grupo g4 = new Grupo(i+1, "D", "Tarde", true, true,tit);
-						try {
-							insertarGrupo(g1);
-							insertarGrupo(g2);
-							insertarGrupo(g3);
-							insertarGrupo(g4);
-						} catch (GrupoYaExistenteException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+		try {
+			for(Titulacion tit : titulaciones.obtenerTitulaciones()) {
+				if(tit.getCodigo() == 1041) {//INFORMATICA
+					for(int i = 0; i<4; i++) {
+						if(i==0) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							Grupo g2 = new Grupo(i+1, "B", "Mañana", false, true,"si",100,tit);
+							Grupo g3 = new Grupo(i+1, "C", "Tarde", false, true,"si",100,tit);
+							Grupo g4 = new Grupo(i+1, "D", "Tarde", true, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+								insertarGrupo(g2);
+								insertarGrupo(g3);
+								insertarGrupo(g4);
+							} catch (GrupoYaExistenteException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
 						}
-						
-					}
-					if(i==1) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						Grupo g2 = new Grupo(i+1, "B", "Mañana", false, true,tit);
-						Grupo g3 = new Grupo(i+1, "C", "Tarde", false, true,tit);
-						Grupo g4 = new Grupo(i+1, "D", "Tarde", true, true,tit);
-						try {
-							insertarGrupo(g1);
-							insertarGrupo(g2);
-							insertarGrupo(g3);
-							insertarGrupo(g4);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
+						if(i==1) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							Grupo g2 = new Grupo(i+1, "B", "Mañana", false, true,"si",100,tit);
+							Grupo g3 = new Grupo(i+1, "C", "Tarde", false, true,"si",100,tit);
+							Grupo g4 = new Grupo(i+1, "D", "Tarde", true, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+								insertarGrupo(g2);
+								insertarGrupo(g3);
+								insertarGrupo(g4);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
 						}
-					}
-					if(i==2) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						Grupo g2 = new Grupo(i+1, "B", "Mañana", false, true,tit);
-						try {
-							insertarGrupo(g1);
-							insertarGrupo(g2);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
+						if(i==2) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							Grupo g2 = new Grupo(i+1, "B", "Mañana", false, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+								insertarGrupo(g2);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
 						}
-					}
-					if(i==3) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						try {
-							insertarGrupo(g1);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}
-			
-			if(tit.getCodigo() == 1042) {//SOFTWARE
-				for(int i = 0; i<4; i++) {
-					if(i==0) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						Grupo g2 = new Grupo(i+1, "B", "Mañana", false, true,tit);
-						Grupo g3 = new Grupo(i+1, "C", "Tarde", false, true,tit);
-						Grupo g4 = new Grupo(i+1, "D", "Tarde", true, true,tit);
-						try {
-							insertarGrupo(g1);
-							insertarGrupo(g2);
-							insertarGrupo(g3);
-							insertarGrupo(g4);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
-						}
-					}
-					if(i==1) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						Grupo g2 = new Grupo(i+1, "B", "Mañana", false, true,tit);
-						Grupo g3 = new Grupo(i+1, "C", "Tarde", false, true,tit);
-						Grupo g4 = new Grupo(i+1, "D", "Tarde", true, true,tit);
-						try {
-							insertarGrupo(g1);
-							insertarGrupo(g2);
-							insertarGrupo(g3);
-							insertarGrupo(g4);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
-						}
-					}
-					if(i==2) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						try {
-							insertarGrupo(g1);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
-						}
-					}
-					if(i==3) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						try {
-							insertarGrupo(g1);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
+						if(i==3) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
 						}
 					}
 				}
-			}
-			
-			if(tit.getCodigo() == 1043) {//COMPUTADORES
-				for(int i = 0; i<4; i++) {
-					if(i==0) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						Grupo g2 = new Grupo(i+1, "B", "Mañana", false, true,tit);
-						Grupo g3 = new Grupo(i+1, "C", "Tarde", false, true,tit);
-						try {
-							insertarGrupo(g1);
-							insertarGrupo(g2);
-							insertarGrupo(g3);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
+				
+				if(tit.getCodigo() == 1042) {//SOFTWARE
+					for(int i = 0; i<4; i++) {
+						if(i==0) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							Grupo g2 = new Grupo(i+1, "B", "Mañana", false, true,"si",100,tit);
+							Grupo g3 = new Grupo(i+1, "C", "Tarde", false, true,"si",100,tit);
+							Grupo g4 = new Grupo(i+1, "D", "Tarde", true, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+								insertarGrupo(g2);
+								insertarGrupo(g3);
+								insertarGrupo(g4);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
 						}
-					}
-					if(i==1) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						Grupo g2 = new Grupo(i+1, "B", "Mañana", false, true,tit);
-						Grupo g3 = new Grupo(i+1, "C", "Tarde", false, true,tit);
-						try {
-							insertarGrupo(g1);
-							insertarGrupo(g2);
-							insertarGrupo(g3);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
+						if(i==1) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							Grupo g2 = new Grupo(i+1, "B", "Mañana", false, true,"si",100,tit);
+							Grupo g3 = new Grupo(i+1, "C", "Tarde", false, true,"si",100,tit);
+							Grupo g4 = new Grupo(i+1, "D", "Tarde", true, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+								insertarGrupo(g2);
+								insertarGrupo(g3);
+								insertarGrupo(g4);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
 						}
-					}
-					if(i==2) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						try {
-							insertarGrupo(g1);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
+						if(i==2) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
 						}
-					}
-					if(i==3) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						try {
-							insertarGrupo(g1);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}
-			
-			if(tit.getCodigo() == 1056) {//SALUD
-				for(int i = 0; i<4; i++) {
-					if(i==0) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						try {
-							insertarGrupo(g1);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
-						}
-					}
-					if(i==1) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						try {
-							insertarGrupo(g1);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
-						}
-					}
-					if(i==2) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						try {
-							insertarGrupo(g1);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
-						}
-					}
-					if(i==3) {
-						Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,tit);
-						try {
-							insertarGrupo(g1);
-						} catch (GrupoYaExistenteException e) {
-							e.printStackTrace();
+						if(i==3) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
 						}
 					}
 				}
+				
+				if(tit.getCodigo() == 1043) {//COMPUTADORES
+					for(int i = 0; i<4; i++) {
+						if(i==0) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							Grupo g2 = new Grupo(i+1, "B", "Mañana", false, true,"si",100,tit);
+							Grupo g3 = new Grupo(i+1, "C", "Tarde", false, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+								insertarGrupo(g2);
+								insertarGrupo(g3);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
+						}
+						if(i==1) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							Grupo g2 = new Grupo(i+1, "B", "Mañana", false, true,"si",100,tit);
+							Grupo g3 = new Grupo(i+1, "C", "Tarde", false, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+								insertarGrupo(g2);
+								insertarGrupo(g3);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
+						}
+						if(i==2) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
+						}
+						if(i==3) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+				
+				if(tit.getCodigo() == 1056) {//SALUD
+					for(int i = 0; i<4; i++) {
+						if(i==0) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
+						}
+						if(i==1) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
+						}
+						if(i==2) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
+						}
+						if(i==3) {
+							Grupo g1 = new Grupo(i+1, "A", "Mañana", false, true,"si",100,tit);
+							try {
+								insertarGrupo(g1);
+							} catch (GrupoYaExistenteException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+				
 			}
-			
+		} catch (NullPointerException e) {
+			throw new RuntimeException("Titulacion no encontrada");
 		}
 	}
-
 }
