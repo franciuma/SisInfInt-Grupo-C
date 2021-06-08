@@ -17,32 +17,37 @@
 </h:head>
 <h:body>
 <div class="form-box">
-		<h2>Modificar grupo con id : <h:outputText value="#{grupos.grupo.id}" /></h2>
+		<h2>Modificar grupo con id : <h:outputText id="EdGr-GrupoID1" value="#{grupos.grupo.id}" /></h2>
 		
-		<h:form>
-			<h:inputHidden value="#{grupos.grupo.id}"/>
+		<h:form id="EdGr-EditarGr">
+		<h:message for = "EdGr-EditarGr"/>
+			<h:inputHidden id="EdGr-GrupoID2" value="#{grupos.grupo.id}"/>
 
 			<div class="input-box">
-				<h:inputText id="curso" value="#{grupos.grupo.curso}" />
+				<h:inputText id="EdGr-curso" value="#{grupos.grupo.curso}" />
 				<label>Curso</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="letra" value="#{grupos.grupo.letra}" />
+				<h:inputText id="EdGr-letra" value="#{grupos.grupo.letra}" />
 				<label>Letra</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="turnoMañanaTarde" value="#{grupos.grupo.turnoMañanaTarde}" />
+				<h:inputText id="EdGr-turnoMañanaTarde" value="#{grupos.grupo.turnoMañanaTarde}" />
 				<label>Turno</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="asignar" value="#{grupos.grupo.plazas}" readonly="true"/>
+				<h:inputText id="EdGr-asignar" value="#{grupos.grupo.plazas}" readonly="true"/>
 				<label>Plazas</label>
 				
 			</div>
-			</div>
+			
+			
 			<h:commandLink value="Actualizar Grupo" type ="submit" action="#{grupos.actualizarGrupo()}"/>
 			<h:link outcome ="index_grupos.xhtml">Atrás</h:link>
 			
 			
 		</h:form>
 		</div>
+		</h:body>
+		</html>
+		

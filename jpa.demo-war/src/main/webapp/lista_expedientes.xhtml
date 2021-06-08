@@ -18,39 +18,40 @@
 <h:body>
 				
 	<div class="list-box">
-	<h:form id="expedientes-id">
+	<h:form id="LiExp-expedientes-id">
+	<h:message for = "LiExp-expedientes-id"/>
 		<h:link outcome="index_expediente.xhtml">Atrás</h:link>
 		<h2>Listado de Expedientes</h2>
 		<h:commandButton value="Eliminar Todos"
 					action="#{expedientes.borrarTodos()}"
-					onclick="alert('EXPEDIENTEs BORRADOs');" />
+					onclick="alert('EXPEDIENTEs BORRADOs');" id="LiExp-EliminarTodos"/>
 		<h:dataTable value="#{expedientes.getListExpedientes()}" var="ex">
 		
 			<h:column>
 				<f:facet name="header">Numero Expediente</f:facet>
-				<h:outputText value="#{ex.numExpediente}" />
+				<h:outputText value="#{ex.numExpediente}" id="LiExp-NumExp"/>
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Activo</f:facet>
-				<h:outputText value="#{ex.activo}" />
+				<h:outputText value="#{ex.activo}" id="LiExp-Activo"/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Nota Media Provisional</f:facet>
-				<h:outputText value="#{ex.notaMediaProvisional}"> 
+				<h:outputText id="LiExp-NotaMediaProvisional" value="#{ex.notaMediaProvisional}"> 
 					<f:convertNumber type="number" />
 				</h:outputText>
 				
 			</h:column>
 			<h:column>
 				<h:commandButton value="Modificar"
-					action="#{expedientes.modoModificarExpediente(ex)}"/>
+					action="#{expedientes.modoModificarExpediente(ex)}" id="LiExp-Modificar"/>
 			</h:column>
 
 			<h:column>
 				<h:commandButton value="Eliminar"
 					action="#{expedientes.eliminarExpediente(ex)}"
-					onclick="alert('EXPEDIENTE BORRADO');" />
+					onclick="alert('EXPEDIENTE BORRADO');" id="LiExp-Eliminar"/>
 			</h:column>
 
 		</h:dataTable>

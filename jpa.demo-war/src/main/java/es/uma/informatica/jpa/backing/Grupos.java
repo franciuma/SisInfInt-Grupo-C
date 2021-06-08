@@ -23,7 +23,9 @@ public class Grupos {
 	
 	@Inject
 	private GestionGrupo grupos;
+	
 	private Part upload;
+	private String id ;
 	public Part getUpload() {
 		return upload;
 	}
@@ -34,6 +36,7 @@ public class Grupos {
 	private GestionTitulacion titulaciones;
 	private Grupo grupo;
 	private String titulacion;
+	private Boolean buscar;
 	public String getTitulacion() {
 		return titulacion;
 	}
@@ -51,6 +54,12 @@ public class Grupos {
 		return null;
 	}
 	
+	public String VarBuscar() {
+		return null;
+	}
+	public Grupo BuscarGrupos(String id) {
+		return null;
+	}
 	public Grupos() {
 		// TODO Auto-generated constructor stub
 		grupo = new Grupo();
@@ -132,6 +141,18 @@ public class Grupos {
 
 	public void setInsertar_GR(boolean insertar_GR) {
 		this.insertar_GR = insertar_GR;
+	}
+	public Boolean getBuscar() {
+		return buscar;
+	}
+	public void setBuscar(Boolean buscar) {
+		this.buscar = buscar;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

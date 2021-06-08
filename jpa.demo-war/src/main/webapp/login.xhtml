@@ -14,13 +14,14 @@
 <h:body>
 	<div class="login-box">
   <h2>Login</h2>
-  <h:form>
+  <h:form id="Login-Form">
+  <h:message for = "Login-Form"/>
     <div class="user-box">
-      <h:inputText value="#{alumnos2.alumno.dni}" required="true"/>
+      <h:inputText value="#{alumnos2.alumno.dni}" required="true" id="Login-DNI"/>
       <label>Usuario</label>
     </div>
     <div class="user-box">
-     <h:inputSecret value="#{alumnos2.alumno.nombreCompleto}" required="true"/>
+     <h:inputSecret value="#{alumnos2.alumno.nombreCompleto}" required="true" id="Login-NombreCompleto"/>
       <label>Contraseña</label>
     </div>
     <h:commandLink type ="submit" action="#{alumnos2.autenticar()}" >
@@ -31,7 +32,7 @@
       <span></span>
       Entrar
     </h:commandLink> 
-<h:column><h:link outcome="insertar_Alumno_v2.xhtml">TO-DO(next: registro)</h:link></h:column>
+<h:column><h:link id="Login-InsertarAlumno" outcome="insertar_Alumno_v2.xhtml">TO-DO(next: registro)</h:link></h:column>
   </h:form>
 </div>
 </h:body>

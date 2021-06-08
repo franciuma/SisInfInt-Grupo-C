@@ -22,48 +22,49 @@
 	
 	<div class="form-box">
 		<h2>Insertar Alumno</h2>
-		<h:form id = "insertar-alumno">
-			<h:message for = "insertar-alumno"/>
+		<h:form id = "InsAl-insertar-alumno">
+			<h:message for = "InsAl-insertar-alumno"/>
 			<div class="input-box">
-				<h:inputText id="dni" value="#{alumnos2.alumno.dni}" />
+				<h:inputText id="InsAl-dni" value="#{alumnos2.alumno.dni}" />
 				
 				<label>Dni</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="nombre" value="#{alumnos2.alumno.nombreCompleto}" />
+				<h:inputText id="InsAl-nombre" value="#{alumnos2.alumno.nombreCompleto}" />
 				
 				<label>Nombre</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="telefono" value="#{alumnos2.alumno.telefono}" />
+				<h:inputText id="InsAl-telefono" value="#{alumnos2.alumno.telefono}" />
 				
 				<label>Telefono</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="movil" value="#{alumnos2.alumno.movil}" />
-				<h:message for="movil"/>
+				<h:inputText id="InsAl-movil" value="#{alumnos2.alumno.movil}" />
+				<h:message for="InsAl-movil"/>
 				<label>Movil</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="email-institucional" value="#{alumnos2.alumno.emailInstitucional}" required="true" validatorMessage="Compruebe que ha introducido un e-mail-institucional correcto">
+				<h:inputText id="InsAl-email-institucional" value="#{alumnos2.alumno.emailInstitucional}" required="true" validatorMessage="Compruebe que ha introducido un e-mail-institucional correcto">
 				
 				<f:validateRegex pattern=".+@.+" />
 				</h:inputText>
 				<label>Email Institucional</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="email-personal" value="#{alumnos2.alumno.emailPersonal}" required="true" validatorMessage="Compruebe que ha introducido un e-mail-personal correcto">
+				<h:inputText id="InsAl-email-personal" value="#{alumnos2.alumno.emailPersonal}" required="true" validatorMessage="Compruebe que ha introducido un e-mail-personal correcto">
 				
 				<f:validateRegex pattern=".+@.+" />
 				</h:inputText>
 				<label>Email Personal</label>
 			</div>
-			<h:commandLink id = "boton-crear-alumno" value="Crear Alumno" type ="submit" action="#{alumnos2.anaidir_Alumno()}"/>
+			<h:commandLink id = "InsAl-boton-crear-alumno" value="Crear Alumno" type ="submit" action="#{alumnos2.anaidir_Alumno()}"/>
 			
 			
 		</h:form>
-		<h:form id="importarALumnos" method="post" enctype="multipart/form-data">
-			<h:inputFile id = "file" value="#{alumnos2.upload}"/>
+		<h:form id="InsAl-importarALumnos" method="post" enctype="multipart/form-data">
+		<h:message for = "InsAl-importarALumnos"/>
+			<h:inputFile id = "InsAl-file" value="#{alumnos2.upload}"/>
 		
 		<h:commandLink value="Enviar Fichero" type ="submit" action="#{alumnos2.importarAlumnos()}"/>
 		<h:link outcome ="index_alumnos.xhtml">Atrás</h:link>

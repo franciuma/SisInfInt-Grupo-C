@@ -21,60 +21,62 @@
 <h:body>
 	<div class="form-box">
 		<h2>Insertar Asignatura</h2>
-		<h:form>
+		<h:form id = "InsAs-InsertarAsig">
+		<h:message for = "InsAs-InsertarAsig"/>
 			<div class="input-box">
-				<h:inputText id="referencia" value="#{asignaturas.asignatura.referencia}" />
+				<h:inputText id="InsRef-referencia" value="#{asignaturas.asignatura.referencia}" />
 				<label>Referencia</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="Codigo_Asignatura" value="#{asignaturas.asignatura.codigo}" />
+				<h:inputText id="InsRef-Codigo_Asignatura" value="#{asignaturas.asignatura.codigo}" />
 				<label>Codigo Asignatura</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="creditos" value="#{asignaturas.asignatura.creditos}" />
+				<h:inputText id="InsRef-creditos" value="#{asignaturas.asignatura.creditos}" />
 				<label>Creditos</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="ofertada" value="#{asignaturas.asignatura.ofertada}">
+				<h:inputText id="InsRef-ofertada" value="#{asignaturas.asignatura.ofertada}">
 				</h:inputText>
 				<label>Ofertada</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="nombre" value="#{asignaturas.asignatura.nombre}">
+				<h:inputText id="InsRef-nombre" value="#{asignaturas.asignatura.nombre}">
 				</h:inputText>
 				<label>Nombre</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="curso" value="#{asignaturas.asignatura.curso}" />
+				<h:inputText id="InsRef-curso" value="#{asignaturas.asignatura.curso}" />
 				<label>Curso</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="caracter" value="#{asignaturas.asignatura.caracter}">
+				<h:inputText id="InsRef-caracter" value="#{asignaturas.asignatura.caracter}">
 				</h:inputText>
 				<label>Caracter</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="duracion" value="#{asignaturas.asignatura.duracion}">
+				<h:inputText id="InsRef-duracion" value="#{asignaturas.asignatura.duracion}">
 				</h:inputText>
 				<label>Duracion</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="unidadTemporal" value="#{asignaturas.asignatura.unidadTemporal}">
+				<h:inputText id="InsRef-unidadTemporal" value="#{asignaturas.asignatura.unidadTemporal}">
 				</h:inputText>
 				<label>Unidad Temporal Cuatrimestre</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="idiomasImparticion" value="#{asignaturas.asignatura.idiomasImparticion}">
+				<h:inputText id="InsRef-idiomasImparticion" value="#{asignaturas.asignatura.idiomasImparticion}">
 				</h:inputText>
 				<label>Idiomas Imparticion</label>
 			</div>
 
-			<h:commandLink value="Crear Asignatura" type ="submit" action="#{asignaturas.aniadir_Asignatura()}"/>
+			<h:commandLink id="InsAs-BotonCrearAsig" value="Crear Asignatura" type ="submit" action="#{asignaturas.aniadir_Asignatura()}"/>
 			
 			
 		</h:form>
-		<h:form id="importarAsignaturas" method="post" enctype="multipart/form-data">
-			<h:inputFile id = "file" value="#{asignaturas.upload}"/>
+		<h:form id="InsRef-importarAsignaturas" method="post" enctype="multipart/form-data">
+		<h:message for = "InsRef-importarAsignaturas"/>
+			<h:inputFile id = "InsRef-file" value="#{asignaturas.upload}"/>
 		
 		<h:commandLink value="Enviar Fichero" type ="submit" action="#{asignaturas.importarAsignaturas()}"/>
 		<h:link outcome ="index_asignatura.xhtml">Atrás</h:link>

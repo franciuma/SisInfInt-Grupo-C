@@ -21,50 +21,52 @@
 <h:body>
 	<div class="form-box">
 		<h2>Insertar Matricula</h2>
-		<h:form>
+		<h:form id="InsMa-InsertarMatr">
+		<h:message for = "InsMa-InsertarMatr"/>
 			<div class="input-box">
-				<h:inputText id="expediente" value="#{matriculas.expediente}" />
+				<h:inputText id="InsMa-expediente" value="#{matriculas.expediente}" />
 				<label>Expediente</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="cursoAcademico" value="#{matriculas.matricula.cursoAcademico}" />
+				<h:inputText id="InsMa-cursoAcademico" value="#{matriculas.matricula.cursoAcademico}" />
 				<label>Curso Academico</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="estado" value="#{matriculas.matricula.estado}" />
+				<h:inputText id="InsMa-estado" value="#{matriculas.matricula.estado}" />
 				<label>Estado</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="numArchivo" value="#{matriculas.matricula.nuevoIngreso}">
+				<h:inputText id="InsMa-numArchivo" value="#{matriculas.matricula.nuevoIngreso}">
 				</h:inputText>
 				<label>Numero de archivo</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="TurnoPreferente" value="#{matriculas.matricula.turnoPreferente}">
+				<h:inputText id="InsMa-TurnoPreferente" value="#{matriculas.matricula.turnoPreferente}">
 				</h:inputText>
 				<label>Turno Preferente</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="fechaMatricula" value="#{matriculas.fecha_ingreso}" />
+				<h:inputText id="InsMa-fechaMatricula" value="#{matriculas.fecha_ingreso}" />
 				<label>fecha</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="nuevoIngreso" value="#{matriculas.matricula.nuevoIngreso}">
+				<h:inputText id="InsMa-nuevoIngreso" value="#{matriculas.matricula.nuevoIngreso}">
 				</h:inputText>
 				<label>Nuevo ingreso</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="listado_asignaturas" value="#{matriculas.matricula.listadoAsignaturas}">
+				<h:inputText id="InsMa-listado_asignaturas" value="#{matriculas.matricula.listadoAsignaturas}">
 				</h:inputText>
 				<label>Listado de asignaturas</label>
 			</div>
 
-			<h:commandLink value="Crear Matricula" type ="submit" action="#{matriculas.aniadir_Matricula()}"/>
+			<h:commandLink id="InsMa-BotonCrearMatr" value="Crear Matricula" type ="submit" action="#{matriculas.aniadir_Matricula()}"/>
 			
 			
 		</h:form>
-		<h:form id="importarMatriculas" method="post" enctype="multipart/form-data">
-			<h:inputFile id = "file" value="#{matriculas.upload}"/>
+		<h:form id="InsMa-importarMatriculas" method="post" enctype="multipart/form-data">
+		<h:message for = "InsMa-importarMatriculas"/>
+			<h:inputFile id = "InsMa-file" value="#{matriculas.upload}"/>
 		
 		<h:commandLink value="Enviar Fichero" type ="submit" action="#{matriculas.importarMatriculas()}"/>
 		<h:link outcome ="index_matricula.xhtml">Atrás</h:link>

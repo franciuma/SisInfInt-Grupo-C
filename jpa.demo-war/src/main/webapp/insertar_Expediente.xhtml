@@ -21,22 +21,23 @@
 <h:body>
 	<div class="form-box">
 		<h2>Insertar Expediente</h2>
-		<h:form>
+		<h:form id="InsEx-InsertarExp">
+		<h:message for = "InsEx-InsertarExp"/>
 			<div class="input-box">
-				<h:inputText id="numExpediente" value="#{expedientes.expediente.numExpediente}" />
+				<h:inputText id="InsEx-numExpediente" value="#{expedientes.expediente.numExpediente}" />
 				<label>Numero Expediente</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="activo" value="#{expedientes.expediente.activo}" />
+				<h:inputText id="InsEx-activo" value="#{expedientes.expediente.activo}" />
 				<label>Activo</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="Nota_Media_Provisional" value="#{expedientes.expediente.notaMediaProvisional}" />
+				<h:inputText id="InsEx-Nota_Media_Provisional" value="#{expedientes.expediente.notaMediaProvisional}" />
 				<label>Nota Media Provisional</label>
 			</div>
 			
 
-			<h:commandLink value="Crear Expediente" type ="submit" action="#{expedientes.aniadir_Expediente()}"/>
+			<h:commandLink id="InsEx-BotonCrearExp" value="Crear Expediente" type ="submit" action="#{expedientes.aniadir_Expediente()}"/>
 			<h:link outcome ="index_expediente.xhtml">Atrás</h:link>
 			
 		</h:form>

@@ -97,6 +97,7 @@ public class Titulaciones {
 	}
 	public String eliminarTitulacion(Titulacion tit) {
 		try {
+			LOGGER.info(tit.toString());
 			titulaciones.eliminarTitulacion(tit.getCodigo());
 		} catch (TitulacionNoEncontradaException e) {
 			// TODO Auto-generated catch block
