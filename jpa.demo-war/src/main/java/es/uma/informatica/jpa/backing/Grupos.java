@@ -43,8 +43,6 @@ public class Grupos {
 
 	private boolean insertar_GR;
 	private List<Grupo> listGrupos;
-	private boolean buscar;
-	private String id;
 
 	public String borrarTodos() {
 		grupos.eliminarTodos();
@@ -74,7 +72,7 @@ public class Grupos {
 			setInsertar_GR(true);
 			return "lista_grupos.xhtml";
 		} catch (GrupoYaExistenteException e) {
-			FacesMessage message = new FacesMessage("Alumno ya existente");
+			FacesMessage message = new FacesMessage("Grupo ya existente");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			return null;
 		} catch (TitulacionNoEncontradaException e) {
@@ -87,8 +85,7 @@ public class Grupos {
 		try {
 			grupos.eliminarGrupo(gr.getCurso(), gr.getLetra(), gr.getTitulacion());
 		} catch (GrupoNoEncontradoException e) {
-			// TODO Auto-generated catch block
-			FacesMessage message = new FacesMessage("Alumno no encontrado");
+			FacesMessage message = new FacesMessage("Grupo no encontrado");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
@@ -100,7 +97,7 @@ public class Grupos {
 			return "lista_grupos.xhtml";
 		} catch (GrupoNoEncontradoException e) {
 			// TODO Auto-generated catch block
-			FacesMessage message = new FacesMessage("Alumno no encontrado");
+			FacesMessage message = new FacesMessage("Grupo no encontrado");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
@@ -111,21 +108,6 @@ public class Grupos {
 		return "editarGrupo.xhtml";
 	}
 	
-	public Grupo BuscarGrupo(String id) {
-		Grupo grupo = null;
-		try {
-			grupo = grupos.obtenerGrupo(grupo.getCurso(), grupo.getLetra(),grupo.getTitulacion());
-		}catch(GrupoNoEncontradoException e){
-			FacesMessage message = new FacesMessage("Alumno no encontrado");
-			FacesContext.getCurrentInstance().addMessage(null, message);
-		}
-		return grupo;
-	}
-	
-	public String VarBuscar() {
-		buscar = true;
-		return null;
-	}
 	
 	public List<Grupo> getListGrupos() {
 		listGrupos = grupos.obtenerGrupos();
@@ -151,19 +133,4 @@ public class Grupos {
 		this.insertar_GR = insertar_GR;
 	}
 
-	public boolean isBuscar() {
-		return buscar;
-	}
-	
-	public void setBuscar(boolean buscar) {
-		this.buscar = buscar;
-	}
-	
-	public String getId() {
-		return id;
-	}
-	
-	public void setDni(String id) {
-		this.id = id;
-	}
 }

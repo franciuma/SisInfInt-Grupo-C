@@ -24,6 +24,7 @@
 			<h:link outcome="index_grupos.xhtml">Atrás</h:link>
 			<h2>Listado de Grupos</h2>
 
+<<<<<<< HEAD
 			<label>Introduce el id:</label>
 			<h:inputText value="#{grupos.id}" id="LiGr-IdGrupos"/>
 
@@ -94,15 +95,19 @@
 					</h:dataTable>
 				</c:when>
 				<c:otherwise>
+				
 					<h:dataTable value="#{grupos.listGrupos}" var="gr"
 						class="datatable-box">
 
 						<h:column>
+<<<<<<< HEAD
 							<f:facet name="header">ID </f:facet>
 							<h:outputText value="#{gr.id}" id="LiGr-IdC2"/>
 						</h:column>
 
 						<h:column>
+=======
+>>>>>>> affcefdfe33ef26e52588266771bc807137c2b79
 							<f:facet name="header">Curso</f:facet>
 							<h:outputText value="#{gr.curso}" id="LiGr-CursoC2"/>
 						</h:column>
@@ -147,8 +152,6 @@
 						</h:column>
 
 					</h:dataTable>
-				</c:otherwise>
-			</c:choose>
 		</h:form>
 
 	</div>
