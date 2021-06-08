@@ -76,7 +76,8 @@ public class Grupos {
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			return null;
 		} catch (TitulacionNoEncontradaException e) {
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("TITULACION NO existente");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 			return null;
 		}
 		
