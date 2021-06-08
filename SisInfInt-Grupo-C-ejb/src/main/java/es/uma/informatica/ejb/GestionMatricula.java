@@ -26,7 +26,5 @@ public interface GestionMatricula {
 
 	void importarMatricula(String sFile) throws IOException, ParseException, MatriculaYaExistenteException;
 
-	void eliminarTodas();
-	
-
+	void eliminarTodas();	
 }

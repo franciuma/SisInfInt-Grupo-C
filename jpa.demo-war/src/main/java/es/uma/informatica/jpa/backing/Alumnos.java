@@ -51,18 +51,6 @@ public class Alumnos {
 		return null;
 	}
 	public String importarAlumnos() {
-		
-
-//		/* 	1ERA OPCIÓN
-//		 * - Crear con FILE un fichero temporal con nombre con prefijo aleatorio
-//		 * - Pasamos la ruta de ese fichero al upload.write 
-//		 * upload.write("/tmp/alumnos.xlsx"); */
-//		
-//		/* 2A OPCIÓN
-//		 * - Asegurarnos de que no existe el archivo antes de hacer write porque si no no funciona
-//		 * - Pasamos la ruta del fichero al upload.write
-//		 * upload.write("/tmp/alumnos.xlsx"); */
-//		
 
 		String sFile ="/tmp/alumnos.xlsx"; 
 		File filtemp = new File(sFile);
@@ -126,7 +114,6 @@ public class Alumnos {
 	
 	public String actualizarAlumno() {
 		try {
-			LOGGER.info("ALUMNO QUE SUPUESTAMENTE LLEGA ME CAGO DIOOOS: " + alumno.toString());
 			alumnos.actualizarAlumno(alumno);
 			return "lista_alumnos.xhtml";
 		} catch (AlumnoNoEncontradoException e) {
@@ -163,7 +150,6 @@ public class Alumnos {
 	}
 	
 	public String modoModificarAlumno(Alumno al) {
-		LOGGER.info("ALUMNO QUE SUPUESTAMENTE LLEGA ME CAGO DIOOOS: " + al.toString());
 		alumno = al;
 		return "editarAlumno.xhtml";
 	}
