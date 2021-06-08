@@ -14,11 +14,12 @@
 <h:body>
 	<div class="menu-box">
 	<h2>Asignaturas</h2>
-		<h:form>
-			<h:link outcome="insertar_Asignatura.xhtml" id = "insertar-asignatura">Insertar Asignatura</h:link>
-			<h:link outcome="lista_asignaturas.xhtml">Listar Asignaturas</h:link>
-			<h:link outcome="index.xhtml">Atrás</h:link>
-			<h:link outcome="login.xhtml">Volver al login</h:link>
+		<h:form id="indexAs">
+		<h:message for = "indexAs"/>
+			<h:link id="IndAs-insertarAsig" outcome="insertar_Asignatura.xhtml" >Insertar Asignatura</h:link>
+			<h:link id="IndAs-ListaAsig" outcome="lista_asignaturas.xhtml">Listar Asignaturas</h:link>
+			<h:link id="IndAs-Index" outcome="index.xhtml">Atrás</h:link>
+			<h:link id="IndAs-Login" outcome="login.xhtml">Volver al login</h:link>
 		</h:form>
 	</div>
 </h:body>

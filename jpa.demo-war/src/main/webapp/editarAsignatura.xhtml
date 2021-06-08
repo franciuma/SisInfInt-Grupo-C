@@ -17,50 +17,51 @@
 </h:head>
 <h:body>
 <div class="form-box">
-		<h2>Modificar Asignatura con referencia : <h:outputText value="#{asignaturas.asignatura.referencia}" /></h2>
+		<h2>Modificar Asignatura con referencia : <h:outputText id="EdAs-NumRef1" value="#{asignaturas.asignatura.referencia}" /></h2>
 		
-		<h:form>
-			<h:inputHidden value="#{asignaturas.asignatura.referencia}"/>
+		<h:form id="EdAs-EditarAs">
+		<h:message for = "EdAs-EditarAs"/>
+			<h:inputHidden id="EdAs-NumRef2" value="#{asignaturas.asignatura.referencia}"/>
 
 			<div class="input-box">
-				<h:inputText id="Codigo_Asignatura" value="#{asignaturas.asignatura.codigo}" />
+				<h:inputText id="EdAs-Codigo_Asignatura" value="#{asignaturas.asignatura.codigo}" />
 				<label>Codigo Asignatura</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="creditos" value="#{asignaturas.asignatura.creditos}" />
+				<h:inputText id="EdAs-creditos" value="#{asignaturas.asignatura.creditos}" />
 				<label>Creditos</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="ofertada" value="#{asignaturas.asignatura.ofertada}">
+				<h:inputText id="EdAs-ofertada" value="#{asignaturas.asignatura.ofertada}">
 				</h:inputText>
 				<label>Ofertada</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="nombre" value="#{asignaturas.asignatura.nombre}">
+				<h:inputText id="EdAs-nombre" value="#{asignaturas.asignatura.nombre}">
 				</h:inputText>
 				<label>Nombre</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="curso" value="#{asignaturas.asignatura.curso}" />
+				<h:inputText id="EdAs-curso" value="#{asignaturas.asignatura.curso}" />
 				<label>Curso</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="caracter" value="#{asignaturas.asignatura.caracter}">
+				<h:inputText id="EdAs-caracter" value="#{asignaturas.asignatura.caracter}">
 				</h:inputText>
 				<label>Caracter</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="duracion" value="#{asignaturas.asignatura.duracion}">
+				<h:inputText id="EdAs-duracion" value="#{asignaturas.asignatura.duracion}">
 				</h:inputText>
 				<label>Duracion</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="unidadTemporal" value="#{asignaturas.asignatura.unidadTemporal}">
+				<h:inputText id="EdAs-unidadTemporal" value="#{asignaturas.asignatura.unidadTemporal}">
 				</h:inputText>
 				<label>Unidad Temporal Cuatrimestre</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="idiomasImparticion" value="#{asignaturas.asignatura.idiomasImparticion}">
+				<h:inputText id="EdAS-idiomasImparticion" value="#{asignaturas.asignatura.idiomasImparticion}">
 				</h:inputText>
 				<label>Idiomas Imparticion</label>
 			</div>

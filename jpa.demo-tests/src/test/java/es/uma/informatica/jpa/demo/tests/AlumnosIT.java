@@ -42,29 +42,29 @@ public class AlumnosIT {
   public void insertaralumno() {
     driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");
     driver.manage().window().setSize(new Dimension(1853, 948));
-    driver.findElement(By.id("j_idt6:vista-index-alumnos")).click();
-    driver.findElement(By.id("j_idt6:vista-insertar-alumno")).click();
-    driver.findElement(By.id("insertar-alumno:dni")).click();
-    driver.findElement(By.id("insertar-alumno:dni")).sendKeys("1234");
-    driver.findElement(By.id("insertar-alumno:nombre")).click();
-    driver.findElement(By.id("insertar-alumno:nombre")).sendKeys("Erick");
-    driver.findElement(By.id("insertar-alumno:telefono")).click();
-    driver.findElement(By.id("insertar-alumno:telefono")).sendKeys("65656565");
-    driver.findElement(By.id("insertar-alumno:movil")).click();
-    driver.findElement(By.id("insertar-alumno:movil")).sendKeys("54545454");
-    driver.findElement(By.id("insertar-alumno:email-institucional")).click();
-    driver.findElement(By.id("insertar-alumno:email-institucional")).sendKeys("erick@uma.es");
-    driver.findElement(By.id("insertar-alumno:email-personal")).click();
-    driver.findElement(By.id("insertar-alumno:email-personal")).sendKeys("personal@gamil.com");
-    driver.findElement(By.id("insertar-alumno:boton-crear-alumno")).click();
-    driver.findElement(By.id("alumnos-id:j_idt8:1:dni-alumno")).click();
-    driver.findElement(By.id("alumnos-id:j_idt8:1:dni-alumno")).click();
+    driver.findElement(By.id("indexIndex:vista-index-alumnos")).click();
+    driver.findElement(By.id("indexAl:IndAl-InsertarAl")).click();
+    driver.findElement(By.id("InsAl-insertar-alumno:InsAl-dni")).click();
+    driver.findElement(By.id("InsAl-insertar-alumno:InsAl-dni")).sendKeys("1234");
+    driver.findElement(By.id("InsAl-insertar-alumno:InsAl-nombre")).click();
+    driver.findElement(By.id("InsAl-insertar-alumno:InsAl-nombre")).sendKeys("Erick");
+    driver.findElement(By.id("InsAl-insertar-alumno:InsAl-telefono")).click();
+    driver.findElement(By.id("InsAl-insertar-alumno:InsAl-telefono")).sendKeys("65656565");
+    driver.findElement(By.id("InsAl-insertar-alumno:InsAl-movil")).click();
+    driver.findElement(By.id("InsAl-insertar-alumno:InsAl-movil")).sendKeys("54545454");
+    driver.findElement(By.id("InsAl-insertar-alumno:InsAl-email-institucional")).click();
+    driver.findElement(By.id("InsAl-insertar-alumno:InsAl-email-institucional")).sendKeys("erick@uma.es");
+    driver.findElement(By.id("InsAl-insertar-alumno:InsAl-email-personal")).click();
+    driver.findElement(By.id("InsAl-insertar-alumno:InsAl-email-personal")).sendKeys("personal@gamil.com");
+    driver.findElement(By.id("InsAl-insertar-alumno:InsAl-boton-crear-alumno")).click();
+    driver.findElement(By.id("LiAl-alumnos-id:j_idt8:1:LiAl-dni-alumno")).click();
+    driver.findElement(By.id("LiAl-alumnos-id:j_idt8:1:LiAl-dni-alumno")).click();
     {
-      WebElement element = driver.findElement(By.id("alumnos-id:j_idt8:1:dni-alumno"));
+      WebElement element = driver.findElement(By.id("LiAl-alumnos-id:j_idt8:1:LiAl-dni-alumno"));
       Actions builder = new Actions(driver);
       builder.doubleClick(element).perform();
     }
-    assertThat(driver.findElement(By.id("alumnos-id:j_idt8:1:dni-alumno")).getText(), is("1234"));
-    driver.findElement(By.id("alumnos-id:j_idt8:1:boton-eliminar-alumno")).click();
+    assertThat(driver.findElement(By.id("LiAl-alumnos-id:j_idt8:1:LiAl-dni-alumno")).getText(), is("1234"));
+    driver.findElement(By.id("LiAl-alumnos-id:j_idt8:1:LiAl-dni-alumno")).click();
   }
 }

@@ -17,33 +17,34 @@
 </h:head>
 <h:body>
 <div class="form-box">
-		<h2>Modificar Matricula con curso academico : <h:outputText value="#{matriculas.matricula.cursoAcademico}" /></h2>
+		<h2>Modificar Matricula con curso academico : <h:outputText id= "EdMa-CursoAcademico1" value="#{matriculas.matricula.cursoAcademico}" /></h2>
 		
-		<h:form>
-			<h:inputHidden value="#{matriculas.matricula.cursoAcademico}"/>
+		<h:form id="EdMa-EditarMa">
+		<h:message for = "EdMa-EditarMa"/>
+			<h:inputHidden id= "EdMa-CursoAcademico2" value="#{matriculas.matricula.cursoAcademico}"/>
 
 			<div class="input-box">
-				<h:inputText id="estado" value="#{matriculas.matricula.estado}" />
+				<h:inputText id="EdMa-estado" value="#{matriculas.matricula.estado}" />
 				<label>estado</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="numArchivo" value="#{matriculas.matricula.numArchivo}" />
+				<h:inputText id="EdMa-numArchivo" value="#{matriculas.matricula.numArchivo}" />
 				<label>Numero de archivo</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="turnoPreferente" value="#{matriculas.matricula.turnoPreferente}" />
+				<h:inputText id="EdMa-turnoPreferente" value="#{matriculas.matricula.turnoPreferente}" />
 				<label>Turno preferente</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="fechaMatricula" value="#{matriculas.matricula.fechaMatricula}" />
+				<h:inputText id="EdMa-fechaMatricula" value="#{matriculas.matricula.fechaMatricula}" />
 				<label>Fecha de la matricula</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="NuevoIngreso" value="#{matriculas.matricula.nuevoIngreso}" />
+				<h:inputText id="EdMa-NuevoIngreso" value="#{matriculas.matricula.nuevoIngreso}" />
 				<label>Nuevo ingreso</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="Listado_asignaturas" value="#{matriculas.matricula.listadoAsignaturas}" />
+				<h:inputText id="EdMa-Listado_asignaturas" value="#{matriculas.matricula.listadoAsignaturas}" />
 				<label>Listado de asignaturas</label>
 			</div>
 			<h:commandLink value="Actualizar Matricula" type ="submit" action="#{matriculas.actualizarMatricula()}"/>
