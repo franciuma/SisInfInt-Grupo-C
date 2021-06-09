@@ -49,7 +49,7 @@ public class ImportarAlumnosIT {
     WebElement uploadElement = driver.findElement(By.xpath("//input[@id='InsAl-importarALumnos:InsAl-file']"));
     uploadElement.sendKeys(absolutePath);
     driver.findElement(By.cssSelector("a:nth-child(3)")).click();
-	Thread.sleep(20000);
+	Thread.sleep(30000);
 	assertTrue("No existe el alumno", driver.getPageSource().contains("94949702C")); // 94949702C
     Thread.sleep(4000);
     
@@ -68,22 +68,33 @@ public class ImportarAlumnosIT {
     driver.findElement(By.id("indexMa:IndMa-ListaMa")).click();
     assertTrue("No existe la matricula asociada al expediente", driver.getPageSource().contains("104200006"));
     Thread.sleep(4000);
+     
+    // Elimina las matriculas
+    driver.findElement(By.id("LiMa-matriculas-id:LiMa-EliminarTodasMa")).click();
+    assertThat(driver.switchTo().alert().getText(), is("MATRICULAS BORRADAS"));
+    driver.switchTo().alert().accept();
+    Thread.sleep(15000);
     
-    // Elimina los expedientes
+    //Ir a la lista de expedientes
+    driver.findElement(By.xpath("//a[contains(text(),'Atrás')]")).click();
+    driver.findElement(By.id("indexMa:IndMa-Index")).click();
+    driver.findElement(By.id("indexIndex:vista-index-expediente")).click();
+    driver.findElement(By.id("indexEx:IndEx-ListaExp")).click();
+    
+    //Elimina los expedientes
     driver.findElement(By.name("LiExp-expedientes-id:j_idt13")).click();
     assertThat(driver.switchTo().alert().getText(), is("EXPEDIENTES BORRADOS"));
     driver.switchTo().alert().accept();
-    Thread.sleep(4000);
+    Thread.sleep(10000);
   
     //Ir a la lista de alumnos
-
+    driver.findElement(By.xpath("//a[contains(text(),'Atrás')]")).click();
     driver.findElement(By.id("indexEx:IndEx-Index")).click();
     driver.findElement(By.id("indexIndex:vista-index-alumnos")).click();
     driver.findElement(By.id("indexAl:IndAl-ListaAl")).click();
     
     //Elimina los alumnos
     driver.findElement(By.id("LiAl-alumnos-id:LiAl-boton-eliminarTodos-alumno")).click();
-    Thread.sleep(8000);
     assertThat(driver.switchTo().alert().getText(), is("ALUMNOs BORRADOs"));
     driver.switchTo().alert().accept();
     Thread.sleep(4000);
