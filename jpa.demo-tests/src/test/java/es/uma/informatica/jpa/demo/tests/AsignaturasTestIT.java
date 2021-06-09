@@ -43,6 +43,7 @@ public class AsignaturasTestIT {
   }
 
   @Requisitos({"RF12"})
+  @Ignore
   @Test
   public void crudAsignatura() throws InterruptedException {
     driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");

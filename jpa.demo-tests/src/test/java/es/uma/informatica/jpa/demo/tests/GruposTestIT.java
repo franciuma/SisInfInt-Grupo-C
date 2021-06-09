@@ -39,8 +39,9 @@ public class GruposTestIT {
   public void tearDown() {
     driver.quit();
   }
-  
+  @Ignore
   @Test
+
   public void creargrupo() throws InterruptedException {
 	 File f = new File("Titulacion.xlsx");
 	String absolutePath = f.getAbsolutePath();

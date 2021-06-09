@@ -4,6 +4,7 @@ package es.uma.informatica.jpa.demo.tests;
 
 import org.junit.Test;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.After;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -43,6 +44,7 @@ public class TitulacionesTestIT {
     driver.quit();
   }
   @Requisitos({"RF17"})
+  @Ignore
   @Test
   public void crudTitulacion() throws InterruptedException {
     driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");

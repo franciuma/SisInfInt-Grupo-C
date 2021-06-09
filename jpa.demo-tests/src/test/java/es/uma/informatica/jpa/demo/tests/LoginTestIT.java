@@ -43,6 +43,7 @@ public class LoginTestIT {
   }
 
   @Requisitos({"RF1"})
+  @Ignore
   @Test
   public void login() {
     driver.get("http://localhost:8080/jpa.demo-war");
