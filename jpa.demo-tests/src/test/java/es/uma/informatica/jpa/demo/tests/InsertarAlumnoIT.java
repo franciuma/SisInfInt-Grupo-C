@@ -3,6 +3,7 @@ package es.uma.informatica.jpa.demo.tests;
 import org.junit.Test;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.After;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -41,6 +42,7 @@ public class InsertarAlumnoIT {
   public void tearDown() {
     driver.quit();
   }
+  @Ignore
   @Test
   public void testinsertaralumno() throws InterruptedException {
     driver.get("http://0.0.0.0:8080/jpa.demo-war/");
