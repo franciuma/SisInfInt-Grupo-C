@@ -5,7 +5,9 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	>
 
 
 <h:head>
@@ -23,7 +25,7 @@
 	<div class="list-box">
 		<h:form id="LiAsi-asignaturas-id"
 			styleClass="centrar-texto navegacion table-mostrar">
-			<h:message for = "LiAsi-asignaturas-id"/>
+			<p:growl id="messages" showDetail="true" />
 			<h:link outcome="index_asignatura.xhtml">Atrás</h:link>
 			<h2>Listado de Asignaturas</h2>
 
