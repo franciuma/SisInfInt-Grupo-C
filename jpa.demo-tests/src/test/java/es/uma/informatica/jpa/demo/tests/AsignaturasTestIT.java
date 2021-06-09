@@ -2,7 +2,6 @@
 package es.uma.informatica.jpa.demo.tests;
 import org.junit.Test;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.After;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -38,11 +37,10 @@ public class AsignaturasTestIT {
   public void tearDown() {
     driver.quit();
   }
-  
   @Test
-  public void insertarasignatura() {
+  public void crearasignatura() {
     driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");
-    driver.manage().window().maximize();
+    driver.manage().window().setSize(new Dimension(665, 731));
     driver.findElement(By.id("indexIndex:vista-index-asignatura")).click();
     driver.findElement(By.id("indexAs:IndAs-insertarAsig")).click();
     driver.findElement(By.id("InsAs-InsertarAsig:InsRef-referencia")).click();
@@ -88,5 +86,41 @@ public class AsignaturasTestIT {
     assertThat(driver.findElement(By.id("LiAsi-asignaturas-id:j_idt10:0:LiAsi-IdiomasImpartC2")).getText(), is("2"));
     driver.findElement(By.id("LiAsi-asignaturas-id")).click();
     driver.findElement(By.id("LiAsi-asignaturas-id:j_idt10:0:LiAsi-EliminarC2")).click();
+  }
+  @Test
+  public void modasignatura() {
+    driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");
+    driver.manage().window().setSize(new Dimension(665, 735));
+    driver.findElement(By.id("indexIndex:vista-index-asignatura")).click();
+    driver.findElement(By.id("indexAs:IndAs-insertarAsig")).click();
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-referencia")).click();
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-referencia")).sendKeys("25");
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-Codigo_Asignatura")).click();
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-Codigo_Asignatura")).sendKeys("21345");
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-creditos")).click();
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-creditos")).sendKeys("22334");
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-ofertada")).click();
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-ofertada")).sendKeys("si");
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-nombre")).click();
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-nombre")).sendKeys("r");
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-curso")).click();
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-curso")).sendKeys("2");
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-caracter")).click();
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-caracter")).sendKeys("c");
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-duracion")).click();
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-duracion")).sendKeys("231");
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-unidadTemporal")).click();
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-unidadTemporal")).sendKeys("2");
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-idiomasImparticion")).click();
+    driver.findElement(By.id("InsAs-InsertarAsig:InsRef-idiomasImparticion")).sendKeys("3");
+    driver.findElement(By.id("InsAs-InsertarAsig:InsAs-BotonCrearAsig")).click();
+    driver.findElement(By.id("LiAsi-asignaturas-id:j_idt10:0:LiAsi-ModificarC2")).click();
+    driver.findElement(By.id("EdAs-EditarAs:EdAs-nombre")).click();
+    driver.findElement(By.id("EdAs-EditarAs:EdAs-nombre")).sendKeys("riiiii");
+    driver.findElement(By.cssSelector("a:nth-child(13)")).click();
+    driver.findElement(By.cssSelector("td:nth-child(5)")).click();
+    assertThat(driver.findElement(By.id("LiAsi-asignaturas-id:j_idt10:0:LiAsi-NombreC2")).getText(), is("riiiii"));
+    driver.findElement(By.id("LiAsi-asignaturas-id:j_idt10:0:LiAsi-EliminarC2")).click();
+    assertThat(driver.switchTo().alert().getText(), is("ASIGNATURA BORRADA"));
   }
 }
