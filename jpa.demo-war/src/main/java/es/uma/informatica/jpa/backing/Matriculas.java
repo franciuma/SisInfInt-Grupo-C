@@ -152,17 +152,19 @@ public class Matriculas {
 		return "editarMatricula.xhtml";
 	}
 	
-	public String VarBuscar() {
+	public String varBuscar() {
 		buscar = true;
 		return null;
 	}
 	
-	public Matricula BuscarMatricula(String curso_academico) {
+	public Matricula buscarMatricula(String curso_academico, String exp) {
 		Matricula matricula = null;
-		Matricula_ID matriculaid = null;
 		try {
-			matricula.setCursoAcademico(curso_academico);
-			matricula = matriculas.obtenerMatricula(expediente, matriculaid);
+			
+			if(!exp.equals("")) {
+				Matricula_ID matri = new Matricula_ID(Integer.parseInt(exp));
+				matricula = matriculas.obtenerMatricula(curso_academico,matri);
+			}
 		}catch(MatriculaNoEncontradaException e){
 			FacesMessage message = new FacesMessage("Alumno no encontrado");
 			FacesContext.getCurrentInstance().addMessage(null, message);

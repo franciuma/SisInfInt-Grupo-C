@@ -34,7 +34,7 @@ public class Grupo {
 	@Column(name = "Plazas")
 	private Integer plazas;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	private Titulacion titulacion;
 	
 	@OneToMany(mappedBy = "grupo")

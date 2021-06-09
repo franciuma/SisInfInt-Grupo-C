@@ -1,6 +1,7 @@
 package es.uma.informatica.jpa.demo.tests;
 
 import org.junit.Test;
+
 import org.junit.Before;
 import org.junit.After;
 import static org.junit.Assert.*;
@@ -17,12 +18,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 public class InsertarAlumnoIT {
   private WebDriver driver;
   private Map<String, Object> vars;
