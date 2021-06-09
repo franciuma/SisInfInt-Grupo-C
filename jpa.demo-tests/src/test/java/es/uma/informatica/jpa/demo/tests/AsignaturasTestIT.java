@@ -2,6 +2,7 @@
 package es.uma.informatica.jpa.demo.tests;
 import org.junit.Test;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.After;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -37,6 +38,7 @@ public class AsignaturasTestIT {
   public void tearDown() {
     driver.quit();
   }
+  @Ignore
   @Test
   public void crearasignatura() {
     driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");
@@ -87,6 +89,7 @@ public class AsignaturasTestIT {
     driver.findElement(By.id("LiAsi-asignaturas-id")).click();
     driver.findElement(By.id("LiAsi-asignaturas-id:j_idt10:0:LiAsi-EliminarC2")).click();
   }
+  @Ignore
   @Test
   public void modasignatura() {
     driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");
