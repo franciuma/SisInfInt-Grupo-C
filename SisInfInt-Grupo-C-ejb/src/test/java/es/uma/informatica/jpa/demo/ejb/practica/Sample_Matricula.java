@@ -64,10 +64,10 @@ public class Sample_Matricula {
 	@Requisitos({"RF18"})
 	@Test
 	public void testInsertarAsignatura() {
-		final Matricula_ID mat_id = new Matricula_ID(1232442);
+		
 		final  String cursoAcademico = "pa";
 		final  String estado = "estado";
-	
+		final Matricula_ID mat_id = new Matricula_ID(1232442,cursoAcademico);
 		final  Integer numArchivo = 56156;
 	
 		final  String turnoPreferente = "TU";

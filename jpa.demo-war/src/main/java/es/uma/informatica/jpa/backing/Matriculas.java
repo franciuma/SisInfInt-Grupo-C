@@ -15,12 +15,15 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 import es.uma.informatica.ejb.GestionAlumno;
+import es.uma.informatica.ejb.GestionExpediente;
 import es.uma.informatica.ejb.GestionMatricula;
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
+import es.uma.informatica.ejb.exceptions.ExpedienteNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.MatriculaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.MatriculaYaExistenteException;
 import es.uma.informatica.jpa.demo.Alumno;
+import es.uma.informatica.jpa.demo.Expediente;
 import es.uma.informatica.jpa.demo.Matricula;
 import es.uma.informatica.jpa.demo.Matricula_ID;
 
@@ -32,6 +35,8 @@ public class Matriculas {
 	@Inject
 	private GestionMatricula matriculas;
 	//private UploadedFile upload;
+	@Inject
+	private GestionExpediente expedientes;
 	private Part upload;
 	public Part getUpload() {
 		return upload;
@@ -46,6 +51,8 @@ public class Matriculas {
 	private String fecha_ingreso;
 	private String curso_academico;
 	private boolean buscar;
+	private Integer nExpediente;
+	private Expediente exp;
 
 	private boolean insertar_MA;
 	private List<Matricula> listMatriculas;
@@ -101,12 +108,15 @@ public class Matriculas {
 	public String aniadir_Matricula() {
 		
 		try {
-			Integer exp = Integer.parseInt(expediente);
+//			Integer exp = Integer.parseInt(expediente);
+			exp = expedientes.obtenerExpediente(nExpediente);
+			matricula_id.setExpediente(nExpediente);
+			matricula_id.setCursoAcademico(matricula.getCursoAcademico());
 			SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
 			Date fecha = null;
 			fecha = formatoDelTexto.parse(fecha_ingreso);
 			matricula.setFechaMatricula(fecha);
-			matricula_id.setExpediente(exp);
+			matricula_id.setExpediente(exp.getNumExpediente());
 			matricula.setId(matricula_id);
 			LOGGER.info("Matricula: " + matricula.toString());
 			matriculas.insertarMatricula(matricula);
@@ -120,6 +130,9 @@ public class Matriculas {
 			// TODO Auto-generated catch block
 			FacesMessage message = new FacesMessage("Error al leer la fecha de ingreso");
 			FacesContext.getCurrentInstance().addMessage(null, message);
+		} catch (ExpedienteNoEncontradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -162,11 +175,11 @@ public class Matriculas {
 		try {
 			
 			if(!exp.equals("")) {
-				Matricula_ID matri = new Matricula_ID(Integer.parseInt(exp));
+				Matricula_ID matri = new Matricula_ID(Integer.parseInt(exp),curso_academico);
 				matricula = matriculas.obtenerMatricula(curso_academico,matri);
 			}
 		}catch(MatriculaNoEncontradaException e){
-			FacesMessage message = new FacesMessage("Alumno no encontrado");
+			FacesMessage message = new FacesMessage("Matricula no encontrado");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return matricula;
@@ -225,6 +238,12 @@ public class Matriculas {
 	}
 	public void setMatricula_id(Matricula_ID matricula_id) {
 		this.matricula_id = matricula_id;
+	}
+	public Integer getnExpediente() {
+		return nExpediente;
+	}
+	public void setnExpediente(Integer nExpediente) {
+		this.nExpediente = nExpediente;
 	}
 	
 
