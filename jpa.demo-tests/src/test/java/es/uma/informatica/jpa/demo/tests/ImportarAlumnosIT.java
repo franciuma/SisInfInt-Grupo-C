@@ -51,8 +51,27 @@ public class ImportarAlumnosIT {
     WebElement uploadElement = driver.findElement(By.xpath("//input[@id='InsAl-importarALumnos:InsAl-file']"));
     uploadElement.sendKeys(absolutePath);
     driver.findElement(By.cssSelector("a:nth-child(3)")).click();
-	Thread.sleep(10000);
+	Thread.sleep(20000);
 	assertTrue("No existe el alumno", driver.getPageSource().contains("94949702C")); // 94949702C
+    Thread.sleep(4000);
+    
+    //Ir a la lista de expedientes
+    driver.findElement(By.id("LiAl-alumnos-id:LiAl-boton-atras-vista-lista-alumno")).click();
+    driver.findElement(By.id("indexAl:IndAl-Index")).click();
+    driver.findElement(By.id("indexIndex:vista-index-expediente")).click();
+    driver.findElement(By.id("indexEx:IndEx-ListaExp")).click();
+    assertTrue("No existe el expediente asociado al alumno", driver.getPageSource().contains("94949702C"));
+    Thread.sleep(4000);
+    driver.findElement(By.name("LiExp-expedientes-id:j_idt13")).click();
+    assertThat(driver.switchTo().alert().getText(), is("EXPEDIENTES BORRADOS"));
+    driver.switchTo().alert().accept();
+    Thread.sleep(4000);
+  
+    //Ir a la lista de alumnos
+    driver.findElement(By.cssSelector("a")).click();
+    driver.findElement(By.id("indexEx:IndEx-Index")).click();
+    driver.findElement(By.id("indexIndex:vista-index-alumnos")).click();
+    driver.findElement(By.id("indexAl:IndAl-ListaAl")).click();
     driver.findElement(By.id("LiAl-alumnos-id:LiAl-boton-eliminarTodos-alumno")).click();
     Thread.sleep(8000);
     assertThat(driver.switchTo().alert().getText(), is("ALUMNOs BORRADOs"));
