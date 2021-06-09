@@ -61,16 +61,10 @@
 			</div>
 
 			<h:commandLink id="InsMa-BotonCrearMatr" value="Crear Matricula" type ="submit" action="#{matriculas.aniadir_Matricula()}"/>
-			
+			<h:link outcome ="index_matricula.xhtml">Atrás</h:link> 
 			
 		</h:form>
-		<h:form id="InsMa-importarMatriculas" method="post" enctype="multipart/form-data">
-		<h:message for = "InsMa-importarMatriculas"/>
-			<h:inputFile id = "InsMa-file" value="#{matriculas.upload}"/>
-		
-		<h:commandLink value="Enviar Fichero" type ="submit" action="#{matriculas.importarMatriculas()}"/>
-		<h:link outcome ="index_matricula.xhtml">Atrás</h:link>
-		</h:form>
+
 	</div>
 </h:body>
 </html>

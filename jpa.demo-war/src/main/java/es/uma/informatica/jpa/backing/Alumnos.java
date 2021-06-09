@@ -4,10 +4,12 @@ import java.io.File;
 
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,6 +19,7 @@ import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.AlumnoYaExistenteException;
 
 import es.uma.informatica.jpa.demo.Alumno;
+
 
 @Named(value="alumnos2")
 @RequestScoped
@@ -50,7 +53,7 @@ public class Alumnos {
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		return null;
 	}
-	public String importarAlumnos() {
+	public String importarAlumnos() throws ParseException {
 
 		String sFile ="/tmp/alumnos.xlsx"; 
 		File filtemp = new File(sFile);
@@ -147,6 +150,15 @@ public class Alumnos {
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return alumno;
+	}
+	
+	public String trasnferir() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Expedientes exp = context.getApplication().evaluateExpressionGet(context, "#{expedientes}", Expedientes.class);
+		LOGGER.info(alumno.toString());
+		exp.setDni(alumno.getDni());
+		
+		return "insertar_Expediente.xhtml";
 	}
 	
 	public String modoModificarAlumno(Alumno al) {

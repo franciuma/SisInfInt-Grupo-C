@@ -4,6 +4,7 @@ import es.uma.informatica.ejb.exceptions.*;
 
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import javax.ejb.Local;
 import es.uma.informatica.jpa.demo.Alumno;
@@ -19,7 +20,7 @@ public interface GestionAlumno{
 	public void eliminarAlumno (String dni) throws AlumnoNoEncontradoException;
 	public void actualizarAlumno (Alumno alumno) throws AlumnoNoEncontradoException;
 	public List<Alumno> obtenerAlumnos ();
-	public void importarAlumnos(String sFile) throws IOException, AlumnoYaExistenteException;
+	public void importarAlumnos(String sFile) throws IOException, AlumnoYaExistenteException, ParseException;
 	public boolean autenticar(String dni, String contra);
 	public void eliminarTodos();
 

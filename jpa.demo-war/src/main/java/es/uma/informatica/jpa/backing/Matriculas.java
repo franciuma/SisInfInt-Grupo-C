@@ -58,36 +58,36 @@ public class Matriculas {
 	}
 	
 	
-	public String importarMatriculas() throws ParseException {
-
-		String sFile ="/tmp/matriculas.xlsx"; 
-		File filtemp = new File(sFile);
-		filtemp.delete();
-		try {
-			upload.write(sFile);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			FacesMessage message = new FacesMessage("Error al subir el fichero");
-			FacesContext.getCurrentInstance().addMessage(null, message);
-		}
-
-		try {
-			matriculas.importarMatricula(sFile);
-			filtemp.delete();
-			return "lista_matriculas.xhtml";
-		} catch (MatriculaYaExistenteException e) {
-			// TODO Auto-generated catch block
-			FacesMessage message = new FacesMessage("Matricula ya existente");
-			FacesContext.getCurrentInstance().addMessage(null, message);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			FacesMessage message = new FacesMessage("Error al leer el fichero");
-			FacesContext.getCurrentInstance().addMessage(null, message);
-		}
-
-		filtemp.delete();
-		return null;
-	}
+//	public String importarMatriculas() throws ParseException {
+//
+//		String sFile ="/tmp/matriculas.xlsx"; 
+//		File filtemp = new File(sFile);
+//		filtemp.delete();
+//		try {
+//			upload.write(sFile);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			FacesMessage message = new FacesMessage("Error al subir el fichero");
+//			FacesContext.getCurrentInstance().addMessage(null, message);
+//		}
+//
+//		try {
+//			matriculas.importarMatricula(sFile);
+//			filtemp.delete();
+//			return "lista_matriculas.xhtml";
+//		} catch (MatriculaYaExistenteException e) {
+//			// TODO Auto-generated catch block
+//			FacesMessage message = new FacesMessage("Matricula ya existente");
+//			FacesContext.getCurrentInstance().addMessage(null, message);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			FacesMessage message = new FacesMessage("Error al leer el fichero");
+//			FacesContext.getCurrentInstance().addMessage(null, message);
+//		}
+//
+//		filtemp.delete();
+//		return null;
+//	}
 	
 	
 	public Matriculas() {

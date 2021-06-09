@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,6 +18,7 @@ import es.uma.informatica.ejb.exceptions.ExpedienteNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.ExpedienteYaExistenteException;
 import es.uma.informatica.jpa.demo.Alumno;
 import es.uma.informatica.jpa.demo.Expediente;
+
 
 @Named(value="expedientes")
 @RequestScoped
@@ -41,11 +43,19 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 	private List<Expediente> listExpedientes;
 	private boolean buscar;
 	private String numExpediente;
+	private Alumno alumno;
+	private String dni;
+	
+	Alumnos alumnoAct = new Alumnos();
+	
 	
 	public String aniadir_Expediente(){
 		
 		try {
+			alumno = alumnos.obtenerAlumno(dni);
 			LOGGER.info(expediente.getNotaMediaProvisional().toString());
+			LOGGER.info("expediente alumno:  " + alumno.toString());
+			expediente.setAlumno(alumno);
 			expedientes.insertarExpediente(expediente);
 			setInsertar_EX(true);
 			return "lista_expedientes.xhtml";
@@ -53,6 +63,9 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 			// TODO Auto-generated catch block
 			FacesMessage message = new FacesMessage("Expediente ya existente");
 			FacesContext.getCurrentInstance().addMessage(null, message);
+		} catch (AlumnoNoEncontradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -144,6 +157,18 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 		// TODO Auto-generated constructor stub
 		expediente = new Expediente();
 		insertar_EX = false;
+	}
+	public Alumno getAlumno() {
+		return alumno;	
+	}
+	public void setAlumno(Alumno alumno) {
+		this.alumno = alumno;
+	}
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 	
 }

@@ -11,7 +11,12 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
@@ -115,7 +120,7 @@ public class AlumnosEJB implements GestionAlumno {
 				
 				if(a.getDni().length() > 2) {
 					//el alumno
-					insertarAlumno(a);
+					insertarAlumno(a);				
 					//el expediente
 					String numero_expediente = (String) sheet.getRow(fila).getCell(4).getStringCellValue();
 					Integer x = Integer.parseInt(numero_expediente);
@@ -133,10 +138,29 @@ public class AlumnosEJB implements GestionAlumno {
 						}
 						ex.setAlumno(a);
 						em.persist(ex);
+						
+						Matricula m = new Matricula();
+						String curso = (String) sheet.getRow(0).getCell(1).getStringCellValue();
+						m.setCursoAcademico(curso);
+						String estado = (String) sheet.getRow(2).getCell(1).getStringCellValue();
+						m.setEstado(estado);
+						String turno = (String) sheet.getRow(fila).getCell(15).getStringCellValue();
+						m.setTurnoPreferente(turno);
+						String fecha = (String) sheet.getRow(fila).getCell(14).getStringCellValue();
+						DateFormat format = new SimpleDateFormat("DD/MM/YYYY", Locale.ENGLISH);
+						Date date = format.parse(fecha);
+						m.setFechaMatricula(date);
+						String listado = (String) sheet.getRow(fila).getCell(16).getStringCellValue();
+						m.setListadoAsignaturas(listado);
+						m.setExpediente(ex);
+						
+						Matricula_ID m_id = new Matricula_ID(x);
+						m.setId(m_id);
+						em.persist(m);
 					}
 				}
 			}
-		} catch(IOException e) {
+		} catch(IOException | ParseException e) {
 			e.printStackTrace();
 		}
 		
