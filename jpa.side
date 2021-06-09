@@ -3077,6 +3077,295 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "7a8b96fc-4354-4887-b212-df53d960398b",
+    "name": "mod titulacion",
+    "commands": [{
+      "id": "cde72e9c-32ea-489a-9abb-ab17ac084c8e",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/jpa.demo-war/faces/index.xhtml",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f3963627-2575-4267-9ec9-02cd1544b40d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "665x741",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8353c274-bb1d-4b6f-aaa8-8b283af536ba",
+      "comment": "",
+      "command": "click",
+      "target": "id=indexIndex:vista-index-titulacion",
+      "targets": [
+        ["id=indexIndex:vista-index-titulacion", "id"],
+        ["name=indexIndex:vista-index-titulacion", "name"],
+        ["css=#indexIndex\\3Avista-index-titulacion", "css:finder"],
+        ["xpath=//a[contains(text(),'Titulaciones')]", "xpath:link"],
+        ["xpath=//a[@id='indexIndex:vista-index-titulacion']", "xpath:attributes"],
+        ["xpath=//form[@id='indexIndex']/a[5]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/jpa.demo-war/faces/index_titulacion.xhtml;jsessionid=AMLpoMSpk5qe_PpsMGl_FrbV4oXtxhE8tR6O3VBX.6ba3b2bdd576')]", "xpath:href"],
+        ["xpath=//a[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4907a4bb-e4d8-49ec-831f-fbd046ea8e86",
+      "comment": "",
+      "command": "click",
+      "target": "id=indexTi:IndTi-InsertarTi",
+      "targets": [
+        ["id=indexTi:IndTi-InsertarTi", "id"],
+        ["name=indexTi:IndTi-InsertarTi", "name"],
+        ["css=#indexTi\\3AIndTi-InsertarTi", "css:finder"],
+        ["xpath=//a[contains(text(),'Insertar titulacion')]", "xpath:link"],
+        ["xpath=//a[@id='indexTi:IndTi-InsertarTi']", "xpath:attributes"],
+        ["xpath=//form[@id='indexTi']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/jpa.demo-war/faces/insertar_titulacion.xhtml')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "40384997-9525-421a-9e0e-0c6334681b11",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsTit-InsertarTitu:InsTit-codigo",
+      "targets": [
+        ["id=InsTit-InsertarTitu:InsTit-codigo", "id"],
+        ["name=InsTit-InsertarTitu:InsTit-codigo", "name"],
+        ["css=#InsTit-InsertarTitu\\3AInsTit-codigo", "css:finder"],
+        ["xpath=//input[@id='InsTit-InsertarTitu:InsTit-codigo']", "xpath:attributes"],
+        ["xpath=//form[@id='InsTit-InsertarTitu']/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2aafde1a-e704-4355-b4f2-cc56ad753c4f",
+      "comment": "",
+      "command": "type",
+      "target": "id=InsTit-InsertarTitu:InsTit-codigo",
+      "targets": [
+        ["id=InsTit-InsertarTitu:InsTit-codigo", "id"],
+        ["name=InsTit-InsertarTitu:InsTit-codigo", "name"],
+        ["css=#InsTit-InsertarTitu\\3AInsTit-codigo", "css:finder"],
+        ["xpath=//input[@id='InsTit-InsertarTitu:InsTit-codigo']", "xpath:attributes"],
+        ["xpath=//form[@id='InsTit-InsertarTitu']/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "1059"
+    }, {
+      "id": "e477af01-26c8-4abf-b320-325f48a069e2",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsTit-InsertarTitu:InsTit-nombre",
+      "targets": [
+        ["id=InsTit-InsertarTitu:InsTit-nombre", "id"],
+        ["name=InsTit-InsertarTitu:InsTit-nombre", "name"],
+        ["css=#InsTit-InsertarTitu\\3AInsTit-nombre", "css:finder"],
+        ["xpath=//input[@id='InsTit-InsertarTitu:InsTit-nombre']", "xpath:attributes"],
+        ["xpath=//form[@id='InsTit-InsertarTitu']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "25403f0b-089f-4a7b-93fc-02095fbebf5e",
+      "comment": "",
+      "command": "type",
+      "target": "id=InsTit-InsertarTitu:InsTit-nombre",
+      "targets": [
+        ["id=InsTit-InsertarTitu:InsTit-nombre", "id"],
+        ["name=InsTit-InsertarTitu:InsTit-nombre", "name"],
+        ["css=#InsTit-InsertarTitu\\3AInsTit-nombre", "css:finder"],
+        ["xpath=//input[@id='InsTit-InsertarTitu:InsTit-nombre']", "xpath:attributes"],
+        ["xpath=//form[@id='InsTit-InsertarTitu']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Ingenieria de rager"
+    }, {
+      "id": "1e1f4c3f-0f1d-4c61-ad97-f32fdec11610",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsTit-InsertarTitu:InsTit-creditos",
+      "targets": [
+        ["id=InsTit-InsertarTitu:InsTit-creditos", "id"],
+        ["name=InsTit-InsertarTitu:InsTit-creditos", "name"],
+        ["css=#InsTit-InsertarTitu\\3AInsTit-creditos", "css:finder"],
+        ["xpath=//input[@id='InsTit-InsertarTitu:InsTit-creditos']", "xpath:attributes"],
+        ["xpath=//form[@id='InsTit-InsertarTitu']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "db5e14ad-96ed-4270-a648-528666730f73",
+      "comment": "",
+      "command": "type",
+      "target": "id=InsTit-InsertarTitu:InsTit-creditos",
+      "targets": [
+        ["id=InsTit-InsertarTitu:InsTit-creditos", "id"],
+        ["name=InsTit-InsertarTitu:InsTit-creditos", "name"],
+        ["css=#InsTit-InsertarTitu\\3AInsTit-creditos", "css:finder"],
+        ["xpath=//input[@id='InsTit-InsertarTitu:InsTit-creditos']", "xpath:attributes"],
+        ["xpath=//form[@id='InsTit-InsertarTitu']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "66"
+    }, {
+      "id": "62ba425f-5634-40e0-892e-fa1e69ec83a9",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsTit-InsertarTitu:InsTit-BotonCrearTit",
+      "targets": [
+        ["id=InsTit-InsertarTitu:InsTit-BotonCrearTit", "id"],
+        ["css=#InsTit-InsertarTitu\\3AInsTit-BotonCrearTit", "css:finder"],
+        ["xpath=//a[contains(text(),'Crear Titulacion')]", "xpath:link"],
+        ["xpath=//a[@id='InsTit-InsertarTitu:InsTit-BotonCrearTit']", "xpath:attributes"],
+        ["xpath=//form[@id='InsTit-InsertarTitu']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0be12088-a06c-46f6-8d1a-654946b53cd5",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(1)",
+      "targets": [
+        ["css=td:nth-child(1)", "css:finder"],
+        ["xpath=//form[@id='LiTit-titulaciones-id']/table/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'1059')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "eb5a8e83-8512-49c5-9774-5bf9be595563",
+      "comment": "",
+      "command": "click",
+      "target": "id=LiTit-titulaciones-id:j_idt10:0:LiTit-CodigoC2",
+      "targets": [
+        ["id=LiTit-titulaciones-id:j_idt10:0:LiTit-CodigoC2", "id"],
+        ["css=#LiTit-titulaciones-id\\3Aj_idt10\\3A 0\\3ALiTit-CodigoC2", "css:finder"],
+        ["xpath=//span[@id='LiTit-titulaciones-id:j_idt10:0:LiTit-CodigoC2']", "xpath:attributes"],
+        ["xpath=//form[@id='LiTit-titulaciones-id']/table/tbody/tr/td/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'1059')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cd4e97f2-2047-417a-af4b-ba91e6a75c7a",
+      "comment": "",
+      "command": "click",
+      "target": "id=LiTit-titulaciones-id:j_idt10:0:LiTit-ModificarC2",
+      "targets": [
+        ["id=LiTit-titulaciones-id:j_idt10:0:LiTit-ModificarC2", "id"],
+        ["name=LiTit-titulaciones-id:j_idt10:0:LiTit-ModificarC2", "name"],
+        ["css=#LiTit-titulaciones-id\\3Aj_idt10\\3A 0\\3ALiTit-ModificarC2", "css:finder"],
+        ["xpath=//input[@id='LiTit-titulaciones-id:j_idt10:0:LiTit-ModificarC2']", "xpath:attributes"],
+        ["xpath=//form[@id='LiTit-titulaciones-id']/table/tbody/tr/td[4]/input", "xpath:idRelative"],
+        ["xpath=//td[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ec103b23-380c-4816-849b-8cee93841a68",
+      "comment": "",
+      "command": "click",
+      "target": "id=EdTi-EditarTi:EdTi-nombre",
+      "targets": [
+        ["id=EdTi-EditarTi:EdTi-nombre", "id"],
+        ["name=EdTi-EditarTi:EdTi-nombre", "name"],
+        ["css=#EdTi-EditarTi\\3A EdTi-nombre", "css:finder"],
+        ["xpath=//input[@id='EdTi-EditarTi:EdTi-nombre']", "xpath:attributes"],
+        ["xpath=//form[@id='EdTi-EditarTi']/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "df136995-c6bc-4e52-8923-0ddffba6c2b4",
+      "comment": "",
+      "command": "type",
+      "target": "id=EdTi-EditarTi:EdTi-nombre",
+      "targets": [
+        ["id=EdTi-EditarTi:EdTi-nombre", "id"],
+        ["name=EdTi-EditarTi:EdTi-nombre", "name"],
+        ["css=#EdTi-EditarTi\\3A EdTi-nombre", "css:finder"],
+        ["xpath=//input[@id='EdTi-EditarTi:EdTi-nombre']", "xpath:attributes"],
+        ["xpath=//form[@id='EdTi-EditarTi']/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "Ingenieria de franci"
+    }, {
+      "id": "9657d830-f5dd-4aa1-92d0-790e0bd5cf30",
+      "comment": "",
+      "command": "click",
+      "target": "css=a:nth-child(6)",
+      "targets": [
+        ["css=a:nth-child(6)", "css:finder"],
+        ["xpath=//a[contains(text(),'Actualizar Titulacion')]", "xpath:link"],
+        ["xpath=//a[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='EdTi-EditarTi']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "090f3e86-a4ca-4987-86a0-17fcb134a96c",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(2)",
+      "targets": [
+        ["css=td:nth-child(2)", "css:finder"],
+        ["xpath=//form[@id='LiTit-titulaciones-id']/table/tbody/tr/td[2]", "xpath:idRelative"],
+        ["xpath=//td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'Ingenieria de franci')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "399286e3-d5c7-4c03-88c1-da5e9e72d4c7",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=LiTit-titulaciones-id:j_idt10:0:LiTit-NombreC2",
+      "targets": [
+        ["id=LiTit-titulaciones-id:j_idt10:0:LiTit-NombreC2", "id"],
+        ["css=#LiTit-titulaciones-id\\3Aj_idt10\\3A 0\\3ALiTit-NombreC2", "css:finder"],
+        ["xpath=//span[@id='LiTit-titulaciones-id:j_idt10:0:LiTit-NombreC2']", "xpath:attributes"],
+        ["xpath=//form[@id='LiTit-titulaciones-id']/table/tbody/tr/td[2]/span", "xpath:idRelative"],
+        ["xpath=//td[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Ingenieria de franci')]", "xpath:innerText"]
+      ],
+      "value": "Ingenieria de franci"
+    }, {
+      "id": "a85e23e7-853b-4a7c-a051-433001148060",
+      "comment": "",
+      "command": "click",
+      "target": "css=th:nth-child(5)",
+      "targets": [
+        ["css=th:nth-child(5)", "css:finder"],
+        ["xpath=//form[@id='LiTit-titulaciones-id']/table/thead/tr/th[5]", "xpath:idRelative"],
+        ["xpath=//th[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c1467728-7b27-4fb7-b357-25457ca9f367",
+      "comment": "",
+      "command": "click",
+      "target": "id=LiTit-titulaciones-id:j_idt10:0:LiTit-EliminarC2",
+      "targets": [
+        ["id=LiTit-titulaciones-id:j_idt10:0:LiTit-EliminarC2", "id"],
+        ["name=LiTit-titulaciones-id:j_idt10:0:LiTit-EliminarC2", "name"],
+        ["css=#LiTit-titulaciones-id\\3Aj_idt10\\3A 0\\3ALiTit-EliminarC2", "css:finder"],
+        ["xpath=//input[@id='LiTit-titulaciones-id:j_idt10:0:LiTit-EliminarC2']", "xpath:attributes"],
+        ["xpath=//form[@id='LiTit-titulaciones-id']/table/tbody/tr/td[5]/input", "xpath:idRelative"],
+        ["xpath=//td[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "73a4a848-351e-4a09-9843-d305419de7fa",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "TITULACION BORRADA",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "c24f3490-9ccd-461f-9552-04fa203fa9cd",
@@ -3098,7 +3387,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["c8e20940-9653-41a0-a2f8-16d885d4eae8", "7e3132f7-11be-471b-9bdb-e8dec2c37908"]
+    "tests": ["7a8b96fc-4354-4887-b212-df53d960398b"]
   }, {
     "id": "329fd09d-c04c-453a-bcc9-24dd1bef64d1",
     "name": "Asignaturas",
