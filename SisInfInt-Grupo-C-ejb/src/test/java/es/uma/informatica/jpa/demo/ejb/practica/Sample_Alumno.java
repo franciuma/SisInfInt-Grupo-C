@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.logging.Logger;
 
 import javax.naming.NamingException;
@@ -107,7 +108,7 @@ public class Sample_Alumno {
 	
 	@Requisitos({"RF7"})
 	@Test
-	public void testImportarDatosAlumno() throws AlumnoYaExistenteException, IOException {
+	public void testImportarDatosAlumno() throws AlumnoYaExistenteException, IOException, ParseException {
 		final String dni = "02758528E";
 		final String nombreCompleto = "Amarilia Espino Melgar";
 		final String emailInstitucional = "06105600003@uma.es";

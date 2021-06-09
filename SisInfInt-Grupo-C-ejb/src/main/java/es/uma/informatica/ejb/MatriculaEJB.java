@@ -26,6 +26,8 @@ public class MatriculaEJB implements GestionMatricula {
 	@PersistenceContext(name= "Secretaria")
 	private EntityManager em;
 
+	GestionExpediente expedientes;
+	
 	@Override
 	public void insertarMatricula(Matricula mat) throws MatriculaYaExistenteException {
 		// TODO Auto-generated method stub
@@ -76,42 +78,49 @@ public class MatriculaEJB implements GestionMatricula {
 		return query.getResultList();
 	}
 	
-	@Override
-	public void importarMatricula(String sFile) throws IOException, ParseException, MatriculaYaExistenteException {
-		try {
-			//String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
-			//String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Datos alumnadoFAKE.xlsx";
-			@SuppressWarnings("deprecation")
-			XSSFWorkbook workbook = new XSSFWorkbook(sFile);
-			XSSFSheet sheet = workbook.getSheet("Hoja1");
-			for(int fila=4; fila<sheet.getLastRowNum(); fila++) {//Con sheet.getLastRowNum() no funciona el test, transaction aborted
-				if(sheet.getRow(fila).getCell(0).getStringCellValue().length() > 2) {
-					Matricula m = new Matricula();
-					String curso = (String) sheet.getRow(0).getCell(1).getStringCellValue();
-					m.setCursoAcademico(curso);
-					String estado = (String) sheet.getRow(2).getCell(1).getStringCellValue();
-					m.setEstado(estado);
-					String turno = (String) sheet.getRow(fila).getCell(15).getStringCellValue();
-					m.setTurnoPreferente(turno);
-					String fecha = (String) sheet.getRow(fila).getCell(14).getStringCellValue();
-					DateFormat format = new SimpleDateFormat("DD/MM/YYYY", Locale.ENGLISH);
-					Date date = format.parse(fecha);
-					m.setFechaMatricula(date);
-					String listado = (String) sheet.getRow(fila).getCell(16).getStringCellValue();
-					m.setListadoAsignaturas(listado);
-					String numero_expediente = (String) sheet.getRow(fila).getCell(4).getStringCellValue();
-					Integer x = Integer.parseInt(numero_expediente);
-					Matricula_ID m_id = new Matricula_ID(x);
-					m.setId(m_id);
-					insertarMatricula(m);
-					//importarMatricula(m);
-					//System.out.println(m.toString());
-				}
-			}
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-	}
+//	@Override
+//	public void importarMatricula(String sFile) throws IOException, ParseException, MatriculaYaExistenteException {
+//		try {
+//			//String directorio_de_ejecucion_de_la_aplicacion = new java.io.File(".").getCanonicalPath();
+//			//String sFile = directorio_de_ejecucion_de_la_aplicacion + "/" + "Datos alumnadoFAKE.xlsx";
+//			@SuppressWarnings("deprecation")
+//			XSSFWorkbook workbook = new XSSFWorkbook(sFile);
+//			XSSFSheet sheet = workbook.getSheet("Hoja1");
+//			for(int fila=4; fila<sheet.getLastRowNum(); fila++) {//Con sheet.getLastRowNum() no funciona el test, transaction aborted
+//				if(sheet.getRow(fila).getCell(0).getStringCellValue().length() > 2) {
+//					Matricula m = new Matricula();
+//					String curso = (String) sheet.getRow(0).getCell(1).getStringCellValue();
+//					m.setCursoAcademico(curso);
+//					String estado = (String) sheet.getRow(2).getCell(1).getStringCellValue();
+//					m.setEstado(estado);
+//					String turno = (String) sheet.getRow(fila).getCell(15).getStringCellValue();
+//					m.setTurnoPreferente(turno);
+//					String fecha = (String) sheet.getRow(fila).getCell(14).getStringCellValue();
+//					DateFormat format = new SimpleDateFormat("DD/MM/YYYY", Locale.ENGLISH);
+//					Date date = format.parse(fecha);
+//					m.setFechaMatricula(date);
+//					String listado = (String) sheet.getRow(fila).getCell(16).getStringCellValue();
+//					m.setListadoAsignaturas(listado);
+//					String numero_expediente = (String) sheet.getRow(fila).getCell(4).getStringCellValue();
+//					Integer x = Integer.parseInt(numero_expediente);
+//					
+//					Expediente ex = expedientes.obtenerExpediente(x);
+//					m.setExpediente(ex);
+//					
+//					Matricula_ID m_id = new Matricula_ID(x);
+//					m.setId(m_id);
+//					insertarMatricula(m);
+//					//importarMatricula(m);
+//					//System.out.println(m.toString());
+//				}
+//			}
+//		} catch(IOException e) {
+//			e.printStackTrace();
+//		} catch (ExpedienteNoEncontradoException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 	
 	@Override
 	public void eliminarTodas() {
