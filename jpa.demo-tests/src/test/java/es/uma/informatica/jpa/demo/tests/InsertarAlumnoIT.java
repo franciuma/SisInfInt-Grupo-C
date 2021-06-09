@@ -38,7 +38,7 @@ public class InsertarAlumnoIT {
     driver.quit();
   }
   @Test
-  public void testinsertaralumno() {
+  public void testinsertaralumno() throws InterruptedException {
     driver.get("http://0.0.0.0:8080/jpa.demo-war/");
     driver.manage().window().setSize(new Dimension(1853, 948));
     driver.findElement(By.id("Login-Form:Login-DNI")).click();
@@ -61,5 +61,10 @@ public class InsertarAlumnoIT {
     driver.findElement(By.id("InsAl-insertar-alumno:InsAl-email-personal")).sendKeys("david@gmail.com");
     driver.findElement(By.id("InsAl-insertar-alumno:InsAl-boton-crear-alumno")).click();
     assertTrue("No existe el alumno", driver.getPageSource().contains("79039261Z")); //79039261Z
+    driver.findElement(By.id("LiAl-alumnos-id:LiAl-boton-eliminarTodos-alumno")).click();
+    Thread.sleep(8000);
+    assertThat(driver.switchTo().alert().getText(), is("ALUMNOs BORRADOs"));
+    driver.switchTo().alert().accept();
+    Thread.sleep(4000);
   }
 }
