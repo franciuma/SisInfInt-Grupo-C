@@ -44,7 +44,7 @@ public class TitulacionesTestIT {
     driver.quit();
   }
 
-  @Requisitos({"RF17"})
+  @Requisitos({"RF-17"})
   @Test
   public void crudTitulacion() throws InterruptedException {
     driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");

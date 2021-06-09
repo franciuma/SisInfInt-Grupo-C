@@ -18,6 +18,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import es.uma.informatica.sii.anotaciones.Requisitos;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
@@ -40,10 +43,10 @@ public class GruposTestIT {
     driver.quit();
   }
   
-  
+  @Requisitos({"RF-15"})
   @Test
   public void creargrupo() throws InterruptedException {
-	 File f = new File("Titulacion.xlsx");
+	File f = new File("Titulacion.xlsx");
 	String absolutePath = f.getAbsolutePath();
 			
 	driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");

@@ -18,6 +18,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import es.uma.informatica.sii.anotaciones.Requisitos;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
@@ -39,6 +42,7 @@ public class CRUDalumnoTestIT {
     driver.quit();
   }
 
+  @Requisitos({"RF-11"})
   @Test
   public void editaralumno() throws InterruptedException {
     driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");
