@@ -42,7 +42,7 @@ public class InsertarAlumnoIT {
   public void tearDown() {
     driver.quit();
   }
-  @Ignore
+
   @Test
   public void testinsertaralumno() throws InterruptedException {
     driver.get("http://0.0.0.0:8080/jpa.demo-war/");

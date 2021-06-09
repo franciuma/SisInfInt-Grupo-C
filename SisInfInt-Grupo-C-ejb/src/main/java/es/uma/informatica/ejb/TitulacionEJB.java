@@ -90,7 +90,7 @@ public class TitulacionEJB implements GestionTitulacion {
 				}
 			}
 		} catch(IOException e) {
-			e.printStackTrace();
+			throw new IOException("ERROR AL LEER EL DICHERO");
 		}
 	}
 

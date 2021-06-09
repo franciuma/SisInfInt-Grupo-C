@@ -5,7 +5,8 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Lista de Titulaciones</title>
@@ -22,7 +23,7 @@
 	<div class="list-box">
 		<h:form id="LiTit-titulaciones-id"
 			styleClass="centrar-texto navegacion table-mostrar">
-			<h:message for = "LiTit-titulaciones-id"/>
+			<p:growl id="messages" showDetail="true" />
 			<h:link outcome="index_titulacion.xhtml">Atrás</h:link>
 			<h2>Listado de Titulaciones</h2>
 			

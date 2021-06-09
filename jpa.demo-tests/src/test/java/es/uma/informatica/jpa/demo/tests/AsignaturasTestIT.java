@@ -41,8 +41,7 @@ public class AsignaturasTestIT {
   public void tearDown() {
     driver.quit();
   }
-  
-  @Ignore
+
   @Requisitos({"RF12"})
   @Test
   public void crudAsignatura() throws InterruptedException {

@@ -47,8 +47,8 @@ public class CrearGruposIT {
   @Requisitos({"RF-19"})
   @Test
   public void importarTitulacionIT() throws InterruptedException {
-	  File f = new File("Titulacion.xlsx");
-		String absolutePath = f.getAbsolutePath();
+	File f = new File("Titulacion.xlsx");
+	String absolutePath = f.getAbsolutePath();
 		
 	driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");
 	driver.manage().window().maximize();
@@ -71,6 +71,8 @@ public class CrearGruposIT {
     assertThat(driver.switchTo().alert().getText(), is("GRUPOS BORRADOS"));
     driver.switchTo().alert().accept();
     Thread.sleep(4000);
+    
+    //Ir a titulaciones
     driver.findElement(By.cssSelector("a")).click();
     driver.findElement(By.id("indexGr:IndGr-Index")).click();
     driver.findElement(By.id("indexIndex:vista-index-titulacion")).click();

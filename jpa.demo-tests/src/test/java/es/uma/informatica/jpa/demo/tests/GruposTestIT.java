@@ -22,6 +22,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
 import java.util.*;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 public class GruposTestIT {
@@ -38,37 +39,41 @@ public class GruposTestIT {
   public void tearDown() {
     driver.quit();
   }
-  @Ignore
+  
   @Test
-  public void creargrupo() {
-    driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");
-    driver.manage().window().setSize(new Dimension(665, 724));
-    driver.findElement(By.id("indexIndex:vista-index-titulacion")).click();
-    driver.findElement(By.id("indexTi:IndTi-InsertarTi")).click();
-    driver.findElement(By.id("InsTit-importarTitulaciones:InsTit-file")).click();
-    driver.findElement(By.id("InsTit-importarTitulaciones:InsTit-file")).sendKeys("C:\\fakepath\\Titulacion.xlsx");
-    driver.findElement(By.cssSelector("a:nth-child(3)")).click();
-    driver.findElement(By.cssSelector("a:nth-child(2)")).click();
-    driver.findElement(By.id("indexTi:IndTi-Index")).click();
-    driver.findElement(By.id("indexIndex:vista-index-grupos")).click();
-    driver.findElement(By.id("indexGr:IndGr-InsertarGr")).click();
-    driver.findElement(By.id("InsGr-insertar-grupo:InsGr-curso")).click();
+  public void creargrupo() throws InterruptedException {
+	 File f = new File("Titulacion.xlsx");
+	String absolutePath = f.getAbsolutePath();
+			
+	driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");
+	driver.manage().window().maximize();
+		    
+	driver.findElement(By.id("indexIndex:vista-index-titulacion")).click();
+	driver.findElement(By.id("indexTi:IndTi-InsertarTi")).click();
+	WebElement uploadElement = driver.findElement(By.xpath("//input[@id='InsTit-importarTitulaciones:InsTit-file']"));
+	uploadElement.sendKeys(absolutePath);
+	driver.findElement(By.cssSelector("a:nth-child(3)")).click();
+	Thread.sleep(4000);
+	assertTrue("No existe la titulacion", driver.getPageSource().contains("1042"));
+	    
+	// Ir a grupos
+	driver.findElement(By.cssSelector("a")).click();
+	driver.findElement(By.id("indexTi:IndTi-Index")).click();
+	driver.findElement(By.id("indexIndex:vista-index-grupos")).click();
+	driver.findElement(By.id("indexGr:IndGr-InsertarGr")).click();
+	
+	// Crear grupo
     driver.findElement(By.id("InsGr-insertar-grupo:InsGr-curso")).sendKeys("2");
-    driver.findElement(By.id("InsGr-insertar-grupo:InsGr-letra")).click();
     driver.findElement(By.id("InsGr-insertar-grupo:InsGr-letra")).sendKeys("c");
-    driver.findElement(By.id("InsGr-insertar-grupo:InsGr-turno")).click();
     driver.findElement(By.id("InsGr-insertar-grupo:InsGr-turno")).sendKeys("mañana");
-    driver.findElement(By.id("InsGr-insertar-grupo:InsGr-asignar")).click();
     driver.findElement(By.id("InsGr-insertar-grupo:InsGr-asignar")).sendKeys("si");
-    driver.findElement(By.id("InsGr-insertar-grupo:InsGr-plazas")).click();
     driver.findElement(By.id("InsGr-insertar-grupo:InsGr-plazas")).sendKeys("1234");
-    driver.findElement(By.id("InsGr-insertar-grupo:titulacion")).click();
     driver.findElement(By.id("InsGr-insertar-grupo:titulacion")).sendKeys("1042");
     driver.findElement(By.id("InsGr-insertar-grupo")).click();
     driver.findElement(By.id("InsGr-insertar-grupo:InsGr-CrearGrupo")).click();
+    
+    // Comprobar si se inserta el grupo
     driver.findElement(By.cssSelector("td:nth-child(1)")).click();
-    assertThat(driver.findElement(By.id("LiGr-grupos-id:j_idt12:0:LiGr-IdC2")).getText(), is("18"));
-    driver.findElement(By.cssSelector("td:nth-child(2)")).click();
     assertThat(driver.findElement(By.id("LiGr-grupos-id:j_idt12:0:LiGr-CursoC2")).getText(), is("2"));
     driver.findElement(By.cssSelector("td:nth-child(3)")).click();
     assertThat(driver.findElement(By.id("LiGr-grupos-id:j_idt12:0:LiGr-LetraC2")).getText(), is("c"));
@@ -83,13 +88,19 @@ public class GruposTestIT {
     driver.findElement(By.cssSelector("td:nth-child(8)")).click();
     assertThat(driver.findElement(By.cssSelector("td:nth-child(8)")).getText(), is("Grado en Ingeniería del Software"));
     driver.findElement(By.cssSelector("body")).click();
+    
+    // Eliminar grupos
     driver.findElement(By.id("LiGr-grupos-id:j_idt12:0:LiGr-EliminarC2")).click();
     assertThat(driver.switchTo().alert().getText(), is("GRUPO BORRADO"));
+    driver.switchTo().alert().accept();
     driver.findElement(By.cssSelector("a")).click();
     driver.findElement(By.id("indexGr:IndGr-Index")).click();
     driver.findElement(By.id("indexIndex:vista-index-titulacion")).click();
     driver.findElement(By.id("indexTi:IndTi-ListaTi")).click();
+    
+    // Eliminar titulaciones
     driver.findElement(By.id("LiTit-titulaciones-id:LiTit-EliminarTodas")).click();
     assertThat(driver.switchTo().alert().getText(), is("TITULACIONES BORRADAS"));
+    driver.switchTo().alert().accept();
   }
 }

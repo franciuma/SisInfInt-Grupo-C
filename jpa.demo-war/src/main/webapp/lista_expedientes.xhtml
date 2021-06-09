@@ -5,7 +5,8 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Lista de Expedientes</title>
@@ -20,7 +21,7 @@
 				
 	<div class="list-box">
 	<h:form id="LiExp-expedientes-id">
-	<h:message for = "LiExp-expedientes-id"/>
+	<p:growl id="messages" showDetail="true" />
 		<h:link outcome="index_expediente.xhtml">Atrás</h:link>
 		<h2>Listado de Expedientes</h2>
 		

@@ -16,6 +16,7 @@ import javax.servlet.http.Part;
 import es.uma.informatica.ejb.GestionAsignatura;
 import es.uma.informatica.ejb.exceptions.AsignaturaNoEncontradaException;
 import es.uma.informatica.ejb.exceptions.AsignaturaYaExistenteException;
+import es.uma.informatica.ejb.exceptions.ProyectoException;
 import es.uma.informatica.jpa.demo.Asignatura;
 
 @Named(value="asignaturas")
@@ -92,7 +93,10 @@ public class Asignaturas {
 			// TODO Auto-generated catch block
 			FacesMessage message = new FacesMessage("Asignatura ya existente");
 			FacesContext.getCurrentInstance().addMessage(null, message);
-		}
+		}catch (ProyectoException e) {
+			// TODO Auto-generated catch block
+			FacesMessage message = new FacesMessage("PYECTO SUPU ya existente");
+			FacesContext.getCurrentInstance().addMessage(null, message);}
 		return null;
 	}
 	public String eliminarAsignatura(Asignatura as) {
