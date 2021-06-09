@@ -64,8 +64,12 @@
 			
 			<h:commandLink id="InsGr-CrearGrupo" value="Crear Grupo" type ="submit" action="#{grupos.anaidir_Grupo()}"/>
 			
-			<h:commandLink id="InsGr-CrearTodosGrupos" value="Crear Todos los Grupos" type ="submit" action="#{grupos.crearGrupos()}"/>
+			
 		</h:form>
+		<h:form id= "InsGr-todos-los-grupos">
+			<h:commandLink id="InsGr-CrearTodosGrupos" value="Crear Todos los Grupos" action="#{grupos.crearGrupos()}"/>
+		</h:form>
+		
 	</div>
 </h:body>
 </html>
