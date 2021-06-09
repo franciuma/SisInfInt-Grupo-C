@@ -39,6 +39,7 @@ public class AsignaturasTestIT {
     driver.quit();
   }
   
+  @Ignore
   @Test
   public void insertarasignatura() {
     driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");
