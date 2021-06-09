@@ -18,6 +18,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import es.uma.informatica.sii.anotaciones.Requisitos;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
@@ -39,9 +42,10 @@ public class LoginTestIT {
     driver.quit();
   }
   @Ignore
+  @Requisitos({"RF1"})
   @Test
   public void login() {
-    driver.get("http://localhost:8080/jpa.demo-war/");
+    driver.get("http://localhost:8080/jpa.demo-war");
     driver.manage().window().setSize(new Dimension(665, 728));
     driver.findElement(By.id("Login-Form:Login-DNI")).click();
     driver.findElement(By.id("Login-Form:Login-DNI")).sendKeys("admin");
