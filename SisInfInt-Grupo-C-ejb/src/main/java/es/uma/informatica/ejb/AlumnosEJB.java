@@ -60,6 +60,10 @@ public class AlumnosEJB implements GestionAlumno {
 	@Override
 	public void eliminarAlumno(String dni) throws AlumnoNoEncontradoException {
 		Alumno alumno = obtenerAlumno(dni);
+		for(Expediente ex : alumno.getExpedientes()) {
+			ex.setAlumno(null);
+			ex.setActivo(false);
+		}
 		em.remove(alumno);
 		
 	}
