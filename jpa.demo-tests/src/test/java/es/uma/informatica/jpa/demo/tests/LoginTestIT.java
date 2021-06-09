@@ -41,7 +41,7 @@ public class LoginTestIT {
   public void tearDown() {
     driver.quit();
   }
-  @Ignore
+
   @Requisitos({"RF1"})
   @Test
   public void login() {
