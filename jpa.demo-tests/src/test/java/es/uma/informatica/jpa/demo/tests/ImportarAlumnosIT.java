@@ -46,6 +46,7 @@ public class ImportarAlumnosIT {
   public void importarAlumnosIT() throws InterruptedException {  
 	File f = new File("Datos alumnadoFAKE.xlsx");
 	String absolutePath = f.getAbsolutePath();
+	
 	driver.get("http://localhost:8080/jpa.demo-war/faces/insertar_Alumno_v2.xhtml");
     driver.manage().window().maximize();
     WebElement uploadElement = driver.findElement(By.xpath("//input[@id='InsAl-importarALumnos:InsAl-file']"));
