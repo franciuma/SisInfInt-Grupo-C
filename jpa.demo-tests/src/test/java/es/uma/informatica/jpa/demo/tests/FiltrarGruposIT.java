@@ -29,7 +29,7 @@ import java.util.*;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-public class CrearGruposIT {
+public class FiltrarGruposIT {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
@@ -67,6 +67,30 @@ public class CrearGruposIT {
     driver.findElement(By.id("indexIndex:vista-index-grupos")).click();
     driver.findElement(By.id("indexGr:IndGr-InsertarGr")).click();
     driver.findElement(By.id("InsGr-todos-los-grupos:InsGr-CrearTodosGrupos")).click();
+    //FILTRAR
+    driver.findElement(By.cssSelector(".list-box")).click();
+    driver.findElement(By.name("LiGr-grupos-id:j_idt11")).click();
+    driver.findElement(By.name("LiGr-grupos-id:j_idt11")).sendKeys("2");
+    driver.findElement(By.name("LiGr-grupos-id:j_idt13")).click();
+    driver.findElement(By.name("LiGr-grupos-id:j_idt13")).sendKeys("C");
+    driver.findElement(By.cssSelector(".list-box")).click();
+    driver.findElement(By.name("LiGr-grupos-id:j_idt15")).click();
+    driver.findElement(By.name("LiGr-grupos-id:j_idt15")).sendKeys("1041");
+    driver.findElement(By.id("LiGr-grupos-id:LiGr-Filtrar")).click();
+    Thread.sleep(4000);
+    driver.findElement(By.cssSelector("td:nth-child(1)")).click();
+    assertThat(driver.findElement(By.id("LiGr-grupos-id:j_idt38:0:LiGr-CursoC1")).getText(), is("2"));
+    driver.findElement(By.cssSelector("td:nth-child(2)")).click();
+    assertThat(driver.findElement(By.id("LiGr-grupos-id:j_idt38:0:LiGr-LetraC1")).getText(), is("C"));
+    driver.findElement(By.cssSelector("td:nth-child(7)")).click();
+    assertThat(driver.findElement(By.cssSelector("td:nth-child(7)")).getText(), is("Grado en Ingeniería Informática"));
+    driver.findElement(By.id("LiGr-grupos-id:LiGr-MostrarTodos")).click();
+    Thread.sleep(4000);
+    
+    driver.findElement(By.id("LiGr-grupos-id:LiGr-EliminarTodos")).click();
+    assertThat(driver.switchTo().alert().getText(), is("GRUPOS BORRADOS"));
+    driver.switchTo().alert().accept();
+    Thread.sleep(4000);
     
     //Ir a titulaciones
     driver.findElement(By.cssSelector("a")).click();
