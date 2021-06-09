@@ -36,7 +36,7 @@
 				<label>Movil</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="EdAl-email-institucional" value="#{alumnos2.alumno.emailInstitucional}" readonly="true"/>
+				<h:inputText id="EdAl-email-institucional" value="#{alumnos2.alumno.emailInstitucional}" />
 				
 				<label>Email Institucional</label>
 			</div>
@@ -47,6 +47,7 @@
 				<label>Email Personal</label>
 			</div>
 			<h:commandLink value="Actualizar Alumno" type ="submit" action="#{alumnos2.actualizarAlumno()}"/>
+			<h:commandLink value="Insertar Expediente" type ="submit" action="#{alumnos2.trasnferir()}"/>
 			<h:link outcome ="index_alumnos.xhtml">Atrás</h:link>
 			
 			
