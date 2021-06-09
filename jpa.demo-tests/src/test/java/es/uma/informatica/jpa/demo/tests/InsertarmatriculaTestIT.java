@@ -26,11 +26,10 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-public class ImportarAlumnosIT {
+public class InsertarmatriculaTestIT {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
@@ -44,66 +43,71 @@ public class ImportarAlumnosIT {
   public void tearDown() {
     driver.quit();
   }
-
-  @Requisitos({"RF-07 y RF-10"})
+  @Requisitos ({"RF-18"})
+  @Ignore
   @Test
-  public void importarAlumnosIT() throws InterruptedException {  
+  public void insertarmatricula() throws InterruptedException {
 	File f = new File("Datos alumnadoFAKE.xlsx");
 	String absolutePath = f.getAbsolutePath();
-	
-	driver.get("http://localhost:8080/jpa.demo-war/faces/insertar_Alumno_v2.xhtml");
+		
+    driver.get("http://0.0.0.0:8080/jpa.demo-war/faces/index.xhtml");
     driver.manage().window().maximize();
+    
+    driver.findElement(By.id("indexIndex:vista-index-alumnos")).click();
+    driver.findElement(By.id("indexAl:IndAl-InsertarAl")).click();
     WebElement uploadElement = driver.findElement(By.xpath("//input[@id='InsAl-importarALumnos:InsAl-file']"));
     uploadElement.sendKeys(absolutePath);
     driver.findElement(By.cssSelector("a:nth-child(3)")).click();
-	Thread.sleep(30000);
-	assertTrue("No existe el alumno", driver.getPageSource().contains("94949702C")); // 94949702C
-    Thread.sleep(4000);
-    
-    //Ir a la lista de expedientes
+    Thread.sleep(30000);
     driver.findElement(By.id("LiAl-alumnos-id:LiAl-boton-atras-vista-lista-alumno")).click();
     driver.findElement(By.id("indexAl:IndAl-Index")).click();
     driver.findElement(By.id("indexIndex:vista-index-expediente")).click();
     driver.findElement(By.id("indexEx:IndEx-ListaExp")).click();
-    assertTrue("No existe el expediente asociado al alumno", driver.getPageSource().contains("94949702C"));
-    Thread.sleep(4000);
-    
-    //Ir a la lista de matriculas
-    driver.findElement(By.cssSelector("a")).click();
-    driver.findElement(By.id("indexEx:IndEx-Index")).click();
-    driver.findElement(By.id("indexIndex:vista-index-matricula")).click();
-    driver.findElement(By.id("indexMa:IndMa-ListaMa")).click();
-    assertTrue("No existe la matricula asociada al expediente", driver.getPageSource().contains("104200006"));
-    Thread.sleep(4000);
-     
-    // Elimina las matriculas
+    assertTrue("No existe el expediente",driver.getPageSource().contains("104100002"));
+    driver.findElement(By.id("LiExp-expedientes-id:j_idt13:0:LiExp-Modificar")).click();
+    driver.findElement(By.cssSelector("h2")).click();
+    driver.findElement(By.cssSelector("a:nth-child(7)")).click();
+    driver.findElement(By.id("InsMa-InsertarMatr:InsMa-cursoAcademico")).sendKeys("1");
+    driver.findElement(By.id("InsMa-InsertarMatr:InsMa-estado")).sendKeys("Activa");
+    driver.findElement(By.id("InsMa-InsertarMatr:InsMa-numArchivo")).sendKeys("12");
+    driver.findElement(By.id("InsMa-InsertarMatr:InsMa-TurnoPreferente")).sendKeys("tarde");
+    driver.findElement(By.id("InsMa-InsertarMatr:InsMa-fechaMatricula")).sendKeys("19-12-29");
+    driver.findElement(By.id("InsMa-InsertarMatr:InsMa-nuevoIngreso")).sendKeys("si");
+    driver.findElement(By.id("InsMa-InsertarMatr:InsMa-listado_asignaturas")).sendKeys("307-");
+    driver.findElement(By.id("InsMa-InsertarMatr:InsMa-BotonCrearMatr")).click();
+    driver.findElement(By.id("LiMa-matriculas-id:j_idt10:0:LiMa-expC2")).click();
+    assertThat(driver.findElement(By.id("LiMa-matriculas-id:j_idt10:0:LiMa-expC2")).getText(), is("104100002"));
+    driver.findElement(By.id("LiMa-matriculas-id:j_idt10:0:LiMa-CursoAcadC2")).click();
+    assertThat(driver.findElement(By.id("LiMa-matriculas-id:j_idt10:0:LiMa-CursoAcadC2")).getText(), is("1"));
+    driver.findElement(By.id("LiMa-matriculas-id:j_idt10:0:LiMa-EstadoC2")).click();
+    assertThat(driver.findElement(By.id("LiMa-matriculas-id:j_idt10:0:LiMa-EstadoC2")).getText(), is("Activa"));
+    driver.findElement(By.id("LiMa-matriculas-id:j_idt10:0:LiMa-NumArchivoC2")).click();
+    assertThat(driver.findElement(By.id("LiMa-matriculas-id:j_idt10:0:LiMa-NumArchivoC2")).getText(), is("12"));
+    driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(5)")).click();
+    assertThat(driver.findElement(By.id("LiMa-matriculas-id:j_idt10:0:LiMa-TurnoPrefC2")).getText(), is("tarde"));
     driver.findElement(By.id("LiMa-matriculas-id:LiMa-EliminarTodasMa")).click();
     assertThat(driver.switchTo().alert().getText(), is("MATRICULAS BORRADAS"));
     driver.switchTo().alert().accept();
-    Thread.sleep(15000);
-    
-    //Ir a la lista de expedientes
-    driver.findElement(By.xpath("//a[contains(text(),'Atrás')]")).click();
+	Thread.sleep(8000);
+
+    driver.findElement(By.cssSelector("a:nth-child(3)")).click();
     driver.findElement(By.id("indexMa:IndMa-Index")).click();
     driver.findElement(By.id("indexIndex:vista-index-expediente")).click();
     driver.findElement(By.id("indexEx:IndEx-ListaExp")).click();
-    
-    //Elimina los expedientes
-    driver.findElement(By.xpath("//input[@name='LiExp-expedientes-id:j_idt12']")).click();
+    driver.findElement(By.name("LiExp-expedientes-id:j_idt12")).click();
     assertThat(driver.switchTo().alert().getText(), is("EXPEDIENTES BORRADOS"));
     driver.switchTo().alert().accept();
-    Thread.sleep(10000);
-  
-    //Ir a la lista de alumnos
-    driver.findElement(By.xpath("//a[contains(text(),'Atrás')]")).click();
+	Thread.sleep(8000);
+	
+    driver.findElement(By.cssSelector("a")).click();
     driver.findElement(By.id("indexEx:IndEx-Index")).click();
     driver.findElement(By.id("indexIndex:vista-index-alumnos")).click();
     driver.findElement(By.id("indexAl:IndAl-ListaAl")).click();
-    
-    //Elimina los alumnos
     driver.findElement(By.id("LiAl-alumnos-id:LiAl-boton-eliminarTodos-alumno")).click();
     assertThat(driver.switchTo().alert().getText(), is("ALUMNOs BORRADOs"));
     driver.switchTo().alert().accept();
-    Thread.sleep(4000);
+	Thread.sleep(8000);
+	
+    driver.findElement(By.id("LiAl-alumnos-id:LiAl-boton-atras-vista-lista-alumno")).click();
   }
 }
