@@ -5,7 +5,8 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Lista de Grupos</title>
@@ -20,7 +21,7 @@
 
 	<div class="list-box">
 		<h:form id="LiGr-grupos-id">
-		<h:message for = "LiGr-grupos-id"/>
+		<p:growl id="messages" showDetail="true" />
 			<h:link outcome="index_grupos.xhtml">Atrás</h:link>
 			<h2>Listado de Grupos</h2>
 
@@ -28,10 +29,15 @@
 				action="#{grupos.borrarTodos()}" onclick="alert('GRUPOS BORRADOS');"
 				class="deleteAllButton" />
 
-			<label>Introduce el id:</label>
+			<label>Introduce el curso:</label>
+			<h:inputText value="#{grupos.curso}"/>
+			<label>Introduce la letra:</label>
+			<h:inputText value="#{grupos.letra}"/>
+			<label>Introduce la Titulacion:</label>
+			<h:inputText value="#{grupos.titulacion}"/>
 
 
-			<h:commandButton value="Filtrar" action="#{grupos.VarBuscar()}"
+			<h:commandButton value="Filtrar" action="#{grupos.varBuscar()}"
 				class="deleteAllButton" id="LiGr-Filtrar"/>
 
 			<h:commandButton value="Mostrar todos" action="lista_grupos.xhtml"
@@ -43,7 +49,7 @@
 
 			<c:choose>
 				<c:when test="#{grupos.buscar}">
-					<h:dataTable value="#{grupos.BuscarGrupos(grupos.id)}" var="gr"
+					<h:dataTable value="#{grupos.buscarGrupos()}" var="gr"
 						class="datatable-box">
 
 						<h:column>
@@ -77,19 +83,9 @@
 
 						<h:column>
 							<f:facet name="header">Titulacion</f:facet>
-							<h:outputText value="#{gr.titulacion}" />
+							<h:outputText value="#{gr.titulacion.nombre}" />
 						</h:column>
 						
-						<h:column>
-							<h:commandButton value="Modificar"
-								action="#{grupos.modoModificarGrupo(gr)}" class="modifyColumn" id="LiGr-ModificarC1"/>
-						</h:column>
-
-						<h:column>
-							<h:commandButton value="Eliminar"
-								action="#{grupos.eliminarGrupo(gr)}"
-								onclick="alert('GRUPO BORRADO');" id="LiGr-EliminarC1"/>
-						</h:column>
 
 					</h:dataTable>
 				</c:when>

@@ -36,6 +36,8 @@ public class Grupos {
 	private GestionTitulacion titulaciones;
 	private Grupo grupo;
 	private String titulacion;
+	private String letra;
+	private String curso;
 	private Boolean buscar;
 	public String getTitulacion() {
 		return titulacion;
@@ -54,14 +56,7 @@ public class Grupos {
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		return null;
 	}
-	
-	public String VarBuscar() {
-		return null;
-	}
-	public Grupo BuscarGrupos(String id) {
-		return null;
-	}
-	
+
 	public Grupos() {
 		// TODO Auto-generated constructor stub
 		grupo = new Grupo();
@@ -121,6 +116,32 @@ public class Grupos {
 		return "editarGrupo.xhtml";
 	}
 	
+
+	public Grupo buscarGrupos() {
+		Grupo grupo = null;
+		try {
+			Titulacion ti = titulaciones.obtenerTitulacion(Integer.parseInt(titulacion));
+			grupo = grupos.obtenerGrupo(Integer.parseInt(curso), letra,ti);
+		}catch(GrupoNoEncontradoException e){
+			FacesMessage message = new FacesMessage("Grupo no encontrado");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			FacesMessage message = new FacesMessage("Dato incorrecto");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		} catch (TitulacionNoEncontradaException e) {
+			// TODO Auto-generated catch block
+			FacesMessage message = new FacesMessage("Titulacion no encontrado");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}
+		return grupo;
+	}
+	
+	public String varBuscar() {
+		buscar = true;
+		return null;
+	}
+
 	public List<Grupo> getListGrupos() {
 		listGrupos = grupos.obtenerGrupos();
 		return listGrupos;
@@ -155,6 +176,18 @@ public class Grupos {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getLetra() {
+		return letra;
+	}
+	public void setLetra(String letra) {
+		this.letra = letra;
+	}
+	public String getCurso() {
+		return curso;
+	}
+	public void setCurso(String curso) {
+		this.curso = curso;
 	}
 
 }
