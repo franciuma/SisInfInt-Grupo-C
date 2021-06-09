@@ -55,6 +55,11 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 			alumno = alumnos.obtenerAlumno(dni);
 			LOGGER.info(expediente.getNotaMediaProvisional().toString());
 			LOGGER.info("expediente alumno:  " + alumno.toString());
+			if(expediente.getNumExpediente() == null || expediente.getNotaMediaProvisional() == null) {
+				FacesMessage message = new FacesMessage("Faltan datos");
+				FacesContext.getCurrentInstance().addMessage(null, message);
+				return null;
+			}
 			expediente.setAlumno(alumno);
 			expedientes.insertarExpediente(expediente);
 			setInsertar_EX(true);
@@ -65,7 +70,8 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		} catch (AlumnoNoEncontradoException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage message = new FacesMessage("El no hay un alumno asociado al expediente");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
 	}

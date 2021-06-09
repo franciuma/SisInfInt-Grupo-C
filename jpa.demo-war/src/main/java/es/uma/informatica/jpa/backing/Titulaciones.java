@@ -14,6 +14,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Part;
+
+import org.apache.poi.openxml4j.exceptions.InvalidOperationException;
+
 import es.uma.informatica.ejb.GestionTitulacion;
 import es.uma.informatica.ejb.exceptions.AlumnoNoEncontradoException;
 import es.uma.informatica.ejb.exceptions.TitulacionNoEncontradaException;
@@ -57,6 +60,10 @@ public class Titulaciones {
 			// TODO Auto-generated catch block
 			FacesMessage message = new FacesMessage("Error al subir el fichero");
 			FacesContext.getCurrentInstance().addMessage(null, message);
+		}catch (InvalidOperationException e) {
+			// TODO: handle exception
+			FacesMessage message = new FacesMessage("Formato del fichero incorrecto");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		
 		try {
@@ -84,12 +91,17 @@ public class Titulaciones {
 	public String anaidir_Titulacion() {
 		
 		try {
+			if(titulacion.getCodigo() == null || titulacion.getCreditos() == null || titulacion.getNombre() == null) {
+				FacesMessage message = new FacesMessage("Faltan datos");
+				FacesContext.getCurrentInstance().addMessage(null, message);
+				return null;
+			}
 			titulaciones.insertarTitulacion(titulacion);
 			setInsertar_TI(true);
 			return "lista_titulaciones.xhtml";
 		} catch (TitulacionYaExistenteException e) {
 			// TODO Auto-generated catch block
-			FacesMessage message = new FacesMessage("Alumno ya existente");
+			FacesMessage message = new FacesMessage("Titulacion ya existente");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			return null;
 		}

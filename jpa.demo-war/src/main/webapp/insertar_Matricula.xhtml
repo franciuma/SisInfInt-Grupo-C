@@ -5,7 +5,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	
+	xmlns:p="http://primefaces.org/ui"
 	>
 	
 	
@@ -22,12 +22,12 @@
 	<div class="form-box">
 		<h2>Insertar Matricula</h2>
 		<h:form id="InsMa-InsertarMatr">
-		<h:message for = "InsMa-InsertarMatr"/>
+		<p:growl id="messages" showDetail="true" />
 		<h2>Insertar Matricula al EXPEDIENTE : <h:outputText id="ExAl-DNI1" value="#{matriculas.nExpediente}" /></h2>
 		<h:inputHidden value="#{matriculas.nExpediente}"/>
 			
 			<div class="input-box">
-				<h:inputText id="InsMa-cursoAcademico" value="#{matriculas.matricula.cursoAcademico}" />
+				<h:inputText id="InsMa-cursoAcademico" value="#{matriculas.matricula.cursoAcademico}" required="true"/>
 				<label>Curso Academico</label>
 			</div>
 			<div class="input-box">
