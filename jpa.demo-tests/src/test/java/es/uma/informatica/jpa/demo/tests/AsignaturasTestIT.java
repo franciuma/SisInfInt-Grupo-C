@@ -61,15 +61,15 @@ public class AsignaturasTestIT {
     driver.findElement(By.id("InsAs-InsertarAsig:InsRef-idiomasImparticion")).sendKeys("3");
     driver.findElement(By.id("InsAs-InsertarAsig:InsAs-BotonCrearAsig")).click();
     assertTrue("No existe la asignatura", driver.getPageSource().contains("25"));
-    driver.findElement(By.id("LiAsi-asignaturas-id:j_idt10:0:LiAsi-ModificarC2")).click();
+    driver.findElement(By.id("LiAsi-asignaturas-id:j_idt9:0:LiAsi-ModificarC2")).click();
     
     driver.findElement(By.id("EdAs-EditarAs:EdAs-nombre")).clear();
     
     driver.findElement(By.id("EdAs-EditarAs:EdAs-nombre")).sendKeys("riiiii");
     driver.findElement(By.cssSelector("a:nth-child(13)")).click();
     driver.findElement(By.cssSelector("td:nth-child(5)")).click();
-    assertThat(driver.findElement(By.id("LiAsi-asignaturas-id:j_idt10:0:LiAsi-NombreC2")).getText(), is("riiiii"));
-    driver.findElement(By.id("LiAsi-asignaturas-id:j_idt10:0:LiAsi-EliminarC2")).click();
+    assertThat(driver.findElement(By.id("LiAsi-asignaturas-id:j_idt9:0:LiAsi-NombreC2")).getText(), is("riiiii"));
+    driver.findElement(By.id("LiAsi-asignaturas-id:j_idt9:0:LiAsi-EliminarC2")).click();
     Thread.sleep(8000);
     assertThat(driver.switchTo().alert().getText(), is("ASIGNATURA BORRADA"));
     driver.switchTo().alert().accept();

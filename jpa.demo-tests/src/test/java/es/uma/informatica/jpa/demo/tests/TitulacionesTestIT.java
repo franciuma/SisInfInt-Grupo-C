@@ -43,7 +43,7 @@ public class TitulacionesTestIT {
   public void tearDown() {
     driver.quit();
   }
-  @Ignore
+
   @Requisitos({"RF17"})
   @Test
   public void crudTitulacion() throws InterruptedException {
@@ -56,15 +56,15 @@ public class TitulacionesTestIT {
     driver.findElement(By.id("InsTit-InsertarTitu:InsTit-creditos")).sendKeys("66");
     driver.findElement(By.id("InsTit-InsertarTitu:InsTit-BotonCrearTit")).click();
     assertTrue("No existe la titulacion", driver.getPageSource().contains("1059"));
-    driver.findElement(By.id("LiTit-titulaciones-id:j_idt10:0:LiTit-ModificarC2")).click();
+    driver.findElement(By.id("LiTit-titulaciones-id:j_idt9:0:LiTit-ModificarC2")).click();
     
     driver.findElement(By.id("EdTi-EditarTi:EdTi-nombre")).clear();
     
     driver.findElement(By.id("EdTi-EditarTi:EdTi-nombre")).sendKeys("Ingenieria de franci");
     driver.findElement(By.cssSelector("a:nth-child(6)")).click();
     driver.findElement(By.cssSelector("td:nth-child(2)")).click();
-    assertThat(driver.findElement(By.id("LiTit-titulaciones-id:j_idt10:0:LiTit-NombreC2")).getText(), is("Ingenieria de franci"));
-    driver.findElement(By.id("LiTit-titulaciones-id:j_idt10:0:LiTit-EliminarC2")).click();
+    assertThat(driver.findElement(By.id("LiTit-titulaciones-id:j_idt9:0:LiTit-NombreC2")).getText(), is("Ingenieria de franci"));
+    driver.findElement(By.id("LiTit-titulaciones-id:j_idt9:0:LiTit-EliminarC2")).click();
     Thread.sleep(8000);
     assertThat(driver.switchTo().alert().getText(), is("TITULACION BORRADA"));
     driver.switchTo().alert().accept();

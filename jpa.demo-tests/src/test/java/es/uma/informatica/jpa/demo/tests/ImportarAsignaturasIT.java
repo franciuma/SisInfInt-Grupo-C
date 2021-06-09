@@ -19,9 +19,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import es.uma.informatica.sii.anotaciones.Requisitos;
-
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
@@ -29,7 +26,7 @@ import java.util.*;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-public class ImportarTitulacionIT {
+public class ImportarAsignaturasIT {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
@@ -44,24 +41,23 @@ public class ImportarTitulacionIT {
     driver.quit();
   }
 
-  @Requisitos({"RF-09"})
   @Test
-  public void importarTitulacionIT() throws InterruptedException {
-	File f = new File("Titulacion.xlsx");
+  public void untitled() throws InterruptedException {
+	File f = new File("Oferta asignaturas.xlsx");
 	String absolutePath = f.getAbsolutePath();
 	
-    driver.get("http://localhost:8080/jpa.demo-war/faces/index.xhtml");
+    driver.get("http://0.0.0.0:8080/jpa.demo-war/faces/index.xhtml");
     driver.manage().window().maximize();
     
-    driver.findElement(By.id("indexIndex:vista-index-titulacion")).click();
-    driver.findElement(By.id("indexTi:IndTi-InsertarTi")).click();
-    WebElement uploadElement = driver.findElement(By.xpath("//input[@id='InsTit-importarTitulaciones:InsTit-file']"));
+    driver.findElement(By.id("indexIndex:vista-index-asignatura")).click();
+    driver.findElement(By.id("indexAs:IndAs-insertarAsig")).click();
+    WebElement uploadElement = driver.findElement(By.xpath("//input[@id='InsRef-importarAsignaturas:InsRef-file']"));
     uploadElement.sendKeys(absolutePath);
-    driver.findElement(By.cssSelector("a:nth-child(3)")).click();
-    Thread.sleep(8000);
-    assertTrue("No existe la titulacion", driver.getPageSource().contains("1042"));
-    driver.findElement(By.id("LiTit-titulaciones-id:LiTit-EliminarTodas")).click();
-    assertThat(driver.switchTo().alert().getText(), is("TITULACIONES BORRADAS"));
+    driver.findElement(By.xpath("//a[contains(text(),\'Enviar Fichero\')]")).click();
+    Thread.sleep(4000);
+    assertTrue("No existe la asignatura", driver.getPageSource().contains("50661"));
+    driver.findElement(By.id("LiAsi-asignaturas-id:LiAsi-EliminarTodas")).click();
+    assertThat(driver.switchTo().alert().getText(), is("ASIGNATURAS BORRADAS"));
     driver.switchTo().alert().accept();
     Thread.sleep(4000);
   }
