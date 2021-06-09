@@ -4,6 +4,7 @@ package es.uma.informatica.jpa.demo.tests;
 
 import org.junit.Test;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.After;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -42,6 +43,7 @@ public class TitulacionesTestIT {
   public void tearDown() {
     driver.quit();
   }
+  @Ignore
   @Requisitos({"RF17"})
   @Test
   public void crudTitulacion() throws InterruptedException {
