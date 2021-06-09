@@ -60,5 +60,6 @@ public class InsertarAlumnoIT {
     driver.findElement(By.id("InsAl-insertar-alumno:InsAl-email-institucional")).sendKeys("david@uma.es");
     driver.findElement(By.id("InsAl-insertar-alumno:InsAl-email-personal")).sendKeys("david@gmail.com");
     driver.findElement(By.id("InsAl-insertar-alumno:InsAl-boton-crear-alumno")).click();
+    assertTrue("No existe el alumno", driver.getPageSource().contains("79039261Z")); //79039261Z
   }
 }

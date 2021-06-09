@@ -23,6 +23,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 public class ImportarAlumnosIT {
@@ -40,28 +41,20 @@ public class ImportarAlumnosIT {
     driver.quit();
   }
   @Test
-  public void importarAlumnosIT() {  
-	driver.get("http://0.0.0.0:8080/jpa.demo-war/faces/insertar_Alumno_v2.xhtml");
+  public void importarAlumnosIT() throws InterruptedException {  
+	File f = new File("Datos alumnadoFAKE.xlsx");
+	String absolutePath = f.getAbsolutePath();
+	driver.get("http://localhost:8080/jpa.demo-war/faces/insertar_Alumno_v2.xhtml");
     driver.manage().window().maximize();
     WebElement uploadElement = driver.findElement(By.xpath("//input[@id='InsAl-importarALumnos:InsAl-file']"));
-    //WebDriverWait wait = new WebDriverWait(driver, 30);
-    //wait.until(ExpectedConditions.elementToBeClickable(uploadElement));
-    uploadElement.sendKeys("/home/alumno/GitHub/SisInfInt-Grupo-C/SisInfInt-Grupo-C-ejb/Datos alumnadoFAKE.xlsx/");
+    uploadElement.sendKeys(absolutePath);
     driver.findElement(By.cssSelector("a:nth-child(3)")).click();
-    driver.get("http://0.0.0.0:8080/jpa.demo-war/faces/lista_alumnos.xhtml");
-    
-    // TO-DO: FALTA QUE SE ELIMINE DESPUES DE LA PRUEBA
-    
-	/*driver.get(baseUrl);
-    driver.manage().window().setSize(new Dimension(593, 580));
-    driver.findElement(By.xpath("//input[@id='InsAl-importarALumnos:InsAl-file']")).click();
-    WebElement uploadElement = driver.findElement(By.xpath("//input[@id='InsAl-importarALumnos:InsAl-file']"));
-    //WebElement uploadElement = driver.findElement(By.id("InsAl-file"));
-    uploadElement.sendKeys("/home/alumno/GitHub/SisInfInt-Grupo-C/SisInfInt-Grupo-C-ejb/Datos alumnadoFAKE.xlsx/");
-    //driver.findElement(By.id("InsAl-importarALumnos:InsAl-file")).sendKeys("/home/alumno/GitHub/SisInfInt-Grupo-C/SisInfInt-Grupo-C-ejb/Datos alumnadoFAKE.xlsx/");
-    driver.findElement(By.cssSelector("a:nth-child(3)")).click();
+	Thread.sleep(10000);
+	assertTrue("No existe el alumno", driver.getPageSource().contains("94949702C")); // 94949702C
     driver.findElement(By.id("LiAl-alumnos-id:LiAl-boton-eliminarTodos-alumno")).click();
+    Thread.sleep(8000);
     assertThat(driver.switchTo().alert().getText(), is("ALUMNOs BORRADOs"));
-  */
+    driver.switchTo().alert().accept();
+    Thread.sleep(4000);
   }
 }
