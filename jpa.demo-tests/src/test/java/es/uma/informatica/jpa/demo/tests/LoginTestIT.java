@@ -46,7 +46,7 @@ public class LoginTestIT {
   @Test
   public void login() {
     driver.get("http://localhost:8080/jpa.demo-war");
-    driver.manage().window().setSize(new Dimension(665, 728));
+    driver.manage().window().maximize();
     driver.findElement(By.id("Login-Form:Login-DNI")).click();
     driver.findElement(By.id("Login-Form:Login-DNI")).sendKeys("admin");
     driver.findElement(By.id("Login-Form:Login-NombreCompleto")).click();
