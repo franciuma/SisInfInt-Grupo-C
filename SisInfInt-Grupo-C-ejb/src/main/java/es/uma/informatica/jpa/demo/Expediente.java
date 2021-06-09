@@ -2,6 +2,7 @@ package es.uma.informatica.jpa.demo;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -30,7 +31,7 @@ public class Expediente {
 	@OneToMany(mappedBy = "expediente")
 	private List<Encuesta> encuestas;
 	
-	@OneToMany(mappedBy = "expediente")
+	@OneToMany(mappedBy = "expediente",cascade = CascadeType.REMOVE)
 	private List<Matricula> matriculas;
 	
 public Expediente(Integer numExpediente, Boolean activo, Double notaMediaProvisional) {
