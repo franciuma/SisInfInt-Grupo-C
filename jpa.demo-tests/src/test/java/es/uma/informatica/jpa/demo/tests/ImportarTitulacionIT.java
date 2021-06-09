@@ -43,7 +43,7 @@ public class ImportarTitulacionIT {
   public void tearDown() {
     driver.quit();
   }
-  @Ignore
+
   @Requisitos({"RF-09"})
   @Test
   public void importarTitulacionIT() throws InterruptedException {

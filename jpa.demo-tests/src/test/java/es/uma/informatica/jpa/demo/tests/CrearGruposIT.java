@@ -43,7 +43,7 @@ public class CrearGruposIT {
   public void tearDown() {
     driver.quit();
   }
-  @Ignore
+  
   @Requisitos({"RF-19"})
   @Test
   public void importarTitulacionIT() throws InterruptedException {
@@ -66,7 +66,7 @@ public class CrearGruposIT {
     driver.findElement(By.id("indexTi:IndTi-Index")).click();
     driver.findElement(By.id("indexIndex:vista-index-grupos")).click();
     driver.findElement(By.id("indexGr:IndGr-InsertarGr")).click();
-    driver.findElement(By.id("InsGr-insertar-grupo:InsGr-CrearTodosGrupos")).click();
+    driver.findElement(By.id("InsGr-todos-los-grupos:InsGr-CrearTodosGrupos")).click();
     driver.findElement(By.id("LiGr-grupos-id:LiGr-EliminarTodos")).click();
     assertThat(driver.switchTo().alert().getText(), is("GRUPOS BORRADOS"));
     driver.switchTo().alert().accept();

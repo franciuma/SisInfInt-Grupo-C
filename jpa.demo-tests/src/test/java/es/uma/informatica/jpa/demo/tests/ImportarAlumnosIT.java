@@ -42,7 +42,6 @@ public class ImportarAlumnosIT {
     driver.quit();
   }
 
-  @Ignore
   @Test
   public void importarAlumnosIT() throws InterruptedException {  
 	File f = new File("Datos alumnadoFAKE.xlsx");
@@ -86,7 +85,7 @@ public class ImportarAlumnosIT {
     driver.findElement(By.id("indexEx:IndEx-ListaExp")).click();
     
     //Elimina los expedientes
-    driver.findElement(By.name("LiExp-expedientes-id:j_idt13")).click();
+    driver.findElement(By.xpath("//input[@name='LiExp-expedientes-id:j_idt12']")).click();
     assertThat(driver.switchTo().alert().getText(), is("EXPEDIENTES BORRADOS"));
     driver.switchTo().alert().accept();
     Thread.sleep(10000);

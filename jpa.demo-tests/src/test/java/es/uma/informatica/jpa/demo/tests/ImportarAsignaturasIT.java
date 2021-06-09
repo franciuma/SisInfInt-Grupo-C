@@ -40,7 +40,7 @@ public class ImportarAsignaturasIT {
   public void tearDown() {
     driver.quit();
   }
-  @Ignore
+
   @Test
   public void untitled() throws InterruptedException {
 	File f = new File("Oferta asignaturas.xlsx");
