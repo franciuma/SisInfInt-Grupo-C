@@ -4,6 +4,7 @@ import java.io.File;
 
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -52,7 +53,7 @@ public class Alumnos {
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		return null;
 	}
-	public String importarAlumnos() {
+	public String importarAlumnos() throws ParseException {
 
 		String sFile ="/tmp/alumnos.xlsx"; 
 		File filtemp = new File(sFile);
