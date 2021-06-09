@@ -53,6 +53,7 @@ public class MatriculaEJB implements GestionMatricula {
 		return mat;
 	}
 	
+	//Prueba
 	@Override
 	public void eliminarMatricula(Matricula mat) throws MatriculaNoEncontradaException {
 		Matricula matricula = obtenerMatricula(mat.getCursoAcademico(), mat.getId());
