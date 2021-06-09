@@ -23,6 +23,8 @@
 		<h2>Insertar Expediente</h2>
 		<h:form id="InsEx-InsertarExp">
 		<h:message for = "InsEx-InsertarExp"/>
+			<h2>Modificar Alumno con dni : <h:outputText id="ExAl-DNI1" value="#{expedientes.dni}" /></h2>
+			<h:inputHidden value="#{expedientes.dni}"/>
 			<div class="input-box">
 				<h:inputText id="InsEx-numExpediente" value="#{expedientes.expediente.numExpediente}" />
 				<label>Numero Expediente</label>
