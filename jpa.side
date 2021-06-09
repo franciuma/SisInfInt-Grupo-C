@@ -2312,16 +2312,24 @@
       "value": "Pagina Principal"
     }]
   }, {
+<<<<<<< HEAD
     "id": "7a3ddef4-99d5-4caa-92ee-f429b25d6fbf",
     "name": "editar alumno",
     "commands": [{
       "id": "82001efc-1cbb-4351-acb1-81d28796da36",
+=======
+    "id": "99632497-8c9f-4480-a64b-1e2416aceb1a",
+    "name": "mod asignatura",
+    "commands": [{
+      "id": "c035776f-7fd3-41c5-865b-e2271f2b3692",
+>>>>>>> 97171333624317ca18b77f9a2c0a479622176d66
       "comment": "",
       "command": "open",
       "target": "http://localhost:8080/jpa.demo-war/faces/index.xhtml",
       "targets": [],
       "value": ""
     }, {
+<<<<<<< HEAD
       "id": "9b08ece9-c082-43dc-87ba-a587bbefcd3b",
       "comment": "",
       "command": "setWindowSize",
@@ -2357,10 +2365,48 @@
         ["xpath=//a[@id='indexAl:IndAl-InsertarAl']", "xpath:attributes"],
         ["xpath=//form[@id='indexAl']/a", "xpath:idRelative"],
         ["xpath=//a[contains(@href, '/jpa.demo-war/faces/insertar_Alumno_v2.xhtml')]", "xpath:href"],
+=======
+      "id": "9936ba72-ef71-43ab-ac97-9ea1ceaef875",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "665x735",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8e778cfc-5a9c-4311-b4ad-766092579432",
+      "comment": "",
+      "command": "click",
+      "target": "id=indexIndex:vista-index-asignatura",
+      "targets": [
+        ["id=indexIndex:vista-index-asignatura", "id"],
+        ["name=indexIndex:vista-index-asignatura", "name"],
+        ["css=#indexIndex\\3Avista-index-asignatura", "css:finder"],
+        ["xpath=//a[contains(text(),'Asignaturas')]", "xpath:link"],
+        ["xpath=//a[@id='indexIndex:vista-index-asignatura']", "xpath:attributes"],
+        ["xpath=//form[@id='indexIndex']/a[3]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/jpa.demo-war/faces/index_asignatura.xhtml')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b3a541cf-9f45-46b0-97df-4525d58194c6",
+      "comment": "",
+      "command": "click",
+      "target": "id=indexAs:IndAs-insertarAsig",
+      "targets": [
+        ["id=indexAs:IndAs-insertarAsig", "id"],
+        ["name=indexAs:IndAs-insertarAsig", "name"],
+        ["css=#indexAs\\3AIndAs-insertarAsig", "css:finder"],
+        ["xpath=//a[contains(text(),'Insertar Asignatura')]", "xpath:link"],
+        ["xpath=//a[@id='indexAs:IndAs-insertarAsig']", "xpath:attributes"],
+        ["xpath=//form[@id='indexAs']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/jpa.demo-war/faces/insertar_Asignatura.xhtml')]", "xpath:href"],
+>>>>>>> 97171333624317ca18b77f9a2c0a479622176d66
         ["xpath=//a", "xpath:position"]
       ],
       "value": ""
     }, {
+<<<<<<< HEAD
       "id": "6bbac3e0-b58a-44af-a159-fec0f46325f4",
       "comment": "",
       "command": "click",
@@ -2371,10 +2417,23 @@
         ["css=#InsAl-insertar-alumno\\3AInsAl-dni", "css:finder"],
         ["xpath=//input[@id='InsAl-insertar-alumno:InsAl-dni']", "xpath:attributes"],
         ["xpath=//form[@id='InsAl-insertar-alumno']/div/input", "xpath:idRelative"],
+=======
+      "id": "180c9733-bb02-4067-abda-059eacb40cf5",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsAs-InsertarAsig:InsRef-referencia",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-referencia", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-referencia", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-referencia", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-referencia']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div/input", "xpath:idRelative"],
+>>>>>>> 97171333624317ca18b77f9a2c0a479622176d66
         ["xpath=//div/input", "xpath:position"]
       ],
       "value": ""
     }, {
+<<<<<<< HEAD
       "id": "cedfae5e-cb20-44eb-9371-f0ec59731e61",
       "comment": "",
       "command": "type",
@@ -2583,11 +2642,346 @@
         ["xpath=//a[contains(text(),'Actualizar Alumno')]", "xpath:link"],
         ["xpath=//a[@type='submit']", "xpath:attributes"],
         ["xpath=//form[@id='EdAl-EditarAlumno']/a", "xpath:idRelative"],
+=======
+      "id": "6c691b50-3303-486d-bb1b-3887a5e37f1f",
+      "comment": "",
+      "command": "type",
+      "target": "id=InsAs-InsertarAsig:InsRef-referencia",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-referencia", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-referencia", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-referencia", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-referencia']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "25"
+    }, {
+      "id": "5a01c548-2bd4-4728-9ab6-69cc88c16e73",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsAs-InsertarAsig:InsRef-Codigo_Asignatura",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-Codigo_Asignatura", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-Codigo_Asignatura", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-Codigo_Asignatura", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-Codigo_Asignatura']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5d136318-f685-45ab-90e3-781a7e670e6c",
+      "comment": "",
+      "command": "type",
+      "target": "id=InsAs-InsertarAsig:InsRef-Codigo_Asignatura",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-Codigo_Asignatura", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-Codigo_Asignatura", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-Codigo_Asignatura", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-Codigo_Asignatura']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "21345"
+    }, {
+      "id": "2cdb4cb1-8618-417d-bec4-2249400ad8d0",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsAs-InsertarAsig:InsRef-creditos",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-creditos", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-creditos", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-creditos", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-creditos']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "da058b42-a8dc-4ae9-bc58-f6a991368016",
+      "comment": "",
+      "command": "type",
+      "target": "id=InsAs-InsertarAsig:InsRef-creditos",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-creditos", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-creditos", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-creditos", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-creditos']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "22334"
+    }, {
+      "id": "4ac5999b-88ff-4140-8c4e-ede2900f3f1f",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsAs-InsertarAsig:InsRef-ofertada",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-ofertada", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-ofertada", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-ofertada", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-ofertada']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[4]/input", "xpath:idRelative"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d43c9b58-7d44-4e11-a6ed-d6a21ee6fe42",
+      "comment": "",
+      "command": "type",
+      "target": "id=InsAs-InsertarAsig:InsRef-ofertada",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-ofertada", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-ofertada", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-ofertada", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-ofertada']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[4]/input", "xpath:idRelative"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "si"
+    }, {
+      "id": "d3dd5947-b163-4965-8f4f-08a224744699",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsAs-InsertarAsig:InsRef-nombre",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-nombre", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-nombre", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-nombre", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-nombre']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[5]/input", "xpath:idRelative"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d1d721f7-6593-428d-8d0a-5db5b5a6612a",
+      "comment": "",
+      "command": "type",
+      "target": "id=InsAs-InsertarAsig:InsRef-nombre",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-nombre", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-nombre", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-nombre", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-nombre']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[5]/input", "xpath:idRelative"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "r"
+    }, {
+      "id": "0a174fb7-5f85-4d05-93ec-4df6d36efda7",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsAs-InsertarAsig:InsRef-curso",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-curso", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-curso", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-curso", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-curso']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[6]/input", "xpath:idRelative"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "98a76b63-ce9d-487d-82ce-2c6b73b6279e",
+      "comment": "",
+      "command": "type",
+      "target": "id=InsAs-InsertarAsig:InsRef-curso",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-curso", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-curso", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-curso", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-curso']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[6]/input", "xpath:idRelative"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "cfa9dcbb-a509-48f6-b1a4-497d8cc94776",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsAs-InsertarAsig:InsRef-caracter",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-caracter", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-caracter", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-caracter", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-caracter']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[7]/input", "xpath:idRelative"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b0a78caa-4b03-4f89-8a94-c07991e2b2dd",
+      "comment": "",
+      "command": "type",
+      "target": "id=InsAs-InsertarAsig:InsRef-caracter",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-caracter", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-caracter", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-caracter", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-caracter']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[7]/input", "xpath:idRelative"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "c"
+    }, {
+      "id": "d690de88-2459-48e2-811a-1cd1fe496619",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsAs-InsertarAsig:InsRef-duracion",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-duracion", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-duracion", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-duracion", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-duracion']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[8]/input", "xpath:idRelative"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c408879-4109-4431-b8c0-40a80381a0c5",
+      "comment": "",
+      "command": "type",
+      "target": "id=InsAs-InsertarAsig:InsRef-duracion",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-duracion", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-duracion", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-duracion", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-duracion']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[8]/input", "xpath:idRelative"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": "231"
+    }, {
+      "id": "185e3168-04bf-46da-900b-2f9745f420c1",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsAs-InsertarAsig:InsRef-unidadTemporal",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-unidadTemporal", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-unidadTemporal", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-unidadTemporal", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-unidadTemporal']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[9]/input", "xpath:idRelative"],
+        ["xpath=//div[9]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "366460a2-264e-4b45-a6d5-1e76cfae3c29",
+      "comment": "",
+      "command": "type",
+      "target": "id=InsAs-InsertarAsig:InsRef-unidadTemporal",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-unidadTemporal", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-unidadTemporal", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-unidadTemporal", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-unidadTemporal']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[9]/input", "xpath:idRelative"],
+        ["xpath=//div[9]/input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "cab0a996-e709-4afe-90f4-c6353df2f007",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsAs-InsertarAsig:InsRef-idiomasImparticion",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-idiomasImparticion", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-idiomasImparticion", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-idiomasImparticion", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-idiomasImparticion']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[10]/input", "xpath:idRelative"],
+        ["xpath=//div[10]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a4fc5729-9d56-4feb-b673-b6ef8e1a7053",
+      "comment": "",
+      "command": "type",
+      "target": "id=InsAs-InsertarAsig:InsRef-idiomasImparticion",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsRef-idiomasImparticion", "id"],
+        ["name=InsAs-InsertarAsig:InsRef-idiomasImparticion", "name"],
+        ["css=#InsAs-InsertarAsig\\3AInsRef-idiomasImparticion", "css:finder"],
+        ["xpath=//input[@id='InsAs-InsertarAsig:InsRef-idiomasImparticion']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/div[10]/input", "xpath:idRelative"],
+        ["xpath=//div[10]/input", "xpath:position"]
+      ],
+      "value": "3"
+    }, {
+      "id": "0b141685-abca-4cb7-92d6-2bfa054b82c2",
+      "comment": "",
+      "command": "click",
+      "target": "id=InsAs-InsertarAsig:InsAs-BotonCrearAsig",
+      "targets": [
+        ["id=InsAs-InsertarAsig:InsAs-BotonCrearAsig", "id"],
+        ["css=#InsAs-InsertarAsig\\3AInsAs-BotonCrearAsig", "css:finder"],
+        ["xpath=//a[contains(text(),'Crear Asignatura')]", "xpath:link"],
+        ["xpath=//a[@id='InsAs-InsertarAsig:InsAs-BotonCrearAsig']", "xpath:attributes"],
+        ["xpath=//form[@id='InsAs-InsertarAsig']/a", "xpath:idRelative"],
         ["xpath=//a[contains(@href, '#')]", "xpath:href"],
         ["xpath=//a", "xpath:position"]
       ],
       "value": ""
     }, {
+      "id": "f06b18ba-d228-4fa0-b997-4fa1cf6f7620",
+      "comment": "",
+      "command": "click",
+      "target": "id=LiAsi-asignaturas-id:j_idt10:0:LiAsi-ModificarC2",
+      "targets": [
+        ["id=LiAsi-asignaturas-id:j_idt10:0:LiAsi-ModificarC2", "id"],
+        ["name=LiAsi-asignaturas-id:j_idt10:0:LiAsi-ModificarC2", "name"],
+        ["css=#LiAsi-asignaturas-id\\3Aj_idt10\\3A 0\\3ALiAsi-ModificarC2", "css:finder"],
+        ["xpath=//input[@id='LiAsi-asignaturas-id:j_idt10:0:LiAsi-ModificarC2']", "xpath:attributes"],
+        ["xpath=//form[@id='LiAsi-asignaturas-id']/table/tbody/tr/td[11]/input", "xpath:idRelative"],
+        ["xpath=//td[11]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "98522da5-7da1-4515-9e00-565a75657e19",
+      "comment": "",
+      "command": "click",
+      "target": "id=EdAs-EditarAs:EdAs-nombre",
+      "targets": [
+        ["id=EdAs-EditarAs:EdAs-nombre", "id"],
+        ["name=EdAs-EditarAs:EdAs-nombre", "name"],
+        ["css=#EdAs-EditarAs\\3A EdAs-nombre", "css:finder"],
+        ["xpath=//input[@id='EdAs-EditarAs:EdAs-nombre']", "xpath:attributes"],
+        ["xpath=//form[@id='EdAs-EditarAs']/div[4]/input", "xpath:idRelative"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "da80a3d4-a718-4d7c-b8b8-baad74bf11e2",
+      "comment": "",
+      "command": "type",
+      "target": "id=EdAs-EditarAs:EdAs-nombre",
+      "targets": [
+        ["id=EdAs-EditarAs:EdAs-nombre", "id"],
+        ["name=EdAs-EditarAs:EdAs-nombre", "name"],
+        ["css=#EdAs-EditarAs\\3A EdAs-nombre", "css:finder"],
+        ["xpath=//input[@id='EdAs-EditarAs:EdAs-nombre']", "xpath:attributes"],
+        ["xpath=//form[@id='EdAs-EditarAs']/div[4]/input", "xpath:idRelative"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "riiiii"
+    }, {
+      "id": "41d3bac5-b300-4231-84eb-93811a37c6f3",
+      "comment": "",
+      "command": "click",
+      "target": "css=a:nth-child(13)",
+      "targets": [
+        ["css=a:nth-child(13)", "css:finder"],
+        ["xpath=//a[contains(text(),'Actualizar Asignatura')]", "xpath:link"],
+        ["xpath=//a[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='EdAs-EditarAs']/a", "xpath:idRelative"],
+>>>>>>> 97171333624317ca18b77f9a2c0a479622176d66
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+<<<<<<< HEAD
       "id": "fea6d49c-5f04-4c2a-a566-1f321701465d",
       "comment": "",
       "command": "click",
@@ -2634,6 +3028,52 @@
       "comment": "",
       "command": "assertAlert",
       "target": "ALUMNOs BORRADOs",
+=======
+      "id": "64200505-3942-4322-8b19-9e5945caf686",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(5)",
+      "targets": [
+        ["css=td:nth-child(5)", "css:finder"],
+        ["xpath=//form[@id='LiAsi-asignaturas-id']/table/tbody/tr/td[5]", "xpath:idRelative"],
+        ["xpath=//td[5]", "xpath:position"],
+        ["xpath=//td[contains(.,'riiiii')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "848e1dcb-8e31-4487-a911-420af549658b",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=LiAsi-asignaturas-id:j_idt10:0:LiAsi-NombreC2",
+      "targets": [
+        ["id=LiAsi-asignaturas-id:j_idt10:0:LiAsi-NombreC2", "id"],
+        ["css=#LiAsi-asignaturas-id\\3Aj_idt10\\3A 0\\3ALiAsi-NombreC2", "css:finder"],
+        ["xpath=//span[@id='LiAsi-asignaturas-id:j_idt10:0:LiAsi-NombreC2']", "xpath:attributes"],
+        ["xpath=//form[@id='LiAsi-asignaturas-id']/table/tbody/tr/td[5]/span", "xpath:idRelative"],
+        ["xpath=//td[5]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'riiiii')]", "xpath:innerText"]
+      ],
+      "value": "riiiii"
+    }, {
+      "id": "45df50ef-0e1b-4d5b-98c8-7983546b51a0",
+      "comment": "",
+      "command": "click",
+      "target": "id=LiAsi-asignaturas-id:j_idt10:0:LiAsi-EliminarC2",
+      "targets": [
+        ["id=LiAsi-asignaturas-id:j_idt10:0:LiAsi-EliminarC2", "id"],
+        ["name=LiAsi-asignaturas-id:j_idt10:0:LiAsi-EliminarC2", "name"],
+        ["css=#LiAsi-asignaturas-id\\3Aj_idt10\\3A 0\\3ALiAsi-EliminarC2", "css:finder"],
+        ["xpath=//input[@id='LiAsi-asignaturas-id:j_idt10:0:LiAsi-EliminarC2']", "xpath:attributes"],
+        ["xpath=//form[@id='LiAsi-asignaturas-id']/table/tbody/tr/td[12]/input", "xpath:idRelative"],
+        ["xpath=//td[12]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5c8ad50d-da74-497f-8202-5cfbac6aeffc",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "ASIGNATURA BORRADA",
+>>>>>>> 97171333624317ca18b77f9a2c0a479622176d66
       "targets": [],
       "value": ""
     }]
@@ -2665,7 +3105,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["03872c21-d3fd-4238-abdd-044df3aee966"]
+    "tests": ["03872c21-d3fd-4238-abdd-044df3aee966", "99632497-8c9f-4480-a64b-1e2416aceb1a"]
   }, {
     "id": "8e31e1aa-1d43-4117-89e3-ae81e1331efa",
     "name": "Expedientes",

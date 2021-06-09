@@ -110,6 +110,13 @@ private static final Logger LOGGER = Logger.getLogger(Expedientes.class.getCanon
 		buscar = true;
 		return null;
 	}
+	public String trasnferir() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Matriculas mat = context.getApplication().evaluateExpressionGet(context, "#{matriculas}", Matriculas.class);
+		mat.setnExpediente(expediente.getNumExpediente());;
+		
+		return "insertar_Matricula.xhtml";
+	}
 	
 	public String modoModificarExpediente(Expediente ex) {
 	expediente = ex;

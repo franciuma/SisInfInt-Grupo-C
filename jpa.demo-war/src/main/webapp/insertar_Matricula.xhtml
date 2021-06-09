@@ -23,10 +23,9 @@
 		<h2>Insertar Matricula</h2>
 		<h:form id="InsMa-InsertarMatr">
 		<h:message for = "InsMa-InsertarMatr"/>
-			<div class="input-box">
-				<h:inputText id="InsMa-expediente" value="#{matriculas.expediente}" />
-				<label>Expediente</label>
-			</div>
+		<h2>Insertar Matricula al EXPEDIENTE : <h:outputText id="ExAl-DNI1" value="#{matriculas.nExpediente}" /></h2>
+		<h:inputHidden value="#{matriculas.nExpediente}"/>
+			
 			<div class="input-box">
 				<h:inputText id="InsMa-cursoAcademico" value="#{matriculas.matricula.cursoAcademico}" />
 				<label>Curso Academico</label>
