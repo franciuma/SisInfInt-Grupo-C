@@ -54,7 +54,7 @@ public class ImportarAlumnosIT {
     driver.findElement(By.cssSelector("a:nth-child(3)")).click();
 	Thread.sleep(30000);
 	assertTrue("No existe el alumno", driver.getPageSource().contains("94949702C")); // 94949702C
-    Thread.sleep(4000);
+    Thread.sleep(10000);
     
     //Ir a la lista de expedientes
     driver.findElement(By.id("LiAl-alumnos-id:LiAl-boton-atras-vista-lista-alumno")).click();
@@ -76,7 +76,7 @@ public class ImportarAlumnosIT {
     driver.findElement(By.id("LiMa-matriculas-id:LiMa-EliminarTodasMa")).click();
     assertThat(driver.switchTo().alert().getText(), is("MATRICULAS BORRADAS"));
     driver.switchTo().alert().accept();
-    Thread.sleep(15000);
+    Thread.sleep(20000);
     
     //Ir a la lista de expedientes
     driver.findElement(By.xpath("//a[contains(text(),'Atrás')]")).click();
@@ -100,6 +100,6 @@ public class ImportarAlumnosIT {
     driver.findElement(By.id("LiAl-alumnos-id:LiAl-boton-eliminarTodos-alumno")).click();
     assertThat(driver.switchTo().alert().getText(), is("ALUMNOs BORRADOs"));
     driver.switchTo().alert().accept();
-    Thread.sleep(4000);
+    Thread.sleep(16000);
   }
 }

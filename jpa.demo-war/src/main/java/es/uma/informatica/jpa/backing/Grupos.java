@@ -50,6 +50,8 @@ public class Grupos {
 	private boolean insertar_GR;
 	private List<Grupo> listGrupos;
 
+	private Integer titulacionInt;
+
 	public String borrarTodos() {
 		grupos.eliminarTodos();
 		FacesMessage message = new FacesMessage("Borrado con exito");
@@ -60,6 +62,7 @@ public class Grupos {
 	public Grupos() {
 		// TODO Auto-generated constructor stub
 		grupo = new Grupo();
+		grupoviejo = new Grupo();
 		insertar_GR = false;
 		grupo.setIngles(false);
 		grupo.setVisible(true);
@@ -100,19 +103,38 @@ public class Grupos {
 	
 	public String actualizarGrupo() {
 		try {
+			
+			Titulacion tit = titulaciones.obtenerTitulacion(titulacionInt);
+			LOGGER.info(tit.toString());
+			grupoviejo.setTitulacion(tit);
+			LOGGER.info(grupoviejo.toString());
 			grupos.actualizarGrupo(grupoviejo, grupo);
 			return "lista_grupos.xhtml";
 		} catch (GrupoNoEncontradoException e) {
 			// TODO Auto-generated catch block
 			FacesMessage message = new FacesMessage("Grupo no encontrado");
 			FacesContext.getCurrentInstance().addMessage(null, message);
+		} catch (TitulacionNoEncontradaException e) {
+			// TODO Auto-generated catch block
+			FacesMessage message = new FacesMessage("Titulacion no encontrada");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		return null;
 	}
 	
 	public String modoModificarGrupo(Grupo gr) {
-		grupoviejo = gr;
+		if(gr == null)LOGGER.info("gr es nullllllll");
+		setTitulacionInt(gr.getTitulacion().getCodigo());
+		try {
+			grupoviejo = grupos.obtenerGrupo(gr.getCurso(), gr.getLetra(), gr.getTitulacion());
+		} catch (GrupoNoEncontradoException e) {
+			// TODO Auto-generated catch block
+			FacesMessage message = new FacesMessage("Grupo no encontrado");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}
+		LOGGER.info(gr.getTitulacion().toString());
 		grupo = gr;
+		
 		return "editarGrupo.xhtml";
 	}
 	
@@ -188,6 +210,12 @@ public class Grupos {
 	}
 	public void setCurso(String curso) {
 		this.curso = curso;
+	}
+	public Integer getTitulacionInt() {
+		return titulacionInt;
+	}
+	public void setTitulacionInt(Integer titulacionInt) {
+		this.titulacionInt = titulacionInt;
 	}
 
 }

@@ -23,6 +23,7 @@ public class SuiteTest {
 	
 	public static EJBContainer ejbContainer;
 	public static Context ctx;
+	
 	@BeforeClass
 	public static void setUpClass() {
 		Properties properties = new Properties();

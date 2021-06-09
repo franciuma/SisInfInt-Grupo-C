@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Editar Grupo</title>
@@ -20,8 +21,9 @@
 		<h2>Modificar grupo con id : <h:outputText id="EdGr-GrupoID1" value="#{grupos.grupo.id}" /></h2>
 		
 		<h:form id="EdGr-EditarGr">
-		<h:message for = "EdGr-EditarGr"/>
+		<p:growl id="messages" showDetail="true" />
 			<h:inputHidden id="EdGr-GrupoID2" value="#{grupos.grupo.id}"/>
+			<h:inputHidden id="EdGr-GrupoID3" value="#{grupos.titulacionInt}"/>
 
 			<div class="input-box">
 				<h:inputText id="EdGr-curso" value="#{grupos.grupo.curso}" />
@@ -36,7 +38,7 @@
 				<label>Turno</label>
 			</div>
 			<div class="input-box">
-				<h:inputText id="EdGr-asignar" value="#{grupos.grupo.plazas}" readonly="true"/>
+				<h:inputText id="EdGr-asignar" value="#{grupos.grupo.plazas}" />
 				<label>Plazas</label>
 				
 			</div>
