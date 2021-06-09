@@ -154,7 +154,7 @@ public class AlumnosEJB implements GestionAlumno {
 						m.setListadoAsignaturas(listado);
 						m.setExpediente(ex);
 						
-						Matricula_ID m_id = new Matricula_ID(x);
+						Matricula_ID m_id = new Matricula_ID(x,curso);
 						m.setId(m_id);
 						em.persist(m);
 					}

@@ -10,13 +10,15 @@ public class Matricula_ID implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private Integer expediente;
+	private String cursoAcademico;
 	
 	public Matricula_ID() {
 		// TODO Auto-generated constructor stub
 	}
-	public Matricula_ID(Integer expediente) {
+	public Matricula_ID(Integer expediente, String cursoAcademico) {
 		super();
 		this.expediente = expediente;
+		this.cursoAcademico = cursoAcademico;
 	}
 	
 	public Integer getExpediente() {
@@ -47,6 +49,12 @@ public class Matricula_ID implements Serializable {
 		} else if (!expediente.equals(other.expediente))
 			return false;
 		return true;
+	}
+	public String getCursoAcademico() {
+		return cursoAcademico;
+	}
+	public void setCursoAcademico(String cursoAcademico) {
+		this.cursoAcademico = cursoAcademico;
 	}
 	
 	
