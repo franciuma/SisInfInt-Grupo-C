@@ -24,7 +24,6 @@
 			<h:link outcome="index_grupos.xhtml">Atrás</h:link>
 			<h2>Listado de Grupos</h2>
 
-
 			<h:commandButton value="Eliminar Todos"
 				action="#{grupos.borrarTodos()}" onclick="alert('GRUPOS BORRADOS');"
 				class="deleteAllButton" />
@@ -95,7 +94,6 @@
 					</h:dataTable>
 				</c:when>
 				<c:otherwise>
-
 					<h:dataTable value="#{grupos.listGrupos}" var="gr"
 						class="datatable-box">
 
