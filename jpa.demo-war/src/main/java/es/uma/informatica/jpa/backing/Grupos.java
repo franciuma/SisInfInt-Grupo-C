@@ -56,7 +56,6 @@ public class Grupos {
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		return null;
 	}
-	
 
 	public Grupos() {
 		// TODO Auto-generated constructor stub
@@ -143,7 +142,6 @@ public class Grupos {
 		return null;
 	}
 
-	
 	public List<Grupo> getListGrupos() {
 		listGrupos = grupos.obtenerGrupos();
 		return listGrupos;
