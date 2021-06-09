@@ -36,9 +36,11 @@
 			<h:commandButton value="Mostrar todos"
 				action="lista_asignaturas.xhtml" class="deleteAllButton" id="LiAsi-MostrarTodas" />
 
-			<h:commandLink value="Eliminar Todas"
+			<h:commandButton value="Eliminar Todas"
 				action="#{asignaturas.borrarTodas()}"
-				onclick="alert('ASIGNATURAS BORRADAS');" id="LiAsi-EliminarTodas" />
+				onclick="alert('ASIGNATURAS BORRADAS');" 
+				class="deleteAllButton"
+				id="LiAsi-EliminarTodas" />
 
 			<c:choose>
 				<c:when test="#{asignaturas.buscar}">

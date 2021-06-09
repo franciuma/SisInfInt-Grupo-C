@@ -5,23 +5,34 @@ html {
 }
 
 body {
+  height: 100%;
   margin:0;
   padding:0;
   font-family: sans-serif;
   background: linear-gradient(#154360,  #21618c);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+table.auto {
+	table-layout:auto;
 }
 
 .form-box {
-  position: absolute;
+	margin: 0 auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+  /*position: absolute;
   top: 50%;
-  left: 50%;
-  width: 400px;
+  left: 50%;*/
+  width: 700px;
   padding: 40px;
-  transform: translate(-50%, -50%);
+  /*transform: translate(-50%, -50%);*/
   background: rgba(0,0,0,.5);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0,0,0,.6);
   border-radius: 10px;
+  overflow-x: scroll;
 }
 
 .form-box h2 {

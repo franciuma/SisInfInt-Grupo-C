@@ -60,16 +60,28 @@ public class ImportarAlumnosIT {
     driver.findElement(By.id("indexEx:IndEx-ListaExp")).click();
     assertTrue("No existe el expediente asociado al alumno", driver.getPageSource().contains("94949702C"));
     Thread.sleep(4000);
+    
+    //Ir a la lista de matriculas
+    driver.findElement(By.cssSelector("a")).click();
+    driver.findElement(By.id("indexEx:IndEx-Index")).click();
+    driver.findElement(By.id("indexIndex:vista-index-matricula")).click();
+    driver.findElement(By.id("indexMa:IndMa-ListaMa")).click();
+    assertTrue("No existe la matricula asociada al expediente", driver.getPageSource().contains("104200006"));
+    Thread.sleep(4000);
+    
+    // Elimina los expedientes
     driver.findElement(By.name("LiExp-expedientes-id:j_idt13")).click();
     assertThat(driver.switchTo().alert().getText(), is("EXPEDIENTES BORRADOS"));
     driver.switchTo().alert().accept();
     Thread.sleep(4000);
   
     //Ir a la lista de alumnos
-    driver.findElement(By.cssSelector("a")).click();
+
     driver.findElement(By.id("indexEx:IndEx-Index")).click();
     driver.findElement(By.id("indexIndex:vista-index-alumnos")).click();
     driver.findElement(By.id("indexAl:IndAl-ListaAl")).click();
+    
+    //Elimina los alumnos
     driver.findElement(By.id("LiAl-alumnos-id:LiAl-boton-eliminarTodos-alumno")).click();
     Thread.sleep(8000);
     assertThat(driver.switchTo().alert().getText(), is("ALUMNOs BORRADOs"));
