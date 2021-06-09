@@ -35,9 +35,11 @@
 			<h:commandButton value="Mostrar todos" action="lista_titulaciones.xhtml"
 				class="deleteAllButton" id="LiTit-MostrarTodos"/>
 			
-			<h:commandLink value="Eliminar Todas"
+			<h:commandButton value="Eliminar Todas"
 				action="#{titulaciones.borrarTodas()}"
-				onclick="alert('TITULACIONES BORRADAS');" id="LiTit-EliminarTodas"/>
+				onclick="alert('TITULACIONES BORRADAS');"
+				class="deleteAllButton"
+				id="LiTit-EliminarTodas"/>
 
 
 			<c:choose>
