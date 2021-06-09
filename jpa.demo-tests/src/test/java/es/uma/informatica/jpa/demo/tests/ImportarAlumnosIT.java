@@ -41,7 +41,7 @@ public class ImportarAlumnosIT {
   public void tearDown() {
     driver.quit();
   }
-  @Ignore
+
   @Test
   public void importarAlumnosIT() throws InterruptedException {  
 	File f = new File("Datos alumnadoFAKE.xlsx");

@@ -42,7 +42,6 @@ public class AsignaturasTestIT {
     driver.quit();
   }
 
-  @Ignore
   @Requisitos({"RF12"})
   @Test
   public void crudAsignatura() throws InterruptedException {
