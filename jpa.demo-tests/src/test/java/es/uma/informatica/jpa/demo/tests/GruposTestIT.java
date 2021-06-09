@@ -93,6 +93,7 @@ public class GruposTestIT {
     driver.findElement(By.id("LiGr-grupos-id:j_idt12:0:LiGr-EliminarC2")).click();
     assertThat(driver.switchTo().alert().getText(), is("GRUPO BORRADO"));
     driver.switchTo().alert().accept();
+    Thread.sleep(4000);
     driver.findElement(By.cssSelector("a")).click();
     driver.findElement(By.id("indexGr:IndGr-Index")).click();
     driver.findElement(By.id("indexIndex:vista-index-titulacion")).click();
